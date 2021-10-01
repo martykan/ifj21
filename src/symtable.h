@@ -57,7 +57,6 @@ subsymtab_t* symtab_keywords_init();
 subsymtab_t* subsymtab_init(size_t n);
 symtab_record_t* symtab_record_init(symtab_key_t key);
 
-
 // DEALLOCATION
 void symtab_free(symtab_t* symtab);
 void symtab_clear(symtab_t* symtab);
@@ -77,7 +76,7 @@ symtab_pair_t* symtab_insert(symtab_t* symtab, symtab_key_t key);
 symtab_pair_t* subsymtab_find(const subsymtab_t* subtab, symtab_key_t key);
 symtab_pair_t* subsymtab_insert(subsymtab_t* subtab, symtab_key_t key);
 void subsymtab_for_each(const subsymtab_t *subtab, void (*f)(symtab_pair_t *data));
-bool subsystam_erase(subsymtab_t* subtab, symtab_key_t key);
+bool subsymtab_erase(subsymtab_t* subtab, symtab_key_t key);
 
 // HASH FUNCTION
 uint32_t SuperFastHash(symtab_key_t data);

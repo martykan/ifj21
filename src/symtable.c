@@ -252,7 +252,7 @@ void subsymtab_for_each(const subsymtab_t *subtab, void (*f)(symtab_pair_t *data
   return;
 }
 
-bool subsystam_erase(subsymtab_t* subtab, symtab_key_t key)
+bool subsymtab_erase(subsymtab_t* subtab, symtab_key_t key)
 {
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
