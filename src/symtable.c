@@ -1,10 +1,12 @@
 /*
 *IFJ project
-*file: symtable.c
+*file: symtable.h
 *date: 28.09.21
 *author: Patrik Korytar, xkoryt04
+         Tomas Martykan, xmarty07
+         Filip Stolfa, xstolf00
 *school: FIT VUT
-*file description: symmbol table implemented using hash table
+*file description: symbol table API
 */
 
 #include "symtable.h"

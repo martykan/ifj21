@@ -3,8 +3,10 @@
 *file: symtable.h
 *date: 28.09.21
 *author: Patrik Korytar, xkoryt04
+         Tomas Martykan, xmarty07
+         Filip Stolfa, xstolf00
 *school: FIT VUT
-*file description: symmbol table API
+*file description: symbol table API
 */
 
 #ifndef __SYMTAB_H__
