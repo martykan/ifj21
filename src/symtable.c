@@ -55,7 +55,7 @@ symtab_t* symtab_create()
 
 symtab_subtab_t* symtab_keywords_create()
 {
-  symtab_subtab_t* keywords = symtab_subtab_create(SYMTAB_BUCKET_COUNT);
+  symtab_subtab_t* keywords = symtab_subtab_create(KEYWORDS_COUNT);
   if(!keywords)
     return NULL;
 
