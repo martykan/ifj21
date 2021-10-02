@@ -1,13 +1,10 @@
-/*
-*IFJ project
-*file: symtable.c
-*date: 28.09.21
-*author: Patrik Korytar, xkoryt04
-         Tomas Martykan, xmarty07
-         Filip Stolfa, xstolf00
-*school: FIT VUT
-*file description: symbol table implemented using hash table
-*/
+/**
+ * @file
+ * @brief Symbol table implementation
+ * @author Patrik Korytar
+ * @author Tomas Martykan
+ * @author Filip Stolfa
+ */
 
 #include "symtable.h"
 
@@ -16,8 +13,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
-// KEYWORDS ARRAY
-
+/**
+ * @brief Arrray of all keywords of the language.
+ */
 static const char* keyword_ids[KEYWORDS_COUNT] = {
   "do",
   "else",
@@ -36,15 +34,15 @@ static const char* keyword_ids[KEYWORDS_COUNT] = {
   "while"
 };
 
-// INITIALIZATION
+// INITIALIZATION FUNCTIONS
 
-symtab_t* symtab_init()
+symtab_t* symtab_create()
 {
   symtab_t* symtab = malloc(sizeof(symtab_t));
   if(symtab == NULL)
     return NULL;
 
-  symtab->keywords = symtab_keywords_init();
+  symtab->keywords = symtab_keywords_create();
   if(!symtab->keywords) {
     free(symtab);
     return NULL;
@@ -55,21 +53,21 @@ symtab_t* symtab_init()
   return symtab;
 }
 
-subsymtab_t* symtab_keywords_init()
+symtab_subtab_t* symtab_keywords_create()
 {
-  subsymtab_t* keywords = subsymtab_init(KEYWORDS_COUNT);
+  symtab_subtab_t* keywords = symtab_subtab_create(SYMTAB_BUCKET_COUNT);
   if(!keywords)
     return NULL;
 
   for(int i = 0; i < KEYWORDS_COUNT; i++)
-    subsymtab_insert(keywords, keyword_ids[i]);
+    symtab_subtab_insert(keywords, keyword_ids[i]);
 
   return keywords;
 }
 
-subsymtab_t* subsymtab_init(size_t n)
+symtab_subtab_t* symtab_subtab_create(size_t n)
 {
-  subsymtab_t* subtab = malloc(sizeof(subsymtab_t) + n*sizeof(symtab_record_t *));
+  symtab_subtab_t* subtab = malloc(sizeof(symtab_subtab_t) + n*sizeof(symtab_record_t *));
   if(subtab == NULL)
     return NULL;
 
@@ -82,7 +80,7 @@ subsymtab_t* subsymtab_init(size_t n)
   return subtab;
 }
 
-symtab_record_t* symtab_record_init(symtab_key_t key)
+symtab_record_t* symtab_record_create(symtab_key_t key)
 {
   symtab_record_t* rec = malloc(sizeof(symtab_record_t));
   if(rec == NULL)
@@ -103,7 +101,7 @@ symtab_record_t* symtab_record_init(symtab_key_t key)
   return rec;
 }
 
-// DEALLOCATION
+// DEALLOCATION FUNCTIONS
 
 void symtab_free(symtab_t* symtab)
 {
@@ -113,25 +111,25 @@ void symtab_free(symtab_t* symtab)
 
 void symtab_clear(symtab_t* symtab)
 {
-  subsymtab_free(symtab->keywords);
+  symtab_subtab_free(symtab->keywords);
 
   // delete first subtab while any left
   while(symtab->subtabs != NULL)
   {
       // next subtab after subtab now being deleted
-      subsymtab_t* next = symtab->subtabs->next;
-      subsymtab_free(symtab->subtabs);
+      symtab_subtab_t* next = symtab->subtabs->next;
+      symtab_subtab_free(symtab->subtabs);
       symtab->subtabs = next;
   }
 }
 
-void subsymtab_free(subsymtab_t* subtab)
+void symtab_subtab_free(symtab_subtab_t* subtab)
 {
-  subsymtab_clear(subtab);
+  symtab_subtab_clear(subtab);
   free(subtab);
 }
 
-void subsymtab_clear(subsymtab_t* subtab)
+void symtab_subtab_clear(symtab_subtab_t* subtab)
 {
   for(unsigned i = 0; i < subtab->bucket_cnt; i++)
   {
@@ -156,11 +154,11 @@ void symtab_record_free(symtab_record_t* rec)
   free(rec);
 }
 
-// MANIPULATION WITH SUBSYMTABLES
+// MANIPULATION WITH SUBSYMTABLES FUNCTIONS
 
-bool push_subsymtab(symtab_t* symtab)
+bool symtab_subtab_push(symtab_t* symtab)
 {
-  subsymtab_t* subtab = subsymtab_init(SYMTAB_BUCKET_COUNT);
+  symtab_subtab_t* subtab = symtab_subtab_create(SYMTAB_BUCKET_COUNT);
   if(subtab == NULL)
     return false;
 
@@ -170,20 +168,20 @@ bool push_subsymtab(symtab_t* symtab)
   return true;
 }
 
-void pop_subsymtab(symtab_t* symtab)
+void symtab_subtab_pop(symtab_t* symtab)
 {
-  subsymtab_t* next = symtab->subtabs->next;
-  subsymtab_free(symtab->subtabs);
+  symtab_subtab_t* next = symtab->subtabs->next;
+  symtab_subtab_free(symtab->subtabs);
   symtab->subtabs = next;
 }
 
-// MANIPULATION WITH RECORDS
+// MANIPULATION WITH RECORDS FUNCTIONS
 
 symtab_pair_t* symtab_find(const symtab_t* symtab, symtab_key_t key)
 {
-  for(subsymtab_t* subtab = symtab->subtabs; subtab != NULL; subtab = subtab->next)
+  for(symtab_subtab_t* subtab = symtab->subtabs; subtab != NULL; subtab = subtab->next)
   {
-    symtab_pair_t* pair = subsymtab_find(subtab, key);
+    symtab_pair_t* pair = symtab_subtab_find(subtab, key);
     if(pair)
       return pair;
   }
@@ -193,20 +191,20 @@ symtab_pair_t* symtab_find(const symtab_t* symtab, symtab_key_t key)
 
 symtab_pair_t* symtab_top_find(const symtab_t* symtab, symtab_key_t key)
 {
-  return subsymtab_find(symtab->subtabs, key);
+  return symtab_subtab_find(symtab->subtabs, key);
 }
 
 symtab_pair_t* symtab_keyword_find(const symtab_t* symtab, symtab_key_t key)
 {
-  return subsymtab_find(symtab->keywords, key);
+  return symtab_subtab_find(symtab->keywords, key);
 }
 
 symtab_pair_t* symtab_insert(symtab_t* symtab, symtab_key_t key)
 {
-  return subsymtab_insert(symtab->subtabs, key);
+  return symtab_subtab_insert(symtab->subtabs, key);
 }
 
-symtab_pair_t* subsymtab_find(const subsymtab_t* subtab, symtab_key_t key)
+symtab_pair_t* symtab_subtab_find(const symtab_subtab_t* subtab, symtab_key_t key)
 {
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
@@ -219,32 +217,28 @@ symtab_pair_t* subsymtab_find(const subsymtab_t* subtab, symtab_key_t key)
   return NULL;
 }
 
-symtab_pair_t* subsymtab_insert(subsymtab_t* subtab, symtab_key_t key)
+symtab_pair_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key)
 {
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
   symtab_record_t* last = NULL;
-  for(symtab_record_t* rec = subtab->list[index]; rec != NULL; rec = rec->next)
-  {
-    if(!strcmp(rec->pair.key, key))
-      return NULL;
+  for(last = subtab->list[index]; last != NULL; last = last->next)
+    ;
 
-    last = rec;
-  }
-
-  // key not found, create new record
-  symtab_record_t* new_item = symtab_record_init(key);
+  symtab_record_t* new_rec = symtab_record_create(key);
+  if(!new_rec)
+    return NULL;
 
   subtab->records_cnt++;
   if(!last) // if no record on current bucket
-    subtab->list[index] = new_item;
+    subtab->list[index] = new_rec;
   else // otherwise append
-    last->next = new_item;
+    last->next = new_rec;
 
-  return &new_item->pair;
+  return &new_rec->pair;
 }
 
-void subsymtab_for_each(const subsymtab_t *subtab, void (*f)(symtab_pair_t *data))
+void symtab_subtab_foreach(const symtab_subtab_t *subtab, void (*f)(symtab_pair_t *data))
 {
   // cycle through all records of t structure and apply function f
   for(unsigned i = 0; i < subtab->bucket_cnt; i++)
@@ -254,7 +248,7 @@ void subsymtab_for_each(const subsymtab_t *subtab, void (*f)(symtab_pair_t *data
   return;
 }
 
-bool subsymtab_erase(subsymtab_t* subtab, symtab_key_t key)
+bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key)
 {
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
