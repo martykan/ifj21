@@ -1,5 +1,4 @@
-# https://github.com/satu0king/Github-Documentation-With-Doxygen/
-name: Doxygen Action
+name: Github Actions
 
 on:
   push:
@@ -9,10 +8,21 @@ on:
 
 jobs:
   build:
+    name: Test the build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: textbook/git-checkout-submodule-action@master
+      - name: Build
+        run: make
+  # https://github.com/satu0king/Github-Documentation-With-Doxygen/
+  doxygen:
+    name: Build and deploy Doxygen docs
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+      - uses: textbook/git-checkout-submodule-action@master
 
       - name: Doxygen Action
         uses: mattnotmitt/doxygen-action@v1.1.0
