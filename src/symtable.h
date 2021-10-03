@@ -260,7 +260,7 @@ bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key);
  */
 uint32_t SuperFastHash(symtab_key_t data);
 //--------------------------------------------------------------------------------------
-// APPLIES TO SINGLE LINE ABOVE
+// APPLIES TO SINGLE FUNCTION DECLARATION ABOVE
 // TAKEN FROM: http://www.azillionmonkeys.com/qed/hash.html
 // COPYRIGHT: © Copyright 2004-2008 by Paul Hsieh
 // LICENSE: GNU Lesser General Public License v2.1
