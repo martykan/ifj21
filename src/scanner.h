@@ -4,97 +4,97 @@
  * @author Patrik Korytar
  * @author Tomas Martykan
  * @author Filip Stolfa
- *
- * ---> TODO -- NOT WORKING RIGHT NOW <----
- *
- * @section DESCRIPTION
- * Scanner reads input program and converts it to lexems using state machine.
  */
 
-#include "symtable.h"
+#ifndef __SCANNER_H
+#define __SCANNER_H
 
 /**
- * @brief Scanner states.
- * States scanner state machine can be in.
+ * Possible scanner token types.
+ * Enum of all possible scanner token types.
  */
 typedef enum {
-  BEGIN_STATE,
-  COMMENTED,
-  // TODO
-  ERROR_TOKEN,
-  END_OF_TOKEN
-} scanner_state_t;
+  TT_ERROR,
+  TT_NO_TYPE,
+  TT_EOF, //2
 
-/**
- * @brief Token types.
- * Possible types of read token.
- */
-typedef enum {
-  ID,
-  KEYWORD,
-  EQ,
-  LEFT_PARANTHESIS
-  //TODO
+  TT_KEYWORD_ID, //3
+  TT_STRING,
+  TT_INTEGER,
+  TT_NUMBER,
+  TT_ASSIGN, //7
+
+  // compare operators
+  TT_COP_EQ, //8
+  TT_COP_NEQ,
+  TT_COP_GT,
+  TT_COP_GE,
+  TT_COP_LT,
+  TT_COP_LE, //13
+
+  // math operators
+  TT_MOP_PLUS, //14
+  TT_MOP_MINUS,
+  TT_MOP_MUL,
+  TT_MOP_DIV,
+  TT_MOP_INT_DIV, //18
+
+  // string operators
+  TT_SOP_CONCAT, //19
+  TT_SOP_LENGTH,
+
+  // separators
+  TT_COMMA, //21
+  TT_LPAR,
+  TT_RPAR,
+  TT_COLON //24
 } token_type_t;
+
 
 /**
  * @struct token_t
- * @brief Token containing lexeme.
+ * @brief Scanner token type.
  * @var token_t::type
- * Type of a read token (identifier, literal, etc.).
- * @var token_t::value
- * Text of identifier or literal (blank for operators).
+ * Type of the token.
+ * @var token_t::attribute
+ * Pointer to a dynamically allocated string
+ * containing the parsed token string or NULL if
+ * a token doesn't require an attribute.
+ * TODO: make attribute an union and store parsed numbers in attribute?
+ * TODO: error information
  */
-typedef struct
-{
+typedef struct {
   token_type_t type;
-  string_t* value;
+  char *attribute;
 } token_t;
 
-// STATE FUNCTIONS
 
-/**
- * Determines new state from current state and read character.
- * @param state State from to determine new one.
- * @param c Read character to use for state determination.
- * @return New state.
+/** Initializes scanner for use.
+ * Before it can be used, scanner needs its dynstr global
+ * variable set. That variable is used as a buffer for the
+ * string that has been processed so far. To avoid allocating
+ * and deallocating the buffer every time scanner is called,
+ * it is stored as a global variable.
  */
-scanner_state_t scanner_determine_state(scanner_state_t state, char c);
+void scanner_init();
 
-// TOKEN FUNCTIONS
-
-/**
- * Gets token;
- * This function is called by synctatic analyzer;
- * @param symtab If not NULL and token is identifier, store token in symbol table;
- * @return Formed token if successful. NULL otherwise.
+/** Free dynstr buffer used by scanner.
+ * Scanner uses a global variable to store the processed string.
+ * This function has to be called before the end of the program,
+ * or when scanner is no longer needed.
  */
-token_t* token_get(symtab_t *symtab);
+void scanner_destroy();
 
-/**
- * Reads stdin and forms a token.
- * @param err Out parameter to pass errors.
- * @return Formed token if successful. NULL otherwise.
+/** Free scanner token.
+ * Frees dynamically allocated token (and token attribute) retuned
+ * by scanner.
+ * @param tok Pointer to a token to destroy.
  */
-token_t* token_read(int* err);
+void scanner_token_destroy(token_t *tok);
 
-/**
- * Stores token in symbol table.
- * @param symtab Symbol table where to store.
- * @param token Token to store.
- * @return True if successful. False otherwise.
- */
-bool token_store(symtab_t *symtab, token_t* token);
 
-/**
- * Destroys token.
- * @param token Token to destroy.
- */
-void token_destroy(token_t* token);
+token_t *scanner_get_next_token();
 
-/**
- * Determines type of token from state.
- * @param state State to determine token from.
- * @return Type of token.
- */
-token_type_t token_determine_type(scanner_state_t state);
+
+
+#endif
