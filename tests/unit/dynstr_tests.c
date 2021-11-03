@@ -85,7 +85,7 @@ TEST dynstr_append_test() {
   ASSERT_EQm("first char is unchanged", dstr.str[0], 'a');
   ASSERT_EQm("correct char is appended last", dstr.str[31], '^');
 
-  printf("res dynstr: %s\n", dstr.str);
+  /* printf("res dynstr: %s\n", dstr.str); */
 
   res = dynstr_free_buffer(&dstr);
   ASSERT_NEQ(res, NULL);
@@ -190,7 +190,7 @@ TEST dynstr_copy_to_static_test() {
   ASSERT_EQ(strlen(dstr.str), 0);
 
   ASSERT_EQm("copy is not cleared", strlen(dest), 35);
-  printf("dstr static copy: %s\n", dest);
+  /* printf("dstr static copy: %s\n", dest); */
 
   free(dest);
   res = dynstr_free_buffer(&dstr);
