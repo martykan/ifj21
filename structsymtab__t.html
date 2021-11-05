@@ -84,17 +84,59 @@ $(document).ready(function(){initNavTree('structsymtab__t.html',''); initResizab
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structsymtab__t-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">symtab_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Symbol table consisting of identifiers subtables and keywords table.  
+<p>Hierarchical symbol table. Includes tables for both global and local scopes. Most nested local scope table is on top of stack.  
  <a href="structsymtab__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="symtable_8h_source.html">symtable.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a1f1c81869a25d6ab18bf925d7cc8993c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__t.html#a1f1c81869a25d6ab18bf925d7cc8993c">global_scope</a></td></tr>
+<tr class="separator:a1f1c81869a25d6ab18bf925d7cc8993c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a5f682df1ad207f1c61f543a936d3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__t.html#ab4a5f682df1ad207f1c61f543a936d3f">local_scopes</a></td></tr>
+<tr class="separator:ab4a5f682df1ad207f1c61f543a936d3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Symbol table consisting of identifiers subtables and keywords table. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="textblock"><p >Hierarchical symbol table. Includes tables for both global and local scopes. Most nested local scope table is on top of stack. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1f1c81869a25d6ab18bf925d7cc8993c" name="a1f1c81869a25d6ab18bf925d7cc8993c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f1c81869a25d6ab18bf925d7cc8993c">&#9670;&nbsp;</a></span>global_scope</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">symtab_t::global_scope</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Table containing global identifiers, ie. functions. </p>
+
+</div>
+</div>
+<a id="ab4a5f682df1ad207f1c61f543a936d3f" name="ab4a5f682df1ad207f1c61f543a936d3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a5f682df1ad207f1c61f543a936d3f">&#9670;&nbsp;</a></span>local_scopes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">symtab_t::local_scopes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Top of stack of tables containing local identifiers, ie. variables. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/<a class="el" href="symtable_8h_source.html">symtable.h</a></li>
 </ul>
 </div><!-- contents -->

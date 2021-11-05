@@ -84,17 +84,76 @@ $(document).ready(function(){initNavTree('structsymtab__subtab__t.html',''); ini
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="structsymtab__subtab__t-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">symtab_subtab_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Single identifiers subtable associated with one scope.  
+<p>Subtable of identifiers of one scope.  
  <a href="structsymtab__subtab__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="symtable_8h_source.html">symtable.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a3b239b1b228609630b942a6da8d110a6"><td class="memItemLeft" align="right" valign="top">struct symtab_subtab *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__subtab__t.html#a3b239b1b228609630b942a6da8d110a6">next</a></td></tr>
+<tr class="separator:a3b239b1b228609630b942a6da8d110a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae10415c603b57a44e294de3f7cc532eb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__subtab__t.html#ae10415c603b57a44e294de3f7cc532eb">bucket_cnt</a></td></tr>
+<tr class="separator:ae10415c603b57a44e294de3f7cc532eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73b859708e4fd8745b6fdf8357370b41"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__record__t.html">symtab_record_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__subtab__t.html#a73b859708e4fd8745b6fdf8357370b41">list</a> []</td></tr>
+<tr class="separator:a73b859708e4fd8745b6fdf8357370b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Single identifiers subtable associated with one scope. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="textblock"><p >Subtable of identifiers of one scope. </p>
+</div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae10415c603b57a44e294de3f7cc532eb" name="ae10415c603b57a44e294de3f7cc532eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae10415c603b57a44e294de3f7cc532eb">&#9670;&nbsp;</a></span>bucket_cnt</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">symtab_subtab_t::bucket_cnt</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Bucket count of the subtable. </p>
+
+</div>
+</div>
+<a id="a73b859708e4fd8745b6fdf8357370b41" name="a73b859708e4fd8745b6fdf8357370b41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73b859708e4fd8745b6fdf8357370b41">&#9670;&nbsp;</a></span>list</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">symtab_subtab_t::list</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Array of buckets, each pointing to record. </p>
+
+</div>
+</div>
+<a id="a3b239b1b228609630b942a6da8d110a6" name="a3b239b1b228609630b942a6da8d110a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b239b1b228609630b942a6da8d110a6">&#9670;&nbsp;</a></span>next</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">symtab_subtab_t::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Next subtable on the stack. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>src/<a class="el" href="symtable_8h_source.html">symtable.h</a></li>
 </ul>
 </div><!-- contents -->

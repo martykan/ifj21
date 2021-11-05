@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['type_0',['type',['../structtoken__t.html#affed9d9d575cc38e143740f94363f3f4',1,'token_t']]]
+  ['bucket_5fcnt_0',['bucket_cnt',['../structsymtab__subtab__t.html#ae10415c603b57a44e294de3f7cc532eb',1,'symtab_subtab_t']]]
 ];
