@@ -133,6 +133,8 @@ typedef struct {
   symtab_subtab_t* local_scopes;
 } symtab_t;
 
+// PUBLIC FUNCTION FORWARD DECLARATIONS
+
 // ALLOCATION FUNCTIONS
 
 /**
@@ -142,20 +144,6 @@ typedef struct {
  * @return Created symbol table. NULL if failed to create.
  */
 symtab_t* symtab_create();
-
-/**
- * Creates subtable.
- * @param n Bucket count.
- * @return Created subtable. NULL if failed to create.
- */
-symtab_subtab_t* symtab_subtab_create(size_t n);
-
-/**
- * Creates record of identifier.
- * @param key Name of the identifier.
- * @return Created record. NULL if failed to create.
- */
-symtab_record_t* symtab_record_create(symtab_key_t key);
 
 // DEALLOCATION FUNCTIONS
 
@@ -170,24 +158,6 @@ void symtab_free(symtab_t* symtab);
  * @param symtab Symbol table to clear.
  */
 void symtab_clear(symtab_t* symtab);
-
-/**
- * Destroys whole subtable.
- * @param subtab Subtable to destroy.
- */
-void symtab_subtab_free(symtab_subtab_t* subtab);
-
-/**
- * Destroys all contents of subtable, but not subtable.
- * @param subtab Subtable to clear.
- */
-void symtab_subtab_clear(symtab_subtab_t* subtab);
-
-/**
- * Destroys record of identifier.
- * @param rec Record to destroy.
- */
-void symtab_record_free(symtab_record_t* rec);
 
 // MANIPULATION WITH LOCAL SUBTABLES FUNCTIONS
 
@@ -223,15 +193,6 @@ symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key);
 symtab_func_data_t* symtab_find_func(const symtab_t* symtab, symtab_key_t key);
 
 /**
- * Searches subtable for identifier.
- * @param subtab Subtable to search on.
- * @param key Key to search for.
- * @return Found record data. NULL otherwise.
- */
-symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
-                                  symtab_key_t key);
-
-/**
  * Creates and inserts new record in topmost local table (most nested scope).
  * @param symtab Symbol table to instert in.
  * @param key Key of the new record.
@@ -248,45 +209,11 @@ symtab_var_data_t* symtab_insert_var(symtab_t* symtab, symtab_key_t key);
 symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key);
 
 /**
- * Creates and inserts new record in subtable.
- * @param subtab Subtable to instert on.
- * @param key Key of the new record.
- * @return Created record. NULL if failed to create.
- */
-symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key);
-
-/**
  * Executes function for each record in subtable.
  * @param subtab Subtable to operate on.
  * @param f Function to execute.
  */
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,
                            void (*f)(symtab_data_t* data));
-
-/**
- * Erases record with key from subtable.
- * @param subtab Subtable to erase record from.
- * @param key Key of record to erase.
- * @return True if found and deleted. False if not found.
- */
-bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key);
-
-// HASH FUNCTION
-
-/**
- * Hash function.
- * @param data Key to hash.
- * @return Index created from key.
- */
-uint32_t SuperFastHash(symtab_key_t data);
-//--------------------------------------------------------------------------------------
-// APPLIES TO SINGLE FUNCTION DECLARATION ABOVE
-// TAKEN FROM: http://www.azillionmonkeys.com/qed/hash.html
-// COPYRIGHT: © Copyright 2004-2008 by Paul Hsieh
-// LICENSE: GNU Lesser General Public License v2.1
-// LICENSE TEXT: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
-// CHANGES MADE: 01.10.2021 - changed parameter type and count; added local len
-// variable
-//--------------------------------------------------------------------------------------
 
 #endif  // __SYMTAB_H__

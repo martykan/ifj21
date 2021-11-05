@@ -13,7 +13,90 @@
 #include <stdlib.h>
 #include <string.h>
 
-// FORWARD DECLARATIONS OF PRIVATE FUNCTIONS
+// PRIVATE FUNCTION FORWARD DECLARATIONS
+
+// ALLOCATION FUNCTIONS
+
+/**
+ * Creates subtable.
+ * @param n Bucket count.
+ * @return Created subtable. NULL if failed to create.
+ */
+symtab_subtab_t* symtab_subtab_create(size_t n);
+
+/**
+ * Creates record of identifier.
+ * @param key Name of the identifier.
+ * @return Created record. NULL if failed to create.
+ */
+symtab_record_t* symtab_record_create(symtab_key_t key);
+
+// DEALLOCATION FUNCTIONS
+
+/**
+ * Destroys whole subtable.
+ * @param subtab Subtable to destroy.
+ */
+void symtab_subtab_free(symtab_subtab_t* subtab);
+
+/**
+ * Destroys all contents of subtable, but not subtable.
+ * @param subtab Subtable to clear.
+ */
+void symtab_subtab_clear(symtab_subtab_t* subtab);
+
+/**
+ * Destroys record of identifier.
+ * @param rec Record to destroy.
+ */
+void symtab_record_free(symtab_record_t* rec);
+
+// MANIPULATION WITH RECORDS FUNCTIONS
+
+/**
+ * Searches subtable for identifier.
+ * @param subtab Subtable to search on.
+ * @param key Key to search for.
+ * @return Found record data. NULL otherwise.
+ */
+symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
+                                  symtab_key_t key);
+
+/**
+ * Creates and inserts new record in subtable.
+ * @param subtab Subtable to instert on.
+ * @param key Key of the new record.
+ * @return Created record. NULL if failed to create.
+ */
+symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key);
+
+/**
+ * Erases record with key from subtable.
+ * @param subtab Subtable to erase record from.
+ * @param key Key of record to erase.
+ * @return True if found and deleted. False if not found.
+ */
+bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key);
+
+// HASH FUNCTION
+
+/**
+ * Hash function.
+ * @param data Key to hash.
+ * @return Index created from key.
+ */
+uint32_t SuperFastHash(symtab_key_t data);
+//--------------------------------------------------------------------------------------
+// APPLIES TO SINGLE FUNCTION DECLARATION ABOVE
+// TAKEN FROM: http://www.azillionmonkeys.com/qed/hash.html
+// COPYRIGHT: © Copyright 2004-2008 by Paul Hsieh
+// LICENSE: GNU Lesser General Public License v2.1
+// LICENSE TEXT: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+// CHANGES MADE: 01.10.2021 - changed parameter type and count; added local len
+// variable
+//--------------------------------------------------------------------------------------
+
+// END OF FORWARD DECLARATIONS
 
 // INTERNAL DATA
 
@@ -27,6 +110,8 @@ static const char* keywords[KEYWORDS_COUNT] = {
     "do",      "else",    "end",    "function", "global",
     "if",      "integer", "local",  "nil",      "number",
     "require", "return",  "string", "then",     "while"};
+
+// FUNCTION DEFINITIONS
 
 // ALLOCATION FUNCTIONS
 
