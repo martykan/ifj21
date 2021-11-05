@@ -6,124 +6,142 @@
  * @author Filip Stolfa
  *
  * @section DESCRIPTION
- * Symbol table interface for interaction. Used by other components
- * of compiler for stroring identifiers.
+ *  Symbol table interface for interaction. Used by other components
+ *  of compiler for storing identifiers.
  *
  * @section IMPLEMENTATION
- * Symbol table is composed of keywords hash table and identifiers hash
- * tables. Keywords table contains all keywords of language. Identifiers tables
- * are a stack of subtables where each represents a single scope. The most nested
- * scope is associated with topmost table on stack.
+ *  Symbol table is composed of hash tables for global scope and local
+ *  scopes. Local scope tables are inside a stack, the topmost of which
+ *  represents most nested scope.
  */
 
 #ifndef __SYMTAB_H__
 #define __SYMTAB_H__
 
 #include <stdbool.h>
-#include <string.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <string.h>
 
-// COMPILE-TIME CONSTANTS
+// DATA STRUCTURES
 
-#define SYMTAB_BUCKET_COUNT 83
-#define KEYWORDS_COUNT 15
-
-// TYPEDEFS
-
-typedef struct symtab symtab_t;
-typedef struct symtab_subtab symtab_subtab_t;
-typedef struct symtab_record symtab_record_t;
-typedef struct symtab_pair symtab_pair_t;
-typedef struct symtab_value symtab_value_t;
 /**
  * @brief Type of key used in hash tables.
  */
 typedef const char* symtab_key_t;
 
-/**
- * @struct symtab_t
- * @brief Symbol table consisting of identifiers subtables and keywords table.
- * @var symtab_t::keywords
- * Points to keywords table.
- * @var symtab_t::subtabs
- * Points to the head of the stack of identifiers subtables.
- */
-struct symtab
-{
-  symtab_subtab_t*  keywords;
-  symtab_subtab_t*  subtabs;
-};
+// Data type is represented by single character.
+// i - integer
+// n - number
+// s - string
 
 /**
- * @struct symtab_subtab_t
- * @brief Single identifiers subtable associated with one scope.
- * @var symtab_subtab_t::next
- * Next subtable on the stack (under this one).
- * @var symtab_subtab_t::bucket_cnt
- * Bucket count of the subtable.
- * @var symtab_subtab_t::records_cnt
- * Current count of the stored records.
- * @var symtab_subtab_t::list
- * Array of hash table buckets.
+ * @struct symtab_var_data_t
+ * @brief Data of the variable identifier.
+ * @var symtab_var_data_t::data_type
+ *  Data type of the variable.
+ * @var symtab_var_data_t::is_init
+ *  Was the variable initialized?
+ * @var symtab_var_data_t::is_used
+ *  Was the variable already used?
  */
-struct symtab_subtab {
-  symtab_subtab_t*  next;
-  size_t            bucket_cnt;
-  size_t            records_cnt;
-  symtab_record_t*  list[];
-};
+typedef struct {
+  char data_type;
+  bool is_init;
+  bool is_used;
+} symtab_var_data_t;
+
+/**
+ * @struct symtab_func_data_t
+ * @brief Data of the function identifier.
+ * @var symtab_func_data_t::param_types
+ *  Data types of the parameters.
+ *  Each represented as single character in string.
+ * @var symtab_func_data_t::return_types
+ *  Data types of the return values.
+ *  Each represented as single character in string.
+ * @var symtab_func_data_t::was_defined
+ *  Was the function body already defined?
+ */
+typedef struct {
+  char* param_types;
+  char* return_types;
+  bool was_defined;
+} symtab_func_data_t;
+
+/**
+ * @union symtab_data_t
+ * @brief Data of either variable or function identifier.
+ * @var symtab_data_t::var_data
+ *  Variable identifier data.
+ * @var symtab_data_t::func_data
+ *  Function identifier data.
+ */
+typedef union {
+  symtab_var_data_t var_data;
+  symtab_func_data_t func_data;
+} symtab_data_t;
 
 /**
  * @struct symtab_record_t
- * @brief One record representing identifier.
+ * @brief Record representing identifier.
  * @var symtab_record_t::next
- * Next record on the same bucket (if collision occured).
- * @var symtab_record_t::pair
- * Key-value pair of the record.
+ *  Next record on the same bucket (if collision occured).
+ * @var symtab_record_t::key
+ *  Key of the hash function.
+ * @var symtab_record_t::what_data
+ *  If 'v' -> variable record.
+ *  If 'f' -> function record.
+ * @var symtab_record_t::data
+ *  Union containing data of either variable or function identifier.
  */
-struct symtab_record {
-  symtab_record_t*  next;
-  symtab_pair_t     pair;
-};
+typedef struct symtab_record {
+  struct symtab_record* next;
+  symtab_key_t key;
+  char what_data;
+  symtab_data_t data;
+} symtab_record_t;
 
 /**
- * @struct symtab_pair_t
- * @brief Key-value pair of the record.
- * @var symtab_pair_t::key
- * Key for the hash function.
- * @var symtab_pair_t::value
- * Data of the record.
+ * @struct symtab_subtab_t
+ * @brief Subtable of identifiers of one scope.
+ * @var symtab_subtab_t::next
+ *  Next subtable on the stack.
+ * @var symtab_subtab_t::bucket_cnt
+ *  Bucket count of the subtable.
+ * @var symtab_subtab_t::list
+ *  Array of buckets, each pointing to record.
  */
-struct symtab_pair {
-  symtab_key_t    key;
-  symtab_value_t  value;
-};
+typedef struct symtab_subtab {
+  struct symtab_subtab* next;
+  size_t bucket_cnt;
+  symtab_record_t* list[];
+} symtab_subtab_t;
 
 /**
- * @struct symtab_value_t
- * @brief Contains data of the identifier record. TODO
- * @var symtab_value_t::x
- * TODO
+ * @struct symtab_t
+ * @brief Hierarchical symbol table.
+ *  Includes tables for both global and local scopes.
+ *  Most nested local scope table is on top of stack.
+ * @var symtab_t::global_scope
+ *  Table containing global identifiers, ie. functions.
+ * @var symtab_t::local_scopes
+ *  Top of stack of tables containing local identifiers, ie. variables.
  */
-struct symtab_value {
-  int x;
-};
+typedef struct {
+  symtab_subtab_t* global_scope;
+  symtab_subtab_t* local_scopes;
+} symtab_t;
 
-// INITIALIZATION FUNCTIONS
+// ALLOCATION FUNCTIONS
 
 /**
  * Creates symbol table.
- * Creates keywords table and no identifiers subtables.
+ * Creates empty global scope table.
+ * Does not create any local scope table.
  * @return Created symbol table. NULL if failed to create.
  */
 symtab_t* symtab_create();
-
-/**
- * Creates keywords table.
- * @return Created keywords table. NULL if failed to create.
- */
-symtab_subtab_t* symtab_keywords_create();
 
 /**
  * Creates subtable.
@@ -148,8 +166,8 @@ symtab_record_t* symtab_record_create(symtab_key_t key);
 void symtab_free(symtab_t* symtab);
 
 /**
- * Destroys all subtables and keywords table of symbol table.
- * @param symtab Symbol table to clear of subtables.
+ * Destroys contents of symbol table, but not symbol table.
+ * @param symtab Symbol table to clear.
  */
 void symtab_clear(symtab_t* symtab);
 
@@ -160,28 +178,28 @@ void symtab_clear(symtab_t* symtab);
 void symtab_subtab_free(symtab_subtab_t* subtab);
 
 /**
- * Destroys all records of the subtable.
- * @param subtab Subtable to clear of records.
+ * Destroys all contents of subtable, but not subtable.
+ * @param subtab Subtable to clear.
  */
 void symtab_subtab_clear(symtab_subtab_t* subtab);
 
 /**
- * Destroys identifier record.
+ * Destroys record of identifier.
  * @param rec Record to destroy.
  */
 void symtab_record_free(symtab_record_t* rec);
 
-// MANIPULATION WITH SUBSYMTABLES FUNCTIONS
+// MANIPULATION WITH LOCAL SUBTABLES FUNCTIONS
 
 /**
- * Creates and pushes subtable on the top of the stack of symbol table.
+ * Creates and pushes local table on the top of the stack of symbol table.
  * @param symtab Symbol table to push on.
  * @return True if successful. False otherwise.
  */
 bool symtab_subtab_push(symtab_t* symtab);
 
 /**
- * Pops and destroys subtable on the top of the stack of symbol table.
+ * Pops and destroys local table on the top of the stack of symbol table.
  * @param symtab Symbol table to pop from.
  */
 void symtab_subtab_pop(symtab_t* symtab);
@@ -189,44 +207,45 @@ void symtab_subtab_pop(symtab_t* symtab);
 // MANIPULATION WITH RECORDS FUNCTIONS
 
 /**
- * Searches whole stack of subtables for identifier.
+ * Searches whole stack of local tables for variable identifier.
  * @param symtab Symbol table to search on.
  * @param key Key to search for.
- * @return Found record. NULL otherwise.
+ * @return Found record data. NULL otherwise.
  */
-symtab_pair_t* symtab_find(const symtab_t* symtab, symtab_key_t key);
+symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key);
 
 /**
- * Searches topmost subtable on the stack for identifier.
+ * Searches global table for function identifier.
  * @param symtab Symbol table to search on.
  * @param key Key to search for.
- * @return Found record. NULL otherwise.
+ * @return Found record data. NULL otherwise.
  */
-symtab_pair_t* symtab_top_find(const symtab_t* symtab, symtab_key_t key);
-
-/**
- * Searches keywords table for keyword.
- * @param symtab Symbol table to search on.
- * @param key Key to search for.
- * @return Found record. NULL otherwise.
- */
-symtab_pair_t* symtab_keyword_find(const symtab_t* symtab, symtab_key_t key);
-
-/**
- * Creates and inserts new record in topmost subtable (most nested scope).
- * @param symtab Symbol table to instert on.
- * @param key Key of the new record.
- * @return Created record. NULL if failed to create.
- */
-symtab_pair_t* symtab_insert(symtab_t* symtab, symtab_key_t key);
+symtab_func_data_t* symtab_find_func(const symtab_t* symtab, symtab_key_t key);
 
 /**
  * Searches subtable for identifier.
  * @param subtab Subtable to search on.
  * @param key Key to search for.
- * @return Found record. NULL otherwise.
+ * @return Found record data. NULL otherwise.
  */
-symtab_pair_t* symtab_subtab_find(const symtab_subtab_t* subtab, symtab_key_t key);
+symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
+                                  symtab_key_t key);
+
+/**
+ * Creates and inserts new record in topmost local table (most nested scope).
+ * @param symtab Symbol table to instert in.
+ * @param key Key of the new record.
+ * @return Created record. NULL if failed to create.
+ */
+symtab_var_data_t* symtab_insert_var(symtab_t* symtab, symtab_key_t key);
+
+/**
+ * Creates and inserts new record in global local table.
+ * @param symtab Symbol table to instert in.
+ * @param key Key of the new record.
+ * @return Created record. NULL if failed to create.
+ */
+symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key);
 
 /**
  * Creates and inserts new record in subtable.
@@ -234,14 +253,15 @@ symtab_pair_t* symtab_subtab_find(const symtab_subtab_t* subtab, symtab_key_t ke
  * @param key Key of the new record.
  * @return Created record. NULL if failed to create.
  */
-symtab_pair_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key);
+symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key);
 
 /**
  * Executes function for each record in subtable.
  * @param subtab Subtable to operate on.
  * @param f Function to execute.
  */
-void symtab_subtab_foreach(const symtab_subtab_t *subtab, void (*f)(symtab_pair_t *data));
+void symtab_subtab_foreach(const symtab_subtab_t* subtab,
+                           void (*f)(symtab_data_t* data));
 
 /**
  * Erases record with key from subtable.
@@ -265,7 +285,8 @@ uint32_t SuperFastHash(symtab_key_t data);
 // COPYRIGHT: © Copyright 2004-2008 by Paul Hsieh
 // LICENSE: GNU Lesser General Public License v2.1
 // LICENSE TEXT: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
-// CHANGES MADE: 01.10.2021 - changed parameter type and count; added local len variable
+// CHANGES MADE: 01.10.2021 - changed parameter type and count; added local len
+// variable
 //--------------------------------------------------------------------------------------
 
-#endif // __SYMTAB_H__
+#endif  // __SYMTAB_H__
