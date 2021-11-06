@@ -87,12 +87,48 @@ $(document).ready(function(){initNavTree('parser_8h_source.html',''); initResiza
   <div class="headertitle"><div class="title">parser.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"></div><!-- fragment --></div><!-- contents -->
+<a href="parser_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifndef __PARSER_H__</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define __PARSER_H__</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="scanner_8h.html">scanner.h</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">// COMPILE-TIME CONSTANTS</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="parser_8h.html#af05e6ebb917166e28932689b9b873691">   24</a></span><span class="preprocessor">#define TOKEN_THIS 0 </span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="parser_8h.html#aa560950cd9527b11adc5a4ca48ab3b42">   25</a></span><span class="preprocessor">#define TOKEN_NEW 1 </span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="parser_8h.html#a66165da67bdf30e463752632ea987504">   26</a></span><span class="preprocessor">#define TOKEN_DELETE 2 </span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">// PUBLIC FUNCTION FORWARD DECLARATIONS</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><a class="code hl_struct" href="structtoken__t.html">token_t</a>* <a class="code hl_function" href="parser_8h.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a>(<span class="keywordtype">int</span> operation);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="parser_8h.html#a1b6f18a4d3bb38dedb76c515882c13b2">   46</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="parser_8h.html#a1b6f18a4d3bb38dedb76c515882c13b2">is_id</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">bool</span> <a class="code hl_function" href="parser_8h.html#af2975dad3f06cc90d544c583b3c5b882">is_keyword</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token, <span class="keyword">const</span> <span class="keywordtype">char</span>* keyword);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="keywordtype">bool</span> symtab_var_declaration(<a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab, <span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token, <span class="keywordtype">char</span> data_type, <span class="keywordtype">bool</span> is_init);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keywordtype">bool</span> symtab_func_declaration(<a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab, <span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token, <span class="keywordtype">char</span>* param_types, <span class="keywordtype">char</span>* return_types,</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>      <span class="keywordtype">bool</span> was_defined);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keywordtype">bool</span> symtab_var_isdeclared(<span class="keyword">const</span> <a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab, <span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">bool</span> symtab_func_isdeclared(<span class="keyword">const</span> <a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab, <span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">bool</span> symtab_var_isdefined(<span class="keyword">const</span> <a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab, <span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keywordtype">bool</span> symtab_func_isdefined(<span class="keyword">const</span> <a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab, <span class="keyword">const</span> <a class="code hl_struct" href="structtoken__t.html">token_t</a>* token);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif  </span><span class="comment">// __PARSER_H__</span></div>
+<div class="ttc" id="aparser_8h_html_a1b6f18a4d3bb38dedb76c515882c13b2"><div class="ttname"><a href="parser_8h.html#a1b6f18a4d3bb38dedb76c515882c13b2">is_id</a></div><div class="ttdeci">bool is_id(const token_t *token)</div></div>
+<div class="ttc" id="aparser_8h_html_a4656fd6a0b6449cd86b517759a25161f"><div class="ttname"><a href="parser_8h.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a></div><div class="ttdeci">token_t * token_buff(int operation)</div><div class="ttdef"><b>Definition:</b> parser.c:35</div></div>
+<div class="ttc" id="aparser_8h_html_af2975dad3f06cc90d544c583b3c5b882"><div class="ttname"><a href="parser_8h.html#af2975dad3f06cc90d544c583b3c5b882">is_keyword</a></div><div class="ttdeci">bool is_keyword(const token_t *token, const char *keyword)</div><div class="ttdef"><b>Definition:</b> parser.c:65</div></div>
+<div class="ttc" id="ascanner_8h_html"><div class="ttname"><a href="scanner_8h.html">scanner.h</a></div><div class="ttdoc">Scanner API.</div></div>
+<div class="ttc" id="astructsymtab__t_html"><div class="ttname"><a href="structsymtab__t.html">symtab_t</a></div><div class="ttdoc">Hierarchical symbol table. Includes tables for both global and local scopes. Most nested local scope ...</div><div class="ttdef"><b>Definition:</b> symtable.h:131</div></div>
+<div class="ttc" id="astructtoken__t_html"><div class="ttname"><a href="structtoken__t.html">token_t</a></div><div class="ttdoc">Token containing lexeme.</div><div class="ttdef"><b>Definition:</b> scanner.h:49</div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><b>parser.h</b></li>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="parser_8h.html">parser.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>
