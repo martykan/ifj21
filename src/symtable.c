@@ -98,18 +98,9 @@ uint32_t SuperFastHash(symtab_key_t data);
 
 // END OF FORWARD DECLARATIONS
 
-// INTERNAL DATA
+// COMPILE-TIME CONSTANTS
 
 #define SYMTAB_BUCKET_COUNT 83
-#define KEYWORDS_COUNT 15
-
-/**
- * @brief Arrray of all keywords of the language.
- */
-static const char* keywords[KEYWORDS_COUNT] = {
-    "do",      "else",    "end",    "function", "global",
-    "if",      "integer", "local",  "nil",      "number",
-    "require", "return",  "string", "then",     "while"};
 
 // FUNCTION DEFINITIONS
 
