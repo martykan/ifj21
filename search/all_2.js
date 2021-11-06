@@ -11,5 +11,8 @@ var searchData=
   ['exitstatus_5ferror_5fsyntax_8',['EXITSTATUS_ERROR_SYNTAX',['../errors_8h.html#a43cb919ec787e1feda81669f2eae1195',1,'errors.h']]],
   ['exitstatus_5ferror_5funexpected_5fnil_9',['EXITSTATUS_ERROR_UNEXPECTED_NIL',['../errors_8h.html#a9df3059873def623f40d0251eb875cbb',1,'errors.h']]],
   ['exitstatus_5finternal_5ferror_10',['EXITSTATUS_INTERNAL_ERROR',['../errors_8h.html#a4d82733de711dd6fa8a7f8faf669e9d1',1,'errors.h']]],
-  ['exitstatus_5fok_11',['EXITSTATUS_OK',['../errors_8h.html#aabd111d9d29e8d7b86440b4b9cfc46b7',1,'errors.h']]]
+  ['exitstatus_5fok_11',['EXITSTATUS_OK',['../errors_8h.html#aabd111d9d29e8d7b86440b4b9cfc46b7',1,'errors.h']]],
+  ['expression_5fprocess_12',['expression_process',['../expressions_8c.html#a50848ab4ee392b425cdcfecdd472f563',1,'expression_process(expression_symbol_t *input):&#160;expressions.c'],['../expressions_8h.html#a50848ab4ee392b425cdcfecdd472f563',1,'expression_process(expression_symbol_t *input):&#160;expressions.c']]],
+  ['expressions_2ec_13',['expressions.c',['../expressions_8c.html',1,'']]],
+  ['expressions_2eh_14',['expressions.h',['../expressions_8h.html',1,'']]]
 ];

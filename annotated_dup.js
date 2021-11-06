@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "symbol_stack_t", "structsymbol__stack__t.html", null ],
     [ "symtab_data_t", "unionsymtab__data__t.html", "unionsymtab__data__t" ],
     [ "symtab_func_data_t", "structsymtab__func__data__t.html", "structsymtab__func__data__t" ],
     [ "symtab_record_t", "structsymtab__record__t.html", "structsymtab__record__t" ],

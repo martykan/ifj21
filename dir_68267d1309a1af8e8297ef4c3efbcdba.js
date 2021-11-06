@@ -2,6 +2,8 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
     [ "codegen.h", "codegen_8h_source.html", null ],
     [ "errors.h", "errors_8h.html", "errors_8h" ],
+    [ "expressions.c", "expressions_8c.html", "expressions_8c" ],
+    [ "expressions.h", "expressions_8h.html", "expressions_8h" ],
     [ "main.h", "main_8h_source.html", null ],
     [ "parser.c", "parser_8c.html", "parser_8c" ],
     [ "parser.h", "parser_8h.html", "parser_8h" ],
