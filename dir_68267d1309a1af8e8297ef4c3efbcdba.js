@@ -11,5 +11,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "scanner.h", "scanner_8h.html", "scanner_8h" ],
     [ "string.h", "string_8h_source.html", null ],
     [ "symtable.c", "symtable_8c.html", "symtable_8c" ],
-    [ "symtable.h", "symtable_8h.html", "symtable_8h" ]
+    [ "symtable.h", "symtable_8h.html", "symtable_8h" ],
+    [ "syntax.c", "syntax_8c.html", null ],
+    [ "syntax.h", "syntax_8h.html", null ]
 ];

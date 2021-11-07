@@ -131,6 +131,9 @@ var NAVTREEINDEX0 =
 "symtable_8h.html#ab7c255866b01d6e94766356ef2ff7bf7":[2,0,0,11,7],
 "symtable_8h.html#afd913b76a2ba5aa42acffb32a3a72880":[2,0,0,11,16],
 "symtable_8h_source.html":[2,0,0,11],
+"syntax_8c.html":[2,0,0,12],
+"syntax_8h.html":[2,0,0,13],
+"syntax_8h_source.html":[2,0,0,13],
 "unionsymtab__data__t.html":[1,0,1],
 "unionsymtab__data__t.html#a2281d583eee09371cec92deb61b7eae2":[1,0,1,0],
 "unionsymtab__data__t.html#ae92db57915848a332c9e92c05b1974e4":[1,0,1,1]
