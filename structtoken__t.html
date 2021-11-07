@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('structtoken__t.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 
-<p>Token containing lexeme.  
+<p>Scanner token type.  
  <a href="structtoken__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="scanner_8h_source.html">scanner.h</a>&gt;</code></p>
@@ -100,12 +100,27 @@ $(document).ready(function(){initNavTree('structtoken__t.html',''); initResizabl
 Public Attributes</h2></td></tr>
 <tr class="memitem:affed9d9d575cc38e143740f94363f3f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtoken__t.html#affed9d9d575cc38e143740f94363f3f4">type</a></td></tr>
 <tr class="separator:affed9d9d575cc38e143740f94363f3f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72930a7a6e960576f5f477e1fb6d3c8d"><td class="memItemLeft" align="right" valign="top">string_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtoken__t.html#a72930a7a6e960576f5f477e1fb6d3c8d">value</a></td></tr>
-<tr class="separator:a72930a7a6e960576f5f477e1fb6d3c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a661f6505da850fba235aaa792ed19a2e"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtoken__t.html#a661f6505da850fba235aaa792ed19a2e">attribute</a></td></tr>
+<tr class="separator:a661f6505da850fba235aaa792ed19a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Token containing lexeme. </p>
+<div class="textblock"><p >Scanner token type. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="a661f6505da850fba235aaa792ed19a2e" name="a661f6505da850fba235aaa792ed19a2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a661f6505da850fba235aaa792ed19a2e">&#9670;&nbsp;</a></span>attribute</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">token_t::attribute</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Pointer to a dynamically allocated string containing the parsed token string or NULL if a token doesn't require an attribute. TODO: make attribute an union and store parsed numbers in attribute? TODO: error information </p>
+
+</div>
+</div>
 <a id="affed9d9d575cc38e143740f94363f3f4" name="affed9d9d575cc38e143740f94363f3f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#affed9d9d575cc38e143740f94363f3f4">&#9670;&nbsp;</a></span>type</h2>
 
@@ -117,22 +132,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Type of a read token (identifier, literal, etc.). </p>
-
-</div>
-</div>
-<a id="a72930a7a6e960576f5f477e1fb6d3c8d" name="a72930a7a6e960576f5f477e1fb6d3c8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72930a7a6e960576f5f477e1fb6d3c8d">&#9670;&nbsp;</a></span>value</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">token_t::value</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Text of identifier or literal (blank for operators). </p>
+<p >Type of the token. </p>
 
 </div>
 </div>

@@ -85,23 +85,102 @@ $(document).ready(function(){initNavTree('scanner_8c.html',''); initResizable();
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">scanner.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Scanner implementation.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="scanner_8h_source.html">scanner.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="symtable_8h_source.html">symtable.h</a>&quot;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="scanner_8h_source.html">scanner.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="dynstr_8h_source.html">dynstr.h</a>&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ae51e5e0a28dd40205e9cf56e3df3e54f">APPEND_CHAR</a>(CHAR,  TOK)</td></tr>
+<tr class="separator:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ae8f81115e24bb6e45e3eda7a33a9c647"><td class="memItemLeft" align="right" valign="top"><a id="ae8f81115e24bb6e45e3eda7a33a9c647" name="ae8f81115e24bb6e45e3eda7a33a9c647"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647">scanner_state_t</a> { <br />
+&#160;&#160;<b>STATE_START</b>
+, <b>STATE_KEYWORD_ID</b>
+, <b>STATE_INTEGER</b>
+, <b>STATE_NUMBER_DOT</b>
+, <br />
+&#160;&#160;<b>STATE_NUMBER_EXP_START</b>
+, <b>STATE_NUMBER_EXP_SIGN</b>
+, <b>STATE_NUMBER_FINAL</b>
+, <b>STATE_STRING_START</b>
+, <br />
+&#160;&#160;<b>STATE_STRING_ESC</b>
+, <b>STATE_STRING_ESC_CODE_1</b>
+, <b>STATE_STRING_ESC_CODE_2</b>
+, <b>STATE_ASSIGN</b>
+, <br />
+&#160;&#160;<b>STATE_NEQ_START</b>
+, <b>STATE_GT</b>
+, <b>STATE_LT</b>
+, <b>STATE_NUMBER_DIV</b>
+, <br />
+&#160;&#160;<b>STATE_MINUS</b>
+, <b>STATE_CONCAT_START</b>
+, <b>STATE_COMMENT_START</b>
+, <b>STATE_COMMENT_LINE</b>
+, <br />
+&#160;&#160;<b>STATE_COMMENT_BLOCK_1</b>
+, <b>STATE_COMMENT_BLOCK_2</b>
+, <b>STATE_COMMENT_BLOCK_END_1</b>
+<br />
+ }</td></tr>
+<tr class="memdesc:ae8f81115e24bb6e45e3eda7a33a9c647"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scanner states. <br /></td></tr>
+<tr class="separator:ae8f81115e24bb6e45e3eda7a33a9c647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a98e5b9ab5e0296d8e679fe0fad3b2712"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a98e5b9ab5e0296d8e679fe0fad3b2712">token_get</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab)</td></tr>
-<tr class="separator:a98e5b9ab5e0296d8e679fe0fad3b2712"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa77871ad707f86c3eeeb893b1c5308b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#aa77871ad707f86c3eeeb893b1c5308b3">token_read</a> (int *err)</td></tr>
-<tr class="separator:aa77871ad707f86c3eeeb893b1c5308b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec54f69564fbbbac5032deae9361438a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#aec54f69564fbbbac5032deae9361438a">scanner_init</a> ()</td></tr>
+<tr class="separator:aec54f69564fbbbac5032deae9361438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a5debeb97d9546227aaf63c2d51d3aa42">scanner_destroy</a> ()</td></tr>
+<tr class="separator:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#aa4058c66e210c9ce550a8da7b6c23a8a">scanner_token_destroy</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98d07c28690024bc29b03ac709fdd32f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a98d07c28690024bc29b03ac709fdd32f">scanner_create_empty_token</a> ()</td></tr>
+<tr class="separator:a98d07c28690024bc29b03ac709fdd32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d5d90af89afea812db73d6a180d3c7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b">scanner_make_eof_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:a6d5d90af89afea812db73d6a180d3c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af405f15c05ca009e1a006eac8fc953e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:af405f15c05ca009e1a006eac8fc953e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8638ac872cea80cdb65636a716770a6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a8638ac872cea80cdb65636a716770a6a">scanner_make_id_kw_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:a8638ac872cea80cdb65636a716770a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e160d48abc86948c9c203068fa0458c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a7e160d48abc86948c9c203068fa0458c">scanner_make_int_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:a7e160d48abc86948c9c203068fa0458c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ecb9936d3ad08b0fd137f5edb2fcd50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a5ecb9936d3ad08b0fd137f5edb2fcd50">scanner_make_number_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:a5ecb9936d3ad08b0fd137f5edb2fcd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd918b6ae3c6742e7aed84f9cf12e94a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#acd918b6ae3c6742e7aed84f9cf12e94a">scanner_make_one_state_op_sep</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok, int curr_char)</td></tr>
+<tr class="separator:acd918b6ae3c6742e7aed84f9cf12e94a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75ec6703159eac8879bd93d5bf6cd8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ac75ec6703159eac8879bd93d5bf6cd8e">scanner_make_op_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a> tok_type)</td></tr>
+<tr class="separator:ac75ec6703159eac8879bd93d5bf6cd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3ed987677cb31f8359c085a4a92251c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#af3ed987677cb31f8359c085a4a92251c">scanner_make_string_tok</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="separator:af3ed987677cb31f8359c085a4a92251c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a2594d9fda4f3a0b93ee37fbdb7b3b578">is_escapable_char</a> (int c)</td></tr>
+<tr class="separator:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
+<a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scanner_get_next_token</b> ()</td></tr>
+<tr class="separator:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad078313dd1579fbfca39bbaeb23f7f58"><td class="memItemLeft" align="right" valign="top"><a id="ad078313dd1579fbfca39bbaeb23f7f58" name="ad078313dd1579fbfca39bbaeb23f7f58"></a>
+<a class="el" href="structdynstr__t.html">dynstr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>str_buffer</b></td></tr>
+<tr class="memdesc:ad078313dd1579fbfca39bbaeb23f7f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global dynamic string for storing incomplete tokens. <br /></td></tr>
+<tr class="separator:ad078313dd1579fbfca39bbaeb23f7f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Scanner implementation. </p>
@@ -109,57 +188,368 @@ Functions</h2></td></tr>
 <dd>
 Tomas Martykan </dd>
 <dd>
-Filip Stolfa</dd></dl>
-<p>&mdash;&gt; TODO &ndash; NOT WORKING RIGHT NOW &lt;-&mdash; </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a98e5b9ab5e0296d8e679fe0fad3b2712" name="a98e5b9ab5e0296d8e679fe0fad3b2712"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a98e5b9ab5e0296d8e679fe0fad3b2712">&#9670;&nbsp;</a></span>token_get()</h2>
+Filip Stolfa </dd></dl>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ae51e5e0a28dd40205e9cf56e3df3e54f" name="ae51e5e0a28dd40205e9cf56e3df3e54f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51e5e0a28dd40205e9cf56e3df3e54f">&#9670;&nbsp;</a></span>APPEND_CHAR</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * token_get </td>
+          <td class="memname">#define APPEND_CHAR</td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td>
-          <td class="paramname"><em>symtab</em></td><td>)</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">CHAR, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">TOK&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Gets token; This function is called by synctatic analyzer; </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">symtab</td><td>If not NULL and token is identifier, store token in symbol table; </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Formed token if successful. NULL otherwise. </dd></dl>
+<b>Value:</b><div class="fragment"><div class="line">  ({\</div>
+<div class="line">  if (<a class="code hl_function" href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a>(&amp;<a class="code hl_variable" href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a>, (CHAR)) == NULL) {\</div>
+<div class="line">    return <a class="code hl_function" href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a>((TOK));\</div>
+<div class="line">  }\</div>
+<div class="line">})</div>
+<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdef"><b>Definition:</b> dynstr.c:63</div></div>
+<div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:30</div></div>
+<div class="ttc" id="ascanner_8c_html_af405f15c05ca009e1a006eac8fc953e6"><div class="ttname"><a href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a></div><div class="ttdeci">token_t * scanner_make_error_token(token_t *tok)</div><div class="ttdef"><b>Definition:</b> scanner.c:124</div></div>
+</div><!-- fragment --><p >Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. If it wasn't return an error token. TODO: report error </p>
 
 </div>
 </div>
-<a id="aa77871ad707f86c3eeeb893b1c5308b3" name="aa77871ad707f86c3eeeb893b1c5308b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa77871ad707f86c3eeeb893b1c5308b3">&#9670;&nbsp;</a></span>token_read()</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a2594d9fda4f3a0b93ee37fbdb7b3b578" name="a2594d9fda4f3a0b93ee37fbdb7b3b578"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2594d9fda4f3a0b93ee37fbdb7b3b578">&#9670;&nbsp;</a></span>is_escapable_char()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * token_read </td>
+          <td class="memname">bool is_escapable_char </td>
           <td>(</td>
-          <td class="paramtype">int *&#160;</td>
-          <td class="paramname"><em>err</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Reads stdin and forms a token. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Checks if character can be part of an escape sequence. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">err</td><td>Out parameter to pass errors. </td></tr>
+    <tr><td class="paramname">c</td><td>Character to be checked if it is escapable. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Formed token if successful. NULL otherwise. </dd></dl>
-<p >&lt; Stores character right after last read lexeme.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if c is escapable, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a98d07c28690024bc29b03ac709fdd32f" name="a98d07c28690024bc29b03ac709fdd32f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98d07c28690024bc29b03ac709fdd32f">&#9670;&nbsp;</a></span>scanner_create_empty_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_create_empty_token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Allocate new token. Allocates a token, sets attribute to NULL and type to TT_NO_TYPE. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated token. </dd></dl>
+
+</div>
+</div>
+<a id="a5debeb97d9546227aaf63c2d51d3aa42" name="a5debeb97d9546227aaf63c2d51d3aa42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5debeb97d9546227aaf63c2d51d3aa42">&#9670;&nbsp;</a></span>scanner_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scanner_destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Free dynstr buffer used by scanner. Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
+
+</div>
+</div>
+<a id="aec54f69564fbbbac5032deae9361438a" name="aec54f69564fbbbac5032deae9361438a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec54f69564fbbbac5032deae9361438a">&#9670;&nbsp;</a></span>scanner_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scanner_init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Initializes scanner for use. Before it can be used, scanner needs its dynstr global variable set. That variable is used as a buffer for the string that has been processed so far. To avoid allocating and deallocating the buffer every time scanner is called, it is stored as a global variable. </p>
+
+</div>
+</div>
+<a id="a6d5d90af89afea812db73d6a180d3c7b" name="a6d5d90af89afea812db73d6a180d3c7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d5d90af89afea812db73d6a180d3c7b">&#9670;&nbsp;</a></span>scanner_make_eof_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_eof_token </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into an eof token. Changes the type of the token to TT_EOF. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="af405f15c05ca009e1a006eac8fc953e6" name="af405f15c05ca009e1a006eac8fc953e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af405f15c05ca009e1a006eac8fc953e6">&#9670;&nbsp;</a></span>scanner_make_error_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_error_token </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into an error token. Changes the type of the token to TT_ERROR. TODO: make error token contain more info about the error </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="a8638ac872cea80cdb65636a716770a6a" name="a8638ac872cea80cdb65636a716770a6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8638ac872cea80cdb65636a716770a6a">&#9670;&nbsp;</a></span>scanner_make_id_kw_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_id_kw_token </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into an id/keyword token. Changes the type of the token to TT_KEYWORD_ID and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="a7e160d48abc86948c9c203068fa0458c" name="a7e160d48abc86948c9c203068fa0458c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e160d48abc86948c9c203068fa0458c">&#9670;&nbsp;</a></span>scanner_make_int_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_int_token </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into a integer token. Changes the type of the token to TT_INTEGER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse integer here? </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="a5ecb9936d3ad08b0fd137f5edb2fcd50" name="a5ecb9936d3ad08b0fd137f5edb2fcd50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ecb9936d3ad08b0fd137f5edb2fcd50">&#9670;&nbsp;</a></span>scanner_make_number_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_number_token </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into a number token. Changes the type of the token to TT_NUMBER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse number here? </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="acd918b6ae3c6742e7aed84f9cf12e94a" name="acd918b6ae3c6742e7aed84f9cf12e94a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd918b6ae3c6742e7aed84f9cf12e94a">&#9670;&nbsp;</a></span>scanner_make_one_state_op_sep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_one_state_op_sep </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>curr_char</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into an operator token, if the character is a valid operator. Checks, if curr_char can only be one operator and there is no possible other valid token it could become. If that is true, set the type of the token pointed to by tok to the correct type. Otherwise an error token is returned. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+    <tr><td class="paramname">curr_char</td><td>Character being processed. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token if successful, error token otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ac75ec6703159eac8879bd93d5bf6cd8e" name="ac75ec6703159eac8879bd93d5bf6cd8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac75ec6703159eac8879bd93d5bf6cd8e">&#9670;&nbsp;</a></span>scanner_make_op_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_op_token </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>&#160;</td>
+          <td class="paramname"><em>tok_type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into an operator token. Changes the type of the token to tok_type. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+    <tr><td class="paramname">tok_type</td><td>Type to assign to the token. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="af3ed987677cb31f8359c085a4a92251c" name="af3ed987677cb31f8359c085a4a92251c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3ed987677cb31f8359c085a4a92251c">&#9670;&nbsp;</a></span>scanner_make_string_tok()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_string_tok </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Make token into a string token. Changes the type of the token to TT_STRING, copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
+
+</div>
+</div>
+<a id="aa4058c66e210c9ce550a8da7b6c23a8a" name="aa4058c66e210c9ce550a8da7b6c23a8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4058c66e210c9ce550a8da7b6c23a8a">&#9670;&nbsp;</a></span>scanner_token_destroy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void scanner_token_destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
+          <td class="paramname"><em>tok</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Free scanner token. Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tok</td><td>Pointer to a token to destroy. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

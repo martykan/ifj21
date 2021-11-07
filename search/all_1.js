@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['data_0',['data',['../structsymtab__record__t.html#a0971c86583d38733ae63bd467a58f35b',1,'symtab_record_t']]],
-  ['data_5ftype_1',['data_type',['../structsymtab__var__data__t.html#a4eefdf9593190e83c1f19e165c06c1ce',1,'symtab_var_data_t']]]
+  ['bucket_5fcnt_0',['bucket_cnt',['../structsymtab__subtab__t.html#ae10415c603b57a44e294de3f7cc532eb',1,'symtab_subtab_t']]]
 ];
