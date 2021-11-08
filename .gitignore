@@ -1,5 +1,7 @@
 ifj21
 tests/unit/run
+tests/unit/scanner_input_files/buffer_file.txt
+coverage/
 doxygen/
 
 # https://github.com/github/gitignore/blob/master/C.gitignore
