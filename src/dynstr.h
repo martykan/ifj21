@@ -23,6 +23,7 @@
 #define __DYNSTR_H
 
 #include <string.h>
+#include <stdbool.h>
 
 /**
  * @struct dynstr_t
@@ -89,6 +90,14 @@ dynstr_t* dynstr_append(dynstr_t *dynstr, char c);
 char* dynstr_copy_to_static(dynstr_t *dynstr);
 
 
+/** Compares a dynamic and classic string.
+ *  Only checks if the strings are equal. Doesn't check
+ *  which non-matching character has a lower value.
+ *  @param dynstr Pointer to an existing dynstr struct.
+ *  @param str Pointer to a valid c string. Can't be NULL.
+ *  @return True if strings are equal, false otherwise.
+ */
+bool dynstr_equals_static(dynstr_t *dynstr, const char *str);
 
 
 #endif

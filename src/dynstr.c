@@ -8,6 +8,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include "dynstr.h"
 
@@ -102,4 +103,11 @@ char* dynstr_copy_to_static(dynstr_t *dynstr) {
 
   strncpy(dest, dynstr->str, new_buff_len);
   return dest;
+}
+
+bool dynstr_equals_static(dynstr_t *dynstr, const char *str) {
+  if (strcmp(dynstr->str, str) == 0) {
+    return true;
+  }
+  return false;
 }
