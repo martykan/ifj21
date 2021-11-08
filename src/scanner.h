@@ -9,19 +9,43 @@
 #ifndef __SCANNER_H
 #define __SCANNER_H
 
+/// Offset from 0 of the first keyword token type
+#define TOK_KEYWORD_OFFSET 3
+
 /**
- * Possible scanner token types.
  * Enum of all possible scanner token types.
+ * The starting index (defined in ::TOK_KEYWORD_OFFSET) and order of
+ * the keyword token types has to match the order of the keyword strings
+ * in ::keywords.
  */
 typedef enum {
-  TT_ERROR,
-  TT_NO_TYPE,
+  TT_ERROR,     ///< A lexical error was found.
+  TT_NO_TYPE,   ///< Used to initialize an empty token.
   TT_EOF, //2
 
-  TT_KEYWORD_ID, //3
+  //Keyword token types, order needs to match keywords array in scanner.c
+  TT_K_LOCAL,
+  TT_K_INTEGER,
+  TT_K_NUMBER,
+  TT_K_IF,
+  TT_K_THEN,
+  TT_K_ELSE,
+  TT_K_DO,
+  TT_K_WHILE,
+  TT_K_STRING,
+  TT_K_END,
+  TT_K_FUNCTION,
+  TT_K_GLOBAL,
+  TT_K_NIL,
+  TT_K_RETURN,
+  TT_K_REQUIRE,
+  //End of keyword token types.
+
+  TT_ID,       ///< Identifier token.
   TT_STRING,
   TT_INTEGER,
   TT_NUMBER,
+
   TT_ASSIGN, //7
 
   // compare operators
