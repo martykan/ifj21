@@ -22,8 +22,16 @@ jobs:
       - name: Test
         run: make test
 
+      - name: Run tests for coverage data
+        run: make test_cov_run
+
       - name: Generate coverage report
-        run: make test_cov
+        uses: danielealbano/lcov-action@v1
+        with:
+          remove_patterns: unit
+
+      - name: Create html coverage report
+        run: perl ./tests/unit/genhtml coverage.info --output-directory ./tests/unit/coverage
 
       - name: Publish coverage report
         uses: peaceiris/actions-gh-pages@v3
