@@ -1,5 +1,5 @@
 #include "../../lib/greatest.h"
-#include "../../src/dynstr.h"
+#include "../../src/dynstr.c"
 
 #include <string.h>
 /* TODO(filip): this may be needed only for clangd? If so, can be fixed */

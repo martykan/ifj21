@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#include "../../src/scanner.h"
+#include "../../src/scanner.c"
 
 #define REWRITE_BUFF_FILE(str) ASSERT_EQm("file write failed", rewrite_buffer_file((str)), true);
 
