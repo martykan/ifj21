@@ -5,13 +5,16 @@
  * @author Tomas Martykan
  * @author Filip Stolfa
  */
- 
+
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "scanner.h"
 #include "dynstr.h"
+
+/// Number of keywords in keywords array
+#define KEYWORDS_COUNT 15
 
 /**
  * Macro for appending a character to a dynstr_t and checking
@@ -31,6 +34,17 @@
 
 /// Global dynamic string for storing incomplete tokens
 dynstr_t str_buffer;
+
+
+/**
+ * @brief All keywords of the ifj21 language.
+ * The order of the keyword strings has to match the order of the ::token_type_t
+ * declared in scanner.h.
+ */
+static const char* keywords[KEYWORDS_COUNT] = {
+    "local",    "integer", "number", "if",     "then",
+    "else",     "do",      "while",  "string", "end",
+    "function", "global",  "nil",    "return", "require"};
 
 /// Scanner states.
 typedef enum {
@@ -78,9 +92,26 @@ void scanner_init() {
 void scanner_destroy() {
   dynstr_t *res = dynstr_free_buffer(&str_buffer);
   if (res == NULL) {
-    /* TODO(filip): set global error flag? Or have a err return val? */
+    /* TODO(filip): dynstr_free_buffer should set the err flag */
     return;
   }
+}
+
+/** Get the correct keyword token type.
+ * Checks if the passed dynstr_t contains a valid ifj21 keyword.
+ * If it does, it calculates the corresponding ::token_type_t. Otherwise,
+ * the tested string is an identifier.
+ * @param dstr Pointer to a dynamic string containing the string we want to check.
+ * @return Keyword ::token_type_t if dstr is a keyword, #TT_ID otherwise.
+ */
+token_type_t scanner_get_keyword_type(dynstr_t *dstr) {
+  if (dstr == NULL) return TT_ERROR; // TODO(filip): either assume it isn't null or also set an error flag
+  for (int i = 0; i < KEYWORDS_COUNT; i++) {
+    if (dynstr_equals_static(dstr, keywords[i])) {
+      return TOK_KEYWORD_OFFSET + i; // corresponds to the token_type_t enum member
+    }
+  }
+  return TT_ID;
 }
 
 void scanner_token_destroy(token_t *tok) {
@@ -137,9 +168,20 @@ token_t *scanner_make_error_token(token_t *tok) {
  * @return Pointer to the changed token.
  */
 token_t *scanner_make_id_kw_token(token_t *tok) {
-  tok->type = TT_KEYWORD_ID;
-  /* TODO(filip): check for NULL here or does caller handle that */
-  tok->attribute = dynstr_copy_to_static(&str_buffer);
+  token_type_t tok_type;
+  if ((tok_type = scanner_get_keyword_type(&str_buffer)) != TT_ID) {
+    tok->type = tok_type;
+  }
+  else {
+    tok->type = tok_type;
+    tok->attribute = dynstr_copy_to_static(&str_buffer);
+    if (tok->attribute == NULL) {
+      /* TODO(filip): set error flag */
+      /* TODO(filip): make into an error macro? */
+      scanner_token_destroy(tok);
+      return NULL;
+    }
+  }
   return tok;
 }
 
@@ -222,7 +264,7 @@ token_t *scanner_make_op_token(token_t *tok, token_type_t tok_type) {
 }
 
 /** Make token into a string token.
- * Changes the type of the token to TT_STRING, copies 
+ * Changes the type of the token to TT_STRING, copies
  * the parsed token string to attribute. attribute can be NULL,
  * if the copy failed.
  * @param tok Pointer to the token to change.
@@ -247,16 +289,16 @@ bool is_escapable_char(int c) {
 
 
 token_t *scanner_get_next_token() {
+  /* TODO(filip): should we check if dynstr is initialized? */
+  if (dynstr_clear(&str_buffer) == NULL) {
+    /* TODO(filip): report error */
+    return NULL;
+  }
+
   token_t *new_token = scanner_create_empty_token();
   if (new_token == NULL) {
     return NULL;
   }
-
-  /* TODO(filip): should we check if dynstr is initialized? */
-  if (dynstr_clear(&str_buffer) == NULL) {
-    /* TODO(filip): report error */
-    return scanner_make_error_token(new_token);
-  } 
 
   scanner_state_t state = STATE_START;
   int curr_char; // int so we can check for EOF
@@ -469,7 +511,7 @@ token_t *scanner_get_next_token() {
         }
         else if (curr_char == '\n' || curr_char == EOF) {
           return scanner_make_error_token(new_token);
-        } 
+        }
         else if (curr_char > 31) {
           APPEND_CHAR(curr_char, new_token);
         }

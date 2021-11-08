@@ -16,19 +16,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-// COMPILE-TIME CONSTANTS
-
-#define KEYWORDS_COUNT 15
-
-// INTERNAL DATA
-
-/**
- * @brief All keywords of the language.
- */
-static const char* keywords[KEYWORDS_COUNT] = {
-    "do",      "else",    "end",    "function", "global",
-    "if",      "integer", "local",  "nil",      "number",
-    "require", "return",  "string", "then",     "while"};
 
 // FUNCTION DEFINITIONS
 
