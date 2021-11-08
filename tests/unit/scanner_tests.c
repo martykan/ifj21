@@ -189,7 +189,7 @@ TEST integer_correct_test() {
   CHECK_CALL(param_single_tok_test("61", "61", TT_INTEGER));
 
   CHECK_CALL(param_single_tok_test("96100123", "96100123", TT_INTEGER));
-  
+
   CHECK_CALL(param_single_tok_test("1234567890", "1234567890", TT_INTEGER));
 
   CHECK_CALL(param_single_tok_test("  1234567890", "1234567890", TT_INTEGER));
@@ -231,12 +231,11 @@ TEST number_correct_test() {
   CHECK_CALL(param_single_tok_test("61.0001", "61.0001", TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("96100123.959", "96100123.959", TT_NUMBER));
-  
+
   CHECK_CALL(param_single_tok_test("1234567890.0987654321", "1234567890.0987654321", TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("  1234567890.5", "1234567890.5", TT_NUMBER));
 
-  /* TODO(filip): is this correct? */
   CHECK_CALL(param_single_tok_test("\n  1234567890.0\n", "1234567890.0", TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("4455.4+", "4455.4", TT_NUMBER));
@@ -287,23 +286,23 @@ TEST number_correct_test() {
 
 // kw/id tests
 TEST keyword_id_correct_test() {
-  CHECK_CALL(param_single_tok_test("ahoj", "ahoj", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("ahoj", "ahoj", TT_ID));
 
-  CHECK_CALL(param_single_tok_test("_ahoj", "_ahoj", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("_ahoj", "_ahoj", TT_ID));
 
-  CHECK_CALL(param_single_tok_test("\n  ahoj", "ahoj", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("\n  ahoj", "ahoj", TT_ID));
 
-  CHECK_CALL(param_single_tok_test("  integer", "integer", TT_KEYWORD_ID));
-  
-  CHECK_CALL(param_single_tok_test("\t\t\t\t\r   function", "function", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("  integer", NULL, TT_K_INTEGER));
 
-  CHECK_CALL(param_single_tok_test("this_is_a_function()", "this_is_a_function", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("\t\t\t\t\r   function", NULL, TT_K_FUNCTION));
 
-  CHECK_CALL(param_single_tok_test("\n  foo0011_another_function(void)\n", "foo0011_another_function", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("this_is_a_function()", "this_is_a_function", TT_ID));
 
-  CHECK_CALL(param_single_tok_test("global func", "global", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("\n  foo0011_another_function(void)\n", "foo0011_another_function", TT_ID));
 
-  CHECK_CALL(param_single_tok_test("\t_66func\"", "_66func", TT_KEYWORD_ID));
+  CHECK_CALL(param_single_tok_test("global func", NULL, TT_K_GLOBAL));
+
+  CHECK_CALL(param_single_tok_test("\t_66func\"", "_66func", TT_ID));
 
   PASS();
 }
@@ -330,7 +329,7 @@ TEST string_error_test() {
   CHECK_CALL(param_single_tok_test("\"ahoj", NULL, TT_ERROR));
 
   CHECK_CALL(param_single_tok_test("\"ahoj\n\"", NULL, TT_ERROR));
-  
+
   CHECK_CALL(param_single_tok_test("\"ahoj\\a\"", NULL, TT_ERROR));
 
 
@@ -366,7 +365,7 @@ TEST one_char_op_sep_test() {
   PASS();
 }
 
-TEST one_char_possible_other() {
+TEST one_char_possible_other_test() {
   CHECK_CALL(param_single_tok_test("=", NULL, TT_ASSIGN));
   CHECK_CALL(param_single_tok_test("  = 3", NULL, TT_ASSIGN));
   CHECK_CALL(param_single_tok_test("\n  =3", NULL, TT_ASSIGN));
@@ -459,7 +458,7 @@ SUITE(scanner_basic_tests) {
   RUN_TEST(string_correct_test);
   RUN_TEST(string_error_test);
   RUN_TEST(one_char_op_sep_test);
-  RUN_TEST(one_char_possible_other);
+  RUN_TEST(one_char_possible_other_test);
   RUN_TEST(multi_char_op_test);
   RUN_TEST(comments_correct_test);
 }
@@ -468,101 +467,102 @@ SUITE(scanner_basic_tests) {
 TEST input_file_1_test() {
   freopen("tests/unit/scanner_input_files/test_in_fac.tl", "r", stdin);
 
-  CHECK_CALL(param_tok_test("require", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_REQUIRE));
   CHECK_CALL(param_tok_test("\"ifj21\"", TT_STRING));
 
-  CHECK_CALL(param_tok_test("function", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("main", TT_KEYWORD_ID));
+
+  CHECK_CALL(param_tok_test(NULL, TT_K_FUNCTION));
+  CHECK_CALL(param_tok_test("main", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER ));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
   CHECK_CALL(param_tok_test("0", TT_INTEGER));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Zadejte cislo pro vypocet faktorialu\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("readi", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("readi", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("if", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_IF));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_EQ));
-  CHECK_CALL(param_tok_test("nil", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("then", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_NIL));
+  CHECK_CALL(param_tok_test(NULL, TT_K_THEN));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"a je nil\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
-  CHECK_CALL(param_tok_test("return", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_RETURN));
 
-  CHECK_CALL(param_tok_test("else", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  
-  CHECK_CALL(param_tok_test("if", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_ELSE));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+
+  CHECK_CALL(param_tok_test(NULL, TT_K_IF));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_LT));
   CHECK_CALL(param_tok_test("0", TT_INTEGER));
-  CHECK_CALL(param_tok_test("then", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_THEN));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Faktorial nelze spocitat\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("else", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_ELSE));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
   CHECK_CALL(param_tok_test("1", TT_INTEGER));
 
-  CHECK_CALL(param_tok_test("while", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_WHILE));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_GT));
   CHECK_CALL(param_tok_test("0", TT_INTEGER));
-  CHECK_CALL(param_tok_test("do", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_DO));
 
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_MOP_MUL));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("a", TT_ID));
 
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_MOP_MINUS));
   CHECK_CALL(param_tok_test("1", TT_INTEGER));
 
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Vysledek je: \"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
 
-  CHECK_CALL(param_tok_test("main", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("main", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
@@ -573,126 +573,126 @@ TEST input_file_1_test() {
 TEST input_file_2_test() {
   freopen("tests/unit/scanner_input_files/test_in_fac2.tl", "r", stdin);
 
-  CHECK_CALL(param_tok_test("require", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_REQUIRE));
   CHECK_CALL(param_tok_test("\"ifj21\"", TT_STRING));
 
-  CHECK_CALL(param_tok_test("function", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("factorial", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_FUNCTION));
+  CHECK_CALL(param_tok_test("factorial", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
-  CHECK_CALL(param_tok_test("n", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("n", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("n1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("n1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("n", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("n", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_MOP_MINUS));
   CHECK_CALL(param_tok_test("1", TT_INTEGER));
 
-  CHECK_CALL(param_tok_test("if", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("n", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_IF));
+  CHECK_CALL(param_tok_test("n", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_LT));
   CHECK_CALL(param_tok_test("2", TT_INTEGER));
-  CHECK_CALL(param_tok_test("then", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("return", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_THEN));
+  CHECK_CALL(param_tok_test(NULL, TT_K_RETURN));
   CHECK_CALL(param_tok_test("1", TT_INTEGER));
 
-  CHECK_CALL(param_tok_test("else", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("tmp", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_ELSE));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("tmp", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("factorial", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("factorial", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
-  CHECK_CALL(param_tok_test("n1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("n1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("return", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("n", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_RETURN));
+  CHECK_CALL(param_tok_test("n", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_MOP_MUL));
-  CHECK_CALL(param_tok_test("tmp", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("tmp", TT_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
 
-  CHECK_CALL(param_tok_test("function", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("main", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_FUNCTION));
+  CHECK_CALL(param_tok_test("main", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Zadejte cislo pro vypocet faktorialu: \"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("readi", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("readi", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
 
-  CHECK_CALL(param_tok_test("if", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_IF));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_NEQ));
-  CHECK_CALL(param_tok_test("nil", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("then", TT_KEYWORD_ID));
-  
-  CHECK_CALL(param_tok_test("if", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_NIL));
+  CHECK_CALL(param_tok_test(NULL, TT_K_THEN));
+
+  CHECK_CALL(param_tok_test(NULL, TT_K_IF));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_LT));
   CHECK_CALL(param_tok_test("0", TT_INTEGER));
-  CHECK_CALL(param_tok_test("then", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_THEN));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Faktorial nejde spocitat!\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("else", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_ELSE));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("factorial", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("factorial", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
-  CHECK_CALL(param_tok_test("a", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("a", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Vysledek je \"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("vysl", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("vysl", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
 
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("else", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+  CHECK_CALL(param_tok_test(NULL, TT_K_ELSE));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Chyba pri nacitani celeho cisla!\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
 
-  CHECK_CALL(param_tok_test("main", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("main", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
@@ -703,142 +703,142 @@ TEST input_file_2_test() {
 TEST input_file_3_test() {
   freopen("tests/unit/scanner_input_files/test_in_ws_strings.tl", "r", stdin);
 
-  CHECK_CALL(param_tok_test("require", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_REQUIRE));
   CHECK_CALL(param_tok_test("\"ifj21\"", TT_STRING));
 
-  CHECK_CALL(param_tok_test("function", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("main", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_FUNCTION));
+  CHECK_CALL(param_tok_test("main", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("string", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
   CHECK_CALL(param_tok_test("\"Toto je nejaky text\"", TT_STRING));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("s2", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("s2", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("string", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_SOP_CONCAT));
   CHECK_CALL(param_tok_test("\", ktery jeste trochu obohatime\"", TT_STRING));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"\\010\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("s2", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s2", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
   CHECK_CALL(param_tok_test(NULL, TT_SOP_LENGTH));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
 
-  CHECK_CALL(param_tok_test("local", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("s1len4", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_LOCAL));
+  CHECK_CALL(param_tok_test("s1len4", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COLON));
-  CHECK_CALL(param_tok_test("integer", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_INTEGER));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
 
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_MOP_MINUS));
   CHECK_CALL(param_tok_test("4", TT_INTEGER));
 
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("substr", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("substr", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
-  CHECK_CALL(param_tok_test("s2", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s2", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("s1len4", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len4", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_MOP_PLUS));
   CHECK_CALL(param_tok_test("1", TT_INTEGER));
 
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"4 znaky od\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("s1len", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1len", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\". znaku v \\\"\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("s2", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s2", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"\\\":\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"Zadejte serazenou posloupnost vsech malych pismen a-h, \"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"pricemz se pismena nesmeji v posloupnosti opakovat: \"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("reads", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("reads", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("if", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_IF));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_NEQ));
-  CHECK_CALL(param_tok_test("nil", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("then", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_NIL));
+  CHECK_CALL(param_tok_test(NULL, TT_K_THEN));
 
-  CHECK_CALL(param_tok_test("while", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_WHILE));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_COP_NEQ));
   CHECK_CALL(param_tok_test("\"abcdefgh\"", TT_STRING));
-  CHECK_CALL(param_tok_test("do", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_DO));
 
-  CHECK_CALL(param_tok_test("write", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("write", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test("\"\\n\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_COMMA));
   CHECK_CALL(param_tok_test("\"Spatne zadana posloupnost, zkuste znovu:\"", TT_STRING));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("s1", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("s1", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_ASSIGN));
-  CHECK_CALL(param_tok_test("reads", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("reads", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("else", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
-  CHECK_CALL(param_tok_test("end", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+  CHECK_CALL(param_tok_test(NULL, TT_K_ELSE));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
+  CHECK_CALL(param_tok_test(NULL, TT_K_END));
 
-  CHECK_CALL(param_tok_test("main", TT_KEYWORD_ID));
+  CHECK_CALL(param_tok_test("main", TT_ID));
   CHECK_CALL(param_tok_test(NULL, TT_LPAR));
   CHECK_CALL(param_tok_test(NULL, TT_RPAR));
 
