@@ -15,14 +15,17 @@
 
 /**
  * Macro for appending a character to a dynstr_t and checking
- * if the operation was successful. If it wasn't return an error token.
+ * if the operation was successful. If it wasn't destroy token and
+ * set error flag.
  * TODO: report error
  */
-#define APPEND_CHAR(CHAR, TOK) ({\
+#define APPEND_CHAR(CHAR, TOK) do{\
   if (dynstr_append(&str_buffer, (CHAR)) == NULL) {\
-    return scanner_make_error_token((TOK));\
+    scanner_token_destroy((TOK));\
+    return NULL;\
+    /* TODO(filip): set error flag */\
   }\
-})
+}while(0)
 
 
 
