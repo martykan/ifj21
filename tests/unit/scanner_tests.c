@@ -33,6 +33,118 @@ void end_scanner(void *arg) {
   scanner_destroy();
 }
 
+
+TEST get_keyword_type_from_string_true_test() {
+  dynstr_t str_buffer;
+  // BAD! only for tests. Otherwise should not access the dynstr struct directly
+  // It works only if the function doesn't need a valid dynstr, but only needs a valid c string
+  /* TODO(filip): implement dynstr_set_string to overwrite the string with proper reallocation, ... */
+  str_buffer.str = malloc(sizeof(char) * 200);
+  if (str_buffer.str == NULL) {
+    FAILm("str buffer alloc failed in get_keyword_type_from_string_true_test");
+  }
+
+
+  /* scanner_get_keyword_type */
+  strcpy(str_buffer.str, "local");
+  ASSERT_EQ(TT_K_LOCAL, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "integer");
+  ASSERT_EQ(TT_K_INTEGER, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "number");
+  ASSERT_EQ(TT_K_NUMBER, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "if");
+  ASSERT_EQ(TT_K_IF, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "then");
+  ASSERT_EQ(TT_K_THEN, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "else");
+  ASSERT_EQ(TT_K_ELSE, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "do");
+  ASSERT_EQ(TT_K_DO, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "while");
+  ASSERT_EQ(TT_K_WHILE, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "string");
+  ASSERT_EQ(TT_K_STRING, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "end");
+  ASSERT_EQ(TT_K_END, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "function");
+  ASSERT_EQ(TT_K_FUNCTION, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "global");
+  ASSERT_EQ(TT_K_GLOBAL, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "nil");
+  ASSERT_EQ(TT_K_NIL, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "return");
+  ASSERT_EQ(TT_K_RETURN, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "require");
+  ASSERT_EQ(TT_K_REQUIRE, scanner_get_keyword_type(&str_buffer));
+
+  free(str_buffer.str);
+  PASS();
+}
+
+TEST get_keyword_type_from_string_false_test() {
+  dynstr_t str_buffer;
+  // BAD! only for tests. Otherwise should not access the dynstr struct directly
+  // It works only if the function doesn't need a valid dynstr, but only needs a valid c string
+  /* TODO(filip): implement dynstr_set_string to overwrite the string with proper reallocation, ... */
+  str_buffer.str = malloc(sizeof(char) * 200);
+  if (str_buffer.str == NULL) {
+    FAILm("str buffer alloc failed in get_keyword_type_from_string_false_test");
+  }
+
+
+  strcpy(str_buffer.str, "integer0");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "_");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "name");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "name123");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "then_");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "ifelse");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "do_this_");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "while32");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "STRING");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  strcpy(str_buffer.str, "END");
+  ASSERT_EQ(TT_ID, scanner_get_keyword_type(&str_buffer));
+
+  free(str_buffer.str);
+  PASS();
+}
+
+SUITE(scanner_keyword_tests) {
+  RUN_TEST(get_keyword_type_from_string_true_test);
+  RUN_TEST(get_keyword_type_from_string_false_test);
+}
+
 // parameterized standalone token test
 enum greatest_test_res param_single_tok_test(char *in, char *attr, token_type_t expected_type) {
   SET_INPUT(in);

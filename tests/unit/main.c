@@ -4,6 +4,7 @@
 SUITE_EXTERN(dynstr_basic_tests);
 SUITE_EXTERN(scanner_basic_tests);
 SUITE_EXTERN(scanner_input_file_tests);
+SUITE_EXTERN(scanner_keyword_tests);
 
 TEST x_should_equal_1(void)
 {
@@ -62,6 +63,7 @@ int main(int argc, char **argv)
   RUN_SUITE(dynstr_basic_tests);
   RUN_SUITE(scanner_basic_tests);
   RUN_SUITE(scanner_input_file_tests);
+  RUN_SUITE(scanner_keyword_tests);
   
   RUN_SUITE(the_suite);
 
