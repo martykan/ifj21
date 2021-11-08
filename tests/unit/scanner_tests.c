@@ -152,6 +152,7 @@ enum greatest_test_res param_single_tok_test(char *in, char *attr, token_type_t 
   fclose(stdin);
   ASSERT_EQ(tok->type, expected_type);
   if (attr != NULL) {
+    ASSERT_NEQ(NULL, tok->attribute);
     ASSERT_STR_EQ(attr, tok->attribute);
   }
   scanner_token_destroy(tok);
@@ -163,7 +164,7 @@ enum greatest_test_res param_single_tok_test(char *in, char *attr, token_type_t 
 enum greatest_test_res param_tok_test(char *attr, token_type_t expected_type) {
   token_t *tok = scanner_get_next_token();
   char msg[100] = {'\0'};
-  if (tok->attribute == NULL) {
+  if (tok->attribute == NULL && attr != NULL) {
     sprintf(msg, "expected_type: %d, got: %d, expected_attr: %s\n", expected_type, tok->type, attr);
   }
   else {
@@ -171,6 +172,7 @@ enum greatest_test_res param_tok_test(char *attr, token_type_t expected_type) {
   }
   ASSERT_EQm(msg, tok->type, expected_type);
   if (attr != NULL) {
+    ASSERT_NEQ(NULL, tok->attribute);
     ASSERT_STR_EQ(attr, tok->attribute);
   }
   scanner_token_destroy(tok);
