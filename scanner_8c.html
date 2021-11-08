@@ -104,6 +104,10 @@ $(document).ready(function(){initNavTree('scanner_8c.html',''); initResizable();
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a9fab585b35b349cc440afd2279074f88"><td class="memItemLeft" align="right" valign="top"><a id="a9fab585b35b349cc440afd2279074f88" name="a9fab585b35b349cc440afd2279074f88"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>KEYWORDS_COUNT</b>&#160;&#160;&#160;15</td></tr>
+<tr class="memdesc:a9fab585b35b349cc440afd2279074f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of keywords in keywords array. <br /></td></tr>
+<tr class="separator:a9fab585b35b349cc440afd2279074f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ae51e5e0a28dd40205e9cf56e3df3e54f">APPEND_CHAR</a>(CHAR,  TOK)</td></tr>
 <tr class="separator:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -149,6 +153,8 @@ Functions</h2></td></tr>
 <tr class="separator:aec54f69564fbbbac5032deae9361438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a5debeb97d9546227aaf63c2d51d3aa42">scanner_destroy</a> ()</td></tr>
 <tr class="separator:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae675b083d9b258bedbb7481de391e87a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ae675b083d9b258bedbb7481de391e87a">scanner_get_keyword_type</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dstr)</td></tr>
+<tr class="separator:ae675b083d9b258bedbb7481de391e87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#aa4058c66e210c9ce550a8da7b6c23a8a">scanner_token_destroy</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
 <tr class="separator:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98d07c28690024bc29b03ac709fdd32f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a98d07c28690024bc29b03ac709fdd32f">scanner_create_empty_token</a> ()</td></tr>
@@ -215,15 +221,16 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  ({\</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span>{\</div>
 <div class="line">  if (<a class="code hl_function" href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a>(&amp;<a class="code hl_variable" href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a>, (CHAR)) == NULL) {\</div>
-<div class="line">    return <a class="code hl_function" href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a>((TOK));\</div>
+<div class="line">    scanner_token_destroy((TOK));\</div>
+<div class="line">    return NULL;\</div>
+<div class="line">    <span class="comment">/* TODO(filip): set error flag */</span>\</div>
 <div class="line">  }\</div>
-<div class="line">})</div>
-<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdef"><b>Definition:</b> dynstr.c:63</div></div>
-<div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:30</div></div>
-<div class="ttc" id="ascanner_8c_html_af405f15c05ca009e1a006eac8fc953e6"><div class="ttname"><a href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a></div><div class="ttdeci">token_t * scanner_make_error_token(token_t *tok)</div><div class="ttdef"><b>Definition:</b> scanner.c:124</div></div>
-</div><!-- fragment --><p >Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. If it wasn't return an error token. TODO: report error </p>
+<div class="line">}<span class="keywordflow">while</span>(0)</div>
+<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdef"><b>Definition:</b> dynstr.c:64</div></div>
+<div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:36</div></div>
+</div><!-- fragment --><p >Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. If it wasn't destroy token and set error flag. TODO: report error </p>
 
 </div>
 </div>
@@ -286,6 +293,31 @@ Filip Stolfa </dd></dl>
       </table>
 </div><div class="memdoc">
 <p >Free dynstr buffer used by scanner. Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
+
+</div>
+</div>
+<a id="ae675b083d9b258bedbb7481de391e87a" name="ae675b083d9b258bedbb7481de391e87a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae675b083d9b258bedbb7481de391e87a">&#9670;&nbsp;</a></span>scanner_get_keyword_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a> scanner_get_keyword_type </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>dstr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Get the correct keyword token type. Checks if the passed <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> contains a valid ifj21 keyword. If it does, it calculates the corresponding <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>. Otherwise, the tested string is an identifier. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dstr</td><td>Pointer to a dynamic string containing the string we want to check. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Keyword <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a> if dstr is a keyword, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" title="Identifier token.">TT_ID</a> otherwise. </dd></dl>
 
 </div>
 </div>

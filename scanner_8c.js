@@ -1,6 +1,7 @@
 var scanner_8c =
 [
     [ "APPEND_CHAR", "scanner_8c.html#ae51e5e0a28dd40205e9cf56e3df3e54f", null ],
+    [ "KEYWORDS_COUNT", "scanner_8c.html#a9fab585b35b349cc440afd2279074f88", null ],
     [ "scanner_state_t", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647", [
       [ "STATE_START", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a1844f314039d713261df43a309145446", null ],
       [ "STATE_KEYWORD_ID", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a59ea6f7ef3fc7c65578823250475573d", null ],
@@ -29,6 +30,7 @@ var scanner_8c =
     [ "is_escapable_char", "scanner_8c.html#a2594d9fda4f3a0b93ee37fbdb7b3b578", null ],
     [ "scanner_create_empty_token", "scanner_8c.html#a98d07c28690024bc29b03ac709fdd32f", null ],
     [ "scanner_destroy", "scanner_8c.html#a5debeb97d9546227aaf63c2d51d3aa42", null ],
+    [ "scanner_get_keyword_type", "scanner_8c.html#ae675b083d9b258bedbb7481de391e87a", null ],
     [ "scanner_init", "scanner_8c.html#aec54f69564fbbbac5032deae9361438a", null ],
     [ "scanner_make_eof_token", "scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b", null ],
     [ "scanner_make_error_token", "scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6", null ],

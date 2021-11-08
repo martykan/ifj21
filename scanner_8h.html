@@ -86,6 +86,7 @@ $(document).ready(function(){initNavTree('scanner_8h.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">scanner.h File Reference</div></div>
@@ -103,40 +104,65 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scanner token type.  <a href="structtoken__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a97cdb404aed0adf0e5779944d186c910"><td class="memItemLeft" align="right" valign="top"><a id="a97cdb404aed0adf0e5779944d186c910" name="a97cdb404aed0adf0e5779944d186c910"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TOK_KEYWORD_OFFSET</b>&#160;&#160;&#160;3</td></tr>
+<tr class="memdesc:a97cdb404aed0adf0e5779944d186c910"><td class="mdescLeft">&#160;</td><td class="mdescRight">Offset from 0 of the first keyword token type. <br /></td></tr>
+<tr class="separator:a97cdb404aed0adf0e5779944d186c910"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ad04fc3241884cc3eb19ccad1ce5afa69"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a> { <br />
-&#160;&#160;<b>TT_ERROR</b>
-, <b>TT_NO_TYPE</b>
+&#160;&#160;<a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a63aedd7b3e899b727bea4b28f41ca51d">TT_ERROR</a>
+, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a01562e8a9f0006e8f44983d6a785b38b">TT_NO_TYPE</a>
 , <b>TT_EOF</b>
-, <b>TT_KEYWORD_ID</b>
+, <b>TT_K_LOCAL</b>
 , <br />
-&#160;&#160;<b>TT_STRING</b>
-, <b>TT_INTEGER</b>
+&#160;&#160;<b>TT_K_INTEGER</b>
+, <b>TT_K_NUMBER</b>
+, <b>TT_K_IF</b>
+, <b>TT_K_THEN</b>
+, <br />
+&#160;&#160;<b>TT_K_ELSE</b>
+, <b>TT_K_DO</b>
+, <b>TT_K_WHILE</b>
+, <b>TT_K_STRING</b>
+, <br />
+&#160;&#160;<b>TT_K_END</b>
+, <b>TT_K_FUNCTION</b>
+, <b>TT_K_GLOBAL</b>
+, <b>TT_K_NIL</b>
+, <br />
+&#160;&#160;<b>TT_K_RETURN</b>
+, <b>TT_K_REQUIRE</b>
+, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59">TT_ID</a>
+, <b>TT_STRING</b>
+, <br />
+&#160;&#160;<b>TT_INTEGER</b>
 , <b>TT_NUMBER</b>
 , <b>TT_ASSIGN</b>
+, <b>TT_COP_EQ</b>
 , <br />
-&#160;&#160;<b>TT_COP_EQ</b>
-, <b>TT_COP_NEQ</b>
+&#160;&#160;<b>TT_COP_NEQ</b>
 , <b>TT_COP_GT</b>
 , <b>TT_COP_GE</b>
+, <b>TT_COP_LT</b>
 , <br />
-&#160;&#160;<b>TT_COP_LT</b>
-, <b>TT_COP_LE</b>
+&#160;&#160;<b>TT_COP_LE</b>
 , <b>TT_MOP_PLUS</b>
 , <b>TT_MOP_MINUS</b>
+, <b>TT_MOP_MUL</b>
 , <br />
-&#160;&#160;<b>TT_MOP_MUL</b>
-, <b>TT_MOP_DIV</b>
+&#160;&#160;<b>TT_MOP_DIV</b>
 , <b>TT_MOP_INT_DIV</b>
 , <b>TT_SOP_CONCAT</b>
+, <b>TT_SOP_LENGTH</b>
 , <br />
-&#160;&#160;<b>TT_SOP_LENGTH</b>
-, <b>TT_COMMA</b>
+&#160;&#160;<b>TT_COMMA</b>
 , <b>TT_LPAR</b>
 , <b>TT_RPAR</b>
-, <br />
-&#160;&#160;<b>TT_COLON</b>
+, <b>TT_COLON</b>
 <br />
  }</td></tr>
 <tr class="separator:ad04fc3241884cc3eb19ccad1ce5afa69"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -172,7 +198,15 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Possible scanner token types. Enum of all possible scanner token types. </p>
+<p >Enum of all possible scanner token types. The starting index (defined in <a class="el" href="scanner_8h.html#a97cdb404aed0adf0e5779944d186c910" title="Offset from 0 of the first keyword token type.">TOK_KEYWORD_OFFSET</a>) and order of the keyword token types has to match the order of the keyword strings in ::keywords. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69a63aedd7b3e899b727bea4b28f41ca51d" name="ad04fc3241884cc3eb19ccad1ce5afa69a63aedd7b3e899b727bea4b28f41ca51d"></a>TT_ERROR&#160;</td><td class="fielddoc"><p >A lexical error was found. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69a01562e8a9f0006e8f44983d6a785b38b" name="ad04fc3241884cc3eb19ccad1ce5afa69a01562e8a9f0006e8f44983d6a785b38b"></a>TT_NO_TYPE&#160;</td><td class="fielddoc"><p >Used to initialize an empty token. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" name="ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59"></a>TT_ID&#160;</td><td class="fielddoc"><p >Identifier token. </p>
+</td></tr>
+</table>
 
 </div>
 </div>

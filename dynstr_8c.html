@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('dynstr_8c.html',''); initResizable(); 
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="dynstr_8h_source.html">dynstr.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -118,6 +119,8 @@ Functions</h2></td></tr>
 <tr class="separator:afb6772e81906174507bb2bf16b8f4dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbfa91fc17e680a114f7c937cd1b0f37"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8c.html#acbfa91fc17e680a114f7c937cd1b0f37">dynstr_copy_to_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
 <tr class="separator:acbfa91fc17e680a114f7c937cd1b0f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7347f2997224135f17753d4f3303e13d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8c.html#a7347f2997224135f17753d4f3303e13d">dynstr_equals_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, const char *str)</td></tr>
+<tr class="separator:a7347f2997224135f17753d4f3303e13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Dynamic string implementation. </p>
@@ -210,6 +213,42 @@ Filip Stolfa </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to the new character buffer. NULL if failed. </dd></dl>
+
+</div>
+</div>
+<a id="a7347f2997224135f17753d4f3303e13d" name="a7347f2997224135f17753d4f3303e13d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7347f2997224135f17753d4f3303e13d">&#9670;&nbsp;</a></span>dynstr_equals_static()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool dynstr_equals_static </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>dynstr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >Compares a dynamic and classic string. Only checks if the strings are equal. Doesn't check which non-matching character has a lower value. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct. </td></tr>
+    <tr><td class="paramname">str</td><td>Pointer to a valid c string. Can't be NULL. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if strings are equal, false otherwise. </dd></dl>
 
 </div>
 </div>
