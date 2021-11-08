@@ -97,18 +97,31 @@ $(document).ready(function(){initNavTree('expressions_8c.html',''); initResizabl
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a86319c45e2904066a9c559ce82cab542"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">precedence_table_index</a> (expression_symbol_t symbol)</td></tr>
+<tr class="memdesc:a86319c45e2904066a9c559ce82cab542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index in the precedence table.  <a href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">More...</a><br /></td></tr>
 <tr class="separator:a86319c45e2904066a9c559ce82cab542"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d50b8bd9369bdb495168dedf63d707d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a8d50b8bd9369bdb495168dedf63d707d">symbol_stack_push</a> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym)</td></tr>
+<tr class="memitem:a8d50b8bd9369bdb495168dedf63d707d"><td class="memItemLeft" align="right" valign="top"><a id="a8d50b8bd9369bdb495168dedf63d707d" name="a8d50b8bd9369bdb495168dedf63d707d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym)</td></tr>
+<tr class="memdesc:a8d50b8bd9369bdb495168dedf63d707d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
 <tr class="separator:a8d50b8bd9369bdb495168dedf63d707d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9918e6e06073f8afb8402f993c9126fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a9918e6e06073f8afb8402f993c9126fb">symbol_stack_pop</a> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack)</td></tr>
+<tr class="memitem:a9918e6e06073f8afb8402f993c9126fb"><td class="memItemLeft" align="right" valign="top"><a id="a9918e6e06073f8afb8402f993c9126fb" name="a9918e6e06073f8afb8402f993c9126fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pop</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack)</td></tr>
+<tr class="memdesc:a9918e6e06073f8afb8402f993c9126fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop operation on symbol stack. <br /></td></tr>
 <tr class="separator:a9918e6e06073f8afb8402f993c9126fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a711865de176b7a0c496916f2aee5ab0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a711865de176b7a0c496916f2aee5ab0a">symbol_stack_pops</a> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, int count)</td></tr>
+<tr class="memitem:a711865de176b7a0c496916f2aee5ab0a"><td class="memItemLeft" align="right" valign="top"><a id="a711865de176b7a0c496916f2aee5ab0a" name="a711865de176b7a0c496916f2aee5ab0a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pops</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, int count)</td></tr>
+<tr class="memdesc:a711865de176b7a0c496916f2aee5ab0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop operation on symbol stack, multiple times. <br /></td></tr>
 <tr class="separator:a711865de176b7a0c496916f2aee5ab0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab36d0ee685766d67ca5ad033413fa689"><td class="memItemLeft" align="right" valign="top">expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#ab36d0ee685766d67ca5ad033413fa689">get_top_symbol</a> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
+<tr class="memitem:ab36d0ee685766d67ca5ad033413fa689"><td class="memItemLeft" align="right" valign="top"><a id="ab36d0ee685766d67ca5ad033413fa689" name="ab36d0ee685766d67ca5ad033413fa689"></a>
+expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_top_symbol</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
+<tr class="memdesc:ab36d0ee685766d67ca5ad033413fa689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get top symbol from stack (excluding E) <br /></td></tr>
 <tr class="separator:ab36d0ee685766d67ca5ad033413fa689"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49b928406c70e30a9527b847d5dc7f1e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a49b928406c70e30a9527b847d5dc7f1e">print_stack</a> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
+<tr class="memitem:a49b928406c70e30a9527b847d5dc7f1e"><td class="memItemLeft" align="right" valign="top"><a id="a49b928406c70e30a9527b847d5dc7f1e" name="a49b928406c70e30a9527b847d5dc7f1e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>print_stack</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
+<tr class="memdesc:a49b928406c70e30a9527b847d5dc7f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print stack - for debugging. <br /></td></tr>
 <tr class="separator:a49b928406c70e30a9527b847d5dc7f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50848ab4ee392b425cdcfecdd472f563"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a50848ab4ee392b425cdcfecdd472f563">expression_process</a> (expression_symbol_t *input)</td></tr>
+<tr class="memitem:a50848ab4ee392b425cdcfecdd472f563"><td class="memItemLeft" align="right" valign="top"><a id="a50848ab4ee392b425cdcfecdd472f563" name="a50848ab4ee392b425cdcfecdd472f563"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (expression_symbol_t *input)</td></tr>
+<tr class="memdesc:a50848ab4ee392b425cdcfecdd472f563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
 <tr class="separator:a50848ab4ee392b425cdcfecdd472f563"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -119,44 +132,6 @@ Patrik Korytar </dd>
 <dd>
 Filip Stolfa </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a50848ab4ee392b425cdcfecdd472f563" name="a50848ab4ee392b425cdcfecdd472f563"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50848ab4ee392b425cdcfecdd472f563">&#9670;&nbsp;</a></span>expression_process()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int expression_process </td>
-          <td>(</td>
-          <td class="paramtype">expression_symbol_t *&#160;</td>
-          <td class="paramname"><em>input</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Process expression </p>
-
-</div>
-</div>
-<a id="ab36d0ee685766d67ca5ad033413fa689" name="ab36d0ee685766d67ca5ad033413fa689"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab36d0ee685766d67ca5ad033413fa689">&#9670;&nbsp;</a></span>get_top_symbol()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">expression_symbol_t get_top_symbol </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *&#160;</td>
-          <td class="paramname"><em>stack</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Get top symbol from stack (excluding E) </p>
-
-</div>
-</div>
 <a id="a86319c45e2904066a9c559ce82cab542" name="a86319c45e2904066a9c559ce82cab542"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a86319c45e2904066a9c559ce82cab542">&#9670;&nbsp;</a></span>precedence_table_index()</h2>
 
@@ -172,109 +147,15 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Get the index in the precedence table </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Get the index in the precedence table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symbol</td><td>Symbol to check </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Index of the symbol in the precedence table </dd></dl>
-
-</div>
-</div>
-<a id="a49b928406c70e30a9527b847d5dc7f1e" name="a49b928406c70e30a9527b847d5dc7f1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49b928406c70e30a9527b847d5dc7f1e">&#9670;&nbsp;</a></span>print_stack()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void print_stack </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *&#160;</td>
-          <td class="paramname"><em>stack</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Print stack - for debugging </p>
-
-</div>
-</div>
-<a id="a9918e6e06073f8afb8402f993c9126fb" name="a9918e6e06073f8afb8402f993c9126fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9918e6e06073f8afb8402f993c9126fb">&#9670;&nbsp;</a></span>symbol_stack_pop()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void symbol_stack_pop </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **&#160;</td>
-          <td class="paramname"><em>stack</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Pop operation on symbol stack </p>
-
-</div>
-</div>
-<a id="a711865de176b7a0c496916f2aee5ab0a" name="a711865de176b7a0c496916f2aee5ab0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a711865de176b7a0c496916f2aee5ab0a">&#9670;&nbsp;</a></span>symbol_stack_pops()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void symbol_stack_pops </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **&#160;</td>
-          <td class="paramname"><em>stack</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>count</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Pop operation on symbol stack, multiple times </p>
-
-</div>
-</div>
-<a id="a8d50b8bd9369bdb495168dedf63d707d" name="a8d50b8bd9369bdb495168dedf63d707d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d50b8bd9369bdb495168dedf63d707d">&#9670;&nbsp;</a></span>symbol_stack_push()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void symbol_stack_push </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **&#160;</td>
-          <td class="paramname"><em>stack</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">expression_symbol_t&#160;</td>
-          <td class="paramname"><em>sym</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Push operation on symbol stack </p>
 
 </div>
 </div>

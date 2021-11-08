@@ -41,5 +41,6 @@ var scanner_8c =
     [ "scanner_make_op_token", "scanner_8c.html#ac75ec6703159eac8879bd93d5bf6cd8e", null ],
     [ "scanner_make_string_tok", "scanner_8c.html#af3ed987677cb31f8359c085a4a92251c", null ],
     [ "scanner_token_destroy", "scanner_8c.html#aa4058c66e210c9ce550a8da7b6c23a8a", null ],
+    [ "keywords", "scanner_8c.html#a0250f718cd2be8a93808826186e509c3", null ],
     [ "str_buffer", "scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58", null ]
 ];

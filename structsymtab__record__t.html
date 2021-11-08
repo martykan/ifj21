@@ -98,63 +98,25 @@ $(document).ready(function(){initNavTree('structsymtab__record__t.html',''); ini
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab1c49eb58a45938ce30e489d71ba545d"><td class="memItemLeft" align="right" valign="top">struct symtab_record *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__record__t.html#ab1c49eb58a45938ce30e489d71ba545d">next</a></td></tr>
+<tr class="memitem:ab1c49eb58a45938ce30e489d71ba545d"><td class="memItemLeft" align="right" valign="top"><a id="ab1c49eb58a45938ce30e489d71ba545d" name="ab1c49eb58a45938ce30e489d71ba545d"></a>
+struct symtab_record *&#160;</td><td class="memItemRight" valign="bottom"><b>next</b></td></tr>
+<tr class="memdesc:ab1c49eb58a45938ce30e489d71ba545d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Next record on the same bucket (if collision occured). <br /></td></tr>
 <tr class="separator:ab1c49eb58a45938ce30e489d71ba545d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00239af1f115b593ba8723264615b6cd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__record__t.html#a00239af1f115b593ba8723264615b6cd">key</a></td></tr>
+<tr class="memitem:a00239af1f115b593ba8723264615b6cd"><td class="memItemLeft" align="right" valign="top"><a id="a00239af1f115b593ba8723264615b6cd" name="a00239af1f115b593ba8723264615b6cd"></a>
+<a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>key</b></td></tr>
+<tr class="memdesc:a00239af1f115b593ba8723264615b6cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Key of the hash function. <br /></td></tr>
 <tr class="separator:a00239af1f115b593ba8723264615b6cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18236ddf1634021abc90b034ded8e5fb"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__record__t.html#a18236ddf1634021abc90b034ded8e5fb">what_data</a></td></tr>
+<tr class="memdesc:a18236ddf1634021abc90b034ded8e5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">If 'v' -&gt; variable record.  <a href="structsymtab__record__t.html#a18236ddf1634021abc90b034ded8e5fb">More...</a><br /></td></tr>
 <tr class="separator:a18236ddf1634021abc90b034ded8e5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0971c86583d38733ae63bd467a58f35b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionsymtab__data__t.html">symtab_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__record__t.html#a0971c86583d38733ae63bd467a58f35b">data</a></td></tr>
+<tr class="memitem:a0971c86583d38733ae63bd467a58f35b"><td class="memItemLeft" align="right" valign="top"><a id="a0971c86583d38733ae63bd467a58f35b" name="a0971c86583d38733ae63bd467a58f35b"></a>
+<a class="el" href="unionsymtab__data__t.html">symtab_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>data</b></td></tr>
+<tr class="memdesc:a0971c86583d38733ae63bd467a58f35b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union containing data of either variable or function identifier. <br /></td></tr>
 <tr class="separator:a0971c86583d38733ae63bd467a58f35b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Record representing identifier. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="a0971c86583d38733ae63bd467a58f35b" name="a0971c86583d38733ae63bd467a58f35b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0971c86583d38733ae63bd467a58f35b">&#9670;&nbsp;</a></span>data</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">symtab_record_t::data</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Union containing data of either variable or function identifier. </p>
-
-</div>
-</div>
-<a id="a00239af1f115b593ba8723264615b6cd" name="a00239af1f115b593ba8723264615b6cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00239af1f115b593ba8723264615b6cd">&#9670;&nbsp;</a></span>key</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">symtab_record_t::key</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Key of the hash function. </p>
-
-</div>
-</div>
-<a id="ab1c49eb58a45938ce30e489d71ba545d" name="ab1c49eb58a45938ce30e489d71ba545d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1c49eb58a45938ce30e489d71ba545d">&#9670;&nbsp;</a></span>next</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">symtab_record_t::next</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p >Next record on the same bucket (if collision occured). </p>
-
-</div>
-</div>
 <a id="a18236ddf1634021abc90b034ded8e5fb" name="a18236ddf1634021abc90b034ded8e5fb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a18236ddf1634021abc90b034ded8e5fb">&#9670;&nbsp;</a></span>what_data</h2>
 
@@ -166,7 +128,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >If 'v' -&gt; variable record. If 'f' -&gt; function record. </p>
+
+<p>If 'v' -&gt; variable record. </p>
+<p >If 'f' -&gt; function record. </p>
 
 </div>
 </div>

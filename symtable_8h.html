@@ -119,7 +119,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Subtable of identifiers of one scope.  <a href="structsymtab__subtab__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__t.html">symtab_t</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hierarchical symbol table. Includes tables for both global and local scopes. Most nested local scope table is on top of stack.  <a href="structsymtab__t.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hierarchical symbol table.  <a href="structsymtab__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -132,24 +132,34 @@ typedef const char *&#160;</td><td class="memItemRight" valign="bottom"><b>symta
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a38b92535c3115ae2c1f4bd594fa2a3c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a38b92535c3115ae2c1f4bd594fa2a3c9">symtab_create</a> ()</td></tr>
+<tr class="memdesc:a38b92535c3115ae2c1f4bd594fa2a3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates symbol table.  <a href="symtable_8h.html#a38b92535c3115ae2c1f4bd594fa2a3c9">More...</a><br /></td></tr>
 <tr class="separator:a38b92535c3115ae2c1f4bd594fa2a3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a549ffd9107811e5b88384c16342cc723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a549ffd9107811e5b88384c16342cc723">symtab_free</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab)</td></tr>
+<tr class="memdesc:a549ffd9107811e5b88384c16342cc723"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys whole symbol table.  <a href="symtable_8h.html#a549ffd9107811e5b88384c16342cc723">More...</a><br /></td></tr>
 <tr class="separator:a549ffd9107811e5b88384c16342cc723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7c255866b01d6e94766356ef2ff7bf7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#ab7c255866b01d6e94766356ef2ff7bf7">symtab_clear</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab)</td></tr>
+<tr class="memdesc:ab7c255866b01d6e94766356ef2ff7bf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys contents of symbol table, but not symbol table.  <a href="symtable_8h.html#ab7c255866b01d6e94766356ef2ff7bf7">More...</a><br /></td></tr>
 <tr class="separator:ab7c255866b01d6e94766356ef2ff7bf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd913b76a2ba5aa42acffb32a3a72880"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#afd913b76a2ba5aa42acffb32a3a72880">symtab_subtab_push</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab)</td></tr>
+<tr class="memdesc:afd913b76a2ba5aa42acffb32a3a72880"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and pushes local table on the top of the stack of symbol table.  <a href="symtable_8h.html#afd913b76a2ba5aa42acffb32a3a72880">More...</a><br /></td></tr>
 <tr class="separator:afd913b76a2ba5aa42acffb32a3a72880"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02c3969911087f375a9fbd425b813e16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a02c3969911087f375a9fbd425b813e16">symtab_subtab_pop</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab)</td></tr>
+<tr class="memdesc:a02c3969911087f375a9fbd425b813e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops and destroys local table on the top of the stack of symbol table.  <a href="symtable_8h.html#a02c3969911087f375a9fbd425b813e16">More...</a><br /></td></tr>
 <tr class="separator:a02c3969911087f375a9fbd425b813e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e1d625435fb4028a701de55be80e55d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a0e1d625435fb4028a701de55be80e55d">symtab_find_var</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memdesc:a0e1d625435fb4028a701de55be80e55d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for variable identifier.  <a href="symtable_8h.html#a0e1d625435fb4028a701de55be80e55d">More...</a><br /></td></tr>
 <tr class="separator:a0e1d625435fb4028a701de55be80e55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617504951efaba3dd3464547b5c4078f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a617504951efaba3dd3464547b5c4078f">symtab_find_func</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memdesc:a617504951efaba3dd3464547b5c4078f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches global table for function identifier.  <a href="symtable_8h.html#a617504951efaba3dd3464547b5c4078f">More...</a><br /></td></tr>
 <tr class="separator:a617504951efaba3dd3464547b5c4078f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a14748ff38a3c64db8d7211f639597e25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a14748ff38a3c64db8d7211f639597e25">symtab_insert_var</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memdesc:a14748ff38a3c64db8d7211f639597e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in topmost local table (most nested scope).  <a href="symtable_8h.html#a14748ff38a3c64db8d7211f639597e25">More...</a><br /></td></tr>
 <tr class="separator:a14748ff38a3c64db8d7211f639597e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85d089ba61b3efb9b799577e908fe104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a85d089ba61b3efb9b799577e908fe104">symtab_insert_func</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memdesc:a85d089ba61b3efb9b799577e908fe104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in global local table.  <a href="symtable_8h.html#a85d089ba61b3efb9b799577e908fe104">More...</a><br /></td></tr>
 <tr class="separator:a85d089ba61b3efb9b799577e908fe104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a075a52c6c4eca75f50d99aca01cad17f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a075a52c6c4eca75f50d99aca01cad17f">symtab_subtab_foreach</a> (const <a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, void(*f)(<a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *data))</td></tr>
+<tr class="memdesc:a075a52c6c4eca75f50d99aca01cad17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function for each record in subtable.  <a href="symtable_8h.html#a075a52c6c4eca75f50d99aca01cad17f">More...</a><br /></td></tr>
 <tr class="separator:a075a52c6c4eca75f50d99aca01cad17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -181,7 +191,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Destroys contents of symbol table, but not symbol table. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Destroys contents of symbol table, but not symbol table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to clear. </td></tr>
   </table>
@@ -204,7 +216,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Creates symbol table. Creates empty global scope table. Does not create any local scope table. </p><dl class="section return"><dt>Returns</dt><dd>Created symbol table. NULL if failed to create. </dd></dl>
+
+<p>Creates symbol table. </p>
+<p >Creates empty global scope table. Does not create any local scope table. </p><dl class="section return"><dt>Returns</dt><dd>Created symbol table. NULL if failed to create. </dd></dl>
 
 </div>
 </div>
@@ -233,7 +247,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Searches global table for function identifier. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Searches global table for function identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to search on. </td></tr>
     <tr><td class="paramname">key</td><td>Key to search for. </td></tr>
@@ -269,7 +285,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Searches whole stack of local tables for variable identifier. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Searches whole stack of local tables for variable identifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to search on. </td></tr>
     <tr><td class="paramname">key</td><td>Key to search for. </td></tr>
@@ -295,7 +313,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Destroys whole symbol table </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Destroys whole symbol table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to destroy. </td></tr>
   </table>
@@ -329,7 +349,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Creates and inserts new record in global local table. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Creates and inserts new record in global local table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to instert in. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
@@ -365,7 +387,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Creates and inserts new record in topmost local table (most nested scope). </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Creates and inserts new record in topmost local table (most nested scope). </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to instert in. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
@@ -401,7 +425,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Executes function for each record in subtable. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Executes function for each record in subtable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">subtab</td><td>Subtable to operate on. </td></tr>
     <tr><td class="paramname">f</td><td>Function to execute. </td></tr>
@@ -426,7 +452,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Pops and destroys local table on the top of the stack of symbol table. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Pops and destroys local table on the top of the stack of symbol table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to pop from. </td></tr>
   </table>
@@ -450,7 +478,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Creates and pushes local table on the top of the stack of symbol table. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Creates and pushes local table on the top of the stack of symbol table. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to push on. </td></tr>
   </table>

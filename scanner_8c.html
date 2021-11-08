@@ -109,6 +109,7 @@ Macros</h2></td></tr>
 <tr class="memdesc:a9fab585b35b349cc440afd2279074f88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of keywords in keywords array. <br /></td></tr>
 <tr class="separator:a9fab585b35b349cc440afd2279074f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ae51e5e0a28dd40205e9cf56e3df3e54f">APPEND_CHAR</a>(CHAR,  TOK)</td></tr>
+<tr class="memdesc:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful.  <a href="scanner_8c.html#ae51e5e0a28dd40205e9cf56e3df3e54f">More...</a><br /></td></tr>
 <tr class="separator:ae51e5e0a28dd40205e9cf56e3df3e54f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -150,32 +151,46 @@ Enumerations</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aec54f69564fbbbac5032deae9361438a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#aec54f69564fbbbac5032deae9361438a">scanner_init</a> ()</td></tr>
+<tr class="memdesc:aec54f69564fbbbac5032deae9361438a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes scanner for use.  <a href="scanner_8c.html#aec54f69564fbbbac5032deae9361438a">More...</a><br /></td></tr>
 <tr class="separator:aec54f69564fbbbac5032deae9361438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a5debeb97d9546227aaf63c2d51d3aa42">scanner_destroy</a> ()</td></tr>
+<tr class="memdesc:a5debeb97d9546227aaf63c2d51d3aa42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free dynstr buffer used by scanner.  <a href="scanner_8c.html#a5debeb97d9546227aaf63c2d51d3aa42">More...</a><br /></td></tr>
 <tr class="separator:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae675b083d9b258bedbb7481de391e87a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ae675b083d9b258bedbb7481de391e87a">scanner_get_keyword_type</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dstr)</td></tr>
+<tr class="memdesc:ae675b083d9b258bedbb7481de391e87a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the correct keyword token type.  <a href="scanner_8c.html#ae675b083d9b258bedbb7481de391e87a">More...</a><br /></td></tr>
 <tr class="separator:ae675b083d9b258bedbb7481de391e87a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#aa4058c66e210c9ce550a8da7b6c23a8a">scanner_token_destroy</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free scanner token.  <a href="scanner_8c.html#aa4058c66e210c9ce550a8da7b6c23a8a">More...</a><br /></td></tr>
 <tr class="separator:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98d07c28690024bc29b03ac709fdd32f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a98d07c28690024bc29b03ac709fdd32f">scanner_create_empty_token</a> ()</td></tr>
+<tr class="memdesc:a98d07c28690024bc29b03ac709fdd32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate new token.  <a href="scanner_8c.html#a98d07c28690024bc29b03ac709fdd32f">More...</a><br /></td></tr>
 <tr class="separator:a98d07c28690024bc29b03ac709fdd32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d5d90af89afea812db73d6a180d3c7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b">scanner_make_eof_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:a6d5d90af89afea812db73d6a180d3c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an eof token.  <a href="scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b">More...</a><br /></td></tr>
 <tr class="separator:a6d5d90af89afea812db73d6a180d3c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af405f15c05ca009e1a006eac8fc953e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:af405f15c05ca009e1a006eac8fc953e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an error token.  <a href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">More...</a><br /></td></tr>
 <tr class="separator:af405f15c05ca009e1a006eac8fc953e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8638ac872cea80cdb65636a716770a6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a8638ac872cea80cdb65636a716770a6a">scanner_make_id_kw_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:a8638ac872cea80cdb65636a716770a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an id/keyword token.  <a href="scanner_8c.html#a8638ac872cea80cdb65636a716770a6a">More...</a><br /></td></tr>
 <tr class="separator:a8638ac872cea80cdb65636a716770a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7e160d48abc86948c9c203068fa0458c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a7e160d48abc86948c9c203068fa0458c">scanner_make_int_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:a7e160d48abc86948c9c203068fa0458c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into a integer token.  <a href="scanner_8c.html#a7e160d48abc86948c9c203068fa0458c">More...</a><br /></td></tr>
 <tr class="separator:a7e160d48abc86948c9c203068fa0458c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ecb9936d3ad08b0fd137f5edb2fcd50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a5ecb9936d3ad08b0fd137f5edb2fcd50">scanner_make_number_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:a5ecb9936d3ad08b0fd137f5edb2fcd50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into a number token.  <a href="scanner_8c.html#a5ecb9936d3ad08b0fd137f5edb2fcd50">More...</a><br /></td></tr>
 <tr class="separator:a5ecb9936d3ad08b0fd137f5edb2fcd50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd918b6ae3c6742e7aed84f9cf12e94a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#acd918b6ae3c6742e7aed84f9cf12e94a">scanner_make_one_state_op_sep</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok, int curr_char)</td></tr>
+<tr class="memdesc:acd918b6ae3c6742e7aed84f9cf12e94a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an operator token, if the character is a valid operator.  <a href="scanner_8c.html#acd918b6ae3c6742e7aed84f9cf12e94a">More...</a><br /></td></tr>
 <tr class="separator:acd918b6ae3c6742e7aed84f9cf12e94a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac75ec6703159eac8879bd93d5bf6cd8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#ac75ec6703159eac8879bd93d5bf6cd8e">scanner_make_op_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a> tok_type)</td></tr>
+<tr class="memdesc:ac75ec6703159eac8879bd93d5bf6cd8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an operator token.  <a href="scanner_8c.html#ac75ec6703159eac8879bd93d5bf6cd8e">More...</a><br /></td></tr>
 <tr class="separator:ac75ec6703159eac8879bd93d5bf6cd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3ed987677cb31f8359c085a4a92251c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#af3ed987677cb31f8359c085a4a92251c">scanner_make_string_tok</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:af3ed987677cb31f8359c085a4a92251c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into a string token.  <a href="scanner_8c.html#af3ed987677cb31f8359c085a4a92251c">More...</a><br /></td></tr>
 <tr class="separator:af3ed987677cb31f8359c085a4a92251c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a2594d9fda4f3a0b93ee37fbdb7b3b578">is_escapable_char</a> (int c)</td></tr>
+<tr class="memdesc:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if character can be part of an escape sequence.  <a href="scanner_8c.html#a2594d9fda4f3a0b93ee37fbdb7b3b578">More...</a><br /></td></tr>
 <tr class="separator:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
 <a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scanner_get_next_token</b> ()</td></tr>
@@ -187,6 +202,9 @@ Variables</h2></td></tr>
 <a class="el" href="structdynstr__t.html">dynstr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>str_buffer</b></td></tr>
 <tr class="memdesc:ad078313dd1579fbfca39bbaeb23f7f58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global dynamic string for storing incomplete tokens. <br /></td></tr>
 <tr class="separator:ad078313dd1579fbfca39bbaeb23f7f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0250f718cd2be8a93808826186e509c3"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a0250f718cd2be8a93808826186e509c3">keywords</a> [<a class="el" href="scanner_8c.html#a9fab585b35b349cc440afd2279074f88">KEYWORDS_COUNT</a>]</td></tr>
+<tr class="memdesc:a0250f718cd2be8a93808826186e509c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">All keywords of the ifj21 language.  <a href="scanner_8c.html#a0250f718cd2be8a93808826186e509c3">More...</a><br /></td></tr>
+<tr class="separator:a0250f718cd2be8a93808826186e509c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Scanner implementation. </p>
@@ -228,9 +246,11 @@ Filip Stolfa </dd></dl>
 <div class="line">    <span class="comment">/* TODO(filip): set error flag */</span>\</div>
 <div class="line">  }\</div>
 <div class="line">}<span class="keywordflow">while</span>(0)</div>
-<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdef"><b>Definition:</b> dynstr.c:64</div></div>
+<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdoc">Appends a character to a dynamic string.</div><div class="ttdef"><b>Definition:</b> dynstr.c:64</div></div>
 <div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:36</div></div>
-</div><!-- fragment --><p >Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. If it wasn't destroy token and set error flag. TODO: report error </p>
+</div><!-- fragment -->
+<p>Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. </p>
+<p >If it wasn't destroy token and set error flag. TODO: report error </p>
 
 </div>
 </div>
@@ -250,7 +270,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Checks if character can be part of an escape sequence. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Checks if character can be part of an escape sequence. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">c</td><td>Character to be checked if it is escapable. </td></tr>
   </table>
@@ -274,7 +296,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Allocate new token. Allocates a token, sets attribute to NULL and type to TT_NO_TYPE. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated token. </dd></dl>
+
+<p>Allocate new token. </p>
+<p >Allocates a token, sets attribute to NULL and type to TT_NO_TYPE. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated token. </dd></dl>
 
 </div>
 </div>
@@ -292,7 +316,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Free dynstr buffer used by scanner. Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
+
+<p>Free dynstr buffer used by scanner. </p>
+<p >Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
 
 </div>
 </div>
@@ -311,13 +337,15 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Get the correct keyword token type. Checks if the passed <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> contains a valid ifj21 keyword. If it does, it calculates the corresponding <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>. Otherwise, the tested string is an identifier. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Get the correct keyword token type. </p>
+<p >Checks if the passed <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> contains a valid ifj21 keyword. If it does, it calculates the corresponding <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69" title="Enum of all possible scanner token types.">token_type_t</a>. Otherwise, the tested string is an identifier. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dstr</td><td>Pointer to a dynamic string containing the string we want to check. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Keyword <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a> if dstr is a keyword, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" title="Identifier token.">TT_ID</a> otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Keyword <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69" title="Enum of all possible scanner token types.">token_type_t</a> if dstr is a keyword, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" title="Identifier token.">TT_ID</a> otherwise. </dd></dl>
 
 </div>
 </div>
@@ -335,7 +363,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Initializes scanner for use. Before it can be used, scanner needs its dynstr global variable set. That variable is used as a buffer for the string that has been processed so far. To avoid allocating and deallocating the buffer every time scanner is called, it is stored as a global variable. </p>
+
+<p>Initializes scanner for use. </p>
+<p >Before it can be used, scanner needs its dynstr global variable set. That variable is used as a buffer for the string that has been processed so far. To avoid allocating and deallocating the buffer every time scanner is called, it is stored as a global variable. </p>
 
 </div>
 </div>
@@ -354,7 +384,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into an eof token. Changes the type of the token to TT_EOF. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into an eof token. </p>
+<p >Changes the type of the token to TT_EOF. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -379,7 +411,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into an error token. Changes the type of the token to TT_ERROR. TODO: make error token contain more info about the error </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into an error token. </p>
+<p >Changes the type of the token to TT_ERROR. TODO: make error token contain more info about the error </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -404,7 +438,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into an id/keyword token. Changes the type of the token to TT_KEYWORD_ID and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into an id/keyword token. </p>
+<p >Changes the type of the token to TT_KEYWORD_ID and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -429,7 +465,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into a integer token. Changes the type of the token to TT_INTEGER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse integer here? </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into a integer token. </p>
+<p >Changes the type of the token to TT_INTEGER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse integer here? </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -454,7 +492,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into a number token. Changes the type of the token to TT_NUMBER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse number here? </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into a number token. </p>
+<p >Changes the type of the token to TT_NUMBER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse number here? </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -489,7 +529,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into an operator token, if the character is a valid operator. Checks, if curr_char can only be one operator and there is no possible other valid token it could become. If that is true, set the type of the token pointed to by tok to the correct type. Otherwise an error token is returned. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into an operator token, if the character is a valid operator. </p>
+<p >Checks, if curr_char can only be one operator and there is no possible other valid token it could become. If that is true, set the type of the token pointed to by tok to the correct type. Otherwise an error token is returned. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
     <tr><td class="paramname">curr_char</td><td>Character being processed. </td></tr>
@@ -525,7 +567,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into an operator token. Changes the type of the token to tok_type. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into an operator token. </p>
+<p >Changes the type of the token to tok_type. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
     <tr><td class="paramname">tok_type</td><td>Type to assign to the token. </td></tr>
@@ -551,7 +595,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Make token into a string token. Changes the type of the token to TT_STRING, copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Make token into a string token. </p>
+<p >Changes the type of the token to TT_STRING, copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -576,12 +622,44 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Free scanner token. Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Free scanner token. </p>
+<p >Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to a token to destroy. </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a0250f718cd2be8a93808826186e509c3" name="a0250f718cd2be8a93808826186e509c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0250f718cd2be8a93808826186e509c3">&#9670;&nbsp;</a></span>keywords</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* keywords[<a class="el" href="scanner_8c.html#a9fab585b35b349cc440afd2279074f88">KEYWORDS_COUNT</a>]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <span class="stringliteral">&quot;local&quot;</span>,    <span class="stringliteral">&quot;integer&quot;</span>, <span class="stringliteral">&quot;number&quot;</span>, <span class="stringliteral">&quot;if&quot;</span>,     <span class="stringliteral">&quot;then&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;else&quot;</span>,     <span class="stringliteral">&quot;do&quot;</span>,      <span class="stringliteral">&quot;while&quot;</span>,  <span class="stringliteral">&quot;string&quot;</span>, <span class="stringliteral">&quot;end&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;function&quot;</span>, <span class="stringliteral">&quot;global&quot;</span>,  <span class="stringliteral">&quot;nil&quot;</span>,    <span class="stringliteral">&quot;return&quot;</span>, <span class="stringliteral">&quot;require&quot;</span>}</div>
+</div><!-- fragment -->
+<p>All keywords of the ifj21 language. </p>
+<p >The order of the keyword strings has to match the order of the <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69" title="Enum of all possible scanner token types.">token_type_t</a> declared in <a class="el" href="scanner_8h.html" title="Scanner API.">scanner.h</a>. </p>
 
 </div>
 </div>

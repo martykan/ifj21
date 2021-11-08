@@ -102,11 +102,13 @@ $(document).ready(function(){initNavTree('parser_8c.html',''); initResizable(); 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a4656fd6a0b6449cd86b517759a25161f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8c.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a> (int operation)</td></tr>
+<tr class="memdesc:a4656fd6a0b6449cd86b517759a25161f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer for token.  <a href="parser_8c.html#a4656fd6a0b6449cd86b517759a25161f">More...</a><br /></td></tr>
 <tr class="separator:a4656fd6a0b6449cd86b517759a25161f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8f18166cbd9351d230db6bd2156bc8f"><td class="memItemLeft" align="right" valign="top"><a id="ab8f18166cbd9351d230db6bd2156bc8f" name="ab8f18166cbd9351d230db6bd2156bc8f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_identifier</b> (const <a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
 <tr class="separator:ab8f18166cbd9351d230db6bd2156bc8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2975dad3f06cc90d544c583b3c5b882"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8c.html#af2975dad3f06cc90d544c583b3c5b882">is_keyword</a> (const <a class="el" href="structtoken__t.html">token_t</a> *token, const char *keyword)</td></tr>
+<tr class="memdesc:af2975dad3f06cc90d544c583b3c5b882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether token is given keyword.  <a href="parser_8c.html#af2975dad3f06cc90d544c583b3c5b882">More...</a><br /></td></tr>
 <tr class="separator:af2975dad3f06cc90d544c583b3c5b882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab72b6ba7bc0f8fb046b50302bafa990c"><td class="memItemLeft" align="right" valign="top"><a id="ab72b6ba7bc0f8fb046b50302bafa990c" name="ab72b6ba7bc0f8fb046b50302bafa990c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_var_declaration</b> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token, char data_type, bool is_init)</td></tr>
@@ -161,7 +163,9 @@ Filip Stolfa</dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Checks whether token is given keyword. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Checks whether token is given keyword. </p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">token</td><td>Token to check. </td></tr>
     <tr><td class="paramname">token</td><td>Keyword to compare with. </td></tr>
@@ -187,7 +191,9 @@ Filip Stolfa</dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Buffer for token. Based on operation, gets current/new or deletes a token. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Buffer for token. </p>
+<p >Based on operation, gets current/new or deletes a token. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">operation</td><td>Operation to execute. TOKEN_THIS - get current token. TOKEN_NEW - delete old and get new token. TOKEN_DELETE - delete token. </td></tr>
   </table>

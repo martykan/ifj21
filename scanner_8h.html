@@ -165,15 +165,19 @@ Enumerations</h2></td></tr>
 , <b>TT_COLON</b>
 <br />
  }</td></tr>
+<tr class="memdesc:ad04fc3241884cc3eb19ccad1ce5afa69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum of all possible scanner token types.  <a href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">More...</a><br /></td></tr>
 <tr class="separator:ad04fc3241884cc3eb19ccad1ce5afa69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:aec54f69564fbbbac5032deae9361438a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8h.html#aec54f69564fbbbac5032deae9361438a">scanner_init</a> ()</td></tr>
+<tr class="memdesc:aec54f69564fbbbac5032deae9361438a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes scanner for use.  <a href="scanner_8h.html#aec54f69564fbbbac5032deae9361438a">More...</a><br /></td></tr>
 <tr class="separator:aec54f69564fbbbac5032deae9361438a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8h.html#a5debeb97d9546227aaf63c2d51d3aa42">scanner_destroy</a> ()</td></tr>
+<tr class="memdesc:a5debeb97d9546227aaf63c2d51d3aa42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free dynstr buffer used by scanner.  <a href="scanner_8h.html#a5debeb97d9546227aaf63c2d51d3aa42">More...</a><br /></td></tr>
 <tr class="separator:a5debeb97d9546227aaf63c2d51d3aa42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8h.html#aa4058c66e210c9ce550a8da7b6c23a8a">scanner_token_destroy</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
+<tr class="memdesc:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free scanner token.  <a href="scanner_8h.html#aa4058c66e210c9ce550a8da7b6c23a8a">More...</a><br /></td></tr>
 <tr class="separator:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
 <a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scanner_get_next_token</b> ()</td></tr>
@@ -198,7 +202,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Enum of all possible scanner token types. The starting index (defined in <a class="el" href="scanner_8h.html#a97cdb404aed0adf0e5779944d186c910" title="Offset from 0 of the first keyword token type.">TOK_KEYWORD_OFFSET</a>) and order of the keyword token types has to match the order of the keyword strings in ::keywords. </p>
+
+<p>Enum of all possible scanner token types. </p>
+<p >The starting index (defined in <a class="el" href="scanner_8h.html#a97cdb404aed0adf0e5779944d186c910" title="Offset from 0 of the first keyword token type.">TOK_KEYWORD_OFFSET</a>) and order of the keyword token types has to match the order of the keyword strings in <a class="el" href="scanner_8c.html#a0250f718cd2be8a93808826186e509c3" title="All keywords of the ifj21 language.">keywords</a>. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69a63aedd7b3e899b727bea4b28f41ca51d" name="ad04fc3241884cc3eb19ccad1ce5afa69a63aedd7b3e899b727bea4b28f41ca51d"></a>TT_ERROR&#160;</td><td class="fielddoc"><p >A lexical error was found. </p>
 </td></tr>
@@ -225,7 +231,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Free dynstr buffer used by scanner. Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
+
+<p>Free dynstr buffer used by scanner. </p>
+<p >Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
 
 </div>
 </div>
@@ -243,7 +251,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Initializes scanner for use. Before it can be used, scanner needs its dynstr global variable set. That variable is used as a buffer for the string that has been processed so far. To avoid allocating and deallocating the buffer every time scanner is called, it is stored as a global variable. </p>
+
+<p>Initializes scanner for use. </p>
+<p >Before it can be used, scanner needs its dynstr global variable set. That variable is used as a buffer for the string that has been processed so far. To avoid allocating and deallocating the buffer every time scanner is called, it is stored as a global variable. </p>
 
 </div>
 </div>
@@ -262,7 +272,9 @@ Filip Stolfa </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Free scanner token. Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Free scanner token. </p>
+<p >Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to a token to destroy. </td></tr>
   </table>

@@ -107,16 +107,22 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:afc8a6ffa5b15526f915206b92b936f28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#afc8a6ffa5b15526f915206b92b936f28">dynstr_init</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:afc8a6ffa5b15526f915206b92b936f28"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a dynamic string.  <a href="dynstr_8h.html#afc8a6ffa5b15526f915206b92b936f28">More...</a><br /></td></tr>
 <tr class="separator:afc8a6ffa5b15526f915206b92b936f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0b3f532cc545740d3938bd7795b27cf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#aa0b3f532cc545740d3938bd7795b27cf">dynstr_free_buffer</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:aa0b3f532cc545740d3938bd7795b27cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free the buffer of a dynamic string.  <a href="dynstr_8h.html#aa0b3f532cc545740d3938bd7795b27cf">More...</a><br /></td></tr>
 <tr class="separator:aa0b3f532cc545740d3938bd7795b27cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5c1702a960a4fef1aeb197ea4f253b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#ad5c1702a960a4fef1aeb197ea4f253b3">dynstr_clear</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:ad5c1702a960a4fef1aeb197ea4f253b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears the dynamic string.  <a href="dynstr_8h.html#ad5c1702a960a4fef1aeb197ea4f253b3">More...</a><br /></td></tr>
 <tr class="separator:ad5c1702a960a4fef1aeb197ea4f253b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb6772e81906174507bb2bf16b8f4dfc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, char c)</td></tr>
+<tr class="memdesc:afb6772e81906174507bb2bf16b8f4dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends a character to a dynamic string.  <a href="dynstr_8h.html#afb6772e81906174507bb2bf16b8f4dfc">More...</a><br /></td></tr>
 <tr class="separator:afb6772e81906174507bb2bf16b8f4dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbfa91fc17e680a114f7c937cd1b0f37"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#acbfa91fc17e680a114f7c937cd1b0f37">dynstr_copy_to_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:acbfa91fc17e680a114f7c937cd1b0f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a static copy of the string.  <a href="dynstr_8h.html#acbfa91fc17e680a114f7c937cd1b0f37">More...</a><br /></td></tr>
 <tr class="separator:acbfa91fc17e680a114f7c937cd1b0f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7347f2997224135f17753d4f3303e13d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a7347f2997224135f17753d4f3303e13d">dynstr_equals_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, const char *str)</td></tr>
+<tr class="memdesc:a7347f2997224135f17753d4f3303e13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a dynamic and classic string.  <a href="dynstr_8h.html#a7347f2997224135f17753d4f3303e13d">More...</a><br /></td></tr>
 <tr class="separator:a7347f2997224135f17753d4f3303e13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -158,7 +164,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Appends a character to a dynamic string. Adds a character at the end of the string buffer. Increments len. Automatically appends a terminating null char after the new character. If necessary, reallocates the string buffer to fit the new character. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Appends a character to a dynamic string. </p>
+<p >Adds a character at the end of the string buffer. Increments len. Automatically appends a terminating null char after the new character. If necessary, reallocates the string buffer to fit the new character. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct. </td></tr>
     <tr><td class="paramname">c</td><td>Character to append. </td></tr>
@@ -184,7 +192,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Clears the dynamic string. Sets the string buffer to an empty string. Sets len to 0. Doesn't change the size of the allocated string buffer. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Clears the dynamic string. </p>
+<p >Sets the string buffer to an empty string. Sets len to 0. Doesn't change the size of the allocated string buffer. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct to be cleared. </td></tr>
   </table>
@@ -209,7 +219,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Makes a static copy of the string. Copies the characters from the dynstr string buffer into a new character buffer. The new buffer is allocated with the exact size needed. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Makes a static copy of the string. </p>
+<p >Copies the characters from the dynstr string buffer into a new character buffer. The new buffer is allocated with the exact size needed. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct. </td></tr>
   </table>
@@ -244,7 +256,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Compares a dynamic and classic string. Only checks if the strings are equal. Doesn't check which non-matching character has a lower value. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Compares a dynamic and classic string. </p>
+<p >Only checks if the strings are equal. Doesn't check which non-matching character has a lower value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct. </td></tr>
     <tr><td class="paramname">str</td><td>Pointer to a valid c string. Can't be NULL. </td></tr>
@@ -270,7 +284,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Free the buffer of a dynamic string. Frees the allocated string buffer. Sets info ints to 0. Doesn't free the dynstr struct - needs to be handled by the caller, if necessary. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Free the buffer of a dynamic string. </p>
+<p >Frees the allocated string buffer. Sets info ints to 0. Doesn't free the dynstr struct - needs to be handled by the caller, if necessary. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct. </td></tr>
   </table>
@@ -295,7 +311,9 @@ IMPLEMENTATION</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Initializes a dynamic string. Sets the info integers to their starter values, allocates the string buffer. Doesn't allocate the dynstr struct. </p><dl class="params"><dt>Parameters</dt><dd>
+
+<p>Initializes a dynamic string. </p>
+<p >Sets the info integers to their starter values, allocates the string buffer. Doesn't allocate the dynstr struct. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dynstr</td><td>Pointer to an existing dynstr struct to be initialized. </td></tr>
   </table>
