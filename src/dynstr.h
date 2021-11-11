@@ -100,4 +100,21 @@ char* dynstr_copy_to_static(dynstr_t *dynstr);
 bool dynstr_equals_static(dynstr_t *dynstr, const char *str);
 
 
+/** Converts a dynstr_t string value to an integer value.
+ *  Uses strtol to convert the string stored in the passed dynstr_t
+ *  into an integer value. If the string doesn't represent a valid integer,
+ *  sets the global error flag.
+ *  @return Integer value converted from passed string, or -1 if no conversion was possible.
+ */
+int dynstr_to_int(dynstr_t *dynstr);
+
+/** Converts a dynstr_t string value to a floating point value.
+ *  Uses strtod to convert the string stored in the passed dynstr_t
+ *  into a double value. If the string doesn't represent a valid double,
+ *  sets the global error flag.
+ *  @return Double value converted from passed string, or -1.0 if no conversion was possible.
+ */
+double dynstr_to_double(dynstr_t *dynstr);
+
+
 #endif

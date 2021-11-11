@@ -111,3 +111,23 @@ bool dynstr_equals_static(dynstr_t *dynstr, const char *str) {
   }
   return false;
 }
+
+int dynstr_to_int(dynstr_t *dynstr) {
+  char *end_ptr = dynstr->str;
+  long int res = strtol(dynstr->str, &end_ptr, 10);
+  if (*end_ptr != '\0' || dynstr->len == 0) {
+    /* TODO(filip): report error */
+    return -1;
+  }
+  return (int) res;
+}
+
+double dynstr_to_double(dynstr_t *dynstr) {
+  char *end_ptr = dynstr->str;
+  double res = strtod(dynstr->str, &end_ptr);
+  if (*end_ptr != '\0' || dynstr->len == 0) {
+    /* TODO(filip): report error */
+    return -1.0;
+  }
+  return res;
+}
