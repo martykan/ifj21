@@ -1,5 +1,6 @@
 var scanner_8h =
 [
+    [ "attr_t", "unionattr__t.html", "unionattr__t" ],
     [ "token_t", "structtoken__t.html", "structtoken__t" ],
     [ "TOK_KEYWORD_OFFSET", "scanner_8h.html#a97cdb404aed0adf0e5779944d186c910", null ],
     [ "token_type_t", "scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69", [

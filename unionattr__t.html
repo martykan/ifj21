@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>IFJ21: token_t Struct Reference</title>
+<title>IFJ21: attr_t Union Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,7 +65,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structtoken__t.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('unionattr__t.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -86,47 +86,34 @@ $(document).ready(function(){initNavTree('structtoken__t.html',''); initResizabl
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structtoken__t-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">token_t Struct Reference</div></div>
+<a href="unionattr__t-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">attr_t Union Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Scanner token type.  
- <a href="structtoken__t.html#details">More...</a></p>
+<p>Token attribute union type.  
+ <a href="unionattr__t.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="scanner_8h_source.html">scanner.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:affed9d9d575cc38e143740f94363f3f4"><td class="memItemLeft" align="right" valign="top"><a id="affed9d9d575cc38e143740f94363f3f4" name="affed9d9d575cc38e143740f94363f3f4"></a>
-<a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69">token_type_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
-<tr class="memdesc:affed9d9d575cc38e143740f94363f3f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type of the token. <br /></td></tr>
-<tr class="separator:affed9d9d575cc38e143740f94363f3f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae591c9a766f81b491f07b8833c86e0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionattr__t.html">attr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtoken__t.html#aae591c9a766f81b491f07b8833c86e0a">attr</a></td></tr>
-<tr class="memdesc:aae591c9a766f81b491f07b8833c86e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Union of a string, integer and double.  <a href="structtoken__t.html#aae591c9a766f81b491f07b8833c86e0a">More...</a><br /></td></tr>
-<tr class="separator:aae591c9a766f81b491f07b8833c86e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc502acb6f1efdf38fcd775d8e9c138"><td class="memItemLeft" align="right" valign="top"><a id="a1dc502acb6f1efdf38fcd775d8e9c138" name="a1dc502acb6f1efdf38fcd775d8e9c138"></a>
+char *&#160;</td><td class="memItemRight" valign="bottom"><b>str</b></td></tr>
+<tr class="memdesc:a1dc502acb6f1efdf38fcd775d8e9c138"><td class="mdescLeft">&#160;</td><td class="mdescRight">String value for <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a3355cc282f3b7c2eea509d182247b0fa" title="String literal token.">TT_STRING</a> and <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" title="Identifier token.">TT_ID</a>. <br /></td></tr>
+<tr class="separator:a1dc502acb6f1efdf38fcd775d8e9c138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bcc3bbb510b30dc812bb32e1cb3ae01"><td class="memItemLeft" align="right" valign="top"><a id="a7bcc3bbb510b30dc812bb32e1cb3ae01" name="a7bcc3bbb510b30dc812bb32e1cb3ae01"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>int_val</b></td></tr>
+<tr class="memdesc:a7bcc3bbb510b30dc812bb32e1cb3ae01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integer value for <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a1f5af7d472428d6e70215b337f1199ac" title="Integer literal token.">TT_INTEGER</a>. <br /></td></tr>
+<tr class="separator:a7bcc3bbb510b30dc812bb32e1cb3ae01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a812e814b8da002509e53897466ec3aa3"><td class="memItemLeft" align="right" valign="top"><a id="a812e814b8da002509e53897466ec3aa3" name="a812e814b8da002509e53897466ec3aa3"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>num_val</b></td></tr>
+<tr class="memdesc:a812e814b8da002509e53897466ec3aa3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number (double) value for <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a71d6777fe79532b9c0e1a8dd3afc9f49" title="Number (double) literal token.">TT_NUMBER</a>. <br /></td></tr>
+<tr class="separator:a812e814b8da002509e53897466ec3aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Scanner token type. </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="aae591c9a766f81b491f07b8833c86e0a" name="aae591c9a766f81b491f07b8833c86e0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae591c9a766f81b491f07b8833c86e0a">&#9670;&nbsp;</a></span>attr</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">token_t::attr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Union of a string, integer and double. </p>
-<p >Depending on the token type, the corresponding value is stored in the attribute. If a token doesn't require an attribute, it is set to a NULL char pointer. TODO: error information </p>
-
-</div>
-</div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="textblock"><p >Token attribute union type. </p>
+</div><hr/>The documentation for this union was generated from the following file:<ul>
 <li>src/<a class="el" href="scanner_8h_source.html">scanner.h</a></li>
 </ul>
 </div><!-- contents -->
@@ -134,7 +121,7 @@ Public Attributes</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structtoken__t.html">token_t</a></li>
+    <li class="navelem"><a class="el" href="unionattr__t.html">attr_t</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

@@ -124,6 +124,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a7347f2997224135f17753d4f3303e13d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a7347f2997224135f17753d4f3303e13d">dynstr_equals_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, const char *str)</td></tr>
 <tr class="memdesc:a7347f2997224135f17753d4f3303e13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a dynamic and classic string.  <a href="dynstr_8h.html#a7347f2997224135f17753d4f3303e13d">More...</a><br /></td></tr>
 <tr class="separator:a7347f2997224135f17753d4f3303e13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cfa7469f2f8df0b38df3b419b4a8a1b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a8cfa7469f2f8df0b38df3b419b4a8a1b">dynstr_to_int</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:a8cfa7469f2f8df0b38df3b419b4a8a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> string value to an integer value.  <a href="dynstr_8h.html#a8cfa7469f2f8df0b38df3b419b4a8a1b">More...</a><br /></td></tr>
+<tr class="separator:a8cfa7469f2f8df0b38df3b419b4a8a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ec0609cb1d279cddc586d35ec90ee57"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a0ec0609cb1d279cddc586d35ec90ee57">dynstr_to_double</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:a0ec0609cb1d279cddc586d35ec90ee57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> string value to a floating point value.  <a href="dynstr_8h.html#a0ec0609cb1d279cddc586d35ec90ee57">More...</a><br /></td></tr>
+<tr class="separator:a0ec0609cb1d279cddc586d35ec90ee57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Dynamic string API. </p>
@@ -320,6 +326,48 @@ IMPLEMENTATION</h1>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The original dynstr pointer. NULL if failed to initialize. </dd></dl>
+
+</div>
+</div>
+<a id="a0ec0609cb1d279cddc586d35ec90ee57" name="a0ec0609cb1d279cddc586d35ec90ee57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ec0609cb1d279cddc586d35ec90ee57">&#9670;&nbsp;</a></span>dynstr_to_double()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double dynstr_to_double </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>dynstr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> string value to a floating point value. </p>
+<p >Uses strtod to convert the string stored in the passed <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> into a double value. If the string doesn't represent a valid double, sets the global error flag. </p><dl class="section return"><dt>Returns</dt><dd>Double value converted from passed string, or -1.0 if no conversion was possible. </dd></dl>
+
+</div>
+</div>
+<a id="a8cfa7469f2f8df0b38df3b419b4a8a1b" name="a8cfa7469f2f8df0b38df3b419b4a8a1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cfa7469f2f8df0b38df3b419b4a8a1b">&#9670;&nbsp;</a></span>dynstr_to_int()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int dynstr_to_int </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>dynstr</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> string value to an integer value. </p>
+<p >Uses strtol to convert the string stored in the passed <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> into an integer value. If the string doesn't represent a valid integer, sets the global error flag. </p><dl class="section return"><dt>Returns</dt><dd>Integer value converted from passed string, or -1 if no conversion was possible. </dd></dl>
 
 </div>
 </div>

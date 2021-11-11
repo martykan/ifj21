@@ -10,6 +10,7 @@ var scanner_8c =
       [ "STATE_NUMBER_EXP_START", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a5971b8b0c39d772b3771152c79d2fcbc", null ],
       [ "STATE_NUMBER_EXP_SIGN", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a56ca48fc9e1d8c4812e8f7c87d2e2f7d", null ],
       [ "STATE_NUMBER_FINAL", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a672eaf5c58759a947d9a1a81b46c4c61", null ],
+      [ "STATE_NUMBER_FINAL_WITH_EXP", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a39d2930fc5aaff878aa63a6865563046", null ],
       [ "STATE_STRING_START", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647ad28580e22ec7bc3a4285ff7bd7b2532e", null ],
       [ "STATE_STRING_ESC", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647a5779ead0321a7b64ac0b12ea2f8e3b7c", null ],
       [ "STATE_STRING_ESC_CODE_1", "scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647ac8cc38de6c12030f7f09479b58841901", null ],

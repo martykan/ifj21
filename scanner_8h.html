@@ -100,6 +100,9 @@ $(document).ready(function(){initNavTree('scanner_8h.html',''); initResizable();
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionattr__t.html">attr_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Token attribute union type.  <a href="unionattr__t.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtoken__t.html">token_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scanner token type.  <a href="structtoken__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,10 +140,10 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>TT_K_RETURN</b>
 , <b>TT_K_REQUIRE</b>
 , <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59">TT_ID</a>
-, <b>TT_STRING</b>
+, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a3355cc282f3b7c2eea509d182247b0fa">TT_STRING</a>
 , <br />
-&#160;&#160;<b>TT_INTEGER</b>
-, <b>TT_NUMBER</b>
+&#160;&#160;<a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a1f5af7d472428d6e70215b337f1199ac">TT_INTEGER</a>
+, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a71d6777fe79532b9c0e1a8dd3afc9f49">TT_NUMBER</a>
 , <b>TT_ASSIGN</b>
 , <b>TT_COP_EQ</b>
 , <br />
@@ -212,6 +215,12 @@ Filip Stolfa </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" name="ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59"></a>TT_ID&#160;</td><td class="fielddoc"><p >Identifier token. </p>
 </td></tr>
+<tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69a3355cc282f3b7c2eea509d182247b0fa" name="ad04fc3241884cc3eb19ccad1ce5afa69a3355cc282f3b7c2eea509d182247b0fa"></a>TT_STRING&#160;</td><td class="fielddoc"><p >String literal token. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69a1f5af7d472428d6e70215b337f1199ac" name="ad04fc3241884cc3eb19ccad1ce5afa69a1f5af7d472428d6e70215b337f1199ac"></a>TT_INTEGER&#160;</td><td class="fielddoc"><p >Integer literal token. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ad04fc3241884cc3eb19ccad1ce5afa69a71d6777fe79532b9c0e1a8dd3afc9f49" name="ad04fc3241884cc3eb19ccad1ce5afa69a71d6777fe79532b9c0e1a8dd3afc9f49"></a>TT_NUMBER&#160;</td><td class="fielddoc"><p >Number (double) literal token. </p>
+</td></tr>
 </table>
 
 </div>
@@ -274,7 +283,7 @@ Filip Stolfa </dd></dl>
 </div><div class="memdoc">
 
 <p>Free scanner token. </p>
-<p >Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Frees dynamically allocated token (and token attribute, if it is a string) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to a token to destroy. </td></tr>
   </table>

@@ -123,24 +123,25 @@ Enumerations</h2></td></tr>
 &#160;&#160;<b>STATE_NUMBER_EXP_START</b>
 , <b>STATE_NUMBER_EXP_SIGN</b>
 , <b>STATE_NUMBER_FINAL</b>
-, <b>STATE_STRING_START</b>
+, <b>STATE_NUMBER_FINAL_WITH_EXP</b>
 , <br />
-&#160;&#160;<b>STATE_STRING_ESC</b>
+&#160;&#160;<b>STATE_STRING_START</b>
+, <b>STATE_STRING_ESC</b>
 , <b>STATE_STRING_ESC_CODE_1</b>
 , <b>STATE_STRING_ESC_CODE_2</b>
-, <b>STATE_ASSIGN</b>
 , <br />
-&#160;&#160;<b>STATE_NEQ_START</b>
+&#160;&#160;<b>STATE_ASSIGN</b>
+, <b>STATE_NEQ_START</b>
 , <b>STATE_GT</b>
 , <b>STATE_LT</b>
-, <b>STATE_NUMBER_DIV</b>
 , <br />
-&#160;&#160;<b>STATE_MINUS</b>
+&#160;&#160;<b>STATE_NUMBER_DIV</b>
+, <b>STATE_MINUS</b>
 , <b>STATE_CONCAT_START</b>
 , <b>STATE_COMMENT_START</b>
-, <b>STATE_COMMENT_LINE</b>
 , <br />
-&#160;&#160;<b>STATE_COMMENT_BLOCK_1</b>
+&#160;&#160;<b>STATE_COMMENT_LINE</b>
+, <b>STATE_COMMENT_BLOCK_1</b>
 , <b>STATE_COMMENT_BLOCK_2</b>
 , <b>STATE_COMMENT_BLOCK_END_1</b>
 <br />
@@ -298,7 +299,7 @@ Filip Stolfa </dd></dl>
 </div><div class="memdoc">
 
 <p>Allocate new token. </p>
-<p >Allocates a token, sets attribute to NULL and type to TT_NO_TYPE. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated token. </dd></dl>
+<p >Allocates a token, sets string attribute to NULL and type to TT_NO_TYPE. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated token. </dd></dl>
 
 </div>
 </div>
@@ -440,7 +441,7 @@ Filip Stolfa </dd></dl>
 </div><div class="memdoc">
 
 <p>Make token into an id/keyword token. </p>
-<p >Changes the type of the token to TT_KEYWORD_ID and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Changes the type of the token to TT_KEYWORD_ID and copies the parsed token string to attr.str. The attribute char pointer can be NULL, if the copy failed - then the error flag is also set. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -467,7 +468,7 @@ Filip Stolfa </dd></dl>
 </div><div class="memdoc">
 
 <p>Make token into a integer token. </p>
-<p >Changes the type of the token to TT_INTEGER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse integer here? </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Changes the type of the token to TT_INTEGER and converts the parsed lexeme into an integer and stores it into attr.int_val. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -494,7 +495,7 @@ Filip Stolfa </dd></dl>
 </div><div class="memdoc">
 
 <p>Make token into a number token. </p>
-<p >Changes the type of the token to TT_NUMBER and copies the parsed token string to attribute. attribute can be NULL, if the copy failed. TODO: parse number here? </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Changes the type of the token to TT_NUMBER and converts the parsed lexeme into a double and stores it into attr.num_val. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
@@ -624,7 +625,7 @@ Filip Stolfa </dd></dl>
 </div><div class="memdoc">
 
 <p>Free scanner token. </p>
-<p >Frees dynamically allocated token (and token attribute) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
+<p >Frees dynamically allocated token (and token attribute, if it is a string) retuned by scanner. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to a token to destroy. </td></tr>
   </table>

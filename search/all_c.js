@@ -16,7 +16,7 @@ var searchData=
   ['scanner_5fmake_5fstring_5ftok_13',['scanner_make_string_tok',['../scanner_8c.html#af3ed987677cb31f8359c085a4a92251c',1,'scanner.c']]],
   ['scanner_5fstate_5ft_14',['scanner_state_t',['../scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647',1,'scanner.c']]],
   ['scanner_5ftoken_5fdestroy_15',['scanner_token_destroy',['../scanner_8h.html#aa4058c66e210c9ce550a8da7b6c23a8a',1,'scanner_token_destroy(token_t *tok):&#160;scanner.c'],['../scanner_8c.html#aa4058c66e210c9ce550a8da7b6c23a8a',1,'scanner_token_destroy(token_t *tok):&#160;scanner.c']]],
-  ['str_16',['str',['../structdynstr__t.html#a16f8950415647034bca8c2cb5a6c1b3f',1,'dynstr_t']]],
+  ['str_16',['str',['../unionattr__t.html#a1dc502acb6f1efdf38fcd775d8e9c138',1,'attr_t::str()'],['../structdynstr__t.html#a16f8950415647034bca8c2cb5a6c1b3f',1,'dynstr_t::str()']]],
   ['str_5fbuffer_17',['str_buffer',['../scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58',1,'scanner.c']]],
   ['superfasthash_18',['SuperFastHash',['../symtable_8c.html#af4556f56227ab989708be3e62e9910ac',1,'symtable.c']]],
   ['symbol_5fstack_5fpop_19',['symbol_stack_pop',['../expressions_8c.html#a9918e6e06073f8afb8402f993c9126fb',1,'expressions.c']]],
