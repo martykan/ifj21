@@ -56,6 +56,7 @@ typedef enum {
   STATE_NUMBER_EXP_START,
   STATE_NUMBER_EXP_SIGN,
   STATE_NUMBER_FINAL,
+  STATE_NUMBER_FINAL_WITH_EXP,
 
   STATE_STRING_START,
   STATE_STRING_ESC,
@@ -402,7 +403,7 @@ token_t *scanner_get_next_token() {
       case STATE_NUMBER_EXP_START:
         if (isdigit(curr_char)) {
           APPEND_CHAR(curr_char, new_token);
-          state = STATE_NUMBER_FINAL;
+          state = STATE_NUMBER_FINAL_WITH_EXP;
         }
         else if (curr_char == '-' || curr_char == '+') {
           APPEND_CHAR(curr_char, new_token);
@@ -416,7 +417,7 @@ token_t *scanner_get_next_token() {
       case STATE_NUMBER_EXP_SIGN:
         if (isdigit(curr_char)) {
           APPEND_CHAR(curr_char, new_token);
-          state = STATE_NUMBER_FINAL;
+          state = STATE_NUMBER_FINAL_WITH_EXP;
         }
         else {
           return scanner_make_error_token(new_token);
@@ -424,6 +425,19 @@ token_t *scanner_get_next_token() {
         break;
 
       case STATE_NUMBER_FINAL:
+        if (isdigit(curr_char)) {
+          APPEND_CHAR(curr_char, new_token);
+        }
+        else if (tolower(curr_char) == 'e') {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_NUMBER_EXP_START;
+        }
+        else {
+          ungetc(curr_char, stdin);
+          return scanner_make_number_token(new_token);
+        }
+        break;
+      case STATE_NUMBER_FINAL_WITH_EXP:
         if (isdigit(curr_char)) {
           APPEND_CHAR(curr_char, new_token);
         }
