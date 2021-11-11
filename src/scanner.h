@@ -42,9 +42,9 @@ typedef enum {
   //End of keyword token types.
 
   TT_ID,       ///< Identifier token.
-  TT_STRING,
-  TT_INTEGER,
-  TT_NUMBER,
+  TT_STRING,   ///< String literal token.
+  TT_INTEGER,  ///< Integer literal token.
+  TT_NUMBER,   ///< Number (double) literal token.
 
   TT_ASSIGN, //7
 
@@ -74,22 +74,27 @@ typedef enum {
   TT_COLON //24
 } token_type_t;
 
+/** Token attribute union type. */
+typedef union {
+  char *str;      ///< String value for #TT_STRING and #TT_ID.
+  int int_val;    ///< Integer value for #TT_INTEGER.
+  double num_val; ///< Number (double) value for #TT_NUMBER.
+} attr_t;
 
 /**
  * @struct token_t
  * @brief Scanner token type.
  * @var token_t::type
  * Type of the token.
- * @var token_t::attribute
- * Pointer to a dynamically allocated string
- * containing the parsed token string or NULL if
- * a token doesn't require an attribute.
- * TODO: make attribute an union and store parsed numbers in attribute?
+ * @var token_t::attr
+ * Union of a string, integer and double. Depending on the token type,
+ * the corresponding value is stored in the attribute.
+ * If a token doesn't require an attribute, it is set to a NULL char pointer.
  * TODO: error information
  */
 typedef struct {
   token_type_t type;
-  char *attribute;
+  attr_t attr;
 } token_t;
 
 
@@ -110,7 +115,7 @@ void scanner_init();
 void scanner_destroy();
 
 /** Free scanner token.
- * Frees dynamically allocated token (and token attribute) retuned
+ * Frees dynamically allocated token (and token attribute, if it is a string) retuned
  * by scanner.
  * @param tok Pointer to a token to destroy.
  */
