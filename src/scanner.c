@@ -105,7 +105,6 @@ void scanner_destroy() {
  * @return Keyword ::token_type_t if dstr is a keyword, #TT_ID otherwise.
  */
 token_type_t scanner_get_keyword_type(dynstr_t *dstr) {
-  if (dstr == NULL) return TT_ERROR; // TODO(filip): either assume it isn't null or also set an error flag
   for (int i = 0; i < KEYWORDS_COUNT; i++) {
     if (dynstr_equals_static(dstr, keywords[i])) {
       return TOK_KEYWORD_OFFSET + i; // corresponds to the token_type_t enum member
@@ -119,12 +118,14 @@ void scanner_token_destroy(token_t *tok) {
     return;
   }
 
-  free(tok->attribute);
+  if (tok->type != TT_NUMBER && tok->type != TT_INTEGER) {
+    free(tok->attr.str);
+  }
   free(tok);
 }
 
 /** Allocate new token.
- * Allocates a token, sets attribute to NULL and type to TT_NO_TYPE.
+ * Allocates a token, sets string attribute to NULL and type to TT_NO_TYPE.
  * @return Pointer to the allocated token.
  */
 token_t* scanner_create_empty_token() {
@@ -133,7 +134,7 @@ token_t* scanner_create_empty_token() {
     /* TODO(filip): report error */
     return NULL;
   }
-  new_token->attribute = NULL;
+  new_token->attr.str = NULL;
   new_token->type = TT_NO_TYPE;
 
   return new_token;
@@ -162,8 +163,8 @@ token_t *scanner_make_error_token(token_t *tok) {
 
 /** Make token into an id/keyword token.
  * Changes the type of the token to TT_KEYWORD_ID and copies
- * the parsed token string to attribute. attribute can be NULL,
- * if the copy failed.
+ * the parsed token string to attr.str. The attribute char pointer can be NULL,
+ * if the copy failed - then the error flag is also set.
  * @param tok Pointer to the token to change.
  * @return Pointer to the changed token.
  */
@@ -174,8 +175,8 @@ token_t *scanner_make_id_kw_token(token_t *tok) {
   }
   else {
     tok->type = tok_type;
-    tok->attribute = dynstr_copy_to_static(&str_buffer);
-    if (tok->attribute == NULL) {
+    tok->attr.str = dynstr_copy_to_static(&str_buffer);
+    if (tok->attr.str == NULL) {
       /* TODO(filip): set error flag */
       /* TODO(filip): make into an error macro? */
       scanner_token_destroy(tok);
@@ -186,30 +187,27 @@ token_t *scanner_make_id_kw_token(token_t *tok) {
 }
 
 /** Make token into a integer token.
- * Changes the type of the token to TT_INTEGER and copies
- * the parsed token string to attribute. attribute can be NULL,
- * if the copy failed.
- * TODO: parse integer here?
+ * Changes the type of the token to TT_INTEGER and converts the parsed lexeme
+ * into an integer and stores it into attr.int_val.
  * @param tok Pointer to the token to change.
  * @return Pointer to the changed token.
  */
 token_t *scanner_make_int_token(token_t *tok) {
   tok->type = TT_INTEGER;
-  tok->attribute = dynstr_copy_to_static(&str_buffer);
+  tok->attr.int_val = dynstr_to_int(&str_buffer);
+  /* TODO(filip): check error from strtol here? */
   return tok;
 }
 
 /** Make token into a number token.
- * Changes the type of the token to TT_NUMBER and copies
- * the parsed token string to attribute. attribute can be NULL,
- * if the copy failed.
- * TODO: parse number here?
+ * Changes the type of the token to TT_NUMBER and converts the parsed lexeme
+ * into a double and stores it into attr.num_val.
  * @param tok Pointer to the token to change.
  * @return Pointer to the changed token.
  */
 token_t *scanner_make_number_token(token_t *tok) {
   tok->type = TT_NUMBER;
-  tok->attribute = dynstr_copy_to_static(&str_buffer);
+  tok->attr.num_val = dynstr_to_double(&str_buffer);
   return tok;
 }
 
@@ -272,7 +270,8 @@ token_t *scanner_make_op_token(token_t *tok, token_type_t tok_type) {
  */
 token_t *scanner_make_string_tok(token_t *tok) {
   tok->type = TT_STRING;
-  tok->attribute = dynstr_copy_to_static(&str_buffer);
+  /* TODO(filip): check error from copy_to_static here? */
+  tok->attr.str = dynstr_copy_to_static(&str_buffer);
   return tok;
 }
 
@@ -586,7 +585,6 @@ token_t *scanner_get_next_token() {
           state = STATE_START;
         }
         else {
-          /* TODO(filip): is EOF ok here? */
           state = STATE_COMMENT_BLOCK_2;
         }
         break;
