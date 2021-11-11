@@ -264,11 +264,21 @@ TEST number_correct_test() {
 
   // exp
   CHECK_CALL(param_single_tok_test("4455e2", NULL, 0, 4455e2, TT_NUMBER));
+  CHECK_CALL(param_single_tok_test("4455E2", NULL, 0, 4455e2, TT_NUMBER));
+
+  CHECK_CALL(param_single_tok_test("4455.0e2", NULL, 0, 4455.0e2, TT_NUMBER));
+  CHECK_CALL(param_single_tok_test("4455.0E2", NULL, 0, 4455.0e2, TT_NUMBER));
+
+  CHECK_CALL(param_single_tok_test("4455.1e2", NULL, 0, 4455.1e2, TT_NUMBER));
+  CHECK_CALL(param_single_tok_test("4455.1343e2", NULL, 0, 4455.1343e2, TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("4455e-2", NULL, 0, 4455e-2, TT_NUMBER));
   CHECK_CALL(param_single_tok_test("4455e+2", NULL, 0, 4455e+2, TT_NUMBER));
+  CHECK_CALL(param_single_tok_test("4455.09e+2", NULL, 0, 4455.09e+2, TT_NUMBER));
+  CHECK_CALL(param_single_tok_test("4455.09e-2", NULL, 0, 4455.09e-2, TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("4455e44", NULL, 0, 4455e44, TT_NUMBER));
+  CHECK_CALL(param_single_tok_test("4455E44", NULL, 0, 4455e44, TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("\n4455e44..", NULL, 0, 4455e44, TT_NUMBER));
 
@@ -279,6 +289,8 @@ TEST number_correct_test() {
   CHECK_CALL(param_single_tok_test("\t  \n223e-123+", NULL, 0, 223e-123, TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("\t  \n223e-123(", NULL, 0, 223e-123, TT_NUMBER));
+
+  CHECK_CALL(param_single_tok_test("\t  \n223.3e-123(", NULL, 0, 223.3e-123, TT_NUMBER));
 
   CHECK_CALL(param_single_tok_test("\t  \n223e-123ahoj", NULL, 0, 223e-123, TT_NUMBER));
 
