@@ -19,6 +19,8 @@
 
 #include <stdbool.h>
 
+extern symtab_t* symtab;
+
 // COMPILE-TIME CONSTANTS
 
 #define TOKEN_THIS 0 /**< Get current token from buffer. @hideinitializer */
@@ -38,27 +40,16 @@
  */
 token_t* token_buff(int operation);
 
-/**
- * Checks whether token is valid identifier.
- * @param token Token to check.
- * @return True if token is valid identifier. False otherwise.
- */
-bool is_id(const token_t* token);
+bool parser_init();
 
-/**
- * Checks whether token is given keyword.
- * @param token Token to check.
- * @param token Keyword to compare with.
- * @return True if token is given keyword. False otherwise.
- */
-bool is_keyword(const token_t* token, const char* keyword);
+bool parser_declare_var(const char* id, char data_type);
+bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types);
+bool parser_define_var(const char* id);
+bool parser_define_func(const char* id);
 
-bool symtab_var_declaration(symtab_t* symtab, const token_t* token, char data_type, bool is_init);
-bool symtab_func_declaration(symtab_t* symtab, const token_t* token, char* param_types, char* return_types,
-      bool was_defined);
-bool symtab_var_isdeclared(const symtab_t* symtab, const token_t* token);
-bool symtab_func_isdeclared(const symtab_t* symtab, const token_t* token);
-bool symtab_var_isdefined(const symtab_t* symtab, const token_t* token);
-bool symtab_func_isdefined(const symtab_t* symtab, const token_t* token);
+bool parser_isdeclared_var(const char* id);
+bool parser_isdeclared_func(const char* id);
+bool parser_isdefined_var(const char* id);
+bool parser_isdefined_func(const char* id);
 
 #endif  // __PARSER_H__

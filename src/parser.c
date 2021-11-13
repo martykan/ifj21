@@ -11,13 +11,23 @@
 #include "parser.h"
 #include "symtable.h"
 #include "scanner.h"
+#include "dynstr.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
+// INIT
 
-// FUNCTION DEFINITIONS
+symtab_t* symtab;
+
+bool parser_init() {
+  symtab = symtab_create();
+
+  return symtab;
+}
+
+// GET TOKEN
 
 token_t* token_buff(int operation) {
   static token_t* token = NULL;
@@ -35,67 +45,78 @@ token_t* token_buff(int operation) {
   return NULL;
 }
 
-bool is_identifier(const token_t* token) {
-  if (token->type != TT_KEYWORD_ID) {
-    return false;
-  }
+// DEFINE AND DECLARE IDS
 
-  for (int i = 0; i < KEYWORDS_COUNT; i++) {
-    if (!strcmp(token->attribute, keywords[i])) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-bool is_keyword(const token_t* token, const char* keyword) {
-  if (token->type == TT_KEYWORD_ID && !strcmp(token->attribute, keyword)) {
-    return true;
-  }
-
-  return false;
-}
-
-bool symtab_var_declaration(symtab_t* symtab, const token_t* token, char data_type, bool is_init) {
-  symtab_var_data_t* var_data = symtab_insert_var(symtab, token->attribute);
+bool parser_declare_var(const char* id, char data_type) {
+  symtab_var_data_t* var_data = symtab_insert_var(symtab, id);
   if(!var_data) {
     return false;
   }
 
   var_data->data_type = data_type;
-  var_data->is_init = is_init;
+  var_data->is_init = false;
   var_data->is_used = false;
 
   return true;
 }
 
-bool symtab_func_declaration(symtab_t* symtab, const token_t* token, char* param_types, char* return_types,
-      bool was_defined) {
-  symtab_func_data_t* func_data = symtab_insert_func(symtab, token->attribute);
+bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types) {
+  symtab_func_data_t* func_data = symtab_insert_func(symtab, id);
   if(!func_data) {
     return false;
   }
 
-  func_data->param_types = param_types;
-  func_data->return_types = return_types;
-  func_data->was_defined = was_defined;
+  func_data->param_types = dynstr_copy_to_static(param_types);
+  func_data->return_types = dynstr_copy_to_static(return_types);
+  func_data->was_defined = false;
 
   return true;
 }
 
-bool symtab_var_isdeclared(const symtab_t* symtab, const token_t* token) {
-  return symtab_find_var(symtab, token->attribute);
+bool parser_define_var(const char* id) {
+  symtab_var_data_t* var_data = symtab_find_var(symtab, id);
+  if(!var_data) {
+    return false;
+  }
+
+  var_data->is_init = true;
+
+  return true;
 }
 
-bool symtab_func_isdeclared(const symtab_t* symtab, const token_t* token) {
-  return symtab_find_func(symtab, token->attribute);
+bool parser_define_func(const char* id) {
+  symtab_func_data_t* func_data = symtab_find_func(symtab, id);
+  if(!func_data) {
+    return false;
+  }
+
+  func_data->was_defined = true;
+
+  return true;
 }
 
-bool symtab_var_isdefined(const symtab_t* symtab, const token_t* token) {
-  return symtab_find_var(symtab, token->attribute)->is_init;
+bool parser_isdeclared_var(const char* id) {
+  return symtab_find_var(symtab, id);
 }
 
-bool symtab_func_isdefined(const symtab_t* symtab, const token_t* token) {
-  return symtab_find_func(symtab, token->attribute)->was_defined;
+bool parser_isdeclared_func(const char* id) {
+  return symtab_find_func(symtab, id);
+}
+
+bool parser_isdefined_var(const char* id) {
+  symtab_var_data_t* var_data = symtab_find_var(symtab, id);
+  if(var_data) {
+    return var_data->is_init;
+  }
+
+  return false;
+}
+
+bool parser_isdefined_func(const char* id) {
+  symtab_func_data_t* func_data = symtab_find_func(symtab, id);
+  if(func_data) {
+    return func_data->was_defined;
+  }
+
+  return false;
 }
