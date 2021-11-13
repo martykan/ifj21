@@ -56,9 +56,9 @@ bool parser_stlist_global() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_REQUIRE:
-    case TT_FUNCTION:
-    case TT_GLOBAL:
+    case TT_K_REQUIRE:
+    case TT_K_FUNCTION:
+    case TT_K_GLOBAL:
     case TT_ID:
       return parse_st_globarl() && parser_stlist_global();
     case TT_EOF:
@@ -72,16 +72,16 @@ bool parser_st_global() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_REQUIRE:
+    case TT_K_REQUIRE:
       token = token_buff(TOKEN_NEW);
       token_buff(TOKEN_NEW);
 
       return token->type == TT_STRING;
-    case TT_FUNCTION:
+    case TT_K_FUNCTION:
       token = token_buff(TOKEN_NEW);
 
       return parser_function_def();
-    case TT_GLOBAL:
+    case TT_K_GLOBAL:
       token = token_buff(TOKEN_NEW);
 
       return parser_function_dec();
@@ -113,7 +113,7 @@ bool parser_function_def() {
             token = token_buff(TOKEN_THIS);
             token_buff(TOKEN_NEW);
 
-            return token->type == TT_END;
+            return token->type == TT_K_END;
           }
         }
       }
@@ -149,7 +149,7 @@ bool parser_function_dec() {
     if(token->type == TT_COLON) {
       token = token_buff(TOKEN_NEW);
 
-      if(token->type == TT_FUNCTION) {
+      if(token->type == TT_K_FUNCTION) {
         token = token_buff(TOKEN_NEW);
 
         if(token->type == TT_LPAR) {
@@ -220,14 +220,14 @@ bool parser_type_list() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
-    case TT_REQUIRE:
-    case TT_FUNCTION:
-    case TT_GLOBAL:
-    case TT_LOCAL:
-    case TT_IF:
-    case TT_WHILE:
-    case TT_RETURN:
-    case TT_END:
+    case TT_K_REQUIRE:
+    case TT_K_FUNCTION:
+    case TT_K_GLOBAL:
+    case TT_K_LOCAL:
+    case TT_K_IF:
+    case TT_K_WHILE:
+    case TT_K_RETURN:
+    case TT_K_END:
     case TT_ID:
     case TT_EOF:
       return true;
@@ -244,14 +244,14 @@ bool parser_type_append() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_REQUIRE:
-    case TT_FUNCTION:
-    case TT_GLOBAL:
-    case TT_LOCAL:
-    case TT_IF:
-    case TT_WHILE:
-    case TT_RETURN:
-    case TT_END:
+    case TT_K_REQUIRE:
+    case TT_K_FUNCTION:
+    case TT_K_GLOBAL:
+    case TT_K_LOCAL:
+    case TT_K_IF:
+    case TT_K_WHILE:
+    case TT_K_RETURN:
+    case TT_K_END:
     case TT_ID:
     case TT_EOF:
       return true;
@@ -268,9 +268,9 @@ bool parser_type() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_INTEGER_KEY:
-    case TT_NUMBER_KEY:
-    case TT_STRING_KEY:
+    case TT_K_INTEGER:
+    case TT_K_NUMBER:
+    case TT_K_STRING:
       token_buff(TOKEN_NEW);
 
       return true;
@@ -284,9 +284,9 @@ bool parser_arg_list() {
 
   switch(token->type) {
     case TT_ID:
-    case TT_INTEGER_LITERAL:
-    case TT_NUMBER_LITERAL:
-    case TT_STRING_LITERAL:
+    case TT_INTEGER:
+    case TT_NUMBER:
+    case TT_STRING:
       return parser_arg() && parser_arg_append();
     case TT_RPAR:
       return true;
@@ -314,9 +314,9 @@ bool parser_arg() {
 
   switch(token->type) {
     case TT_ID:
-    case TT_INTEGER_LITERAL:
-    case TT_NUMBER_LITERAL:
-    case TT_STRING_LITERAL:
+    case TT_INTEGER:
+    case TT_NUMBER:
+    case TT_STRING:
       token_buff(TOKEN_NEW);
       return true;
   }
@@ -328,14 +328,14 @@ bool parser_stlist_local() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_LOCAL:
-    case TT_IF:
-    case TT_WHILE:
-    case TT_RETURN:
+    case TT_K_LOCAL:
+    case TT_K_IF:
+    case TT_K_WHILE:
+    case TT_K_RETURN:
     case TT_ID:
       return parse_st_local() && parser_stlist_local();
-    case TT_ELSE:
-    case TT_END:
+    case TT_K_ELSE:
+    case TT_K_END:
       return true;
   }
 
@@ -346,16 +346,16 @@ bool parser_st_local() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_LOCAL:
+    case TT_K_LOCAL:
       token = token_buff(TOKEN_NEW);
       return parser_var_dec();
-    case TT_IF:
+    case TT_K_IF:
       token = token_buff(TOKEN_NEW);
       return parser_if_st();
-    case TT_WHILE:
+    case TT_K_WHILE:
       token = token_buff(TOKEN_NEW);
       return parser_while_st();
-    case TT_RETURN:
+    case TT_K_RETURN:
       token = token_buff(TOKEN_NEW);
       return parser_exp_list();
     case TT_ID:
@@ -394,19 +394,19 @@ bool parser_if_st() {
       if(token->type == TT_RPAR) {
         token = token_buff(TOKEN_NEW);
 
-        if(token->type == TT_THEN) {
+        if(token->type == TT_K_THEN) {
           token = token_buff(TOKEN_NEW);
 
           if(st_list_local()) {
             token = token_buff(TOKEN_THIS);
 
-            if(token->type == TT_ELSE) {
+            if(token->type == TT_K_ELSE) {
               token = token_buff(TOKEN_NEW);
 
               if(st_list_local()) {
                 token = token_buff(TOKEN_THIS);
 
-                return token->type == TT_END;
+                return token->type == TT_K_END;
               }
             }
           }
@@ -430,12 +430,12 @@ bool parser_while_st() {
       if(token->type == TT_RPAR) {
         token = token_buff(TOKEN_NEW);
 
-        if(token->type == TT_DO) {
+        if(token->type == TT_K_DO) {
           token = token_buff(TOKEN_NEW);
 
           if(st_list_local()) {
             token = token_buff(TOKEN_THIS);
-            return token->type == TT_END;
+            return token->type == TT_K_END;
           }
         }
       }
@@ -449,15 +449,15 @@ bool parser_init() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_EQ:
+    case TT_COP_EQ:
       token_buff(TOKEN_NEW);
       return parser_init_after();
-    case TT_LOCAL:
-    case TT_IF:
-    case TT_ELSE:
-    case TT_WHILE:
-    case TT_RETURN:
-    case TT_END:
+    case TT_K_LOCAL:
+    case TT_K_IF:
+    case TT_K_ELSE:
+    case TT_K_WHILE:
+    case TT_K_RETURN:
+    case TT_K_END:
     case TT_ID:
       return true;
   }
@@ -469,11 +469,11 @@ bool parser_init_after() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_INTEGER_LITERAL:
-    case TT_NUMBER_LITERAL:
-    case TT_STRING_LITERAL:
+    case TT_INTEGER:
+    case TT_NUMBER:
+    case TT_STRING:
     case TT_LPAR:
-    case TT_NIL:
+    case TT_K_NIL:
     case TT_SOP_LENGTH:
       return parser_exp();
     case TT_ID:
@@ -502,11 +502,11 @@ bool parser_id_after() {
         return token->type == TT_RPAR;
       }
     case TT_COMMA:
-    case TT_EQ:
+    case TT_COP_EQ:
       if(parser_id_append()) {
         token = token_buff(TOKEN_THIS);
 
-        if(token->type == TT_EQ) {
+        if(token->type == TT_COP_EQ) {
           token_buff(TOKEN_NEW);
           return parser_assign();
         }
@@ -527,7 +527,7 @@ bool parser_id_append() {
         token_buff(TOKEN_NEW);
         return parser_id_append();
       }
-    case TT_EQ:
+    case TT_COP_EQ:
       return true;
   }
 
@@ -538,11 +538,11 @@ bool parser_assign() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_INTEGER_LITERAL:
-    case TT_NUMBER_LITERAL:
-    case TT_STRING_LITERAL:
+    case TT_INTEGER:
+    case TT_NUMBER:
+    case TT_STRING:
     case TT_LPAR:
-    case TT_NIL:
+    case TT_K_NIL:
     case TT_SOP_LENGTH:
       return parser_exp_list();
     case TT_ID:
@@ -561,11 +561,11 @@ bool parser_exp_list() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_INTEGER_LITERAL:
-    case TT_NUMBER_LITERAL:
-    case TT_STRING_LITERAL:
+    case TT_INTEGER:
+    case TT_NUMBER:
+    case TT_STRING:
     case TT_LPAR:
-    case TT_NIL:
+    case TT_K_NIL:
     case TT_SOP_LENGTH:
     case TT_ID:
       return parser_exp() && parser_exp_append();
@@ -578,12 +578,12 @@ bool parser_exp_append() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_LOCAL:
-    case TT_IF:
-    case TT_ELSE:
-    case TT_WHILE:
-    case TT_RETURN:
-    case TT_END:
+    case TT_K_LOCAL:
+    case TT_K_IF:
+    case TT_K_ELSE:
+    case TT_K_WHILE:
+    case TT_K_RETURN:
+    case TT_K_END:
     case TT_ID:
       return true;
     case TT_COMMA:
@@ -598,11 +598,11 @@ bool parser_exp() {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch(token->type) {
-    case TT_INTEGER_LITERAL:
-    case TT_NUMBER_LITERAL:
-    case TT_STRING_LITERAL:
+    case TT_INTEGER:
+    case TT_NUMBER:
+    case TT_STRING:
     case TT_LPAR:
-    case TT_NIL:
+    case TT_K_NIL:
     case TT_SOP_LENGTH:
     case TT_ID:
       return call_bt_parser();
