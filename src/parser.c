@@ -35,11 +35,11 @@ token_t* token_buff(int operation) {
   if(operation == TOKEN_THIS) {
     return token;
   } else if(operation == TOKEN_NEW) {
-    free(token);
+    scanner_token_destroy(token);
     token = scanner_get_next_token();
     return token;
   } else if(operation == TOKEN_DELETE) {
-    free(token);
+    scanner_token_destroy(token);
   }
 
   return NULL;
