@@ -85,7 +85,8 @@ $(document).ready(function(){initNavTree('parser_8c.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">parser.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -95,39 +96,49 @@ $(document).ready(function(){initNavTree('parser_8c.html',''); initResizable(); 
 <div class="textblock"><code>#include &quot;<a class="el" href="parser_8h_source.html">parser.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="symtable_8h_source.html">symtable.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scanner_8h_source.html">scanner.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="dynstr_8h_source.html">dynstr.h</a>&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a92334182d9d58212e8a495a3b8574f21"><td class="memItemLeft" align="right" valign="top"><a id="a92334182d9d58212e8a495a3b8574f21" name="a92334182d9d58212e8a495a3b8574f21"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init</b> ()</td></tr>
+<tr class="separator:a92334182d9d58212e8a495a3b8574f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4656fd6a0b6449cd86b517759a25161f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8c.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a> (int operation)</td></tr>
 <tr class="memdesc:a4656fd6a0b6449cd86b517759a25161f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Buffer for token.  <a href="parser_8c.html#a4656fd6a0b6449cd86b517759a25161f">More...</a><br /></td></tr>
 <tr class="separator:a4656fd6a0b6449cd86b517759a25161f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8f18166cbd9351d230db6bd2156bc8f"><td class="memItemLeft" align="right" valign="top"><a id="ab8f18166cbd9351d230db6bd2156bc8f" name="ab8f18166cbd9351d230db6bd2156bc8f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>is_identifier</b> (const <a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:ab8f18166cbd9351d230db6bd2156bc8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2975dad3f06cc90d544c583b3c5b882"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="parser_8c.html#af2975dad3f06cc90d544c583b3c5b882">is_keyword</a> (const <a class="el" href="structtoken__t.html">token_t</a> *token, const char *keyword)</td></tr>
-<tr class="memdesc:af2975dad3f06cc90d544c583b3c5b882"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether token is given keyword.  <a href="parser_8c.html#af2975dad3f06cc90d544c583b3c5b882">More...</a><br /></td></tr>
-<tr class="separator:af2975dad3f06cc90d544c583b3c5b882"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab72b6ba7bc0f8fb046b50302bafa990c"><td class="memItemLeft" align="right" valign="top"><a id="ab72b6ba7bc0f8fb046b50302bafa990c" name="ab72b6ba7bc0f8fb046b50302bafa990c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_var_declaration</b> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token, char data_type, bool is_init)</td></tr>
-<tr class="separator:ab72b6ba7bc0f8fb046b50302bafa990c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38101922882fbbd9505114d8b70c040c"><td class="memItemLeft" align="right" valign="top"><a id="a38101922882fbbd9505114d8b70c040c" name="a38101922882fbbd9505114d8b70c040c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_func_declaration</b> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token, char *param_types, char *return_types, bool was_defined)</td></tr>
-<tr class="separator:a38101922882fbbd9505114d8b70c040c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afddf205cb03209b4756feb2d1381f208"><td class="memItemLeft" align="right" valign="top"><a id="afddf205cb03209b4756feb2d1381f208" name="afddf205cb03209b4756feb2d1381f208"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_var_isdeclared</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:afddf205cb03209b4756feb2d1381f208"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6137ff2bec6a530409ce9c07805a7011"><td class="memItemLeft" align="right" valign="top"><a id="a6137ff2bec6a530409ce9c07805a7011" name="a6137ff2bec6a530409ce9c07805a7011"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_func_isdeclared</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:a6137ff2bec6a530409ce9c07805a7011"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a51fb94add042c698269f331c5e904f17"><td class="memItemLeft" align="right" valign="top"><a id="a51fb94add042c698269f331c5e904f17" name="a51fb94add042c698269f331c5e904f17"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_var_isdefined</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:a51fb94add042c698269f331c5e904f17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c8e0d98ee29127482e4d47984291166"><td class="memItemLeft" align="right" valign="top"><a id="a5c8e0d98ee29127482e4d47984291166" name="a5c8e0d98ee29127482e4d47984291166"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_func_isdefined</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, const <a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:a5c8e0d98ee29127482e4d47984291166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec34a7fa029d92b99b69f249fad48f1c"><td class="memItemLeft" align="right" valign="top"><a id="aec34a7fa029d92b99b69f249fad48f1c" name="aec34a7fa029d92b99b69f249fad48f1c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_declare_var</b> (const char *id, char data_type)</td></tr>
+<tr class="separator:aec34a7fa029d92b99b69f249fad48f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab47c82438a3230442a255ed8dbfac1da"><td class="memItemLeft" align="right" valign="top"><a id="ab47c82438a3230442a255ed8dbfac1da" name="ab47c82438a3230442a255ed8dbfac1da"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_declare_func</b> (const char *id, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *param_types, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *return_types)</td></tr>
+<tr class="separator:ab47c82438a3230442a255ed8dbfac1da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a789a27a1afaddfc9670c63d45e0428da"><td class="memItemLeft" align="right" valign="top"><a id="a789a27a1afaddfc9670c63d45e0428da" name="a789a27a1afaddfc9670c63d45e0428da"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_define_var</b> (const char *id)</td></tr>
+<tr class="separator:a789a27a1afaddfc9670c63d45e0428da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2326f99551cb36d13572d6222d5feff0"><td class="memItemLeft" align="right" valign="top"><a id="a2326f99551cb36d13572d6222d5feff0" name="a2326f99551cb36d13572d6222d5feff0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_define_func</b> (const char *id)</td></tr>
+<tr class="separator:a2326f99551cb36d13572d6222d5feff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52381c9f31b18de6a6615fcf55c48a5a"><td class="memItemLeft" align="right" valign="top"><a id="a52381c9f31b18de6a6615fcf55c48a5a" name="a52381c9f31b18de6a6615fcf55c48a5a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_isdeclared_var</b> (const char *id)</td></tr>
+<tr class="separator:a52381c9f31b18de6a6615fcf55c48a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e2bbb547e1f89ed1886c46ea0717532"><td class="memItemLeft" align="right" valign="top"><a id="a6e2bbb547e1f89ed1886c46ea0717532" name="a6e2bbb547e1f89ed1886c46ea0717532"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_isdeclared_func</b> (const char *id)</td></tr>
+<tr class="separator:a6e2bbb547e1f89ed1886c46ea0717532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acff63bd659179ec5ae41bd054962fc0b"><td class="memItemLeft" align="right" valign="top"><a id="acff63bd659179ec5ae41bd054962fc0b" name="acff63bd659179ec5ae41bd054962fc0b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_isdefined_var</b> (const char *id)</td></tr>
+<tr class="separator:acff63bd659179ec5ae41bd054962fc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af66d17721cbfea5f7a62297e90819aaf"><td class="memItemLeft" align="right" valign="top"><a id="af66d17721cbfea5f7a62297e90819aaf" name="af66d17721cbfea5f7a62297e90819aaf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_isdefined_func</b> (const char *id)</td></tr>
+<tr class="separator:af66d17721cbfea5f7a62297e90819aaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a2a52dd62f3ab3b8840b457dd1fb96205"><td class="memItemLeft" align="right" valign="top"><a id="a2a52dd62f3ab3b8840b457dd1fb96205" name="a2a52dd62f3ab3b8840b457dd1fb96205"></a>
+<a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>symtab</b></td></tr>
+<tr class="separator:a2a52dd62f3ab3b8840b457dd1fb96205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Parser implementation. </p>
@@ -138,44 +149,6 @@ Tomas Martykan </dd>
 Filip Stolfa</dd></dl>
 <p>TODO... </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="af2975dad3f06cc90d544c583b3c5b882" name="af2975dad3f06cc90d544c583b3c5b882"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2975dad3f06cc90d544c583b3c5b882">&#9670;&nbsp;</a></span>is_keyword()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool is_keyword </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>keyword</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks whether token is given keyword. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">token</td><td>Token to check. </td></tr>
-    <tr><td class="paramname">token</td><td>Keyword to compare with. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if token is given keyword. False otherwise. </dd></dl>
-
-</div>
-</div>
 <a id="a4656fd6a0b6449cd86b517759a25161f" name="a4656fd6a0b6449cd86b517759a25161f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4656fd6a0b6449cd86b517759a25161f">&#9670;&nbsp;</a></span>token_buff()</h2>
 
