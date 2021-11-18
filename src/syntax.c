@@ -64,9 +64,9 @@ bool parser_stlist_global() {
       return parse_st_globarl() && parser_stlist_global();
     case TT_EOF:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_st_global() {
@@ -90,9 +90,9 @@ bool parser_st_global() {
       token = token_buff(TOKEN_NEW);
 
       return parser_function_call();
+    default:
+      return false;
   }
-
-  return false;
 }
 
 char* str_create_copy(char* str) {
@@ -254,9 +254,9 @@ bool parser_param_list(dynstr_t* types_str) {
       return parser_param(types_str) && parser_param_append(types_str);
     case TT_RPAR:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_param_append(dynstr_t* types_str) {
@@ -269,9 +269,9 @@ bool parser_param_append(dynstr_t* types_str) {
       return parser_param(types_str) && parser_param_append(types_str);
     case TT_RPAR:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_param(dynstr_t* types_str) {
@@ -280,7 +280,7 @@ bool parser_param(dynstr_t* types_str) {
   if(token->type == TT_ID) {
     token = token_buff(TOKEN_NEW);
 
-    if(token->type = TT_COLON) {
+    if(token->type == TT_COLON) {
       token = token_buff(TOKEN_NEW);
 
       return parser_type(types_str);
@@ -309,9 +309,9 @@ bool parser_type_list(dynstr_t* types_str) {
       token_buff(TOKEN_NEW);
 
       return parser_type(types_str) && parser_type_append(types_str);
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_type_append(dynstr_t* types_str) {
@@ -333,9 +333,10 @@ bool parser_type_append(dynstr_t* types_str) {
       token_buff(TOKEN_NEW);
 
       return parser_type(types_str) && parser_type_append(types_str);
-  }
 
-  return false;
+    default:
+      return false;
+  }
 }
 
 bool parser_type(dynstr_t* types_str) {
@@ -354,9 +355,9 @@ bool parser_type(dynstr_t* types_str) {
       dynstr_append(types_str, 's');
       token_buff(TOKEN_NEW);
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_arg_list() {
@@ -370,9 +371,9 @@ bool parser_arg_list() {
       return parser_arg() && parser_arg_append();
     case TT_RPAR:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_arg_append() {
@@ -384,9 +385,9 @@ bool parser_arg_append() {
       return parser_arg() && parser_arg_append();
     case TT_RPAR:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_arg() {
@@ -399,9 +400,9 @@ bool parser_arg() {
     case TT_STRING:
       token_buff(TOKEN_NEW);
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_stlist_local() {
@@ -417,9 +418,9 @@ bool parser_stlist_local() {
     case TT_K_ELSE:
     case TT_K_END:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_st_local() {
@@ -441,9 +442,9 @@ bool parser_st_local() {
     case TT_ID:
       token = token_buff(TOKEN_NEW);
       return parser_id_after();
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_var_dec() {
@@ -557,9 +558,9 @@ bool parser_init() {
     case TT_K_END:
     case TT_ID:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_init_after() {
@@ -580,9 +581,9 @@ bool parser_init_after() {
         token_buff(TOKEN_NEW);
         return parser_function_call();
       }
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_id_after() {
@@ -608,9 +609,9 @@ bool parser_id_after() {
           return parser_assign();
         }
       }
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_id_append() {
@@ -626,9 +627,9 @@ bool parser_id_append() {
       }
     case TT_COP_EQ:
       return true;
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_assign() {
@@ -649,9 +650,9 @@ bool parser_assign() {
         token_buff(TOKEN_NEW);
         return parser_function_call();
       }
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_exp_list() {
@@ -666,9 +667,9 @@ bool parser_exp_list() {
     case TT_SOP_LENGTH:
     case TT_ID:
       return parser_exp() && parser_exp_append();
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_exp_append() {
@@ -686,9 +687,9 @@ bool parser_exp_append() {
     case TT_COMMA:
       token_buff(TOKEN_NEW);
       return parser_exp() && parser_exp_append();
+    default:
+      return false;
   }
-
-  return false;
 }
 
 bool parser_exp() {
@@ -703,7 +704,7 @@ bool parser_exp() {
     case TT_SOP_LENGTH:
     case TT_ID:
       return call_bt_parser();
+    default:
+      return false;
   }
-
-  return false;
 }

@@ -16,6 +16,8 @@
 #define __PARSER_H__
 
 #include "scanner.h"
+#include "dynstr.h"
+#include "symtable.h"
 
 #include <stdbool.h>
 
