@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['token_5ftype_5ft_0',['token_type_t',['../scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69',1,'scanner.h']]]
+  ['scanner_5fstate_5ft_0',['scanner_state_t',['../scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647',1,'scanner.c']]]
 ];

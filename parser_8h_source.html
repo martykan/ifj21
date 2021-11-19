@@ -92,38 +92,42 @@ $(document).ready(function(){initNavTree('parser_8h_source.html',''); initResiza
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#define __PARSER_H__</span></div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="scanner_8h.html">scanner.h</a>&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="dynstr_8h.html">dynstr.h</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="symtable_8h.html">symtable.h</a>&quot;</span></div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">extern</span> <a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">// COMPILE-TIME CONSTANTS</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">extern</span> <a class="code hl_struct" href="structsymtab__t.html">symtab_t</a>* symtab;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="parser_8h.html#af05e6ebb917166e28932689b9b873691">   26</a></span><span class="preprocessor">#define TOKEN_THIS 0 </span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="parser_8h.html#aa560950cd9527b11adc5a4ca48ab3b42">   27</a></span><span class="preprocessor">#define TOKEN_NEW 1 </span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="parser_8h.html#a66165da67bdf30e463752632ea987504">   28</a></span><span class="preprocessor">#define TOKEN_DELETE 2 </span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// PUBLIC FUNCTION FORWARD DECLARATIONS</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><a class="code hl_struct" href="structtoken__t.html">token_t</a>* <a class="code hl_function" href="parser_8h.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a>(<span class="keywordtype">int</span> operation);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keywordtype">bool</span> parser_init();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// COMPILE-TIME CONSTANTS</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="parser_8h.html#af05e6ebb917166e28932689b9b873691">   28</a></span><span class="preprocessor">#define TOKEN_THIS 0 </span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="parser_8h.html#aa560950cd9527b11adc5a4ca48ab3b42">   29</a></span><span class="preprocessor">#define TOKEN_NEW 1 </span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="parser_8h.html#a66165da67bdf30e463752632ea987504">   30</a></span><span class="preprocessor">#define TOKEN_DELETE 2 </span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// PUBLIC FUNCTION FORWARD DECLARATIONS</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><a class="code hl_struct" href="structtoken__t.html">token_t</a>* <a class="code hl_function" href="parser_8h.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a>(<span class="keywordtype">int</span> operation);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">bool</span> parser_declare_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>, <span class="keywordtype">char</span> data_type);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">bool</span> parser_declare_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>, <span class="keyword">const</span> <a class="code hl_struct" href="structdynstr__t.html">dynstr_t</a>* param_types, <span class="keyword">const</span> <a class="code hl_struct" href="structdynstr__t.html">dynstr_t</a>* return_types);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">bool</span> parser_define_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">bool</span> parser_define_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">bool</span> parser_isdeclared_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">bool</span> parser_isdeclared_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">bool</span> parser_isdefined_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">bool</span> parser_isdefined_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif  </span><span class="comment">// __PARSER_H__</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keywordtype">bool</span> parser_init();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">bool</span> parser_declare_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>, <span class="keywordtype">char</span> data_type);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">bool</span> parser_declare_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>, <span class="keyword">const</span> <a class="code hl_struct" href="structdynstr__t.html">dynstr_t</a>* param_types, <span class="keyword">const</span> <a class="code hl_struct" href="structdynstr__t.html">dynstr_t</a>* return_types);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keywordtype">bool</span> parser_define_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">bool</span> parser_define_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keywordtype">bool</span> parser_isdeclared_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keywordtype">bool</span> parser_isdeclared_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="keywordtype">bool</span> parser_isdefined_var(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keywordtype">bool</span> parser_isdefined_func(<span class="keyword">const</span> <span class="keywordtype">char</span>* <span class="keywordtype">id</span>);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#endif  </span><span class="comment">// __PARSER_H__</span></div>
+<div class="ttc" id="adynstr_8h_html"><div class="ttname"><a href="dynstr_8h.html">dynstr.h</a></div><div class="ttdoc">Dynamic string API.</div></div>
 <div class="ttc" id="aparser_8h_html_a4656fd6a0b6449cd86b517759a25161f"><div class="ttname"><a href="parser_8h.html#a4656fd6a0b6449cd86b517759a25161f">token_buff</a></div><div class="ttdeci">token_t * token_buff(int operation)</div><div class="ttdoc">Buffer for token.</div><div class="ttdef"><b>Definition:</b> parser.c:32</div></div>
 <div class="ttc" id="ascanner_8h_html"><div class="ttname"><a href="scanner_8h.html">scanner.h</a></div><div class="ttdoc">Scanner API.</div></div>
 <div class="ttc" id="astructdynstr__t_html"><div class="ttname"><a href="structdynstr__t.html">dynstr_t</a></div><div class="ttdoc">Dynamic string type.</div><div class="ttdef"><b>Definition:</b> dynstr.h:38</div></div>
 <div class="ttc" id="astructsymtab__t_html"><div class="ttname"><a href="structsymtab__t.html">symtab_t</a></div><div class="ttdoc">Hierarchical symbol table.</div><div class="ttdef"><b>Definition:</b> symtable.h:131</div></div>
 <div class="ttc" id="astructtoken__t_html"><div class="ttname"><a href="structtoken__t.html">token_t</a></div><div class="ttdoc">Scanner token type.</div><div class="ttdef"><b>Definition:</b> scanner.h:95</div></div>
+<div class="ttc" id="asymtable_8h_html"><div class="ttname"><a href="symtable_8h.html">symtable.h</a></div><div class="ttdoc">Symbol table API.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

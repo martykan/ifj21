@@ -7,6 +7,8 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "expressions.c", "expressions_8c.html", "expressions_8c" ],
     [ "expressions.h", "expressions_8h.html", "expressions_8h" ],
     [ "main.h", "main_8h_source.html", null ],
+    [ "other.c", "other_8c.html", null ],
+    [ "other.h", "other_8h.html", null ],
     [ "parser.c", "parser_8c.html", "parser_8c" ],
     [ "parser.h", "parser_8h.html", "parser_8h" ],
     [ "scanner.c", "scanner_8c.html", "scanner_8c" ],

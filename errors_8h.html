@@ -85,61 +85,65 @@ $(document).ready(function(){initNavTree('errors_8h.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">errors.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Error codes definition.  
 <a href="#details">More...</a></p>
-
+<div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="scanner_8h_source.html">scanner.h</a>&quot;</code><br />
+</div>
 <p><a href="errors_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:aabd111d9d29e8d7b86440b4b9cfc46b7"><td class="memItemLeft" align="right" valign="top"><a id="aabd111d9d29e8d7b86440b4b9cfc46b7" name="aabd111d9d29e8d7b86440b4b9cfc46b7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_OK</b>&#160;&#160;&#160;0</td></tr>
-<tr class="memdesc:aabd111d9d29e8d7b86440b4b9cfc46b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Normal exit. <br /></td></tr>
-<tr class="separator:aabd111d9d29e8d7b86440b4b9cfc46b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a96b3acb2889c72475d889036eff7ef"><td class="memItemLeft" align="right" valign="top"><a id="a6a96b3acb2889c72475d889036eff7ef" name="a6a96b3acb2889c72475d889036eff7ef"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_LEXICAL</b>&#160;&#160;&#160;1</td></tr>
-<tr class="memdesc:a6a96b3acb2889c72475d889036eff7ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrong structure of lexeme. <br /></td></tr>
-<tr class="separator:a6a96b3acb2889c72475d889036eff7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43cb919ec787e1feda81669f2eae1195"><td class="memItemLeft" align="right" valign="top"><a id="a43cb919ec787e1feda81669f2eae1195" name="a43cb919ec787e1feda81669f2eae1195"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_SYNTAX</b>&#160;&#160;&#160;2</td></tr>
-<tr class="memdesc:a43cb919ec787e1feda81669f2eae1195"><td class="mdescLeft">&#160;</td><td class="mdescRight">Invalid syntax. <br /></td></tr>
-<tr class="separator:a43cb919ec787e1feda81669f2eae1195"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d401e3db0cc2d2224886e6b59376456"><td class="memItemLeft" align="right" valign="top"><a id="a6d401e3db0cc2d2224886e6b59376456" name="a6d401e3db0cc2d2224886e6b59376456"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER</b>&#160;&#160;&#160;3</td></tr>
-<tr class="memdesc:a6d401e3db0cc2d2224886e6b59376456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic error - undefined function/variable, redefinition of variable. <br /></td></tr>
-<tr class="separator:a6d401e3db0cc2d2224886e6b59376456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d6d6dc9373550e5c7c7ff1e06300ed2"><td class="memItemLeft" align="right" valign="top"><a id="a8d6d6dc9373550e5c7c7ff1e06300ed2" name="a8d6d6dc9373550e5c7c7ff1e06300ed2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT</b>&#160;&#160;&#160;4</td></tr>
-<tr class="memdesc:a8d6d6dc9373550e5c7c7ff1e06300ed2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic error - type incompatibility in assignment. <br /></td></tr>
-<tr class="separator:a8d6d6dc9373550e5c7c7ff1e06300ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e705dad9fb36589dd8de9b8ad009609"><td class="memItemLeft" align="right" valign="top"><a id="a2e705dad9fb36589dd8de9b8ad009609" name="a2e705dad9fb36589dd8de9b8ad009609"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS</b>&#160;&#160;&#160;5</td></tr>
-<tr class="memdesc:a2e705dad9fb36589dd8de9b8ad009609"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic error - incorrect count/type of parameters or return values of function call. <br /></td></tr>
-<tr class="separator:a2e705dad9fb36589dd8de9b8ad009609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68c1efccd39265b15f55b48e3316431a"><td class="memItemLeft" align="right" valign="top"><a id="a68c1efccd39265b15f55b48e3316431a" name="a68c1efccd39265b15f55b48e3316431a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR</b>&#160;&#160;&#160;6</td></tr>
-<tr class="memdesc:a68c1efccd39265b15f55b48e3316431a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic error - type incompatibility in arithmetic, string or relation expressions. <br /></td></tr>
-<tr class="separator:a68c1efccd39265b15f55b48e3316431a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c4e5d86c05314add2f5f663b60af8d2"><td class="memItemLeft" align="right" valign="top"><a id="a3c4e5d86c05314add2f5f663b60af8d2" name="a3c4e5d86c05314add2f5f663b60af8d2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_SEMANTIC_OTHER</b>&#160;&#160;&#160;7</td></tr>
-<tr class="memdesc:a3c4e5d86c05314add2f5f663b60af8d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Semantic error - other. <br /></td></tr>
-<tr class="separator:a3c4e5d86c05314add2f5f663b60af8d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9df3059873def623f40d0251eb875cbb"><td class="memItemLeft" align="right" valign="top"><a id="a9df3059873def623f40d0251eb875cbb" name="a9df3059873def623f40d0251eb875cbb"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_UNEXPECTED_NIL</b>&#160;&#160;&#160;8</td></tr>
-<tr class="memdesc:a9df3059873def623f40d0251eb875cbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runtime error - working with unexpected nil value. <br /></td></tr>
-<tr class="separator:a9df3059873def623f40d0251eb875cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2bd6d05956ea90905e4315f25bb7f0"><td class="memItemLeft" align="right" valign="top"><a id="a4c2bd6d05956ea90905e4315f25bb7f0" name="a4c2bd6d05956ea90905e4315f25bb7f0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>EXITSTATUS_ERROR_DIVIDE_ZERO</b>&#160;&#160;&#160;9</td></tr>
-<tr class="memdesc:a4c2bd6d05956ea90905e4315f25bb7f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runtime error - dividing by zero constant. <br /></td></tr>
-<tr class="separator:a4c2bd6d05956ea90905e4315f25bb7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d82733de711dd6fa8a7f8faf669e9d1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="errors_8h.html#a4d82733de711dd6fa8a7f8faf669e9d1">EXITSTATUS_INTERNAL_ERROR</a>&#160;&#160;&#160;99</td></tr>
-<tr class="memdesc:a4d82733de711dd6fa8a7f8faf669e9d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Internal compiler error (ex.  <a href="errors_8h.html#a4d82733de711dd6fa8a7f8faf669e9d1">More...</a><br /></td></tr>
-<tr class="separator:a4d82733de711dd6fa8a7f8faf669e9d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structerr__t.html">err_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:aa86c02c30f1e880cf868ef5461553a53"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53">exit_status_t</a> { <br />
+&#160;&#160;<a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53ab2bffe73badd7c0c9b5aa1490abed201">EXITSTATUS_OK</a> = 0
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a98d2c583989f6e3ab0abf2698933bedc">EXITSTATUS_ERROR_LEXICAL</a> = 1
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a36e7d44a962f7ad86aa9be77eb5fc405">EXITSTATUS_ERROR_SYNTAX</a> = 2
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a667ce0ecea321b52b1a9868f5c6a3337">EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a9dedf1447d954a31c3b05761f60ec78d">EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT</a> = 4
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53aaea5e61ff377458774ddae28a863d70a">EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS</a> = 5
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a4c367146f803cd4c5b7f8150ac36ef34">EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR</a> = 6
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53ad8597347d020148dd61c0b440c5e8ee3">EXITSTATUS_ERROR_SEMANTIC_OTHER</a> = 7
+, <br />
+&#160;&#160;<a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a1a1de982e95eb5136d4c49de5dc2b1c7">EXITSTATUS_ERROR_UNEXPECTED_NIL</a> = 8
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a0d30e6ec1f91d4980f919690bf5230ea">EXITSTATUS_ERROR_DIVIDE_ZERO</a> = 9
+, <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a">EXITSTATUS_INTERNAL_ERROR</a> = 99
+<br />
+ }</td></tr>
+<tr class="separator:aa86c02c30f1e880cf868ef5461553a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a6c0ea5f9814c1a1d602ebd021ffdea8b"><td class="memItemLeft" align="right" valign="top"><a id="a6c0ea5f9814c1a1d602ebd021ffdea8b" name="a6c0ea5f9814c1a1d602ebd021ffdea8b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error_set</b> (<a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53">exit_status_t</a> status)</td></tr>
+<tr class="separator:a6c0ea5f9814c1a1d602ebd021ffdea8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ac722c840c8297b24ad1f2f24bc1ba4"><td class="memItemLeft" align="right" valign="top"><a id="a7ac722c840c8297b24ad1f2f24bc1ba4" name="a7ac722c840c8297b24ad1f2f24bc1ba4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error_clear</b> ()</td></tr>
+<tr class="separator:a7ac722c840c8297b24ad1f2f24bc1ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af03ff389a8e43da0ecb8de8a2d61e6b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53">exit_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="errors_8h.html#af03ff389a8e43da0ecb8de8a2d61e6b7">error_get</a> ()</td></tr>
+<tr class="memdesc:af03ff389a8e43da0ecb8de8a2d61e6b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the current error value.  <a href="errors_8h.html#af03ff389a8e43da0ecb8de8a2d61e6b7">More...</a><br /></td></tr>
+<tr class="separator:af03ff389a8e43da0ecb8de8a2d61e6b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68d855a1b0fa0ec54106f202845ac83"><td class="memItemLeft" align="right" valign="top"><a id="ad68d855a1b0fa0ec54106f202845ac83" name="ad68d855a1b0fa0ec54106f202845ac83"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error_set_handled</b> ()</td></tr>
+<tr class="separator:ad68d855a1b0fa0ec54106f202845ac83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecf45a5e4d8d6449e6ee41e8c610cc05"><td class="memItemLeft" align="right" valign="top"><a id="aecf45a5e4d8d6449e6ee41e8c610cc05" name="aecf45a5e4d8d6449e6ee41e8c610cc05"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error_print_msg</b> (char *msg)</td></tr>
+<tr class="separator:aecf45a5e4d8d6449e6ee41e8c610cc05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25e07b5104b82dabaa91dd7b3fc3dea6"><td class="memItemLeft" align="right" valign="top"><a id="a25e07b5104b82dabaa91dd7b3fc3dea6" name="a25e07b5104b82dabaa91dd7b3fc3dea6"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>error_construct_msg_scanner</b> (char *buff, <a class="el" href="structtoken__t.html">token_t</a> tok, int col, int row)</td></tr>
+<tr class="separator:a25e07b5104b82dabaa91dd7b3fc3dea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Error codes definition. </p>
@@ -148,21 +152,63 @@ Macros</h2></td></tr>
 Tomas Martykan </dd>
 <dd>
 Filip Stolfa </dd></dl>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a4d82733de711dd6fa8a7f8faf669e9d1" name="a4d82733de711dd6fa8a7f8faf669e9d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d82733de711dd6fa8a7f8faf669e9d1">&#9670;&nbsp;</a></span>EXITSTATUS_INTERNAL_ERROR</h2>
+</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="aa86c02c30f1e880cf868ef5461553a53" name="aa86c02c30f1e880cf868ef5461553a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa86c02c30f1e880cf868ef5461553a53">&#9670;&nbsp;</a></span>exit_status_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define EXITSTATUS_INTERNAL_ERROR&#160;&#160;&#160;99</td>
+          <td class="memname">enum <a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53">exit_status_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53ab2bffe73badd7c0c9b5aa1490abed201" name="aa86c02c30f1e880cf868ef5461553a53ab2bffe73badd7c0c9b5aa1490abed201"></a>EXITSTATUS_OK&#160;</td><td class="fielddoc"><p >Normal exit. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a98d2c583989f6e3ab0abf2698933bedc" name="aa86c02c30f1e880cf868ef5461553a53a98d2c583989f6e3ab0abf2698933bedc"></a>EXITSTATUS_ERROR_LEXICAL&#160;</td><td class="fielddoc"><p >Wrong structure of lexeme. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a36e7d44a962f7ad86aa9be77eb5fc405" name="aa86c02c30f1e880cf868ef5461553a53a36e7d44a962f7ad86aa9be77eb5fc405"></a>EXITSTATUS_ERROR_SYNTAX&#160;</td><td class="fielddoc"><p >Invalid syntax. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a667ce0ecea321b52b1a9868f5c6a3337" name="aa86c02c30f1e880cf868ef5461553a53a667ce0ecea321b52b1a9868f5c6a3337"></a>EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER&#160;</td><td class="fielddoc"><p >Semantic error - undefined function/variable, redefinition of variable. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a9dedf1447d954a31c3b05761f60ec78d" name="aa86c02c30f1e880cf868ef5461553a53a9dedf1447d954a31c3b05761f60ec78d"></a>EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT&#160;</td><td class="fielddoc"><p >Semantic error - type incompatibility in assignment. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53aaea5e61ff377458774ddae28a863d70a" name="aa86c02c30f1e880cf868ef5461553a53aaea5e61ff377458774ddae28a863d70a"></a>EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS&#160;</td><td class="fielddoc"><p >Semantic error - incorrect count/type of parameters or return values of function call. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a4c367146f803cd4c5b7f8150ac36ef34" name="aa86c02c30f1e880cf868ef5461553a53a4c367146f803cd4c5b7f8150ac36ef34"></a>EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR&#160;</td><td class="fielddoc"><p >Semantic error - type incompatibility in arithmetic, string or relation expressions. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53ad8597347d020148dd61c0b440c5e8ee3" name="aa86c02c30f1e880cf868ef5461553a53ad8597347d020148dd61c0b440c5e8ee3"></a>EXITSTATUS_ERROR_SEMANTIC_OTHER&#160;</td><td class="fielddoc"><p >Semantic error - other. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a1a1de982e95eb5136d4c49de5dc2b1c7" name="aa86c02c30f1e880cf868ef5461553a53a1a1de982e95eb5136d4c49de5dc2b1c7"></a>EXITSTATUS_ERROR_UNEXPECTED_NIL&#160;</td><td class="fielddoc"><p >Runtime error - working with unexpected nil value. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a0d30e6ec1f91d4980f919690bf5230ea" name="aa86c02c30f1e880cf868ef5461553a53a0d30e6ec1f91d4980f919690bf5230ea"></a>EXITSTATUS_ERROR_DIVIDE_ZERO&#160;</td><td class="fielddoc"><p >Runtime error - dividing by zero constant. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a" name="aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a"></a>EXITSTATUS_INTERNAL_ERROR&#160;</td><td class="fielddoc"><p >Internal compiler error (ex. memory allocation error) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="af03ff389a8e43da0ecb8de8a2d61e6b7" name="af03ff389a8e43da0ecb8de8a2d61e6b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af03ff389a8e43da0ecb8de8a2d61e6b7">&#9670;&nbsp;</a></span>error_get()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53">exit_status_t</a> error_get </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Internal compiler error (ex. </p>
-<p >memory allocation error) </p>
+<p>Get the current error value. </p>
+<p >Used to check if an error is set. If there is no error, the value is 0. Otherwise it is a non-zero value. Can be used in an if statement to check for errors, or in a return to exit the program with the proper value. </p>
 
 </div>
 </div>

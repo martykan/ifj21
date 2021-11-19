@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['scanner_5fstate_5ft_0',['scanner_state_t',['../scanner_8c.html#ae8f81115e24bb6e45e3eda7a33a9c647',1,'scanner.c']]]
+  ['exit_5fstatus_5ft_0',['exit_status_t',['../errors_8h.html#aa86c02c30f1e880cf868ef5461553a53',1,'errors.h']]]
 ];
