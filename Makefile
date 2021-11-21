@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c99 -Wall -Wextra -Werror -pedantic
+CFLAGS=-g -std=c99 #-Wall -Wextra -Werror -pedantic
 TEST_CFLAGS=$(CFLAGS) -ftest-coverage -fprofile-arcs
 
 TEST_SOURCES=tests/unit/*.c
@@ -7,7 +7,7 @@ TEST_SOURCES=tests/unit/*.c
 .PHONY: doxygen test test_cov test_cov_run test_cov_gen clean_tests
 
 ifj21: src/*.c src/*.h
-	$(CC) $(CFLAGS) src/main.c -o ifj21
+	$(CC) $(CFLAGS) src/*.c -o ifj21
 
 test: $(TEST_SOURCES)
 	$(CC) $(CFLAGS) $^ -o tests/unit/run

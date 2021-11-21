@@ -64,6 +64,7 @@ typedef struct {
  *  Was the function body already defined?
  */
 typedef struct {
+  char* func_name;
   char* param_types;
   char* return_types;
   bool was_defined;

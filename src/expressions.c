@@ -7,6 +7,9 @@
  */
 #include "expressions.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 // TODO: missing code generation
 // TODO: missing type checking and conversion
 

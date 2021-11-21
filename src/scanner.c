@@ -322,7 +322,6 @@ token_t *scanner_get_next_token() {
           state = STATE_INTEGER;
         }
         else if (curr_char == '"') {
-          APPEND_CHAR(curr_char, new_token);
           state = STATE_STRING_START;
         }
         // handle multi-char operators and comments
@@ -515,7 +514,6 @@ token_t *scanner_get_next_token() {
       // ****** end of operators <> start of strings
       case STATE_STRING_START:
         if (curr_char == '"') {
-          APPEND_CHAR(curr_char, new_token);
           return scanner_make_string_tok(new_token);
         }
         else if (curr_char == '\\') {

@@ -21,7 +21,7 @@
 
 symtab_t* symtab;
 
-bool parser_init() {
+bool parser_init_symtab() {
   symtab = symtab_create();
 
   return symtab;
@@ -65,7 +65,11 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types, const dyns
   if(!func_data) {
     return false;
   }
-
+  func_data->func_name = malloc(sizeof(char) * (strlen(id)+1));
+  if (func_data->func_name == NULL) {
+    return false;
+  }
+  strncpy(func_data->func_name, id, strlen(id)+1);
   func_data->param_types = dynstr_copy_to_static(param_types);
   func_data->return_types = dynstr_copy_to_static(return_types);
   func_data->was_defined = false;

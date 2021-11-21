@@ -6,6 +6,8 @@
  * @author Filip Stolfa
  */
 
+#include <stdbool.h>
+
 typedef enum
 {
     PREC_UNDEF,
@@ -152,3 +154,5 @@ struct symbol_stack_t
 };
 
 int expression_process(expression_symbol_t *input);
+
+bool call_bt_parser();

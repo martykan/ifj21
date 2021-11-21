@@ -10,6 +10,7 @@
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -103,6 +104,8 @@ uint32_t SuperFastHash(symtab_key_t data);
 #define SYMTAB_BUCKET_COUNT 83
 
 // FUNCTION DEFINITIONS
+void symtab_init_builtin(symtab_t* symtab, char* name, char* param_types,
+                         char* return_types);
 
 // ALLOCATION FUNCTIONS
 
@@ -117,15 +120,28 @@ symtab_t* symtab_create() {
     free(symtab);
     return NULL;
   }
+  symtab_init_builtin(symtab, "write", "a+", "");
 
   symtab->local_scopes = NULL;
 
   return symtab;
 }
 
+void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
+                         char* return_types) {
+  symtab_func_data_t* func_data = symtab_insert_func(symtab, id);
+  if (!func_data) {
+    return;
+  }
+  func_data->func_name = id;
+  func_data->param_types = param_types;
+  func_data->return_types = return_types;
+  func_data->was_defined = true;
+}
+
 symtab_subtab_t* symtab_subtab_create(size_t n) {
   symtab_subtab_t* subtab =
-      malloc(sizeof(symtab_subtab_t) + n*sizeof(symtab_record_t*));
+      malloc(sizeof(symtab_subtab_t) + n * sizeof(symtab_record_t*));
   if (subtab == NULL) {
     return NULL;
   }
@@ -197,7 +213,7 @@ void symtab_subtab_clear(symtab_subtab_t* subtab) {
 void symtab_record_free(symtab_record_t* rec) {
   free((char*)rec->key);
 
-  if(rec->what_data == 'f') {
+  if (rec->what_data == 'f') {
     free(rec->data.func_data.param_types);
     free(rec->data.func_data.return_types);
   }
@@ -267,7 +283,7 @@ symtab_var_data_t* symtab_insert_var(symtab_t* symtab, symtab_key_t key) {
 }
 
 symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key) {
-  return &symtab_subtab_insert(symtab->local_scopes, key)->func_data;
+  return &symtab_subtab_insert(symtab->global_scope, key)->func_data;
 }
 
 symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key) {

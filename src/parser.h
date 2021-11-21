@@ -42,7 +42,7 @@ extern symtab_t* symtab;
  */
 token_t* token_buff(int operation);
 
-bool parser_init();
+bool parser_init_symtab();
 
 bool parser_declare_var(const char* id, char data_type);
 bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types);
