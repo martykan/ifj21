@@ -1,6 +1,7 @@
 var dir_68267d1309a1af8e8297ef4c3efbcdba =
 [
-    [ "codegen.h", "codegen_8h_source.html", null ],
+    [ "codegen.c", "codegen_8c.html", "codegen_8c" ],
+    [ "codegen.h", "codegen_8h.html", "codegen_8h" ],
     [ "dynstr.c", "dynstr_8c.html", "dynstr_8c" ],
     [ "dynstr.h", "dynstr_8h.html", "dynstr_8h" ],
     [ "errors.h", "errors_8h.html", "errors_8h" ],

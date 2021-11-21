@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['was_5fdefined_0',['was_defined',['../structsymtab__func__data__t.html#aebedfd865ed0582c360a6ce7fdf494f7',1,'symtab_func_data_t']]],
-  ['what_5fdata_1',['what_data',['../structsymtab__record__t.html#a18236ddf1634021abc90b034ded8e5fb',1,'symtab_record_t']]]
+  ['var_5fdata_0',['var_data',['../unionsymtab__data__t.html#ae92db57915848a332c9e92c05b1974e4',1,'symtab_data_t']]]
 ];

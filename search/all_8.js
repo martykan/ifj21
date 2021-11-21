@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['len_0',['len',['../structdynstr__t.html#a1f637b69208d1057795b630d44222057',1,'dynstr_t']]],
-  ['list_1',['list',['../structsymtab__subtab__t.html#a73b859708e4fd8745b6fdf8357370b41',1,'symtab_subtab_t']]],
-  ['local_5fscopes_2',['local_scopes',['../structsymtab__t.html#ab4a5f682df1ad207f1c61f543a936d3f',1,'symtab_t']]]
+  ['key_0',['key',['../structsymtab__record__t.html#a00239af1f115b593ba8723264615b6cd',1,'symtab_record_t']]],
+  ['keywords_1',['keywords',['../scanner_8c.html#a0250f718cd2be8a93808826186e509c3',1,'scanner.c']]],
+  ['keywords_5fcount_2',['KEYWORDS_COUNT',['../scanner_8c.html#a9fab585b35b349cc440afd2279074f88',1,'scanner.c']]]
 ];

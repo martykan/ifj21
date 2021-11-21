@@ -94,7 +94,9 @@ $(document).ready(function(){initNavTree('syntax_8c.html',''); initResizable(); 
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="syntax_8h_source.html">syntax.h</a>&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="codegen_8h_source.html">codegen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="dynstr_8h_source.html">dynstr.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="errors_8h_source.html">errors.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="other_8h_source.html">other.h</a>&quot;</code><br />
@@ -116,6 +118,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_require</b> ()
 <tr class="memitem:a8abbd965449c5ce721dea4b32d9a7731"><td class="memItemLeft" align="right" valign="top"><a id="a8abbd965449c5ce721dea4b32d9a7731" name="a8abbd965449c5ce721dea4b32d9a7731"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_def</b> ()</td></tr>
 <tr class="separator:a8abbd965449c5ce721dea4b32d9a7731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2020179ae85e83ba0b13abce71f5c67"><td class="memItemLeft" align="right" valign="top"><a id="aa2020179ae85e83ba0b13abce71f5c67" name="aa2020179ae85e83ba0b13abce71f5c67"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_call_by_id</b> (char *id)</td></tr>
+<tr class="separator:aa2020179ae85e83ba0b13abce71f5c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="memItemLeft" align="right" valign="top"><a id="acbfea2e0f31f8de03b52e49f0b149b7c" name="acbfea2e0f31f8de03b52e49f0b149b7c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_call</b> (<a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *func)</td></tr>
 <tr class="separator:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,12 +145,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_type_append</b
 <tr class="memitem:ac94d3534477b4e640670454f7f3f7ad2"><td class="memItemLeft" align="right" valign="top"><a id="ac94d3534477b4e640670454f7f3f7ad2" name="ac94d3534477b4e640670454f7f3f7ad2"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_type</b> (char *type)</td></tr>
 <tr class="separator:ac94d3534477b4e640670454f7f3f7ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fd400c47231742f61addae40c535fd4"><td class="memItemLeft" align="right" valign="top"><a id="a7fd400c47231742f61addae40c535fd4" name="a7fd400c47231742f61addae40c535fd4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_list</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types)</td></tr>
-<tr class="separator:a7fd400c47231742f61addae40c535fd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12c135eebb5501514adb6910ea68070b"><td class="memItemLeft" align="right" valign="top"><a id="a12c135eebb5501514adb6910ea68070b" name="a12c135eebb5501514adb6910ea68070b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types)</td></tr>
-<tr class="separator:a12c135eebb5501514adb6910ea68070b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a150ab0316fb7e508152bf43c87d65970"><td class="memItemLeft" align="right" valign="top"><a id="a150ab0316fb7e508152bf43c87d65970" name="a150ab0316fb7e508152bf43c87d65970"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_list</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types, int *arg_pos)</td></tr>
+<tr class="separator:a150ab0316fb7e508152bf43c87d65970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6bbf9fdc15e5da93c39250052204c8f"><td class="memItemLeft" align="right" valign="top"><a id="af6bbf9fdc15e5da93c39250052204c8f" name="af6bbf9fdc15e5da93c39250052204c8f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types, int *arg_pos)</td></tr>
+<tr class="separator:af6bbf9fdc15e5da93c39250052204c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1874fb66b416393062d8b6edf472b9f5"><td class="memItemLeft" align="right" valign="top"><a id="a1874fb66b416393062d8b6edf472b9f5" name="a1874fb66b416393062d8b6edf472b9f5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg</b> (char *arg_type)</td></tr>
 <tr class="separator:a1874fb66b416393062d8b6edf472b9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
