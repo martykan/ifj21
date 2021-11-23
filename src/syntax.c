@@ -62,7 +62,6 @@ bool parser_init_func_match(char var_type, char* ret);
 bool parser_assign_func_match(char* ids, char* ret);
 bool parser_assign_exp_match(char* ids, char* exps);
 
-
 bool parser_start() {
   token_t* token = token_buff(TOKEN_NEW);
   if (error_get()) {
@@ -191,7 +190,8 @@ bool parser_function_def() {
           }
 
           codegen_function_definition_begin(id);
-          if (parser_type_list(&ret_types) && parser_local_scope(&ret_types, false)) {
+          if (parser_type_list(&ret_types) &&
+              parser_local_scope(&ret_types, false)) {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_K_END) {
@@ -667,7 +667,7 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
     case TT_ID:
     case TT_INTEGER:
     case TT_NUMBER:
-    case TT_STRING:
+    case TT_STRING: {
       char arg_type;
       if (parser_arg(&arg_type)) {
         dynstr_append(arg_types, arg_type);
@@ -684,8 +684,9 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
 
         return parser_arg_append(arg_types, arg_pos);
       }
+    }
 
-      break;
+    break;
     case TT_RPAR:
       return true;
     default:
@@ -770,7 +771,7 @@ bool parser_func_ret_match(char* declared, char* returned) {
   while (*declared != '\0') {
     // more declared return values than returned
     // NILs are returned
-    if(*returned == '\0') {
+    if (*returned == '\0') {
       return true;
     }
 
@@ -798,8 +799,8 @@ bool parser_local_scope(const dynstr_t* ret_types, bool create_scope) {
   // is syntax correct
   bool is_correct = false;
 
-  if(create_scope) {
-  symtab_subtab_push(symtab);
+  if (create_scope) {
+    symtab_subtab_push(symtab);
     if (error_get()) {
       goto EXIT;
     }
@@ -819,8 +820,8 @@ bool parser_local_scope(const dynstr_t* ret_types, bool create_scope) {
     case TT_K_RETURN:
     case TT_K_END:
     case TT_ID:
-      if(parser_stlist_local(ret_types) && parser_returned(&exp_types)) {
-        if(!parser_func_ret_match(ret_types->str, exp_types.str)) {
+      if (parser_stlist_local(ret_types) && parser_returned(&exp_types)) {
+        if (!parser_func_ret_match(ret_types->str, exp_types.str)) {
           error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
           goto FREE_EXP_TYPES;
         }
@@ -842,7 +843,7 @@ bool parser_local_scope(const dynstr_t* ret_types, bool create_scope) {
 FREE_EXP_TYPES:
   dynstr_free_buffer(&exp_types);
 POP_SUBTAB:
-  if(create_scope) {
+  if (create_scope) {
     symtab_subtab_pop(symtab);
   }
 EXIT:
@@ -975,7 +976,7 @@ bool parser_var_dec() {
 
       char var_type;
       if (parser_type(&var_type)) {
-        if(parser_init(var_type)) {
+        if (parser_init(var_type)) {
           parser_declare_var(id, var_type);
           if (error_get()) {
             goto FREE_ID;
@@ -1138,7 +1139,7 @@ bool parser_init(char var_type) {
 }
 
 bool parser_init_func_match(char var_type, char* ret) {
-  if(var_type != *ret) {
+  if (var_type != *ret) {
     if (var_type != 'n' || *ret != 'i') {
       return false;
     }
@@ -1158,11 +1159,11 @@ bool parser_init_after(char var_type) {
     case TT_STRING:
     case TT_LPAR:
     case TT_K_NIL:
-    case TT_SOP_LENGTH:
+    case TT_SOP_LENGTH: {
       char exp_type;
-      if(parser_exp(&exp_type)) {
-        if(var_type != exp_type) {
-          if(var_type != 'n' || exp_type != 'i') {
+      if (parser_exp(&exp_type)) {
+        if (var_type != exp_type) {
+          if (var_type != 'n' || exp_type != 'i') {
             error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
@@ -1172,15 +1173,16 @@ bool parser_init_after(char var_type) {
       }
 
       break;
+    }
     case TT_ID:
       // can be function call or
       // expression starting with id
 
       if (parser_isdeclared_var(token->attr.str)) {
         char exp_type;
-        if(parser_exp(&exp_type)) {
-          if(var_type != exp_type) {
-            if(var_type != 'n' || exp_type != 'i') {
+        if (parser_exp(&exp_type)) {
+          if (var_type != exp_type) {
+            if (var_type != 'n' || exp_type != 'i') {
               error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
               return false;
             }
@@ -1189,9 +1191,10 @@ bool parser_init_after(char var_type) {
           return true;
         }
       } else if (parser_isdeclared_func(token->attr.str)) {
-        symtab_func_data_t* declared = symtab_find_func(symtab, token->attr.str);
-        if(parser_function_call_by_id(token->attr.str)) {
-          if(!parser_init_func_match(var_type, declared->return_types)) {
+        symtab_func_data_t* declared =
+            symtab_find_func(symtab, token->attr.str);
+        if (parser_function_call_by_id(token->attr.str)) {
+          if (!parser_init_func_match(var_type, declared->return_types)) {
             error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
@@ -1224,22 +1227,27 @@ bool parser_id_after() {
     goto EXIT;
   }
 
-  token_buff(TOKEN_NEW);
+  token = token_buff(TOKEN_NEW);
   if (error_get()) {
     goto FREE_ID;
   }
 
   switch (token->type) {
-    case TT_LPAR:
-      if(parser_function_call_by_id(id)) {
+    case TT_LPAR: {
+      symtab_func_data_t* declared_func = symtab_find_func(symtab, id);
+      if (!declared_func) {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+        return false;
+      }
+      if (parser_function_call(declared_func)) {
         is_correct = true;
         goto FREE_ID;
       }
 
-      break;
+    } break;
     case TT_COMMA:
     case TT_COP_EQ:
-      if(parser_assign_st(id)) {
+      if (parser_assign_st(id)) {
         is_correct = true;
         goto FREE_ID;
       }
@@ -1290,7 +1298,7 @@ bool parser_assign_st(char* id) {
         goto FREE_ID_TYPES;
       }
 
-      if(parser_assign_what(&id_types)) {
+      if (parser_assign_what(&id_types)) {
         is_correct = true;
         goto FREE_ID_TYPES;
       }
@@ -1319,7 +1327,8 @@ bool parser_id_append(dynstr_t* id_types) {
       }
 
       if (token->type == TT_ID) {
-        symtab_var_data_t* declared_var = symtab_find_var(symtab, token->attr.str);
+        symtab_var_data_t* declared_var =
+            symtab_find_var(symtab, token->attr.str);
         if (!declared_var) {
           error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
           return false;
@@ -1364,9 +1373,11 @@ bool parser_assign_what(const dynstr_t* id_types) {
       if (parser_isdeclared_var(token->attr.str)) {
         return parser_assign_exp(id_types);
       } else if (parser_isdeclared_func(token->attr.str)) {
-        symtab_func_data_t* declared = symtab_find_func(symtab, token->attr.str);
-        if(parser_function_call_by_id(token->attr.str)) {
-          if(!parser_assign_func_match(id_types->str, declared->return_types)) {
+        symtab_func_data_t* declared =
+            symtab_find_func(symtab, token->attr.str);
+        if (parser_function_call_by_id(token->attr.str)) {
+          if (!parser_assign_func_match(id_types->str,
+                                        declared->return_types)) {
             error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
@@ -1448,8 +1459,8 @@ bool parser_assign_exp(const dynstr_t* id_types) {
     goto EXIT;
   }
 
-  if(parser_exp_list(&exp_types)) {
-    if(!parser_assign_exps_match(id_types->str, exp_types.str)) {
+  if (parser_exp_list(&exp_types)) {
+    if (!parser_assign_exp_match(id_types->str, exp_types.str)) {
       goto FREE_EXP_TYPES;
     }
 
@@ -1478,7 +1489,7 @@ bool parser_exp_list(dynstr_t* exp_types) {
     case TT_LPAR:
     case TT_K_NIL:
     case TT_SOP_LENGTH:
-    case TT_ID:
+    case TT_ID: {
       char exp_type;
       if (parser_exp(&exp_type)) {
         dynstr_append(exp_types, exp_type);
@@ -1488,8 +1499,9 @@ bool parser_exp_list(dynstr_t* exp_types) {
 
         return parser_exp_append(exp_types);
       }
+    }
 
-      break;
+    break;
     default:
       break;
   }
@@ -1510,7 +1522,7 @@ bool parser_exp_append(dynstr_t* exp_types) {
     case TT_K_END:
     case TT_ID:
       return true;
-    case TT_COMMA:
+    case TT_COMMA: {
       token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
@@ -1525,8 +1537,7 @@ bool parser_exp_append(dynstr_t* exp_types) {
 
         return parser_exp_append(exp_types);
       }
-
-      break;
+    } break;
     default:
       break;
   }
@@ -1548,7 +1559,7 @@ bool parser_exp(char* exp_type) {
     case TT_ID:
       return expression_parse(exp_type);
     default:
-    error_set(EXITSTATUS_ERROR_SYNTAX);
-    return false;
+      error_set(EXITSTATUS_ERROR_SYNTAX);
+      return false;
   }
 }
