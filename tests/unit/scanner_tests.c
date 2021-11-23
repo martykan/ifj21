@@ -1,15 +1,8 @@
+#include "scanner_tests.h"
 #include "../../lib/greatest.h"
-#include <stdio.h>
-#include <stdbool.h>
 
 #include "../../src/scanner.c"
 
-#define REWRITE_BUFF_FILE(str) ASSERT_EQm("file write failed", rewrite_buffer_file((str)), true);
-
-#define SET_INPUT(str) do {\
-  ASSERT_EQm("file write failed", rewrite_buffer_file((str)), true);\
-  freopen("tests/unit/scanner_input_files/buffer_file.txt", "r", stdin);\
-} while(0)
 
 bool rewrite_buffer_file(char *str) {
   FILE *f = fopen("tests/unit/scanner_input_files/buffer_file.txt", "w");

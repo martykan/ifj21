@@ -15,6 +15,7 @@
 #include "codegen.h"
 #include "dynstr.h"
 #include "errors.h"
+#include "expressions.h"
 #include "other.h"
 #include "parser.h"
 #include "scanner.h"
@@ -1194,10 +1195,7 @@ bool parser_exp() {
     case TT_K_NIL:
     case TT_SOP_LENGTH:
     case TT_ID:
-      // TODO
-      // char exp_type;
-      // return call_bt_parser(&exp_type);
-      return true;
+      return expression_parse();
     default:
       return false;
   }
