@@ -281,10 +281,23 @@ token_t *scanner_make_string_tok(token_t *tok) {
  * @return true if c is escapable, false otherwise.
  */
 bool is_escapable_char(int c) {
-  if (c == 'n' || c == 't' || c == '\\' || c == '"') {
+  if (c == 'n' || c == 't' || c == '\\') {
     return true;
   }
   return false;
+}
+
+char get_escaped_cahr(int c) {
+  if (c == 'n') {
+    return '\n';
+  }
+  else if (c == 't') {
+    return '\t';
+  }
+  else if (c =='\\') {
+    return '\\';
+  }
+  return 0;
 }
 
 
@@ -517,32 +530,45 @@ token_t *scanner_get_next_token() {
           return scanner_make_string_tok(new_token);
         }
         else if (curr_char == '\\') {
-          APPEND_CHAR(curr_char, new_token);
           state = STATE_STRING_ESC;
         }
         else if (curr_char == '\n' || curr_char == EOF) {
           return scanner_make_error_token(new_token);
+        }
+        else if (curr_char <= 32 || curr_char == '#') { // escape whitespace
+          if (dynstr_append_esc(&str_buffer, curr_char) == NULL) {
+            return NULL;
+          }
         }
         else if (curr_char > 31) {
           APPEND_CHAR(curr_char, new_token);
         }
         else {
           // error
-          /* TODO(filip): what happens here? - should we try to find the end of the string? */
+          /* TODO(filip): set error flag, return null */
           return scanner_make_error_token(new_token);
         }
         break;
 
       case STATE_STRING_ESC:
         if (isdigit(curr_char)) {
+          APPEND_CHAR('\\', new_token);
           APPEND_CHAR(curr_char, new_token);
           state = STATE_STRING_ESC_CODE_1;
         }
+        else if (curr_char == '"') {
+          APPEND_CHAR('"', new_token);
+          state = STATE_STRING_START;
+        }
         else if (is_escapable_char(curr_char)) {
-          APPEND_CHAR(curr_char, new_token);
+          char c = get_escaped_cahr(curr_char);
+          if (dynstr_append_esc(&str_buffer, c) == NULL) {
+            return NULL;
+          }
           state = STATE_STRING_START;
         }
         else {
+          // TODO(filip): return null, set error flag and print err msg
           return scanner_make_error_token(new_token);
         }
         break;
