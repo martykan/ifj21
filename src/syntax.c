@@ -1227,19 +1227,24 @@ bool parser_id_after() {
     goto EXIT;
   }
 
-  token_buff(TOKEN_NEW);
+  token = token_buff(TOKEN_NEW);
   if (error_get()) {
     goto FREE_ID;
   }
 
   switch (token->type) {
-    case TT_LPAR:
-      if (parser_function_call_by_id(id)) {
+    case TT_LPAR: {
+      symtab_func_data_t* declared_func = symtab_find_func(symtab, id);
+      if (!declared_func) {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+        return false;
+      }
+      if (parser_function_call(declared_func)) {
         is_correct = true;
         goto FREE_ID;
       }
 
-      break;
+    } break;
     case TT_COMMA:
     case TT_COP_EQ:
       if (parser_assign_st(id)) {
