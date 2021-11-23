@@ -79,6 +79,8 @@ dynstr_t* dynstr_clear(dynstr_t *dynstr);
  */
 dynstr_t* dynstr_append(dynstr_t *dynstr, char c);
 
+dynstr_t* dynstr_append_str(dynstr_t *dynstr, char *str);
+dynstr_t* dynstr_prepend_str(dynstr_t *dynstr, char *str);
 
 // TODO(filip): comment
 dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c);

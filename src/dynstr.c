@@ -89,6 +89,25 @@ dynstr_t* dynstr_append(dynstr_t *dynstr, char c) {
   return dynstr;
 }
 
+dynstr_t *dynstr_append_str(dynstr_t *dynstr, char *str) {
+  char c;
+  int i = 0;
+  while ((c = str[i])) {
+    dynstr_append(dynstr, c);
+    i++;
+  }
+
+  return dynstr;
+}
+
+dynstr_t *dynstr_prepend_str(dynstr_t *dynstr, char *str) {
+  dynstr_append_str(dynstr, str);
+  memmove(dynstr->str + strlen(str), dynstr->str, dynstr->len - strlen(str));
+  memcpy(dynstr->str, str, strlen(str));
+
+  return dynstr;
+}
+
 dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c) {
   char esc_buf[4]; // eg. 032, 092
 

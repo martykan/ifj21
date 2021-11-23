@@ -107,13 +107,30 @@ void codegen_expression_lt() { printf("LTS\n"); }
 void codegen_expression_gt() { printf("GTS\n"); }
 
 void codegen_expression_concat() {
+  printf("DEFVAR LF@$tmp1\n");
+  printf("DEFVAR LF@$tmp2\n");
+  printf("DEFVAR LF@$tmp3\n");
   printf("POPS LF@$tmp1\n");
   printf("POPS LF@$tmp2\n");
-  printf("CONCAT LF@$tmp3 LF@$tmp1 LF@$tmp2\n");
+  printf("CONCAT LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
   printf("PUSHS LF@$tmp3\n");
 }
 void codegen_expression_lte() { printf("# E -> E<=E\n"); }
 void codegen_expression_gte() { printf("# E -> E>=E\n"); }
 
 void codegen_define_var(char* id) { printf("DEFVAR LF@%s\n", id); }
-void codegen_assign_expression(char* id) { printf("POPS LF@%s\n", id); }
+
+dynstr_t expression_assign_buffer;
+
+void codegen_assign_expression_add(char* id) {
+  if (expression_assign_buffer.str == NULL) {
+    dynstr_init(&expression_assign_buffer);
+  }
+  dynstr_prepend_str(&expression_assign_buffer, "\n");
+  dynstr_prepend_str(&expression_assign_buffer, id);
+  dynstr_prepend_str(&expression_assign_buffer, "POPS LF@");
+}
+void codegen_assign_expression_finish() {
+  printf("%s", expression_assign_buffer.str);
+  dynstr_clear(&expression_assign_buffer);
+}

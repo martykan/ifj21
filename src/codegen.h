@@ -44,6 +44,7 @@ void codegen_expression_gt();
 void codegen_expression_gte();
 
 void codegen_define_var();
-void codegen_assign_expression();
+void codegen_assign_expression_add(char* id);
+void codegen_assign_expression_finish();
 
 #endif

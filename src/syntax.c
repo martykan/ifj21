@@ -45,7 +45,7 @@ bool parser_return_what(dynstr_t* exp_types);
 bool parser_var_dec();
 bool parser_if_st(const dynstr_t* ret_types);
 bool parser_while_st(const dynstr_t* ret_types);
-bool parser_init(char var_type);
+bool parser_init(char var_type, bool* did_init);
 bool parser_init_after(char var_type);
 bool parser_id_after();
 bool parser_assign_st(char* id);
@@ -188,7 +188,7 @@ bool parser_function_def() {
         token = token_buff(TOKEN_THIS);
 
         params = parser_get_params(strlen(param_types.str));
-        if(error_get()) {
+        if (error_get()) {
           goto POP_SUBTAB;
         }
 
@@ -986,12 +986,16 @@ bool parser_var_dec() {
         goto FREE_ID;
       }
 
-      char var_type;
+      char var_type = 0;
       if (parser_type(&var_type)) {
         codegen_define_var(id);
-        if (parser_init(var_type)) {
+        bool did_init = false;
+        if (parser_init(var_type, &did_init)) {
           parser_declare_var(id, var_type);
-          codegen_assign_expression(id);
+          if (did_init) {
+            codegen_assign_expression_add(id);
+            codegen_assign_expression_finish();
+          }
           if (error_get()) {
             goto FREE_ID;
           }
@@ -1127,7 +1131,7 @@ EXIT:
   return false;
 }
 
-bool parser_init(char var_type) {
+bool parser_init(char var_type, bool* did_init) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -1136,6 +1140,7 @@ bool parser_init(char var_type) {
       if (error_get()) {
         return false;
       }
+      *did_init = true;
 
       return parser_init_after(var_type);
     case TT_K_LOCAL:
@@ -1261,7 +1266,6 @@ bool parser_id_after() {
     case TT_COMMA:
     case TT_ASSIGN:
       if (parser_assign_st(id)) {
-        codegen_assign_expression(id);
         is_correct = true;
         goto FREE_ID;
       }
@@ -1302,6 +1306,7 @@ bool parser_assign_st(char* id) {
   if (error_get()) {
     goto FREE_ID_TYPES;
   }
+  codegen_assign_expression_add(id);
 
   if (parser_id_append(&id_types)) {
     token_t* token = token_buff(TOKEN_THIS);
@@ -1313,6 +1318,7 @@ bool parser_assign_st(char* id) {
       }
 
       if (parser_assign_what(&id_types)) {
+        codegen_assign_expression_finish();
         is_correct = true;
         goto FREE_ID_TYPES;
       }
@@ -1352,6 +1358,7 @@ bool parser_id_append(dynstr_t* id_types) {
         if (error_get()) {
           return false;
         }
+        codegen_assign_expression_add(token->attr.str);
 
         token_buff(TOKEN_NEW);
         if (error_get()) {
