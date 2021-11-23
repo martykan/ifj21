@@ -85,7 +85,8 @@ $(document).ready(function(){initNavTree('expressions_8c.html',''); initResizabl
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">expressions.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -121,10 +122,27 @@ expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_to
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print_stack</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
 <tr class="memdesc:a49b928406c70e30a9527b847d5dc7f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print stack - for debugging. <br /></td></tr>
 <tr class="separator:a49b928406c70e30a9527b847d5dc7f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50848ab4ee392b425cdcfecdd472f563"><td class="memItemLeft" align="right" valign="top"><a id="a50848ab4ee392b425cdcfecdd472f563" name="a50848ab4ee392b425cdcfecdd472f563"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (expression_symbol_t *input)</td></tr>
-<tr class="memdesc:a50848ab4ee392b425cdcfecdd472f563"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
-<tr class="separator:a50848ab4ee392b425cdcfecdd472f563"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="memItemLeft" align="right" valign="top"><a id="a12383d2e1b6e6cd0e5b92deb43b4814f" name="a12383d2e1b6e6cd0e5b92deb43b4814f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
+<tr class="memdesc:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
+<tr class="separator:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memItemLeft" align="right" valign="top"><a id="a9ccb2ca62a6809dadc33051629ee8b14" name="a9ccb2ca62a6809dadc33051629ee8b14"></a>
+expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_input</b> ()</td></tr>
+<tr class="separator:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memItemLeft" align="right" valign="top"><a id="ab017ea845ec8c8c1e33665dc61d19e72" name="ab017ea845ec8c8c1e33665dc61d19e72"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>expression_next_input</b> ()</td></tr>
+<tr class="separator:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7597ba8928c9767845bd38fd45b96a23"><td class="memItemLeft" align="right" valign="top"><a id="a7597ba8928c9767845bd38fd45b96a23" name="a7597ba8928c9767845bd38fd45b96a23"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_parse</b> ()</td></tr>
+<tr class="separator:a7597ba8928c9767845bd38fd45b96a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a7f5baef24847a99d2e91a90a76257455"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a7f5baef24847a99d2e91a90a76257455">expression_symbol_t_names</a> []</td></tr>
+<tr class="separator:a7f5baef24847a99d2e91a90a76257455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a37ab74a9f33614ec4a1bbdcddf4895"><td class="memItemLeft" align="right" valign="top"><a id="a5a37ab74a9f33614ec4a1bbdcddf4895" name="a5a37ab74a9f33614ec4a1bbdcddf4895"></a>
+const expression_precedence_t&#160;</td><td class="memItemRight" valign="bottom"><b>precedence_table</b> [8][8]</td></tr>
+<tr class="separator:a5a37ab74a9f33614ec4a1bbdcddf4895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Expression parser implementation. </p>
@@ -159,6 +177,27 @@ Filip Stolfa </dd></dl>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Index of the symbol in the precedence table </dd></dl>
 
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a7f5baef24847a99d2e91a90a76257455" name="a7f5baef24847a99d2e91a90a76257455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f5baef24847a99d2e91a90a76257455">&#9670;&nbsp;</a></span>expression_symbol_t_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* expression_symbol_t_names[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_PLUS&quot;</span>,   <span class="stringliteral">&quot;SYM_MINUS&quot;</span>, <span class="stringliteral">&quot;SYM_TIMES&quot;</span>,    <span class="stringliteral">&quot;SYM_DIVIDE&quot;</span>,   <span class="stringliteral">&quot;SYM_DIVIDE2&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_DOTDOT&quot;</span>, <span class="stringliteral">&quot;SYM_GT&quot;</span>,    <span class="stringliteral">&quot;SYM_GTE&quot;</span>,      <span class="stringliteral">&quot;SYM_EQ&quot;</span>,       <span class="stringliteral">&quot;SYM_NEQ&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_LTE&quot;</span>,    <span class="stringliteral">&quot;SYM_LT&quot;</span>,    <span class="stringliteral">&quot;SYM_LBRACKET&quot;</span>, <span class="stringliteral">&quot;SYM_RBRACKET&quot;</span>, <span class="stringliteral">&quot;SYM_I&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_S&quot;</span>,      <span class="stringliteral">&quot;SYM_E&quot;</span>,     <span class="stringliteral">&quot;SYM_PREC_GT&quot;</span>,  <span class="stringliteral">&quot;SYM_PREC_LT&quot;</span>,</div>
+<div class="line">}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
