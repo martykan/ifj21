@@ -15,6 +15,7 @@
 #include "codegen.h"
 #include "dynstr.h"
 #include "errors.h"
+#include "expressions.h"
 #include "other.h"
 #include "parser.h"
 #include "scanner.h"
@@ -1545,12 +1546,7 @@ bool parser_exp(char* exp_type) {
     case TT_K_NIL:
     case TT_SOP_LENGTH:
     case TT_ID:
-      // TODO
-      // >does not consume terminal
-      // >just passes it to exp parser
-      // >exp parser needs to check whether IDs are declared
-      // return call_bt_parser(exp_type);
-      return true;
+      return expression_parse(exp_type);
     default:
     error_set(EXITSTATUS_ERROR_SYNTAX);
     return false;

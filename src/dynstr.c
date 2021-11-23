@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "dynstr.h"
 
@@ -84,6 +85,24 @@ dynstr_t* dynstr_append(dynstr_t *dynstr, char c) {
   dynstr->len++;
   // add terminating null byte
   dynstr->str[dynstr->len] = '\0';
+
+  return dynstr;
+}
+
+dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c) {
+  char esc_buf[4]; // eg. 032, 092
+
+  sprintf(esc_buf, "%03d", c);
+
+  if (dynstr_append(dynstr, '\\') == NULL) {
+    return NULL;
+  }
+
+  for (int i = 0; i < 3; i++) {
+    if (dynstr_append(dynstr, esc_buf[i]) == NULL) {
+      return NULL;
+    }
+  }
 
   return dynstr;
 }
