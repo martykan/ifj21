@@ -121,12 +121,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a138cceef85269e22939b3581d02eba61"><td class="memItemLeft" align="right" valign="top"><a id="a138cceef85269e22939b3581d02eba61" name="a138cceef85269e22939b3581d02eba61"></a>
 <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>dynstr_append_esc</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, char c)</td></tr>
 <tr class="separator:a138cceef85269e22939b3581d02eba61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbfa91fc17e680a114f7c937cd1b0f37"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#acbfa91fc17e680a114f7c937cd1b0f37">dynstr_copy_to_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
-<tr class="memdesc:acbfa91fc17e680a114f7c937cd1b0f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a static copy of the string.  <a href="dynstr_8h.html#acbfa91fc17e680a114f7c937cd1b0f37">More...</a><br /></td></tr>
-<tr class="separator:acbfa91fc17e680a114f7c937cd1b0f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7347f2997224135f17753d4f3303e13d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a7347f2997224135f17753d4f3303e13d">dynstr_equals_static</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, const char *str)</td></tr>
-<tr class="memdesc:a7347f2997224135f17753d4f3303e13d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a dynamic and classic string.  <a href="dynstr_8h.html#a7347f2997224135f17753d4f3303e13d">More...</a><br /></td></tr>
-<tr class="separator:a7347f2997224135f17753d4f3303e13d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27dae4abbb3e3b8d4401372db94ebd2f"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a27dae4abbb3e3b8d4401372db94ebd2f">dynstr_copy_to_static</a> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
+<tr class="memdesc:a27dae4abbb3e3b8d4401372db94ebd2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes a static copy of the string.  <a href="dynstr_8h.html#a27dae4abbb3e3b8d4401372db94ebd2f">More...</a><br /></td></tr>
+<tr class="separator:a27dae4abbb3e3b8d4401372db94ebd2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6d8f85a05d8c4e8d454142e2fc9bb1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#ad6d8f85a05d8c4e8d454142e2fc9bb1c">dynstr_equals_static</a> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr, const char *str)</td></tr>
+<tr class="memdesc:ad6d8f85a05d8c4e8d454142e2fc9bb1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares a dynamic and classic string.  <a href="dynstr_8h.html#ad6d8f85a05d8c4e8d454142e2fc9bb1c">More...</a><br /></td></tr>
+<tr class="separator:ad6d8f85a05d8c4e8d454142e2fc9bb1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cfa7469f2f8df0b38df3b419b4a8a1b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dynstr_8h.html#a8cfa7469f2f8df0b38df3b419b4a8a1b">dynstr_to_int</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *dynstr)</td></tr>
 <tr class="memdesc:a8cfa7469f2f8df0b38df3b419b4a8a1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> string value to an integer value.  <a href="dynstr_8h.html#a8cfa7469f2f8df0b38df3b419b4a8a1b">More...</a><br /></td></tr>
 <tr class="separator:a8cfa7469f2f8df0b38df3b419b4a8a1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -213,8 +213,8 @@ IMPLEMENTATION</h1>
 
 </div>
 </div>
-<a id="acbfa91fc17e680a114f7c937cd1b0f37" name="acbfa91fc17e680a114f7c937cd1b0f37"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbfa91fc17e680a114f7c937cd1b0f37">&#9670;&nbsp;</a></span>dynstr_copy_to_static()</h2>
+<a id="a27dae4abbb3e3b8d4401372db94ebd2f" name="a27dae4abbb3e3b8d4401372db94ebd2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27dae4abbb3e3b8d4401372db94ebd2f">&#9670;&nbsp;</a></span>dynstr_copy_to_static()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -222,7 +222,7 @@ IMPLEMENTATION</h1>
         <tr>
           <td class="memname">char * dynstr_copy_to_static </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
           <td class="paramname"><em>dynstr</em></td><td>)</td>
           <td></td>
         </tr>
@@ -240,8 +240,8 @@ IMPLEMENTATION</h1>
 
 </div>
 </div>
-<a id="a7347f2997224135f17753d4f3303e13d" name="a7347f2997224135f17753d4f3303e13d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7347f2997224135f17753d4f3303e13d">&#9670;&nbsp;</a></span>dynstr_equals_static()</h2>
+<a id="ad6d8f85a05d8c4e8d454142e2fc9bb1c" name="ad6d8f85a05d8c4e8d454142e2fc9bb1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6d8f85a05d8c4e8d454142e2fc9bb1c">&#9670;&nbsp;</a></span>dynstr_equals_static()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,7 +249,7 @@ IMPLEMENTATION</h1>
         <tr>
           <td class="memname">bool dynstr_equals_static </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
           <td class="paramname"><em>dynstr</em>, </td>
         </tr>
         <tr>

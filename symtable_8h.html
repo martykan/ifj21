@@ -106,6 +106,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data of the variable identifier.  <a href="structsymtab__var__data__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__vars__t.html">symtab_vars_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data of the function identifier.  <a href="structsymtab__func__data__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,6 +163,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a075a52c6c4eca75f50d99aca01cad17f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a075a52c6c4eca75f50d99aca01cad17f">symtab_subtab_foreach</a> (const <a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, void(*f)(<a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *data))</td></tr>
 <tr class="memdesc:a075a52c6c4eca75f50d99aca01cad17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function for each record in subtable.  <a href="symtable_8h.html#a075a52c6c4eca75f50d99aca01cad17f">More...</a><br /></td></tr>
 <tr class="separator:a075a52c6c4eca75f50d99aca01cad17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79558d5867fcbbb13d928755e13163d4"><td class="memItemLeft" align="right" valign="top"><a id="a79558d5867fcbbb13d928755e13163d4" name="a79558d5867fcbbb13d928755e13163d4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_get_top_vars</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="structsymtab__vars__t.html">symtab_vars_t</a> *vars)</td></tr>
+<tr class="separator:a79558d5867fcbbb13d928755e13163d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Symbol table API. </p>
@@ -431,6 +436,7 @@ IMPLEMENTATION</h1>
   <table class="params">
     <tr><td class="paramname">subtab</td><td>Subtable to operate on. </td></tr>
     <tr><td class="paramname">f</td><td>Function to execute. </td></tr>
+    <tr><td class="paramname">write_to</td><td>Where to save data. </td></tr>
   </table>
   </dd>
 </dl>

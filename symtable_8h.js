@@ -1,6 +1,7 @@
 var symtable_8h =
 [
     [ "symtab_var_data_t", "structsymtab__var__data__t.html", "structsymtab__var__data__t" ],
+    [ "symtab_vars_t", "structsymtab__vars__t.html", null ],
     [ "symtab_func_data_t", "structsymtab__func__data__t.html", "structsymtab__func__data__t" ],
     [ "symtab_data_t", "unionsymtab__data__t.html", "unionsymtab__data__t" ],
     [ "symtab_record_t", "structsymtab__record__t.html", "structsymtab__record__t" ],
