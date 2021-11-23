@@ -166,6 +166,21 @@ enum greatest_test_res param_single_tok_test(char *in, char *a_str, int a_int, d
   PASS();
 }
 
+char* remove_quotes(char *new_buf, char *str) {
+  if (str[0] == '\"') {
+    int len = strlen(str);
+    for (int i = 1; i < len; i++) {
+      if (str[i] == '\"' && i == len-1) {
+        new_buf[i-1] = '\0';
+        break;
+      }
+      new_buf[i-1] = str[i];
+    }
+    return new_buf;
+  }
+  return str;
+}
+
 // parameterized token test to be used multiple times on the same file
 enum greatest_test_res param_tok_test(char *a_str, int a_int, double a_num, token_type_t expected_type) {
   token_t *tok = scanner_get_next_token();
@@ -181,9 +196,11 @@ enum greatest_test_res param_tok_test(char *a_str, int a_int, double a_num, toke
 
   }
   ASSERT_EQm(msg, tok->type, expected_type);
+
+  char no_qoutes[300] = {'\0'};
   if (a_str != NULL) { // if a_str != NULL, we expect this token to be of type that has a string as its attribute
     ASSERT_NEQ(NULL, tok->attr.str);
-    ASSERT_STR_EQ(a_str, tok->attr.str);
+    ASSERT_STR_EQ(remove_quotes(no_qoutes, a_str), tok->attr.str);
   }
   else if (expected_type == TT_INTEGER) {
     ASSERT_EQ(a_int, tok->attr.int_val);
@@ -340,15 +357,15 @@ TEST keyword_id_correct_test() {
 TEST string_correct_test() {
   /* CHECK_CALL(param_single_tok_test("\"\"", "\"\"", TT_STRING)); */
 
-  CHECK_CALL(param_single_tok_test("\"ahoj\"", "\"ahoj\"", 0, 0, TT_STRING));
+  CHECK_CALL(param_single_tok_test("\"ahoj\"", "ahoj", 0, 0, TT_STRING));
 
-  CHECK_CALL(param_single_tok_test("\"hello there this is a string. :) %$#..-+*/\"", "\"hello there this is a string. :) %$#..-+*/\"", 0, 0, TT_STRING));
+  CHECK_CALL(param_single_tok_test("\"hello there this is a string. :) %$#..-+*/\"", "hello there this is a string. :) %$#..-+*/", 0, 0, TT_STRING));
 
-  CHECK_CALL(param_single_tok_test("\"escape one \\\"another string\\\"\"", "\"escape one \\\"another string\\\"\"", 0, 0, TT_STRING));
+  CHECK_CALL(param_single_tok_test("\"escape one \\\"another string\\\"\"", "escape one \\\"another string\\\"", 0, 0, TT_STRING));
 
-  CHECK_CALL(param_single_tok_test("   \"newline \\n in a string\"", "\"newline \\n in a string\"", 0, 0, TT_STRING));
+  CHECK_CALL(param_single_tok_test("   \"newline \\n in a string\"", "newline \\n in a string", 0, 0, TT_STRING));
 
-  CHECK_CALL(param_single_tok_test("\"escape code \\123  \"", "\"escape code \\123  \"", 0, 0, TT_STRING));
+  CHECK_CALL(param_single_tok_test("\"escape code \\123  \"", "escape code \\123  ", 0, 0, TT_STRING));
 
   PASS();
 }
