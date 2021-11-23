@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "errors.h"
+
 // PRIVATE FUNCTION FORWARD DECLARATIONS
 
 // ALLOCATION FUNCTIONS
@@ -111,15 +113,17 @@ void symtab_init_builtin(symtab_t* symtab, char* name, char* param_types,
 
 symtab_t* symtab_create() {
   symtab_t* symtab = malloc(sizeof(symtab_t));
-  if (symtab == NULL) {
+  if (!symtab) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
 
   symtab->global_scope = symtab_subtab_create(SYMTAB_BUCKET_COUNT);
-  if (!symtab->global_scope) {
+  if (error_get()) {
     free(symtab);
     return NULL;
   }
+
   symtab_init_builtin(symtab, "write", "a+", "");
 
   symtab->local_scopes = NULL;
@@ -130,7 +134,7 @@ symtab_t* symtab_create() {
 void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
                          char* return_types) {
   symtab_func_data_t* func_data = symtab_insert_func(symtab, id);
-  if (!func_data) {
+  if (error_get()) {
     return;
   }
   func_data->func_name = id;
@@ -142,7 +146,8 @@ void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
 symtab_subtab_t* symtab_subtab_create(size_t n) {
   symtab_subtab_t* subtab =
       malloc(sizeof(symtab_subtab_t) + n * sizeof(symtab_record_t*));
-  if (subtab == NULL) {
+  if (!subtab) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
 
@@ -157,13 +162,15 @@ symtab_subtab_t* symtab_subtab_create(size_t n) {
 
 symtab_record_t* symtab_record_create(symtab_key_t key) {
   symtab_record_t* rec = malloc(sizeof(symtab_record_t));
-  if (rec == NULL) {
+  if (!rec) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
 
   char* new_key = malloc(strlen(key) + 1);
-  if (new_key == NULL) {
+  if (!new_key) {
     free(rec);
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
   strcpy(new_key, key);
@@ -225,7 +232,7 @@ void symtab_record_free(symtab_record_t* rec) {
 
 bool symtab_subtab_push(symtab_t* symtab) {
   symtab_subtab_t* subtab = symtab_subtab_create(SYMTAB_BUCKET_COUNT);
-  if (subtab == NULL) {
+  if (error_get()) {
     return false;
   }
 
@@ -294,7 +301,7 @@ symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key) {
     ;
 
   symtab_record_t* new_rec = symtab_record_create(key);
-  if (!new_rec) {
+  if (error_get()) {
     return NULL;
   }
 
