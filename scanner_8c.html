@@ -193,6 +193,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a2594d9fda4f3a0b93ee37fbdb7b3b578">is_escapable_char</a> (int c)</td></tr>
 <tr class="memdesc:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if character can be part of an escape sequence.  <a href="scanner_8c.html#a2594d9fda4f3a0b93ee37fbdb7b3b578">More...</a><br /></td></tr>
 <tr class="separator:a2594d9fda4f3a0b93ee37fbdb7b3b578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae83e0680d8eb3190fa921d54d3c8cd1d"><td class="memItemLeft" align="right" valign="top"><a id="ae83e0680d8eb3190fa921d54d3c8cd1d" name="ae83e0680d8eb3190fa921d54d3c8cd1d"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>get_escaped_cahr</b> (int c)</td></tr>
+<tr class="separator:ae83e0680d8eb3190fa921d54d3c8cd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
 <a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scanner_get_next_token</b> ()</td></tr>
 <tr class="separator:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -247,7 +250,7 @@ Filip Stolfa </dd></dl>
 <div class="line">    <span class="comment">/* TODO(filip): set error flag */</span>\</div>
 <div class="line">  }\</div>
 <div class="line">}<span class="keywordflow">while</span>(0)</div>
-<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdoc">Appends a character to a dynamic string.</div><div class="ttdef"><b>Definition:</b> dynstr.c:64</div></div>
+<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdoc">Appends a character to a dynamic string.</div><div class="ttdef"><b>Definition:</b> dynstr.c:65</div></div>
 <div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:36</div></div>
 </div><!-- fragment -->
 <p>Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. </p>
