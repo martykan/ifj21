@@ -152,15 +152,19 @@ bool parser_function_def() {
   if (error_get()) {
     goto FREE_ID;
   }
+
   dynstr_t ret_types;
   dynstr_init(&ret_types);
   if (error_get()) {
     goto FREE_PARAM_TYPES;
   }
+
   symtab_subtab_push(symtab);
   if (error_get()) {
     goto FREE_RET_TYPES;
   }
+
+  symtab_vars_t* params = NULL;
 
   if (token->type == TT_ID) {
     symtab_func_data_t* declared_func = symtab_find_func(symtab, id);
@@ -183,10 +187,15 @@ bool parser_function_def() {
       if (parser_param_list(&param_types)) {
         token = token_buff(TOKEN_THIS);
 
+        params = parser_get_params(strlen(param_types.str));
+        if(error_get()) {
+          goto POP_SUBTAB;
+        }
+
         if (token->type == TT_RPAR) {
           token = token_buff(TOKEN_NEW);
           if (error_get()) {
-            goto POP_SUBTAB;
+            goto FREE_PARAMS;
           }
 
           codegen_function_definition_begin(id);
@@ -197,7 +206,7 @@ bool parser_function_def() {
             if (token->type == TT_K_END) {
               token_buff(TOKEN_NEW);
               if (error_get()) {
-                goto POP_SUBTAB;
+                goto FREE_PARAMS;
               }
 
               if (declared_func) {
@@ -205,17 +214,18 @@ bool parser_function_def() {
                     strcmp(declared_func->return_types, ret_types.str)) {
                   // function declaration and definition dont match
                   error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
-                  goto POP_SUBTAB;
+                  goto FREE_PARAMS;
                 } else {
-                  parser_define_func(id);
+                  parser_define_func(id, params);
                 }
               } else {
                 parser_declare_func(id, &param_types, &ret_types);
                 if (error_get()) {
-                  goto POP_SUBTAB;
+                  goto FREE_PARAMS;
                 }
-                parser_define_func(id);
+                parser_define_func(id, params);
               }
+              params = NULL;
 
               is_correct = true;
               codegen_function_definition_end(id);
@@ -232,6 +242,8 @@ bool parser_function_def() {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
+FREE_PARAMS:
+  free(params);
 POP_SUBTAB:
   symtab_subtab_pop(symtab);
 FREE_RET_TYPES:

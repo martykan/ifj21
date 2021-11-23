@@ -51,6 +51,11 @@ typedef struct {
   bool is_used;
 } symtab_var_data_t;
 
+typedef struct {
+  int cnt;
+  symtab_var_data_t* vars[];
+} symtab_vars_t;
+
 /**
  * @struct symtab_func_data_t
  * @brief Data of the function identifier.
@@ -62,12 +67,15 @@ typedef struct {
  *  Each represented as single character in string.
  * @var symtab_func_data_t::was_defined
  *  Was the function body already defined?
+ * @var symtab_func_data_t::params
+ *  Pointers to symtable where arguments are stored.
  */
 typedef struct {
   char* func_name;
   char* param_types;
   char* return_types;
   bool was_defined;
+  symtab_vars_t* params;
 } symtab_func_data_t;
 
 /**
@@ -213,8 +221,11 @@ symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key);
  * Executes function for each record in subtable.
  * @param subtab Subtable to operate on.
  * @param f Function to execute.
+ * @param write_to Where to save data.
  */
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,
                            void (*f)(symtab_data_t* data));
+
+void symtab_get_top_vars(const symtab_t* symtab, symtab_vars_t* vars);
 
 #endif  // __SYMTAB_H__

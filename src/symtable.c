@@ -313,6 +313,17 @@ symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key) {
   return &new_rec->data;
 }
 
+void symtab_get_top_vars(const symtab_t* symtab, symtab_vars_t* vars) {
+  symtab_subtab_t* subtab = symtab->local_scopes;
+  int found = 0;
+
+  for (unsigned i = 0; i < subtab->bucket_cnt; i++) {
+    for (symtab_record_t* rec = subtab->list[i]; rec != NULL; rec = rec->next) {
+      vars->vars[++found] = &rec->data.var_data;
+    }
+  }
+}
+
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,
                            void (*f)(symtab_data_t* data)) {
   for (unsigned i = 0; i < subtab->bucket_cnt; i++) {
@@ -320,7 +331,6 @@ void symtab_subtab_foreach(const symtab_subtab_t* subtab,
       (*f)(&rec->data);
     }
   }
-  return;
 }
 
 bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key) {
