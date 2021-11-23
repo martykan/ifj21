@@ -80,6 +80,10 @@ dynstr_t* dynstr_clear(dynstr_t *dynstr);
 dynstr_t* dynstr_append(dynstr_t *dynstr, char c);
 
 
+// TODO(filip): comment
+dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c);
+
+
 /** Makes a static copy of the string.
  *  Copies the characters from the dynstr string buffer into
  *  a new character buffer.
