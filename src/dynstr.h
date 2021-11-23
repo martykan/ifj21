@@ -91,7 +91,7 @@ dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c);
  *  @param dynstr Pointer to an existing dynstr struct.
  *  @return Pointer to the new character buffer. NULL if failed.
  */
-char* dynstr_copy_to_static(dynstr_t *dynstr);
+char* dynstr_copy_to_static(const dynstr_t *dynstr);
 
 
 /** Compares a dynamic and classic string.
@@ -101,7 +101,7 @@ char* dynstr_copy_to_static(dynstr_t *dynstr);
  *  @param str Pointer to a valid c string. Can't be NULL.
  *  @return True if strings are equal, false otherwise.
  */
-bool dynstr_equals_static(dynstr_t *dynstr, const char *str);
+bool dynstr_equals_static(const dynstr_t *dynstr, const char *str);
 
 
 /** Converts a dynstr_t string value to an integer value.

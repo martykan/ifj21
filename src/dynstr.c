@@ -107,7 +107,7 @@ dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c) {
   return dynstr;
 }
 
-char* dynstr_copy_to_static(dynstr_t *dynstr) {
+char* dynstr_copy_to_static(const dynstr_t *dynstr) {
   if (dynstr == NULL || dynstr->str == NULL) {
     /* TODO(filip): Set a global error flag */
     return NULL;
@@ -124,7 +124,7 @@ char* dynstr_copy_to_static(dynstr_t *dynstr) {
   return dest;
 }
 
-bool dynstr_equals_static(dynstr_t *dynstr, const char *str) {
+bool dynstr_equals_static(const dynstr_t *dynstr, const char *str) {
   if (strcmp(dynstr->str, str) == 0) {
     return true;
   }
