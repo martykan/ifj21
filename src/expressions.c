@@ -204,10 +204,13 @@ bool expression_process(symbol_stack_t *stack) {
   expression_symbol_t a, b;
   do {
     a = get_top_symbol(stack);
-    b = expression_get_input();
+    expression_symbol_t new_b = expression_get_input();
+    if (b == SYM_S || (b == SYM_I && new_b == SYM_I)) {
+      b = SYM_S;
+    } else {
+      b = new_b;
+    }
     // print_stack(stack);
-    // printf("Terminal %s, input %s\n", expression_symbol_t_names[a],
-    // expression_symbol_t_names[b]);
     expression_precedence_t precedence =
         precedence_table[precedence_table_index(a)][precedence_table_index(b)];
     switch (precedence) {
@@ -384,6 +387,8 @@ expression_symbol_t expression_get_input() {
       return SYM_DIVIDE;
     case TT_MOP_INT_DIV:
       return SYM_DIVIDE2;
+    case TT_SOP_CONCAT:
+      return SYM_DOTDOT;
     case TT_COP_EQ:
       return SYM_EQ;
     case TT_COP_NEQ:
@@ -402,8 +407,14 @@ expression_symbol_t expression_get_input() {
 }
 void expression_next_input() { token_buff(TOKEN_NEW); }
 
-bool expression_parse() {
+bool expression_parse(char *exp_type) {
   token_t *token = token_buff(TOKEN_THIS);
+  // TODO
+  if (token->type == TT_STRING) {
+    *exp_type = 's';
+  } else {
+    *exp_type = 'n';
+  }
   switch (token->type) {
     case TT_INTEGER:
     case TT_NUMBER:

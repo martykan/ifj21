@@ -33,17 +33,10 @@ void codegen_literal(token_t* token) {
       printf("float@%a\n", token->attr.num_val);
       break;
     case TT_STRING:
-      printf("string@");
-      int pos = 0;
-      char c = 1;
-      while (c) {
-        c = token->attr.str[pos++];
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
-          printf("%c", c);
-        else
-          printf("\\%03d", c);
-      }
-      printf("\n");
+      printf("string@%s\n", token->attr.str);
+      break;
+    case TT_ID:
+      printf("LF@%s\n", token->attr.str);
       break;
     default:
       // Error
@@ -113,6 +106,14 @@ void codegen_expression_neq() { printf("EQS\nNOTS\n"); }
 void codegen_expression_lt() { printf("LTS\n"); }
 void codegen_expression_gt() { printf("GTS\n"); }
 
-void codegen_expression_concat() { printf("CONCAT <var> <symb1> <symb2>\n"); }
-void codegen_expression_lte() { printf("E -> E<=E\n"); }
-void codegen_expression_gte() { printf("E -> E>=E\n"); }
+void codegen_expression_concat() {
+  printf("POPS LF@$tmp1\n");
+  printf("POPS LF@$tmp2\n");
+  printf("CONCAT LF@$tmp3 LF@$tmp1 LF@$tmp2\n");
+  printf("PUSHS LF@$tmp3\n");
+}
+void codegen_expression_lte() { printf("# E -> E<=E\n"); }
+void codegen_expression_gte() { printf("# E -> E>=E\n"); }
+
+void codegen_define_var(char* id) { printf("DEFVAR LF@%s\n", id); }
+void codegen_assign_expression(char* id) { printf("POPS LF@%s\n", id); }

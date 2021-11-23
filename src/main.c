@@ -15,5 +15,9 @@ int main(int argc, char **argv) {
 
   scanner_destroy();
 
-  return error_get();
+  int errcode = error_get();
+  if (errcode > 0) {
+    error_print_msg(NULL);
+  }
+  return errcode;
 }

@@ -976,8 +976,10 @@ bool parser_var_dec() {
 
       char var_type;
       if (parser_type(&var_type)) {
+        codegen_define_var(id);
         if (parser_init(var_type)) {
           parser_declare_var(id, var_type);
+          codegen_assign_expression(id);
           if (error_get()) {
             goto FREE_ID;
           }
@@ -1117,7 +1119,7 @@ bool parser_init(char var_type) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
-    case TT_COP_EQ:
+    case TT_ASSIGN:
       token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
@@ -1171,7 +1173,6 @@ bool parser_init_after(char var_type) {
 
         return true;
       }
-
       break;
     }
     case TT_ID:
@@ -1246,8 +1247,9 @@ bool parser_id_after() {
 
     } break;
     case TT_COMMA:
-    case TT_COP_EQ:
+    case TT_ASSIGN:
       if (parser_assign_st(id)) {
+        codegen_assign_expression(id);
         is_correct = true;
         goto FREE_ID;
       }
@@ -1292,7 +1294,7 @@ bool parser_assign_st(char* id) {
   if (parser_id_append(&id_types)) {
     token_t* token = token_buff(TOKEN_THIS);
 
-    if (token->type == TT_COP_EQ) {
+    if (token->type == TT_ASSIGN) {
       token_buff(TOKEN_NEW);
       if (error_get()) {
         goto FREE_ID_TYPES;
@@ -1348,7 +1350,7 @@ bool parser_id_append(dynstr_t* id_types) {
       }
 
       break;
-    case TT_COP_EQ:
+    case TT_ASSIGN:
       return true;
     default:
       break;

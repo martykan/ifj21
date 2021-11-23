@@ -43,4 +43,7 @@ void codegen_expression_lte();
 void codegen_expression_gt();
 void codegen_expression_gte();
 
+void codegen_define_var();
+void codegen_assign_expression();
+
 #endif
