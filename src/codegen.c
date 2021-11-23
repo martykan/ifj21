@@ -24,19 +24,7 @@ void codegen_function_call_begin(char* name) {
   printf("CREATEFRAME\n");
 }
 
-void codegen_function_call_argument(token_t* token, int argpos) {
-  if (last_function_name == NULL) {
-    return;
-  }
-  if (strcmp(last_function_name, "write") == 0) {
-    if (argpos > 0) {
-      printf("WRITE string@\\032\n");
-    }
-    printf("WRITE ");
-  } else {
-    printf("DEFVAR TF@%%arg%d\n", argpos);
-    printf("MOVE TF@%%arg%d ", argpos);
-  }
+void codegen_literal(token_t* token) {
   switch (token->type) {
     case TT_INTEGER:
       printf("int@%d\n", token->attr.int_val);
@@ -63,6 +51,22 @@ void codegen_function_call_argument(token_t* token, int argpos) {
       error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
       return;
   }
+}
+
+void codegen_function_call_argument(token_t* token, int argpos) {
+  if (last_function_name == NULL) {
+    return;
+  }
+  if (strcmp(last_function_name, "write") == 0) {
+    if (argpos > 0) {
+      printf("WRITE string@\\032\n");
+    }
+    printf("WRITE ");
+  } else {
+    printf("DEFVAR TF@%%arg%d\n", argpos);
+    printf("MOVE TF@%%arg%d ", argpos);
+  }
+  codegen_literal(token);
 }
 
 void codegen_function_call_argument_count(int argcount) {
@@ -93,3 +97,22 @@ void codegen_function_definition_end(char* name) {
   printf("RETURN\n");
   printf("LABEL $endfn_%s\n\n", name);
 }
+
+void codegen_expression_push_value(token_t* token) {
+  printf("PUSHS ");
+  codegen_literal(token);
+}
+
+void codegen_expression_plus() { printf("ADDS\n"); }
+void codegen_expression_minus() { printf("SUBS\n"); }
+void codegen_expression_mul() { printf("MULS\n"); }
+void codegen_expression_div() { printf("DIVS\n"); }
+void codegen_expression_divint() { printf("IDIVS\n"); }
+void codegen_expression_eq() { printf("EQS\n"); }
+void codegen_expression_neq() { printf("EQS\nNOTS\n"); }
+void codegen_expression_lt() { printf("LTS\n"); }
+void codegen_expression_gt() { printf("GTS\n"); }
+
+void codegen_expression_concat() { printf("CONCAT <var> <symb1> <symb2>\n"); }
+void codegen_expression_lte() { printf("E -> E<=E\n"); }
+void codegen_expression_gte() { printf("E -> E>=E\n"); }

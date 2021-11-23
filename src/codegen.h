@@ -29,4 +29,18 @@ void codegen_function_definition_begin(char* name);
 /** End a function definition */
 void codegen_function_definition_end(char* name);
 
+void codegen_expression_push_value(token_t* token);
+void codegen_expression_plus();
+void codegen_expression_minus();
+void codegen_expression_mul();
+void codegen_expression_div();
+void codegen_expression_divint();
+void codegen_expression_concat();
+void codegen_expression_eq();
+void codegen_expression_neq();
+void codegen_expression_lt();
+void codegen_expression_lte();
+void codegen_expression_gt();
+void codegen_expression_gte();
+
 #endif
