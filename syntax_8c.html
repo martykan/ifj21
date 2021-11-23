@@ -155,63 +155,78 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_append</b>
 <tr class="memitem:a1874fb66b416393062d8b6edf472b9f5"><td class="memItemLeft" align="right" valign="top"><a id="a1874fb66b416393062d8b6edf472b9f5" name="a1874fb66b416393062d8b6edf472b9f5"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg</b> (char *arg_type)</td></tr>
 <tr class="separator:a1874fb66b416393062d8b6edf472b9f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe2c29943a6e107dd0b0678fdc28e24d"><td class="memItemLeft" align="right" valign="top"><a id="afe2c29943a6e107dd0b0678fdc28e24d" name="afe2c29943a6e107dd0b0678fdc28e24d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_local_scope</b> ()</td></tr>
-<tr class="separator:afe2c29943a6e107dd0b0678fdc28e24d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe9b3918a52f748361e96c1e1c65031"><td class="memItemLeft" align="right" valign="top"><a id="aefe9b3918a52f748361e96c1e1c65031" name="aefe9b3918a52f748361e96c1e1c65031"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_stlist_local</b> ()</td></tr>
-<tr class="separator:aefe9b3918a52f748361e96c1e1c65031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a432030e965e1fb2b06ede9d00af84e"><td class="memItemLeft" align="right" valign="top"><a id="a3a432030e965e1fb2b06ede9d00af84e" name="a3a432030e965e1fb2b06ede9d00af84e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_st_local</b> ()</td></tr>
-<tr class="separator:a3a432030e965e1fb2b06ede9d00af84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3b033d1422b08f3ddd6043929c920e9"><td class="memItemLeft" align="right" valign="top"><a id="af3b033d1422b08f3ddd6043929c920e9" name="af3b033d1422b08f3ddd6043929c920e9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_returned</b> ()</td></tr>
-<tr class="separator:af3b033d1422b08f3ddd6043929c920e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d47e23b615cbb456c7b00393dfa8247"><td class="memItemLeft" align="right" valign="top"><a id="a2d47e23b615cbb456c7b00393dfa8247" name="a2d47e23b615cbb456c7b00393dfa8247"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_return_what</b> ()</td></tr>
-<tr class="separator:a2d47e23b615cbb456c7b00393dfa8247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0009d0f54449f3e786979c3b92b364b3"><td class="memItemLeft" align="right" valign="top"><a id="a0009d0f54449f3e786979c3b92b364b3" name="a0009d0f54449f3e786979c3b92b364b3"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_local_scope</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types, bool create_scope)</td></tr>
+<tr class="separator:a0009d0f54449f3e786979c3b92b364b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a977d9a8321d5299d8756f7150fd86544"><td class="memItemLeft" align="right" valign="top"><a id="a977d9a8321d5299d8756f7150fd86544" name="a977d9a8321d5299d8756f7150fd86544"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_stlist_local</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="separator:a977d9a8321d5299d8756f7150fd86544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f2df2f46b473c313b0994befc2aafd9"><td class="memItemLeft" align="right" valign="top"><a id="a6f2df2f46b473c313b0994befc2aafd9" name="a6f2df2f46b473c313b0994befc2aafd9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_st_local</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="separator:a6f2df2f46b473c313b0994befc2aafd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf19cd9dcc6deb18cdcc5bc088b7681"><td class="memItemLeft" align="right" valign="top"><a id="abaf19cd9dcc6deb18cdcc5bc088b7681" name="abaf19cd9dcc6deb18cdcc5bc088b7681"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_returned</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:abaf19cd9dcc6deb18cdcc5bc088b7681"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4189b8aa051d46a607cfe8f1664f0201"><td class="memItemLeft" align="right" valign="top"><a id="a4189b8aa051d46a607cfe8f1664f0201" name="a4189b8aa051d46a607cfe8f1664f0201"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_return_what</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:a4189b8aa051d46a607cfe8f1664f0201"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a897255ccba56e05ee278b76f675b6170"><td class="memItemLeft" align="right" valign="top"><a id="a897255ccba56e05ee278b76f675b6170" name="a897255ccba56e05ee278b76f675b6170"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_var_dec</b> ()</td></tr>
 <tr class="separator:a897255ccba56e05ee278b76f675b6170"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7512a0492f643e85d0b43643b47bd56"><td class="memItemLeft" align="right" valign="top"><a id="ae7512a0492f643e85d0b43643b47bd56" name="ae7512a0492f643e85d0b43643b47bd56"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_if_st</b> ()</td></tr>
-<tr class="separator:ae7512a0492f643e85d0b43643b47bd56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b8f2a05f369d54302aa20b115388b54"><td class="memItemLeft" align="right" valign="top"><a id="a0b8f2a05f369d54302aa20b115388b54" name="a0b8f2a05f369d54302aa20b115388b54"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_while_st</b> ()</td></tr>
-<tr class="separator:a0b8f2a05f369d54302aa20b115388b54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92334182d9d58212e8a495a3b8574f21"><td class="memItemLeft" align="right" valign="top"><a id="a92334182d9d58212e8a495a3b8574f21" name="a92334182d9d58212e8a495a3b8574f21"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init</b> ()</td></tr>
-<tr class="separator:a92334182d9d58212e8a495a3b8574f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf42967206494a59ecab63d44135d17d"><td class="memItemLeft" align="right" valign="top"><a id="adf42967206494a59ecab63d44135d17d" name="adf42967206494a59ecab63d44135d17d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init_after</b> ()</td></tr>
-<tr class="separator:adf42967206494a59ecab63d44135d17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa49b4154a5135783c93f9b490d43f861"><td class="memItemLeft" align="right" valign="top"><a id="aa49b4154a5135783c93f9b490d43f861" name="aa49b4154a5135783c93f9b490d43f861"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_if_st</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="separator:aa49b4154a5135783c93f9b490d43f861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78ae41d421d88a5160e20f0502864aa7"><td class="memItemLeft" align="right" valign="top"><a id="a78ae41d421d88a5160e20f0502864aa7" name="a78ae41d421d88a5160e20f0502864aa7"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_while_st</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="separator:a78ae41d421d88a5160e20f0502864aa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0dccdbc8afcbb9c8fcbd2238c863b9af"><td class="memItemLeft" align="right" valign="top"><a id="a0dccdbc8afcbb9c8fcbd2238c863b9af" name="a0dccdbc8afcbb9c8fcbd2238c863b9af"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init</b> (char var_type)</td></tr>
+<tr class="separator:a0dccdbc8afcbb9c8fcbd2238c863b9af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae887c32f24a3011166ee10e3bfa3a101"><td class="memItemLeft" align="right" valign="top"><a id="ae887c32f24a3011166ee10e3bfa3a101" name="ae887c32f24a3011166ee10e3bfa3a101"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init_after</b> (char var_type)</td></tr>
+<tr class="separator:ae887c32f24a3011166ee10e3bfa3a101"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af476d5b19cee3ac9d7970525d83f5625"><td class="memItemLeft" align="right" valign="top"><a id="af476d5b19cee3ac9d7970525d83f5625" name="af476d5b19cee3ac9d7970525d83f5625"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_id_after</b> ()</td></tr>
 <tr class="separator:af476d5b19cee3ac9d7970525d83f5625"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86a8e2fcca0e678425e1ec45c8d515c6"><td class="memItemLeft" align="right" valign="top"><a id="a86a8e2fcca0e678425e1ec45c8d515c6" name="a86a8e2fcca0e678425e1ec45c8d515c6"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_id_append</b> ()</td></tr>
-<tr class="separator:a86a8e2fcca0e678425e1ec45c8d515c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90116f1a81b6941600ba549d42a224bc"><td class="memItemLeft" align="right" valign="top"><a id="a90116f1a81b6941600ba549d42a224bc" name="a90116f1a81b6941600ba549d42a224bc"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign</b> ()</td></tr>
-<tr class="separator:a90116f1a81b6941600ba549d42a224bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67c611b5d2dd55449076950f8fa2acfd"><td class="memItemLeft" align="right" valign="top"><a id="a67c611b5d2dd55449076950f8fa2acfd" name="a67c611b5d2dd55449076950f8fa2acfd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_list</b> ()</td></tr>
-<tr class="separator:a67c611b5d2dd55449076950f8fa2acfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7264df77e02e2db0ec81f494a456e4f"><td class="memItemLeft" align="right" valign="top"><a id="ae7264df77e02e2db0ec81f494a456e4f" name="ae7264df77e02e2db0ec81f494a456e4f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_append</b> ()</td></tr>
-<tr class="separator:ae7264df77e02e2db0ec81f494a456e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fcc5d392b2667cfcd3c68825f039f22"><td class="memItemLeft" align="right" valign="top"><a id="a4fcc5d392b2667cfcd3c68825f039f22" name="a4fcc5d392b2667cfcd3c68825f039f22"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp</b> ()</td></tr>
-<tr class="separator:a4fcc5d392b2667cfcd3c68825f039f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba8872051f09b9f1c44766e5db365c31"><td class="memItemLeft" align="right" valign="top"><a id="aba8872051f09b9f1c44766e5db365c31" name="aba8872051f09b9f1c44766e5db365c31"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arglist_match</b> (char *arg1, char *arg2)</td></tr>
-<tr class="separator:aba8872051f09b9f1c44766e5db365c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad631ed39455b15ad13189ad2e71b143d"><td class="memItemLeft" align="right" valign="top"><a id="ad631ed39455b15ad13189ad2e71b143d" name="ad631ed39455b15ad13189ad2e71b143d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_start</b> ()</td></tr>
-<tr class="separator:ad631ed39455b15ad13189ad2e71b143d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bed4379eb136e25ba2568ba207dc859"><td class="memItemLeft" align="right" valign="top"><a id="a8bed4379eb136e25ba2568ba207dc859" name="a8bed4379eb136e25ba2568ba207dc859"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_st</b> (char *id)</td></tr>
+<tr class="separator:a8bed4379eb136e25ba2568ba207dc859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0bfa59f24c76e9d5452857218761fca"><td class="memItemLeft" align="right" valign="top"><a id="aa0bfa59f24c76e9d5452857218761fca" name="aa0bfa59f24c76e9d5452857218761fca"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_id_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="separator:aa0bfa59f24c76e9d5452857218761fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6b302ab6ca3eb92d2c49d884f527c11"><td class="memItemLeft" align="right" valign="top"><a id="ab6b302ab6ca3eb92d2c49d884f527c11" name="ab6b302ab6ca3eb92d2c49d884f527c11"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_what</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="separator:ab6b302ab6ca3eb92d2c49d884f527c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0b5844df1a4cad394ec26cbd3622180"><td class="memItemLeft" align="right" valign="top"><a id="ae0b5844df1a4cad394ec26cbd3622180" name="ae0b5844df1a4cad394ec26cbd3622180"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_exp</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="separator:ae0b5844df1a4cad394ec26cbd3622180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01fdc7eb481f6382fac2c26b36567fe9"><td class="memItemLeft" align="right" valign="top"><a id="a01fdc7eb481f6382fac2c26b36567fe9" name="a01fdc7eb481f6382fac2c26b36567fe9"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_list</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:a01fdc7eb481f6382fac2c26b36567fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae186dfd1b47e5acca20f6ff088463cce"><td class="memItemLeft" align="right" valign="top"><a id="ae186dfd1b47e5acca20f6ff088463cce" name="ae186dfd1b47e5acca20f6ff088463cce"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:ae186dfd1b47e5acca20f6ff088463cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memItemLeft" align="right" valign="top"><a id="a6cb225a6540d7f84b8ff3fc846967eb0" name="a6cb225a6540d7f84b8ff3fc846967eb0"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp</b> (char *exp_type)</td></tr>
+<tr class="separator:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93465c160510560f95ecc766d2befd8e"><td class="memItemLeft" align="right" valign="top"><a id="a93465c160510560f95ecc766d2befd8e" name="a93465c160510560f95ecc766d2befd8e"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_func_call_match</b> (char *params, char *args)</td></tr>
 <tr class="separator:a93465c160510560f95ecc766d2befd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5c30635dab93f13f974c9b62348105"><td class="memItemLeft" align="right" valign="top"><a id="a5b5c30635dab93f13f974c9b62348105" name="a5b5c30635dab93f13f974c9b62348105"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_func_ret_match</b> (char *declared, char *returned)</td></tr>
+<tr class="separator:a5b5c30635dab93f13f974c9b62348105"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86294db01938775919a4b64a502cd7ef"><td class="memItemLeft" align="right" valign="top"><a id="a86294db01938775919a4b64a502cd7ef" name="a86294db01938775919a4b64a502cd7ef"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init_func_match</b> (char var_type, char *ret)</td></tr>
+<tr class="separator:a86294db01938775919a4b64a502cd7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4894cf6d6b9b50fc5512f6c2a2d4045a"><td class="memItemLeft" align="right" valign="top"><a id="a4894cf6d6b9b50fc5512f6c2a2d4045a" name="a4894cf6d6b9b50fc5512f6c2a2d4045a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_func_match</b> (char *ids, char *ret)</td></tr>
+<tr class="separator:a4894cf6d6b9b50fc5512f6c2a2d4045a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cf317255866cb0e015e95cce55d1f99"><td class="memItemLeft" align="right" valign="top"><a id="a6cf317255866cb0e015e95cce55d1f99" name="a6cf317255866cb0e015e95cce55d1f99"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_exp_match</b> (char *ids, char *exps)</td></tr>
+<tr class="separator:a6cf317255866cb0e015e95cce55d1f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad631ed39455b15ad13189ad2e71b143d"><td class="memItemLeft" align="right" valign="top"><a id="ad631ed39455b15ad13189ad2e71b143d" name="ad631ed39455b15ad13189ad2e71b143d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_start</b> ()</td></tr>
+<tr class="separator:ad631ed39455b15ad13189ad2e71b143d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Recursive parser implementation. </p>
