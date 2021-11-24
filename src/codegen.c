@@ -68,8 +68,7 @@ void codegen_literal(token_t* token) {
 
 int substr_i, substr_j;
 
-void codegen_function_call_argument(token_t* token, int argpos,
-                                    symtab_func_data_t* func) {
+void codegen_function_call_argument(token_t* token, int argpos) {
   if (last_function_name == NULL) {
     return;
   }
@@ -109,9 +108,8 @@ void codegen_function_call_argument(token_t* token, int argpos,
     return;
   }
 
-  char* argname = func->params->vars[argpos]->var_name;
-  printf("DEFVAR TF@%s\n", argname);
-  printf("MOVE TF@%s ", argname);
+  printf("DEFVAR TF@$arg%d\n", argpos);
+  printf("MOVE TF@$arg%d ", argpos);
   codegen_literal(token);
 }
 
@@ -174,6 +172,11 @@ void codegen_function_definition_begin(char* name) {
   printf("JUMP $endfn_%s\n", name);
   printf("LABEL $fn_%s\n", name);
   printf("PUSHFRAME\n");
+}
+
+void codegen_function_definition_param(char* name, int argpos) {
+  printf("DEFVAR LF@%s\n", name);
+  printf("MOVE LF@%s LF@$arg%d\n", name, argpos);
 }
 
 void codegen_function_definition_end(char* name) {
