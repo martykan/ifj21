@@ -69,8 +69,6 @@ void codegen_literal(token_t* token) {
   }
 }
 
-int substr_i, substr_j;
-
 void codegen_function_call_argument(token_t* token, int argpos) {
   if (last_function_name == NULL) {
     return;
@@ -84,6 +82,7 @@ void codegen_function_call_argument(token_t* token, int argpos) {
   if (strcmp(last_function_name, "readn") == 0) return;
   if (strcmp(last_function_name, "reads") == 0) return;
   if (strcmp(last_function_name, "tointeger") == 0) {
+    // TODO if input nil, return nil
     printf("PUSHS ");
     codegen_literal(token);
     printf("FLOAT2INTS\n");
@@ -91,20 +90,33 @@ void codegen_function_call_argument(token_t* token, int argpos) {
   }
   if (strcmp(last_function_name, "substr") == 0) {
     if (argpos == 0) {
-      codegen_get_temp_vars(3);
-      printf("MOVE LF@$tmp1 ");
+      codegen_substr_define();
+
+      printf("CREATEFRAME\n");
+      printf("DEFVAR TF@str\n");
+      printf("MOVE TF@str ");
       codegen_literal(token);
     }
-    if (argpos == 1) substr_i = token->attr.int_val;
-    if (argpos == 2) substr_j = token->attr.int_val;
+    if (argpos == 1) {
+      printf("DEFVAR TF@i\n");
+      printf("MOVE TF@i ");
+      codegen_literal(token);
+    }
+    if (argpos == 2) {
+      printf("DEFVAR TF@j\n");
+      printf("MOVE TF@j ");
+      codegen_literal(token);
+    }
     return;
   }
   if (strcmp(last_function_name, "ord") == 0) {
+    // TODO if out of range <1, strlen>, return nil
     printf("PUSHS ");
     codegen_literal(token);
     return;
   }
   if (strcmp(last_function_name, "chr") == 0) {
+    // TODO if out of range <0,255>, return nil
     printf("PUSHS ");
     codegen_literal(token);
     printf("INT2CHARS\n");
@@ -150,17 +162,7 @@ void codegen_function_call_do(char* name, int argcount) {
   }
   if (strcmp(name, "tointeger") == 0) return;
   if (strcmp(name, "substr") == 0) {
-    if (substr_i < 1 || substr_i > substr_j) {
-      printf("PUSHS string@\n");
-      return;
-    }
-    // TODO Dynamic check - j < strlen
-    printf("MOVE LF@$tmp2 string@\n");
-    for (int i = substr_i; i <= substr_j; i++) {
-      printf("GETCHAR LF@$tmp3 LF@$tmp1 int@%d\n", i - 1);
-      printf("CONCAT LF@$tmp2 LF@$tmp2 LF@$tmp3\n");
-    }
-    printf("PUSHS LF@$tmp2\n");
+    printf("CALL $substr\n");
     return;
   }
   if (strcmp(name, "ord") == 0) {
@@ -310,4 +312,43 @@ void codegen_while_end() {
   printf("JUMP $while_%d\n", id);
   printf("LABEL $while_end_%d\n", id);
   iddepth--;
+}
+
+bool substr_defined = false;
+
+void codegen_substr_define() {
+  if (substr_defined) return;
+  substr_defined = true;
+
+  printf("JUMP $substr_end\n");
+  printf("LABEL $substr\n");
+  printf("PUSHFRAME\n");
+
+  printf("DEFVAR LF@out\n");
+  printf("MOVE LF@out string@\n");
+  printf("DEFVAR LF@newchar\n");
+
+  printf("DEFVAR LF@check\n");
+  printf("LT LF@check int@0 LF@i\n");
+  printf("JUMPIFEQ $substr_ret LF@check bool@false\n");
+  printf("LT LF@check LF@i LF@j\n");
+  printf("JUMPIFEQ $substr_ret LF@check bool@false\n");
+  printf("DEFVAR LF@strlen\n");
+  printf("STRLEN LF@strlen LF@str\n");
+  printf("LTE LF@check LF@j LF@strlen\n");
+  printf("JUMPIFEQ $substr_ret LF@check bool@false\n");
+
+  printf("SUB LF@i LF@i int@1\n");
+  printf("LABEL $substr_loop\n");
+  printf("GETCHAR LF@newchar LF@str LF@i\n");
+  printf("CONCAT LF@out LF@out LF@newchar\n");
+  printf("ADD LF@i LF@i int@1\n");
+  printf("JUMPIFNEQ $substr_loop LF@i LF@j\n");
+
+  printf("LABEL $substr_ret\n");
+
+  printf("PUSHS LF@out\n");
+  printf("POPFRAME\n");
+  printf("RETURN\n");
+  printf("LABEL $substr_end\n");
 }

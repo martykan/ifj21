@@ -1,3 +1,4 @@
+-- Program 2: Vypocet faktorialu (rekurzivne)
 require "ifj21"
 
 function factorial(n : integer) : integer
@@ -13,11 +14,15 @@ end
 function main()
   write("Zadejte cislo pro vypocet faktorialu: ")
   local a : integer = readi()
-  if a < 0 then
-    write("Faktorial nejde spocitat!", "\n")
+  if a ~= nil then
+    if a < 0 then
+      write("Faktorial nejde spocitat!", "\n")
+    else
+      local vysl : integer = factorial(a)
+      write("Vysledek je ", vysl, "\n")
+    end
   else
-    local vysl : integer = factorial(a)
-    write("Vysledek je ", vysl, "\n")
+    write("Chyba pri nacitani celeho cisla!\n")
   end
 end
 

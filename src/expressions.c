@@ -236,6 +236,10 @@ bool expression_typecheck_basic_logic_nullable(char *out, char type1,
       (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER || type1 == TYPE_NIL)) {
     *out = TYPE_INTEGER;
     return true;
+  } else if ((type1 == TYPE_STRING || type1 == TYPE_NIL) &&
+             (type2 == TYPE_STRING || type2 == TYPE_NIL)) {
+    *out = TYPE_INTEGER;
+    return true;
   } else {
     error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
     return false;

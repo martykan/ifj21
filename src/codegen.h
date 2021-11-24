@@ -65,4 +65,6 @@ void codegen_while_begin();
 void codegen_while_expr();
 void codegen_while_end();
 
+void codegen_substr_define();
+
 #endif
