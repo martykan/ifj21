@@ -17,8 +17,8 @@
 // Variables to keep track of temp vars
 int tmpmax = 0;
 void codegen_get_temp_vars(int count) {
-  for (int i = tmpmax; i <= count; i++) {
-    printf("DEFVAR LF@$tmp%d\n", i);
+  for (int i = tmpmax; i < count; i++) {
+    printf("DEFVAR LF@$tmp%d\n", i + 1);
     tmpmax++;
   }
 }
@@ -32,9 +32,15 @@ char* last_function_name;
 
 void codegen_function_call_begin(char* name) {
   last_function_name = name;
-  if (strcmp(last_function_name, "write") == 0) {
-    return;
-  }
+  if (strcmp(last_function_name, "write") == 0) return;
+  if (strcmp(last_function_name, "readi") == 0) return;
+  if (strcmp(last_function_name, "readn") == 0) return;
+  if (strcmp(last_function_name, "reads") == 0) return;
+  if (strcmp(last_function_name, "tointeger") == 0) return;
+  if (strcmp(last_function_name, "substr") == 0) return;
+  if (strcmp(last_function_name, "ord") == 0) return;
+  if (strcmp(last_function_name, "chr") == 0) return;
+
   printf("CREATEFRAME\n");
 }
 
@@ -60,6 +66,8 @@ void codegen_literal(token_t* token) {
   }
 }
 
+int substr_i, substr_j;
+
 void codegen_function_call_argument(token_t* token, int argpos,
                                     symtab_func_data_t* func) {
   if (last_function_name == NULL) {
@@ -67,20 +75,53 @@ void codegen_function_call_argument(token_t* token, int argpos,
   }
   if (strcmp(last_function_name, "write") == 0) {
     printf("WRITE ");
-  } else {
-    char* argname = func->params->vars[argpos]->var_name;
-    printf("DEFVAR TF@%s\n", argname);
-    printf("MOVE TF@%s ", argname);
+    codegen_literal(token);
+    return;
   }
+  if (strcmp(last_function_name, "readi") == 0) return;
+  if (strcmp(last_function_name, "readn") == 0) return;
+  if (strcmp(last_function_name, "reads") == 0) return;
+  if (strcmp(last_function_name, "tointeger") == 0) {
+    printf("PUSHS ");
+    codegen_literal(token);
+    printf("FLOAT2INTS\n");
+    return;
+  }
+  if (strcmp(last_function_name, "substr") == 0) {
+    if (argpos == 0) {
+      codegen_get_temp_vars(3);
+      printf("MOVE LF@$tmp1 ");
+      codegen_literal(token);
+    }
+    if (argpos == 1) substr_i = token->attr.int_val;
+    if (argpos == 2) substr_j = token->attr.int_val;
+    return;
+  }
+  if (strcmp(last_function_name, "ord") == 0) {
+    printf("PUSHS ");
+    codegen_literal(token);
+    return;
+  }
+  if (strcmp(last_function_name, "chr") == 0) {
+    printf("PUSHS ");
+    codegen_literal(token);
+    printf("INT2CHARS\n");
+    return;
+  }
+
+  char* argname = func->params->vars[argpos]->var_name;
+  printf("DEFVAR TF@%s\n", argname);
+  printf("MOVE TF@%s ", argname);
   codegen_literal(token);
 }
 
 void codegen_function_call_argument_count(int argcount) {
-  if (strcmp(last_function_name, "write") == 0) {
+  // Currently not used anywhere
+  /*if (strcmp(last_function_name, "write") == 0) {
     return;
   }
-  // printf("DEFVAR TF@%%argcount\n");
-  // printf("MOVE TF@%%argcount int@%d\n", argcount);
+  printf("DEFVAR TF@%%argcount\n");
+  printf("MOVE TF@%%argcount int@%d\n", argcount);*/
 }
 
 void codegen_function_call_do(char* name, int argcount) {
@@ -88,6 +129,44 @@ void codegen_function_call_do(char* name, int argcount) {
   if (strcmp(name, "write") == 0) {
     return;
   }
+  if (strcmp(name, "reads") == 0) {
+    codegen_get_temp_vars(1);
+    printf("READ LF@$tmp1 string\n");
+    printf("PUSHS LF@$tmp1\n");
+    return;
+  }
+  if (strcmp(name, "readn") == 0) {
+    codegen_get_temp_vars(1);
+    printf("READ LF@$tmp1 float\n");
+    printf("PUSHS LF@$tmp1\n");
+    return;
+  }
+  if (strcmp(name, "readi") == 0) {
+    codegen_get_temp_vars(1);
+    printf("READ LF@$tmp1 int\n");
+    printf("PUSHS LF@$tmp1\n");
+    return;
+  }
+  if (strcmp(name, "tointeger") == 0) return;
+  if (strcmp(name, "substr") == 0) {
+    if (substr_i < 1 || substr_i > substr_j) {
+      printf("PUSHS string@\n");
+      return;
+    }
+    // TODO Dynamic check - j < strlen
+    printf("MOVE LF@$tmp2 string@\n");
+    for (int i = substr_i; i <= substr_j; i++) {
+      printf("GETCHAR LF@$tmp3 LF@$tmp1 int@%d\n", i - 1);
+      printf("CONCAT LF@$tmp2 LF@$tmp2 LF@$tmp3\n");
+    }
+    printf("PUSHS LF@$tmp2\n");
+    return;
+  }
+  if (strcmp(name, "ord") == 0) {
+    printf("STRI2INTS\n");
+    return;
+  };
+  if (strcmp(name, "chr") == 0) return;
   printf("CALL $fn_%s\n", name);
 }
 

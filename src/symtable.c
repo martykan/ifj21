@@ -125,6 +125,13 @@ symtab_t* symtab_create() {
   }
 
   symtab_init_builtin(symtab, "write", "a+", "");
+  symtab_init_builtin(symtab, "reads", "", "s");
+  symtab_init_builtin(symtab, "readi", "", "i");
+  symtab_init_builtin(symtab, "readn", "", "n");
+  symtab_init_builtin(symtab, "tointeger", "n", "i");
+  symtab_init_builtin(symtab, "substr", "snn", "s");
+  symtab_init_builtin(symtab, "ord", "si", "i");
+  symtab_init_builtin(symtab, "chr", "i", "s");
 
   symtab->local_scopes = NULL;
 
@@ -141,6 +148,7 @@ void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
   func_data->param_types = param_types;
   func_data->return_types = return_types;
   func_data->was_defined = true;
+  func_data->params = NULL;
 }
 
 symtab_subtab_t* symtab_subtab_create(size_t n) {

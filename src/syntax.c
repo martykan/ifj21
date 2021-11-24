@@ -567,7 +567,7 @@ bool parser_type_list_param(dynstr_t* types) {
       return true;
     case TT_K_NUMBER:
     case TT_K_INTEGER:
-    case TT_K_STRING:
+    case TT_K_STRING: {
       char type;
       if (parser_type(&type)) {
         dynstr_append(types, type);
@@ -577,8 +577,7 @@ bool parser_type_list_param(dynstr_t* types) {
 
         return parser_type_append(types);
       }
-
-      break;
+    } break;
     default:
       break;
   }
