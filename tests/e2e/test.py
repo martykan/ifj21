@@ -78,7 +78,7 @@ def run_test(test_file: str, test_input_dir: str) -> TestRes:
         f.close()
 
         if expected_rc != comp_rc:
-            return TestRes(TestRes.DIFF_EXIT_CODE, msg=f"Expected exit code doesn't match actual:\nexpected: {expected_rc}, got: {comp_rc}")
+            return TestRes(TestRes.DIFF_EXIT_CODE, msg=f"Expected exit code doesn't match actual:\nexpected: {expected_rc}, got: {comp_rc}\n{comp_err.decode()}")
 
         # interpret generated code
         if expected_rc == 0:
@@ -100,7 +100,8 @@ def run_test(test_file: str, test_input_dir: str) -> TestRes:
         return TestRes(TestRes.TIMEOUT, msg=str(e))
 
     else:
-        os.remove(get_path(test_input_dir, f"out_{test_file}"))
+        if (os.path.isfile(get_path(test_input_dir, f"out_{test_file}"))):
+            os.remove(get_path(test_input_dir, f"out_{test_file}"))
         return TestRes(TestRes.OK)
 
 
