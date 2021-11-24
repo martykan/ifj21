@@ -143,6 +143,12 @@ enum greatest_test_res param_single_tok_test(char *in, char *a_str, int a_int, d
   SET_INPUT(in);
   token_t *tok = scanner_get_next_token();
   fclose(stdin);
+
+  if (expected_type == TT_ERROR) {
+    ASSERT_EQ(NULL, tok);
+    PASS();
+  }
+
   ASSERT_EQ(tok->type, expected_type);
   if (a_str != NULL) { // if a_str != NULL, we expect this token to be of type that has a string as its attribute
     ASSERT_NEQ(NULL, tok->attr.str);
