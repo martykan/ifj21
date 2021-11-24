@@ -127,20 +127,21 @@ Enumerations</h2></td></tr>
 , <br />
 &#160;&#160;<b>SYM_DIVIDE2</b>
 , <b>SYM_DOTDOT</b>
+, <b>SYM_STRLEN</b>
 , <b>SYM_GT</b>
-, <b>SYM_GTE</b>
 , <br />
-&#160;&#160;<b>SYM_EQ</b>
+&#160;&#160;<b>SYM_GTE</b>
+, <b>SYM_EQ</b>
 , <b>SYM_NEQ</b>
 , <b>SYM_LTE</b>
-, <b>SYM_LT</b>
 , <br />
-&#160;&#160;<b>SYM_LBRACKET</b>
+&#160;&#160;<b>SYM_LT</b>
+, <b>SYM_LBRACKET</b>
 , <b>SYM_RBRACKET</b>
 , <b>SYM_I</b>
-, <b>SYM_S</b>
 , <br />
-&#160;&#160;<b>SYM_E</b>
+&#160;&#160;<b>SYM_S</b>
+, <b>SYM_E</b>
 , <b>SYM_PREC_GT</b>
 , <b>SYM_PREC_LT</b>
 <br />
@@ -149,16 +150,19 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="memItemLeft" align="right" valign="top"><a id="a12383d2e1b6e6cd0e5b92deb43b4814f" name="a12383d2e1b6e6cd0e5b92deb43b4814f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
-<tr class="memdesc:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
-<tr class="separator:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437e219c37547e4b74875f5859a45687"><td class="memItemLeft" align="right" valign="top"><a id="a437e219c37547e4b74875f5859a45687" name="a437e219c37547e4b74875f5859a45687"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, char *exp_type)</td></tr>
+<tr class="memdesc:a437e219c37547e4b74875f5859a45687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
+<tr class="separator:a437e219c37547e4b74875f5859a45687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7597ba8928c9767845bd38fd45b96a23"><td class="memItemLeft" align="right" valign="top"><a id="a7597ba8928c9767845bd38fd45b96a23" name="a7597ba8928c9767845bd38fd45b96a23"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_parse</b> ()</td></tr>
 <tr class="separator:a7597ba8928c9767845bd38fd45b96a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memItemLeft" align="right" valign="top"><a id="a9ccb2ca62a6809dadc33051629ee8b14" name="a9ccb2ca62a6809dadc33051629ee8b14"></a>
 expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_input</b> ()</td></tr>
 <tr class="separator:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memItemLeft" align="right" valign="top"><a id="a34dddf7cf492f8481e38dcbbbff605c0" name="a34dddf7cf492f8481e38dcbbbff605c0"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_type</b> ()</td></tr>
+<tr class="separator:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memItemLeft" align="right" valign="top"><a id="ab017ea845ec8c8c1e33665dc61d19e72" name="ab017ea845ec8c8c1e33665dc61d19e72"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>expression_next_input</b> ()</td></tr>
 <tr class="separator:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memSeparator" colspan="2">&#160;</td></tr>

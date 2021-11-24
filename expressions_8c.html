@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('expressions_8c.html',''); initResizabl
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">expressions.c File Reference</div></div>
@@ -97,15 +98,30 @@ $(document).ready(function(){initNavTree('expressions_8c.html',''); initResizabl
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4e4e428e3a6a191834e3ff63bd301866"><td class="memItemLeft" align="right" valign="top"><a id="a4e4e428e3a6a191834e3ff63bd301866" name="a4e4e428e3a6a191834e3ff63bd301866"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TYPE_STRING</b>&#160;&#160;&#160;'s'</td></tr>
+<tr class="separator:a4e4e428e3a6a191834e3ff63bd301866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a929147425bf7969fe1d0e33716d02bc8"><td class="memItemLeft" align="right" valign="top"><a id="a929147425bf7969fe1d0e33716d02bc8" name="a929147425bf7969fe1d0e33716d02bc8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TYPE_INTEGER</b>&#160;&#160;&#160;'i'</td></tr>
+<tr class="separator:a929147425bf7969fe1d0e33716d02bc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16d93677202e3c0e4291520db3427a42"><td class="memItemLeft" align="right" valign="top"><a id="a16d93677202e3c0e4291520db3427a42" name="a16d93677202e3c0e4291520db3427a42"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TYPE_NUMBER</b>&#160;&#160;&#160;'n'</td></tr>
+<tr class="separator:a16d93677202e3c0e4291520db3427a42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa47d3c2fa05e95455d76cf052f9cca68"><td class="memItemLeft" align="right" valign="top"><a id="aa47d3c2fa05e95455d76cf052f9cca68" name="aa47d3c2fa05e95455d76cf052f9cca68"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>TYPE_NONE</b>&#160;&#160;&#160;'-'</td></tr>
+<tr class="separator:aa47d3c2fa05e95455d76cf052f9cca68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a86319c45e2904066a9c559ce82cab542"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">precedence_table_index</a> (expression_symbol_t symbol)</td></tr>
 <tr class="memdesc:a86319c45e2904066a9c559ce82cab542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index in the precedence table.  <a href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">More...</a><br /></td></tr>
 <tr class="separator:a86319c45e2904066a9c559ce82cab542"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d50b8bd9369bdb495168dedf63d707d"><td class="memItemLeft" align="right" valign="top"><a id="a8d50b8bd9369bdb495168dedf63d707d" name="a8d50b8bd9369bdb495168dedf63d707d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym)</td></tr>
-<tr class="memdesc:a8d50b8bd9369bdb495168dedf63d707d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
-<tr class="separator:a8d50b8bd9369bdb495168dedf63d707d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76760c17461724d0b2a20fa1dfe6252d"><td class="memItemLeft" align="right" valign="top"><a id="a76760c17461724d0b2a20fa1dfe6252d" name="a76760c17461724d0b2a20fa1dfe6252d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym, char type)</td></tr>
+<tr class="memdesc:a76760c17461724d0b2a20fa1dfe6252d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
+<tr class="separator:a76760c17461724d0b2a20fa1dfe6252d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9918e6e06073f8afb8402f993c9126fb"><td class="memItemLeft" align="right" valign="top"><a id="a9918e6e06073f8afb8402f993c9126fb" name="a9918e6e06073f8afb8402f993c9126fb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pop</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack)</td></tr>
 <tr class="memdesc:a9918e6e06073f8afb8402f993c9126fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop operation on symbol stack. <br /></td></tr>
@@ -118,14 +134,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pops</b>
 expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_top_symbol</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
 <tr class="memdesc:ab36d0ee685766d67ca5ad033413fa689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get top symbol from stack (excluding E) <br /></td></tr>
 <tr class="separator:ab36d0ee685766d67ca5ad033413fa689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bc979b032604481ede6d091679d357d"><td class="memItemLeft" align="right" valign="top"><a id="a1bc979b032604481ede6d091679d357d" name="a1bc979b032604481ede6d091679d357d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_basic_arithmetics</b> (char *out, char type1, char type2)</td></tr>
+<tr class="separator:a1bc979b032604481ede6d091679d357d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab76167a56ee8d2beddc570f99f524954"><td class="memItemLeft" align="right" valign="top"><a id="ab76167a56ee8d2beddc570f99f524954" name="ab76167a56ee8d2beddc570f99f524954"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_basic_logic</b> (char *out, char type1, char type2)</td></tr>
+<tr class="separator:ab76167a56ee8d2beddc570f99f524954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e55684a5ce662a9d069acab1282202b"><td class="memItemLeft" align="right" valign="top"><a id="a2e55684a5ce662a9d069acab1282202b" name="a2e55684a5ce662a9d069acab1282202b"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_test_rules</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, <a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *s2, <a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *s3, <a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *s4)</td></tr>
+<tr class="separator:a2e55684a5ce662a9d069acab1282202b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49b928406c70e30a9527b847d5dc7f1e"><td class="memItemLeft" align="right" valign="top"><a id="a49b928406c70e30a9527b847d5dc7f1e" name="a49b928406c70e30a9527b847d5dc7f1e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print_stack</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
 <tr class="memdesc:a49b928406c70e30a9527b847d5dc7f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print stack - for debugging. <br /></td></tr>
 <tr class="separator:a49b928406c70e30a9527b847d5dc7f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="memItemLeft" align="right" valign="top"><a id="a12383d2e1b6e6cd0e5b92deb43b4814f" name="a12383d2e1b6e6cd0e5b92deb43b4814f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
-<tr class="memdesc:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
-<tr class="separator:a12383d2e1b6e6cd0e5b92deb43b4814f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437e219c37547e4b74875f5859a45687"><td class="memItemLeft" align="right" valign="top"><a id="a437e219c37547e4b74875f5859a45687" name="a437e219c37547e4b74875f5859a45687"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, char *exp_type)</td></tr>
+<tr class="memdesc:a437e219c37547e4b74875f5859a45687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
+<tr class="separator:a437e219c37547e4b74875f5859a45687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memItemLeft" align="right" valign="top"><a id="a34dddf7cf492f8481e38dcbbbff605c0" name="a34dddf7cf492f8481e38dcbbbff605c0"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_type</b> ()</td></tr>
+<tr class="separator:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memItemLeft" align="right" valign="top"><a id="a9ccb2ca62a6809dadc33051629ee8b14" name="a9ccb2ca62a6809dadc33051629ee8b14"></a>
 expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_input</b> ()</td></tr>
 <tr class="separator:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,11 +166,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_parse</b> 
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a2a52dd62f3ab3b8840b457dd1fb96205"><td class="memItemLeft" align="right" valign="top"><a id="a2a52dd62f3ab3b8840b457dd1fb96205" name="a2a52dd62f3ab3b8840b457dd1fb96205"></a>
+<a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>symtab</b></td></tr>
+<tr class="separator:a2a52dd62f3ab3b8840b457dd1fb96205"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f5baef24847a99d2e91a90a76257455"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a7f5baef24847a99d2e91a90a76257455">expression_symbol_t_names</a> []</td></tr>
 <tr class="separator:a7f5baef24847a99d2e91a90a76257455"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a37ab74a9f33614ec4a1bbdcddf4895"><td class="memItemLeft" align="right" valign="top"><a id="a5a37ab74a9f33614ec4a1bbdcddf4895" name="a5a37ab74a9f33614ec4a1bbdcddf4895"></a>
-const expression_precedence_t&#160;</td><td class="memItemRight" valign="bottom"><b>precedence_table</b> [8][8]</td></tr>
-<tr class="separator:a5a37ab74a9f33614ec4a1bbdcddf4895"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3881309675d9a4f2c8a4e4802dfcafd1"><td class="memItemLeft" align="right" valign="top"><a id="a3881309675d9a4f2c8a4e4802dfcafd1" name="a3881309675d9a4f2c8a4e4802dfcafd1"></a>
+const expression_precedence_t&#160;</td><td class="memItemRight" valign="bottom"><b>precedence_table</b> [9][9]</td></tr>
+<tr class="separator:a3881309675d9a4f2c8a4e4802dfcafd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Expression parser implementation. </p>
@@ -192,10 +223,10 @@ Filip Stolfa </dd></dl>
       </table>
 </div><div class="memdoc">
 <b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <span class="stringliteral">&quot;SYM_PLUS&quot;</span>,   <span class="stringliteral">&quot;SYM_MINUS&quot;</span>, <span class="stringliteral">&quot;SYM_TIMES&quot;</span>,    <span class="stringliteral">&quot;SYM_DIVIDE&quot;</span>,   <span class="stringliteral">&quot;SYM_DIVIDE2&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;SYM_DOTDOT&quot;</span>, <span class="stringliteral">&quot;SYM_GT&quot;</span>,    <span class="stringliteral">&quot;SYM_GTE&quot;</span>,      <span class="stringliteral">&quot;SYM_EQ&quot;</span>,       <span class="stringliteral">&quot;SYM_NEQ&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;SYM_LTE&quot;</span>,    <span class="stringliteral">&quot;SYM_LT&quot;</span>,    <span class="stringliteral">&quot;SYM_LBRACKET&quot;</span>, <span class="stringliteral">&quot;SYM_RBRACKET&quot;</span>, <span class="stringliteral">&quot;SYM_I&quot;</span>,</div>
-<div class="line">    <span class="stringliteral">&quot;SYM_S&quot;</span>,      <span class="stringliteral">&quot;SYM_E&quot;</span>,     <span class="stringliteral">&quot;SYM_PREC_GT&quot;</span>,  <span class="stringliteral">&quot;SYM_PREC_LT&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_PLUS&quot;</span>,   <span class="stringliteral">&quot;SYM_MINUS&quot;</span>,  <span class="stringliteral">&quot;SYM_TIMES&quot;</span>, <span class="stringliteral">&quot;SYM_DIVIDE&quot;</span>,   <span class="stringliteral">&quot;SYM_DIVIDE2&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_DOTDOT&quot;</span>, <span class="stringliteral">&quot;SYM_STRLEN&quot;</span>, <span class="stringliteral">&quot;SYM_GT&quot;</span>,    <span class="stringliteral">&quot;SYM_GTE&quot;</span>,      <span class="stringliteral">&quot;SYM_EQ&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_NEQ&quot;</span>,    <span class="stringliteral">&quot;SYM_LTE&quot;</span>,    <span class="stringliteral">&quot;SYM_LT&quot;</span>,    <span class="stringliteral">&quot;SYM_LBRACKET&quot;</span>, <span class="stringliteral">&quot;SYM_RBRACKET&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;SYM_I&quot;</span>,      <span class="stringliteral">&quot;SYM_S&quot;</span>,      <span class="stringliteral">&quot;SYM_E&quot;</span>,     <span class="stringliteral">&quot;SYM_PREC_GT&quot;</span>,  <span class="stringliteral">&quot;SYM_PREC_LT&quot;</span>,</div>
 <div class="line">}</div>
 </div><!-- fragment -->
 </div>

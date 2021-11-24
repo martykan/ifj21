@@ -21,7 +21,7 @@ var searchData=
   ['superfasthash_18',['SuperFastHash',['../symtable_8c.html#af4556f56227ab989708be3e62e9910ac',1,'symtable.c']]],
   ['symbol_5fstack_5fpop_19',['symbol_stack_pop',['../expressions_8c.html#a9918e6e06073f8afb8402f993c9126fb',1,'expressions.c']]],
   ['symbol_5fstack_5fpops_20',['symbol_stack_pops',['../expressions_8c.html#a711865de176b7a0c496916f2aee5ab0a',1,'expressions.c']]],
-  ['symbol_5fstack_5fpush_21',['symbol_stack_push',['../expressions_8c.html#a8d50b8bd9369bdb495168dedf63d707d',1,'expressions.c']]],
+  ['symbol_5fstack_5fpush_21',['symbol_stack_push',['../expressions_8c.html#a76760c17461724d0b2a20fa1dfe6252d',1,'expressions.c']]],
   ['symbol_5fstack_5ft_22',['symbol_stack_t',['../structsymbol__stack__t.html',1,'']]],
   ['symtab_5fclear_23',['symtab_clear',['../symtable_8c.html#ab7c255866b01d6e94766356ef2ff7bf7',1,'symtab_clear(symtab_t *symtab):&#160;symtable.c'],['../symtable_8h.html#ab7c255866b01d6e94766356ef2ff7bf7',1,'symtab_clear(symtab_t *symtab):&#160;symtable.c']]],
   ['symtab_5fcreate_24',['symtab_create',['../symtable_8c.html#a38b92535c3115ae2c1f4bd594fa2a3c9',1,'symtab_create():&#160;symtable.c'],['../symtable_8h.html#a38b92535c3115ae2c1f4bd594fa2a3c9',1,'symtab_create():&#160;symtable.c']]],
