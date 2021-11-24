@@ -10,9 +10,12 @@ function main()
   str = reads()
   write("Zadali jste ", str, "!\n")
   local ordval : integer
-  ordval = ord(str, 0)
+  ordval = ord(str, 1)
   write("ASCII hodnota 1. pismene ", ordval, "!\n")
+  ordval = ord(str, 0)
+  write("ASCII hodnota pismene mimo index retezce ", ordval, "!\n")
   local substring: string = substr(str, 1, 2)
+  -- local substring: string = "hehehehe"
   write("Podřetězec ", substring, "!\n")
   write("Zadejte cislo: ")
   num = readn()
