@@ -911,8 +911,8 @@ bool parser_stlist_local(const char* func_name, const dynstr_t* ret_types) {
       return parser_st_local(func_name, ret_types) &&
              parser_stlist_local(func_name, ret_types);
     case TT_K_ELSE:
-    case TT_K_RETURN:
     case TT_K_END:
+    case TT_K_RETURN:
       return true;
     default:
       error_set(EXITSTATUS_ERROR_SYNTAX);
@@ -965,7 +965,11 @@ bool parser_returned(dynstr_t* exp_types) {
         return false;
       }
 
-      return parser_return_what(exp_types);
+      if (parser_return_what(exp_types)) {
+        codegen_function_return();
+        return true;
+      }
+      return false;
     case TT_K_ELSE:
     case TT_K_END:
       return true;

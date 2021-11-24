@@ -55,6 +55,9 @@ void codegen_literal(token_t* token) {
     case TT_STRING:
       printf("string@%s\n", token->attr.str);
       break;
+    case TT_K_NIL:
+      printf("nil@nil\n");
+      break;
     case TT_ID:
       printf("LF@%s\n", token->attr.str);
       break;
@@ -184,6 +187,11 @@ void codegen_function_definition_end(char* name) {
   printf("RETURN\n");
   printf("LABEL $endfn_%s\n\n", name);
   tmpmax = 0;
+}
+
+void codegen_function_return() {
+  printf("POPFRAME\n");
+  printf("RETURN\n");
 }
 
 void codegen_expression_push_value(token_t* token) {
