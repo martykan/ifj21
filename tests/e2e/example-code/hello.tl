@@ -9,8 +9,8 @@ function writetwice(str: string)
 end
 
 function hello()
-  local hello : string = "hello " .. "world"
-  write(hello)
+  local helo : string = "hello " .. "world"
+  write(helo)
   local math : number = 1+2*3
   write(math)
   local test : number

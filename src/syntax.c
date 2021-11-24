@@ -40,14 +40,14 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos,
 bool parser_arg_append(dynstr_t* arg_types, int* arg_pos,
                        symtab_func_data_t* func);
 bool parser_arg(char* arg_type);
-bool parser_local_scope(const dynstr_t* ret_types, bool create_scope);
-bool parser_stlist_local(const dynstr_t* ret_types);
-bool parser_st_local(const dynstr_t* ret_types);
+bool parser_local_scope(const char* func_name, const dynstr_t* ret_types, bool create_scope);
+bool parser_stlist_local(const char* func_name, const dynstr_t* ret_types);
+bool parser_st_local(const char* func_name, const dynstr_t* ret_types);
 bool parser_returned(dynstr_t* exp_types);
 bool parser_return_what(dynstr_t* exp_types);
-bool parser_var_dec();
-bool parser_if_st(const dynstr_t* ret_types);
-bool parser_while_st(const dynstr_t* ret_types);
+bool parser_var_dec(const char* func_name);
+bool parser_if_st(const char* func_name, const dynstr_t* ret_types);
+bool parser_while_st(const char* func_name, const dynstr_t* ret_types);
 bool parser_init(char var_type, bool* did_init);
 bool parser_init_after(char var_type);
 bool parser_id_after();
@@ -203,7 +203,7 @@ bool parser_function_def() {
 
           codegen_function_definition_begin(id);
           if (parser_type_list_return(&ret_types) &&
-              parser_local_scope(&ret_types, false)) {
+              parser_local_scope(id, &ret_types, false)) {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_K_END) {
@@ -837,7 +837,7 @@ bool parser_func_ret_match(char* declared, char* returned) {
   return true;
 }
 
-bool parser_local_scope(const dynstr_t* ret_types, bool create_scope) {
+bool parser_local_scope(const char* func_name, const dynstr_t* ret_types, bool create_scope) {
   token_t* token = token_buff(TOKEN_THIS);
 
   // is syntax correct
@@ -864,7 +864,7 @@ bool parser_local_scope(const dynstr_t* ret_types, bool create_scope) {
     case TT_K_RETURN:
     case TT_K_END:
     case TT_ID:
-      if (parser_stlist_local(ret_types) && parser_returned(&exp_types)) {
+      if (parser_stlist_local(func_name, ret_types) && parser_returned(&exp_types)) {
         if (!parser_func_ret_match(ret_types->str, exp_types.str)) {
           error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
           goto FREE_EXP_TYPES;
@@ -894,7 +894,7 @@ EXIT:
   return is_correct;
 }
 
-bool parser_stlist_local(const dynstr_t* ret_types) {
+bool parser_stlist_local(const char* func_name, const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -902,7 +902,7 @@ bool parser_stlist_local(const dynstr_t* ret_types) {
     case TT_K_IF:
     case TT_K_WHILE:
     case TT_ID:
-      return parser_st_local(ret_types) && parser_stlist_local(ret_types);
+      return parser_st_local(func_name, ret_types) && parser_stlist_local(func_name, ret_types);
     case TT_K_ELSE:
     case TT_K_RETURN:
     case TT_K_END:
@@ -913,7 +913,7 @@ bool parser_stlist_local(const dynstr_t* ret_types) {
   }
 }
 
-bool parser_st_local(const dynstr_t* ret_types) {
+bool parser_st_local(const char* func_name, const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -923,21 +923,21 @@ bool parser_st_local(const dynstr_t* ret_types) {
         return false;
       }
 
-      return parser_var_dec();
+      return parser_var_dec(func_name);
     case TT_K_IF:
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
 
-      return parser_if_st(ret_types);
+      return parser_if_st(func_name, ret_types);
     case TT_K_WHILE:
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
 
-      return parser_while_st(ret_types);
+      return parser_while_st(func_name, ret_types);
     case TT_ID:
       // does not consume token
 
@@ -989,7 +989,7 @@ bool parser_return_what(dynstr_t* exp_types) {
   }
 }
 
-bool parser_var_dec() {
+bool parser_var_dec(const char* func_name) {
   token_t* token = token_buff(TOKEN_THIS);
 
   // is syntax correct
@@ -1003,6 +1003,16 @@ bool parser_var_dec() {
   if (token->type == TT_ID) {
     symtab_var_data_t* declared_var = symtab_find_var(symtab, token->attr.str);
     if (declared_var) {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+      goto FREE_ID;
+    }
+    symtab_func_data_t* declared_func = symtab_find_func(symtab, token->attr.str);
+    if (declared_func) {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+      goto FREE_ID;
+    }
+    // name of var same as now being defined func
+    if(!strcmp(func_name, token->attr.str)) {
       error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
       goto FREE_ID;
     }
@@ -1050,7 +1060,7 @@ EXIT:
   return is_correct;
 }
 
-bool parser_if_st(const dynstr_t* ret_types) {
+bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   char cond_type;
@@ -1065,7 +1075,7 @@ bool parser_if_st(const dynstr_t* ret_types) {
 
       codegen_if_begin();
 
-      if (parser_local_scope(ret_types, true)) {
+      if (parser_local_scope(func_name, ret_types, true)) {
         token = token_buff(TOKEN_THIS);
 
         if (token->type == TT_K_ELSE) {
@@ -1076,7 +1086,7 @@ bool parser_if_st(const dynstr_t* ret_types) {
 
           codegen_if_else();
 
-          if (parser_local_scope(ret_types, true)) {
+          if (parser_local_scope(func_name, ret_types, true)) {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_K_END) {
@@ -1104,7 +1114,7 @@ EXIT:
   return false;
 }
 
-bool parser_while_st(const dynstr_t* ret_types) {
+bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   codegen_while_begin();
@@ -1121,7 +1131,7 @@ bool parser_while_st(const dynstr_t* ret_types) {
 
       codegen_while_expr();
 
-      if (parser_local_scope(ret_types, true)) {
+      if (parser_local_scope(func_name, ret_types, true)) {
         token = token_buff(TOKEN_THIS);
 
         if (token->type == TT_K_END) {
