@@ -31,6 +31,7 @@ typedef enum {
   SYM_DIVIDE,
   SYM_DIVIDE2,
   SYM_DOTDOT,
+  SYM_STRLEN,
   SYM_GT,
   SYM_GTE,
   SYM_EQ,
@@ -49,13 +50,15 @@ typedef enum {
 typedef struct symbol_stack_t symbol_stack_t;
 struct symbol_stack_t {
   expression_symbol_t symbol;
+  char type;
   token_t *token;
   symbol_stack_t *next;
 };
 
-bool expression_process(symbol_stack_t *stack);
+bool expression_process(symbol_stack_t *stack, char *exp_type);
 bool expression_parse();
 expression_symbol_t expression_get_input();
+char expression_get_type();
 void expression_next_input();
 
 #endif

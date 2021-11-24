@@ -37,12 +37,16 @@ void codegen_expression_mul();
 void codegen_expression_div();
 void codegen_expression_divint();
 void codegen_expression_concat();
+void codegen_expression_strlen();
 void codegen_expression_eq();
 void codegen_expression_neq();
 void codegen_expression_lt();
 void codegen_expression_lte();
 void codegen_expression_gt();
 void codegen_expression_gte();
+
+void codegen_cast_int_to_float1();
+void codegen_cast_int_to_float2();
 
 void codegen_define_var();
 void codegen_assign_expression_add(char* id);

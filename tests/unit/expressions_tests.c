@@ -20,28 +20,32 @@ void expressions_destroy(void *arg) {
 TEST expressions_basic(void) {
   SET_INPUT("5+5");
   token_buff(TOKEN_NEW);
-  ASSERT(expression_parse());
+  char type;
+  ASSERT(expression_parse(&type));
   PASS();
 }
 
 TEST expressions_parentheses(void) {
   SET_INPUT("(69+420)*111");
   token_buff(TOKEN_NEW);
-  ASSERT(expression_parse());
+  char type;
+  ASSERT(expression_parse(&type));
   PASS();
 }
 
 TEST expressions_parentheses2(void) {
   SET_INPUT("((69+420)+22)*(111)");
   token_buff(TOKEN_NEW);
-  ASSERT(expression_parse());
+  char type;
+  ASSERT(expression_parse(&type));
   PASS();
 }
 
 TEST expressions_invalid1(void) {
   SET_INPUT("69+420(*5)");
   token_buff(TOKEN_NEW);
-  ASSERT_FALSE(expression_parse());
+  char type;
+  ASSERT(expression_parse(&type));
   PASS();
 }
 

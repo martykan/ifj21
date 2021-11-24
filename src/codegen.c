@@ -205,8 +205,23 @@ void codegen_expression_concat() {
   printf("CONCAT LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
   printf("PUSHS LF@$tmp3\n");
 }
+void codegen_expression_strlen() {
+  codegen_get_temp_vars(2);
+  printf("POPS LF@$tmp1\n");
+  printf("STRLEN LF@$tmp2 LF@$tmp1\n");
+  printf("PUSHS LF@$tmp2\n");
+}
 void codegen_expression_lte() { printf("# E -> E<=E\n"); }
 void codegen_expression_gte() { printf("# E -> E>=E\n"); }
+
+void codegen_cast_int_to_float1() { printf("INT2FLOATS\n"); }
+
+void codegen_cast_int_to_float2() {
+  codegen_get_temp_vars(1);
+  printf("POPS LF@$tmp1\n");
+  printf("INT2FLOATS\n");
+  printf("PUSHS LF@$tmp1\n");
+}
 
 void codegen_define_var(char* id) { printf("DEFVAR LF@%s\n", id); }
 
@@ -232,7 +247,7 @@ void codegen_if_begin() {
   printf("# if_%d\n", idmax);
   codegen_get_temp_vars(1);
   printf("POPS LF@$tmp1\n");
-  printf("JUMPIFEQ $else_%d LF@$tmp1 int@0\n", idmax);
+  printf("JUMPIFEQ $else_%d LF@$tmp1 bool@false\n", idmax);
 }
 
 void codegen_if_else() {
@@ -258,7 +273,7 @@ void codegen_while_begin() {
 void codegen_while_expr() {
   int id = idstack[iddepth];
   printf("POPS LF@$tmp1\n");
-  printf("JUMPIFEQ $while_end_%d LF@$tmp1 int@0\n", id);
+  printf("JUMPIFEQ $while_end_%d LF@$tmp1 bool@false\n", id);
 }
 
 void codegen_while_end() {
