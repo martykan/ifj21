@@ -214,8 +214,26 @@ void codegen_expression_strlen() {
   printf("STRLEN LF@$tmp2 LF@$tmp1\n");
   printf("PUSHS LF@$tmp2\n");
 }
-void codegen_expression_lte() { printf("# E -> E<=E\n"); }
-void codegen_expression_gte() { printf("# E -> E>=E\n"); }
+void codegen_expression_lte() {
+  codegen_get_temp_vars(3);
+  printf("POPS LF@$tmp1\n");
+  printf("POPS LF@$tmp2\n");
+  printf("EQ LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
+  printf("PUSHS LF@$tmp3\n");
+  printf("LT LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
+  printf("PUSHS LF@$tmp3\n");
+  printf("ORS\n");
+}
+void codegen_expression_gte() {
+  codegen_get_temp_vars(3);
+  printf("POPS LF@$tmp1\n");
+  printf("POPS LF@$tmp2\n");
+  printf("EQ LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
+  printf("PUSHS LF@$tmp3\n");
+  printf("GT LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
+  printf("PUSHS LF@$tmp3\n");
+  printf("ORS\n");
+}
 
 void codegen_cast_int_to_float1() { printf("INT2FLOATS\n"); }
 
