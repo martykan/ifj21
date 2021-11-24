@@ -101,6 +101,7 @@ $(document).ready(function(){initNavTree('scanner_8c.html',''); initResizable();
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="scanner_8h_source.html">scanner.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="dynstr_8h_source.html">dynstr.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="errors_8h_source.html">errors.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -246,15 +247,16 @@ Filip Stolfa </dd></dl>
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">do</span>{\</div>
 <div class="line">  if (<a class="code hl_function" href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a>(&amp;<a class="code hl_variable" href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a>, (CHAR)) == NULL) {\</div>
 <div class="line">    scanner_token_destroy((TOK));\</div>
+<div class="line">    error_set(<a class="code hl_enumvalue" href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a">EXITSTATUS_INTERNAL_ERROR</a>);\</div>
 <div class="line">    return NULL;\</div>
-<div class="line">    <span class="comment">/* TODO(filip): set error flag */</span>\</div>
 <div class="line">  }\</div>
 <div class="line">}<span class="keywordflow">while</span>(0)</div>
 <div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdoc">Appends a character to a dynamic string.</div><div class="ttdef"><b>Definition:</b> dynstr.c:65</div></div>
+<div class="ttc" id="aerrors_8h_html_aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a"><div class="ttname"><a href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a">EXITSTATUS_INTERNAL_ERROR</a></div><div class="ttdeci">@ EXITSTATUS_INTERNAL_ERROR</div><div class="ttdoc">Internal compiler error (ex. memory allocation error)</div><div class="ttdef"><b>Definition:</b> errors.h:36</div></div>
 <div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:36</div></div>
 </div><!-- fragment -->
 <p>Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. </p>
-<p >If it wasn't destroy token and set error flag. TODO: report error </p>
+<p >If it wasn't destroy token and set error flag. </p>
 
 </div>
 </div>
