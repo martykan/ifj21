@@ -6,6 +6,7 @@
  * @author Filip Stolfa
  */
 #include "expressions.h"
+#include "errors.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -391,6 +392,9 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
   do {
     a = get_top_symbol(stack);
     expression_symbol_t new_b = expression_get_input();
+    if (error_get()) {
+      return false;
+    }
     if (b == SYM_S || (b == SYM_I && new_b == SYM_I)) {
       b = SYM_S;
     } else {
@@ -405,6 +409,9 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
       case PREC_EQ:
         symbol_stack_push(&stack, b, expression_get_type());
         expression_next_input();
+        if (error_get()) {
+          return false;
+        }
         break;
       case PREC_LT:
         if (b == SYM_I) {
@@ -421,6 +428,9 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
         }
         symbol_stack_push(&stack, b, expression_get_type());
         expression_next_input();
+        if (error_get()) {
+          return false;
+        }
         break;
       case PREC_GT: {
         symbol_stack_t *s2 = NULL;
@@ -447,6 +457,9 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
 
 char expression_get_type() {
   token_t *token = token_buff(TOKEN_THIS);
+  if (error_get() || token == NULL) {
+    return TYPE_NONE;
+  }
 
   switch (token->type) {
     case TT_INTEGER:
@@ -467,6 +480,9 @@ char expression_get_type() {
 
 expression_symbol_t expression_get_input() {
   token_t *token = token_buff(TOKEN_THIS);
+  if (error_get() || token == NULL) {
+    return SYM_S;
+  }
 
   switch (token->type) {
     case TT_INTEGER:
@@ -513,6 +529,9 @@ void expression_next_input() { token_buff(TOKEN_NEW); }
 
 bool expression_parse(char *exp_type) {
   token_t *token = token_buff(TOKEN_THIS);
+  if (error_get() || token == NULL) {
+    return false;
+  }
   switch (token->type) {
     case TT_INTEGER:
     case TT_NUMBER:

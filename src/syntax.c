@@ -1254,7 +1254,9 @@ bool parser_init_after(char var_type) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
   return false;
 }
 
