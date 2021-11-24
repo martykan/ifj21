@@ -31,7 +31,8 @@ bool parser_function_dec();
 bool parser_param_list(dynstr_t* param_types);
 bool parser_param_append(dynstr_t* param_types);
 bool parser_param(char* param_type);
-bool parser_type_list(dynstr_t* types);
+bool parser_type_list_param(dynstr_t* types);
+bool parser_type_list_return(dynstr_t* types);
 bool parser_type_append(dynstr_t* types);
 bool parser_type(char* type);
 bool parser_arg_list(dynstr_t* arg_types, int* arg_pos,
@@ -201,7 +202,7 @@ bool parser_function_def() {
           }
 
           codegen_function_definition_begin(id);
-          if (parser_type_list(&ret_types) &&
+          if (parser_type_list_return(&ret_types) &&
               parser_local_scope(&ret_types, false)) {
             token = token_buff(TOKEN_THIS);
 
@@ -307,7 +308,7 @@ bool parser_function_dec() {
             goto FREE_RET_TYPES;
           }
 
-          if (parser_param_list(&param_types)) {
+          if (parser_type_list_param(&param_types)) {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_RPAR) {
@@ -316,7 +317,7 @@ bool parser_function_dec() {
                 goto FREE_RET_TYPES;
               }
 
-              if (parser_type_list(&ret_types)) {
+              if (parser_type_list_return(&ret_types)) {
                 parser_declare_func(id, &param_types, &ret_types);
                 if (error_get()) {
                   goto FREE_RET_TYPES;
@@ -558,7 +559,35 @@ EXIT:
   return is_correct;
 }
 
-bool parser_type_list(dynstr_t* types) {
+bool parser_type_list_param(dynstr_t* types) {
+  token_t* token = token_buff(TOKEN_THIS);
+
+  switch (token->type) {
+    case TT_RPAR:
+      return true;
+    case TT_K_NUMBER:
+    case TT_K_INTEGER:
+    case TT_K_STRING:
+      char type;
+      if (parser_type(&type)) {
+        dynstr_append(types, type);
+        if (error_get()) {
+          return false;
+        }
+
+        return parser_type_append(types);
+      }
+
+      break;
+    default:
+      break;
+  }
+
+  error_set(EXITSTATUS_ERROR_SYNTAX);
+  return false;
+}
+
+bool parser_type_list_return(dynstr_t* types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -612,6 +641,7 @@ bool parser_type_append(dynstr_t* types) {
     case TT_K_END:
     case TT_ID:
     case TT_EOF:
+    case TT_RPAR:
       return true;
     case TT_COMMA:
       token_buff(TOKEN_NEW);

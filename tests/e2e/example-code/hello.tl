@@ -1,7 +1,7 @@
 require "ifj21"
 
 -- TODO
--- global writetwice : function(string)
+global writetwice : function(string)
 
 function writetwice(str: string)
   write(str)
