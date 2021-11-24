@@ -1,14 +1,14 @@
 require "ifj21"
 
-function hello(x: number, y: number)
-  if x then
-    if y then
+function hello(x: integer, y: integer)
+  if x >= 1 then
+    if y >= 1 then
       write("a")
     else
       write("b")
     end
   else
-    if y then
+    if y > 0 then
       write("c")
     else
       write("d")

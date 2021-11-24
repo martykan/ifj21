@@ -12,6 +12,7 @@
 #include <stdbool.h>
 
 #include "codegen.h"
+#include "errors.h"
 #include "parser.h"
 #include "scanner.h"
 

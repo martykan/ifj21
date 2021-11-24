@@ -15,8 +15,7 @@
 void codegen_function_call_begin(char* name);
 
 /** Save function arguments to a variable on TF */
-void codegen_function_call_argument(token_t* token, int argpos,
-                                    symtab_func_data_t* func);
+void codegen_function_call_argument(token_t* token, int argpos);
 
 /** Save the count of function arguments to a variable on TF */
 void codegen_function_call_argument_count(int argcount);
@@ -27,8 +26,14 @@ void codegen_function_call_do(char* name, int argcount);
 /** Begin a function definition */
 void codegen_function_definition_begin(char* name);
 
+/** Parameter in a function definition */
+void codegen_function_definition_param(char* name, int argpos);
+
 /** End a function definition */
 void codegen_function_definition_end(char* name);
+
+/** Return from a function early */
+void codegen_function_return();
 
 void codegen_expression_push_value(token_t* token);
 void codegen_expression_plus();
@@ -59,5 +64,7 @@ void codegen_if_end();
 void codegen_while_begin();
 void codegen_while_expr();
 void codegen_while_end();
+
+void codegen_substr_define();
 
 #endif

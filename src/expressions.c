@@ -16,6 +16,7 @@ extern symtab_t *symtab;
 #define TYPE_STRING 's'
 #define TYPE_INTEGER 'i'
 #define TYPE_NUMBER 'n'
+#define TYPE_NIL 'x'
 #define TYPE_NONE '-'
 
 char *expression_symbol_t_names[] = {
@@ -213,8 +214,10 @@ expression_symbol_t get_top_symbol(symbol_stack_t *stack) {
 // For plus, minus, multiply
 bool expression_typecheck_basic_arithmetics(char *out, char type1, char type2) {
   if ((type1 != TYPE_NUMBER && type1 != TYPE_INTEGER) ||
-      (type2 != TYPE_NUMBER && type2 != TYPE_INTEGER))
+      (type2 != TYPE_NUMBER && type2 != TYPE_INTEGER)) {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
     return false;
+  }
   if (type1 == TYPE_INTEGER && type2 == TYPE_INTEGER) {
     *out = TYPE_INTEGER;
   } else {
@@ -228,10 +231,31 @@ bool expression_typecheck_basic_arithmetics(char *out, char type1, char type2) {
   return true;
 }
 
+bool expression_typecheck_basic_logic_nullable(char *out, char type1,
+                                               char type2) {
+  if ((type1 == TYPE_NUMBER || type1 == TYPE_INTEGER || type1 == TYPE_NIL) &&
+      (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER || type1 == TYPE_NIL)) {
+    *out = TYPE_INTEGER;
+    return true;
+  } else if ((type1 == TYPE_STRING || type1 == TYPE_NIL) &&
+             (type2 == TYPE_STRING || type2 == TYPE_NIL)) {
+    *out = TYPE_INTEGER;
+    return true;
+  } else {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+    return false;
+  }
+}
+
 bool expression_typecheck_basic_logic(char *out, char type1, char type2) {
-  *out = TYPE_INTEGER;
-  return (type1 == TYPE_NUMBER || type1 == TYPE_INTEGER) &&
-         (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER);
+  if ((type1 == TYPE_NUMBER || type1 == TYPE_INTEGER) &&
+      (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER)) {
+    *out = TYPE_INTEGER;
+    return true;
+  } else {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+    return false;
+  }
 }
 
 bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
@@ -255,7 +279,10 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
   } else if (s1->symbol == SYM_E && s2->symbol == SYM_STRLEN &&
              s3->symbol == SYM_PREC_LT) {
     // E -> #E
-    if (s1->type != TYPE_STRING) return false;
+    if (s1->type != TYPE_STRING) {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+      return false;
+    }
     symbol_stack_pops(stack, 3);
     symbol_stack_push(stack, SYM_E, TYPE_INTEGER);
     codegen_expression_strlen();
@@ -291,21 +318,30 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
       return true;
     } else if (s2->symbol == SYM_DIVIDE) {
       // E -> E/E
-      if (s1->type != TYPE_NUMBER && s3->type != TYPE_NUMBER) return false;
+      if (s1->type != TYPE_NUMBER && s3->type != TYPE_NUMBER) {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+        return false;
+      }
       symbol_stack_pops(stack, 4);
       symbol_stack_push(stack, SYM_E, TYPE_NUMBER);
       codegen_expression_div();
       return true;
     } else if (s2->symbol == SYM_DIVIDE2) {
       // E -> E//E
-      if (s1->type != TYPE_INTEGER && s3->type != TYPE_INTEGER) return false;
+      if (s1->type != TYPE_INTEGER && s3->type != TYPE_INTEGER) {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+        return false;
+      }
       symbol_stack_pops(stack, 4);
       symbol_stack_push(stack, SYM_E, TYPE_INTEGER);
       codegen_expression_divint();
       return true;
     } else if (s2->symbol == SYM_DOTDOT) {
       // E -> E..E
-      if (s1->type != TYPE_STRING && s3->type != TYPE_STRING) return false;
+      if (s1->type != TYPE_STRING && s3->type != TYPE_STRING) {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+        return false;
+      }
       symbol_stack_pops(stack, 4);
       symbol_stack_push(stack, SYM_E, TYPE_STRING);
       codegen_expression_concat();
@@ -313,7 +349,7 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
     } else if (s2->symbol == SYM_EQ) {
       // E -> E==E
       char type;
-      if (!expression_typecheck_basic_logic(&type, s1->type, s3->type))
+      if (!expression_typecheck_basic_logic_nullable(&type, s1->type, s3->type))
         return false;
       symbol_stack_pops(stack, 4);
       symbol_stack_push(stack, SYM_E, type);
@@ -322,7 +358,7 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
     } else if (s2->symbol == SYM_NEQ) {
       // E -> E~=E
       char type;
-      if (!expression_typecheck_basic_logic(&type, s1->type, s3->type))
+      if (!expression_typecheck_basic_logic_nullable(&type, s1->type, s3->type))
         return false;
       symbol_stack_pops(stack, 4);
       symbol_stack_push(stack, SYM_E, type);
@@ -468,6 +504,8 @@ char expression_get_type() {
       return TYPE_NUMBER;
     case TT_STRING:
       return TYPE_STRING;
+    case TT_K_NIL:
+      return TYPE_NIL;
     case TT_ID: {
       symtab_var_data_t *record = symtab_find_var(symtab, token->attr.str);
       if (record == NULL) return TYPE_NONE;
