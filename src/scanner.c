@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include "scanner.h"
 #include "dynstr.h"
+#include "errors.h"
 
 /// Number of keywords in keywords array
 #define KEYWORDS_COUNT 15
@@ -20,13 +21,12 @@
  * Macro for appending a character to a dynstr_t and checking
  * if the operation was successful. If it wasn't destroy token and
  * set error flag.
- * TODO: report error
  */
 #define APPEND_CHAR(CHAR, TOK) do{\
   if (dynstr_append(&str_buffer, (CHAR)) == NULL) {\
     scanner_token_destroy((TOK));\
+    error_set(EXITSTATUS_INTERNAL_ERROR);\
     return NULL;\
-    /* TODO(filip): set error flag */\
   }\
 }while(0)
 
@@ -85,7 +85,7 @@ typedef enum {
 void scanner_init() {
   dynstr_t *res = dynstr_init(&str_buffer);
   if (res == NULL) {
-    /* TODO(filip): set global error flag? Or have a err return val? */
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return;
   }
 }
@@ -93,7 +93,6 @@ void scanner_init() {
 void scanner_destroy() {
   dynstr_t *res = dynstr_free_buffer(&str_buffer);
   if (res == NULL) {
-    /* TODO(filip): dynstr_free_buffer should set the err flag */
     return;
   }
 }
@@ -132,7 +131,7 @@ void scanner_token_destroy(token_t *tok) {
 token_t* scanner_create_empty_token() {
   token_t *new_token = malloc(sizeof(token_t));
   if (new_token == NULL) {
-    /* TODO(filip): report error */
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
   new_token->attr.str = NULL;
@@ -178,9 +177,8 @@ token_t *scanner_make_id_kw_token(token_t *tok) {
     tok->type = tok_type;
     tok->attr.str = dynstr_copy_to_static(&str_buffer);
     if (tok->attr.str == NULL) {
-      /* TODO(filip): set error flag */
-      /* TODO(filip): make into an error macro? */
       scanner_token_destroy(tok);
+      error_set(EXITSTATUS_INTERNAL_ERROR);
       return NULL;
     }
   }
@@ -245,7 +243,10 @@ token_t *scanner_make_one_state_op_sep(token_t *tok, int curr_char) {
     tok->type = TT_SOP_LENGTH;
   }
   else {
-    return scanner_make_error_token(tok);
+    scanner_token_destroy(tok);
+    error_set(EXITSTATUS_ERROR_LEXICAL); // invalid character on input
+    return NULL;
+    /* return scanner_make_error_token(tok); */
   }
 
   return tok;
@@ -271,7 +272,6 @@ token_t *scanner_make_op_token(token_t *tok, token_type_t tok_type) {
  */
 token_t *scanner_make_string_tok(token_t *tok) {
   tok->type = TT_STRING;
-  /* TODO(filip): check error from copy_to_static here? */
   tok->attr.str = dynstr_copy_to_static(&str_buffer);
   return tok;
 }
@@ -302,14 +302,14 @@ char get_escaped_cahr(int c) {
 
 
 token_t *scanner_get_next_token() {
-  /* TODO(filip): should we check if dynstr is initialized? */
   if (dynstr_clear(&str_buffer) == NULL) {
-    /* TODO(filip): report error */
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
 
   token_t *new_token = scanner_create_empty_token();
   if (new_token == NULL) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
 
@@ -408,7 +408,10 @@ token_t *scanner_get_next_token() {
           state = STATE_NUMBER_FINAL;
         }
         else {
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -422,7 +425,10 @@ token_t *scanner_get_next_token() {
           state = STATE_NUMBER_EXP_SIGN;
         }
         else {
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -432,7 +438,10 @@ token_t *scanner_get_next_token() {
           state = STATE_NUMBER_FINAL_WITH_EXP;
         }
         else {
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -493,7 +502,10 @@ token_t *scanner_get_next_token() {
         }
         else {
           ungetc(curr_char, stdin);
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
       case STATE_NUMBER_DIV:
@@ -520,7 +532,10 @@ token_t *scanner_get_next_token() {
         }
         else {
           ungetc(curr_char, stdin);
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -533,10 +548,16 @@ token_t *scanner_get_next_token() {
           state = STATE_STRING_ESC;
         }
         else if (curr_char == '\n' || curr_char == EOF) {
-          return scanner_make_error_token(new_token);
+          /* TODO(filip): ok? */
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         else if (curr_char <= 32 || curr_char == '#') { // escape whitespace
           if (dynstr_append_esc(&str_buffer, curr_char) == NULL) {
+            scanner_token_destroy(new_token);
+            error_set(EXITSTATUS_INTERNAL_ERROR);
             return NULL;
           }
         }
@@ -544,9 +565,10 @@ token_t *scanner_get_next_token() {
           APPEND_CHAR(curr_char, new_token);
         }
         else {
-          // error
-          /* TODO(filip): set error flag, return null */
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -563,13 +585,17 @@ token_t *scanner_get_next_token() {
         else if (is_escapable_char(curr_char)) {
           char c = get_escaped_cahr(curr_char);
           if (dynstr_append_esc(&str_buffer, c) == NULL) {
+            scanner_token_destroy(new_token);
+            error_set(EXITSTATUS_INTERNAL_ERROR);
             return NULL;
           }
           state = STATE_STRING_START;
         }
         else {
-          // TODO(filip): return null, set error flag and print err msg
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -579,7 +605,10 @@ token_t *scanner_get_next_token() {
           state = STATE_STRING_ESC_CODE_2;
         }
         else {
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -589,7 +618,10 @@ token_t *scanner_get_next_token() {
           state = STATE_STRING_START;
         }
         else {
-          return scanner_make_error_token(new_token);
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -635,7 +667,10 @@ token_t *scanner_get_next_token() {
 
       default:
         /* TODO(filip): report unhandled state */
-        return scanner_make_error_token(new_token);
+        scanner_token_destroy(new_token);
+        error_set(EXITSTATUS_INTERNAL_ERROR);
+        return NULL;
+        /* return scanner_make_error_token(new_token); */
     }
   }
 }

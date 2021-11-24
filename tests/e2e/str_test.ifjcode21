@@ -1,0 +1,17 @@
+.IFJcode21
+#WRITE string@retezec\032s\032lomitkem\032\092\032a\010novym\035radkem
+
+# input test
+WRITE string@hello\032there\032this\032is\032a\032string.\032:)\032%$\035..-+*/
+WRITE string@\010
+WRITE string@escape\032one\032"another\032string"
+WRITE string@\010
+WRITE string@newline\032\010\032in\032a\032string
+WRITE string@\010
+WRITE string@escape\032code\032\123\032\032
+
+
+WRITE string@\010
+WRITE string@Hello\000
+WRITE string@\032
+WRITE string@World\000
