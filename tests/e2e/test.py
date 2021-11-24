@@ -82,8 +82,9 @@ def run_test(test_file: str, test_input_dir: str) -> TestRes:
 
         # interpret generated code
         if expected_rc == 0:
+            inter_cmd = f"./ic21int {comp_out_file}{input_data_cmd}"
             inter = subprocess.Popen(
-                f"./ic21int {comp_out_file}",
+                inter_cmd,
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
@@ -100,8 +101,6 @@ def run_test(test_file: str, test_input_dir: str) -> TestRes:
         return TestRes(TestRes.TIMEOUT, msg=str(e))
 
     else:
-        if (os.path.isfile(get_path(test_input_dir, f"out_{test_file}"))):
-            os.remove(get_path(test_input_dir, f"out_{test_file}"))
         return TestRes(TestRes.OK)
 
 
@@ -111,14 +110,14 @@ def print_test_suite_header(dir: str):
 
 def print_test_suite_footer(num_run: int, num_failed: int, num_skipped: int):
     print(
-        f"\n{num_run} tests - {num_run - (num_failed+num_skipped)} passed, {num_failed} failed, {num_skipped} skipped\n"
+        f"\n{num_run} tests run - {num_run - num_failed} passed, {num_failed} failed, {num_skipped} skipped\n"
     )
 
 
 def print_test_fail(test_name: str, res: TestRes):
 
     test_res_str = ["OK", "DIFF_OUT", "TIMEOUT", "DIFF_EXIT_CODE", "SKIPPED", "INVALID_INPUT", "INTERNAL", "RUNTIME_ERROR"]
-    print(f"Fail - {test_name}: {test_res_str[res.type]}")
+    print(f"\nFail - {test_name}: {test_res_str[res.type]}")
     if len(res.msg) != 0:
         print(res.msg)
     # if res.type == TestRes.DIFF_OUT:
@@ -137,7 +136,7 @@ def print_test_success():
 
 def print_final_footer(total_tests: int, total_failed: int, total_skipped: int):
     print(
-        f"Total: {total_tests} tests - {total_tests - (total_failed+total_skipped)} passed, {total_failed} failed, {total_skipped} skipped"
+        f"Total: {total_tests} tests run - {total_tests - total_failed} passed, {total_failed} failed, {total_skipped} skipped"
     )
 
 
@@ -170,13 +169,15 @@ def all_tests():
         for test_file in tl_files:
             curr_test_dir = get_path(test_input_dir, dir)
             res = run_test(test_file, curr_test_dir)
-            num_tests_in_suite += 1
             if res.type == TestRes.SKIPPED:
                 num_tests_in_suite_skipped += 1
             elif res.type != TestRes.OK:
                 num_tests_in_suite_fail += 1
                 print_test_fail(test_file, res)
             else:
+                num_tests_in_suite += 1
+                if (os.path.isfile(get_path(cwd, f"out_{test_file}"))):
+                    os.remove(get_path(cwd, f"out_{test_file}"))
                 print_test_success()
 
         print_test_suite_footer(
