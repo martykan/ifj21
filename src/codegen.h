@@ -48,4 +48,12 @@ void codegen_define_var();
 void codegen_assign_expression_add(char* id);
 void codegen_assign_expression_finish();
 
+void codegen_if_begin();
+void codegen_if_else();
+void codegen_if_end();
+
+void codegen_while_begin();
+void codegen_while_expr();
+void codegen_while_end();
+
 #endif

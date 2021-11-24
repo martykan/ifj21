@@ -14,6 +14,20 @@
 #include "errors.h"
 #include "scanner.h"
 
+// Variables to keep track of temp vars
+int tmpmax = 0;
+void codegen_get_temp_vars(int count) {
+  for (int i = tmpmax; i <= count; i++) {
+    printf("DEFVAR LF@$tmp%d\n", i);
+    tmpmax++;
+  }
+}
+
+// Variables to generate unique IDs for labels, while supporting nesting
+int idmax = -1;
+int iddepth = -1;
+int idstack[100];
+
 char* last_function_name;
 
 void codegen_function_call_begin(char* name) {
@@ -52,9 +66,6 @@ void codegen_function_call_argument(token_t* token, int argpos,
     return;
   }
   if (strcmp(last_function_name, "write") == 0) {
-    if (argpos > 0) {
-      printf("WRITE string@\\032\n");
-    }
     printf("WRITE ");
   } else {
     char* argname = func->params->vars[argpos]->var_name;
@@ -75,7 +86,6 @@ void codegen_function_call_argument_count(int argcount) {
 void codegen_function_call_do(char* name, int argcount) {
   last_function_name = NULL;
   if (strcmp(name, "write") == 0) {
-    printf("WRITE string@\\010\n");
     return;
   }
   printf("CALL $fn_%s\n", name);
@@ -91,6 +101,7 @@ void codegen_function_definition_end(char* name) {
   printf("POPFRAME\n");
   printf("RETURN\n");
   printf("LABEL $endfn_%s\n\n", name);
+  tmpmax = 0;
 }
 
 void codegen_expression_push_value(token_t* token) {
@@ -109,9 +120,7 @@ void codegen_expression_lt() { printf("LTS\n"); }
 void codegen_expression_gt() { printf("GTS\n"); }
 
 void codegen_expression_concat() {
-  printf("DEFVAR LF@$tmp1\n");
-  printf("DEFVAR LF@$tmp2\n");
-  printf("DEFVAR LF@$tmp3\n");
+  codegen_get_temp_vars(3);
   printf("POPS LF@$tmp1\n");
   printf("POPS LF@$tmp2\n");
   printf("CONCAT LF@$tmp3 LF@$tmp2 LF@$tmp1\n");
@@ -135,4 +144,47 @@ void codegen_assign_expression_add(char* id) {
 void codegen_assign_expression_finish() {
   printf("%s", expression_assign_buffer.str);
   dynstr_clear(&expression_assign_buffer);
+}
+
+void codegen_if_begin() {
+  iddepth++;
+  idmax++;
+  idstack[iddepth] = idmax;
+  printf("# if_%d\n", idmax);
+  codegen_get_temp_vars(1);
+  printf("POPS LF@$tmp1\n");
+  printf("JUMPIFEQ $else_%d LF@$tmp1 int@0\n", idmax);
+}
+
+void codegen_if_else() {
+  int id = idstack[iddepth];
+  printf("JUMP $end_%d\n", id);
+  printf("LABEL $else_%d\n", id);
+}
+
+void codegen_if_end() {
+  int id = idstack[iddepth];
+  printf("LABEL $end_%d\n", id);
+  iddepth--;
+}
+
+void codegen_while_begin() {
+  iddepth++;
+  idmax++;
+  idstack[iddepth] = idmax;
+  codegen_get_temp_vars(1);
+  printf("LABEL $while_%d\n", idmax);
+}
+
+void codegen_while_expr() {
+  int id = idstack[iddepth];
+  printf("POPS LF@$tmp1\n");
+  printf("JUMPIFEQ $while_end_%d LF@$tmp1 int@0\n", id);
+}
+
+void codegen_while_end() {
+  int id = idstack[iddepth];
+  printf("JUMP $while_%d\n", id);
+  printf("LABEL $while_end_%d\n", id);
+  iddepth--;
 }

@@ -1023,49 +1023,41 @@ EXIT:
 bool parser_if_st(const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  if (token->type == TT_LPAR) {
-    token = token_buff(TOKEN_NEW);
-    if (error_get()) {
-      return false;
-    }
+  char cond_type;
+  if (parser_exp(&cond_type)) {
+    token = token_buff(TOKEN_THIS);
 
-    char cond_type;
-    if (parser_exp(&cond_type)) {
-      token = token_buff(TOKEN_THIS);
+    if (token->type == TT_K_THEN) {
+      token = token_buff(TOKEN_NEW);
+      if (error_get()) {
+        return false;
+      }
 
-      if (token->type == TT_RPAR) {
-        token = token_buff(TOKEN_NEW);
-        if (error_get()) {
-          return false;
-        }
+      codegen_if_begin();
 
-        if (token->type == TT_K_THEN) {
+      if (parser_local_scope(ret_types, true)) {
+        token = token_buff(TOKEN_THIS);
+
+        if (token->type == TT_K_ELSE) {
           token = token_buff(TOKEN_NEW);
           if (error_get()) {
             return false;
           }
 
+          codegen_if_else();
+
           if (parser_local_scope(ret_types, true)) {
             token = token_buff(TOKEN_THIS);
 
-            if (token->type == TT_K_ELSE) {
-              token = token_buff(TOKEN_NEW);
+            if (token->type == TT_K_END) {
+              token_buff(TOKEN_NEW);
               if (error_get()) {
                 return false;
               }
 
-              if (parser_local_scope(ret_types, true)) {
-                token = token_buff(TOKEN_THIS);
+              codegen_if_end();
 
-                if (token->type == TT_K_END) {
-                  token_buff(TOKEN_NEW);
-                  if (error_get()) {
-                    return false;
-                  }
-
-                  return true;
-                }
-              }
+              return true;
             }
           }
         }
@@ -1085,40 +1077,32 @@ EXIT:
 bool parser_while_st(const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  if (token->type == TT_LPAR) {
-    token = token_buff(TOKEN_NEW);
-    if (error_get()) {
-      goto EXIT;
-    }
+  codegen_while_begin();
 
-    char cond_type;
-    if (parser_exp(&cond_type)) {
-      token = token_buff(TOKEN_THIS);
+  char cond_type;
+  if (parser_exp(&cond_type)) {
+    token = token_buff(TOKEN_THIS);
 
-      if (token->type == TT_RPAR) {
-        token = token_buff(TOKEN_NEW);
-        if (error_get()) {
-          goto EXIT;
-        }
+    if (token->type == TT_K_DO) {
+      token = token_buff(TOKEN_NEW);
+      if (error_get()) {
+        goto EXIT;
+      }
 
-        if (token->type == TT_K_DO) {
-          token = token_buff(TOKEN_NEW);
+      codegen_while_expr();
+
+      if (parser_local_scope(ret_types, true)) {
+        token = token_buff(TOKEN_THIS);
+
+        if (token->type == TT_K_END) {
+          token_buff(TOKEN_NEW);
           if (error_get()) {
-            goto EXIT;
+            return false;
           }
 
-          if (parser_local_scope(ret_types, true)) {
-            token = token_buff(TOKEN_THIS);
+          codegen_while_end();
 
-            if (token->type == TT_K_END) {
-              token_buff(TOKEN_NEW);
-              if (error_get()) {
-                return false;
-              }
-
-              return true;
-            }
-          }
+          return true;
         }
       }
     }
