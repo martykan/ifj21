@@ -9,15 +9,15 @@
  */
 
 #include "parser.h"
-#include "symtable.h"
-#include "scanner.h"
-#include "dynstr.h"
 
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
+#include "dynstr.h"
 #include "errors.h"
+#include "scanner.h"
+#include "symtable.h"
 
 // INIT
 
@@ -34,17 +34,17 @@ bool parser_init_symtab() {
 token_t* token_buff(int operation) {
   static token_t* token = NULL;
 
-  if(operation == TOKEN_THIS) {
+  if (operation == TOKEN_THIS) {
     return token;
-  } else if(operation == TOKEN_NEW) {
+  } else if (operation == TOKEN_NEW) {
     scanner_token_destroy(token);
     token = scanner_get_next_token();
-    if(error_get()) {
+    if (error_get()) {
       return NULL;
     }
 
     return token;
-  } else if(operation == TOKEN_DELETE) {
+  } else if (operation == TOKEN_DELETE) {
     scanner_token_destroy(token);
   }
 
@@ -55,9 +55,16 @@ token_t* token_buff(int operation) {
 
 bool parser_declare_var(const char* id, char data_type) {
   symtab_var_data_t* var_data = symtab_insert_var(symtab, id);
-  if(error_get()) {
+  if (error_get()) {
     return false;
   }
+
+  var_data->var_name = malloc(sizeof(char) * (strlen(id) + 1));
+  if (!var_data->var_name) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return false;
+  }
+  strncpy(var_data->var_name, id, strlen(id) + 1);
 
   var_data->data_type = data_type;
   var_data->is_init = false;
@@ -66,9 +73,10 @@ bool parser_declare_var(const char* id, char data_type) {
   return true;
 }
 
-bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types) {
+bool parser_declare_func(const char* id, const dynstr_t* param_types,
+                         const dynstr_t* return_types) {
   symtab_func_data_t* func_data = symtab_insert_func(symtab, id);
-  if(error_get()) {
+  if (error_get()) {
     return false;
   }
 
@@ -78,19 +86,19 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types, const dyns
   func_data->param_types = NULL;
   func_data->return_types = NULL;
 
-  func_data->func_name = malloc(sizeof(char) * (strlen(id)+1));
+  func_data->func_name = malloc(sizeof(char) * (strlen(id) + 1));
   if (!func_data->func_name) {
     error_set(EXITSTATUS_INTERNAL_ERROR);
     return false;
   }
-  strncpy(func_data->func_name, id, strlen(id)+1);
+  strncpy(func_data->func_name, id, strlen(id) + 1);
 
   func_data->param_types = dynstr_copy_to_static(param_types);
-  if(error_get()) {
+  if (error_get()) {
     return false;
   }
   func_data->return_types = dynstr_copy_to_static(return_types);
-  if(error_get()) {
+  if (error_get()) {
     return false;
   }
 
@@ -98,12 +106,14 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types, const dyns
 }
 
 symtab_vars_t* parser_get_params(int param_cnt) {
-  symtab_vars_t* params = malloc(sizeof(symtab_vars_t) + param_cnt*sizeof(symtab_var_data_t*));
-  if(!params) {
+  symtab_vars_t* params = malloc(sizeof(symtab_vars_t));
+  if (!params) {
     error_set(EXITSTATUS_INTERNAL_ERROR);
     return NULL;
   }
-
+  params->cnt = param_cnt;
+  params->vars = malloc(param_cnt * sizeof(symtab_var_data_t*));
+  params->vars[0] = NULL;
   symtab_get_top_vars(symtab, params);
 
   return params;
@@ -111,7 +121,7 @@ symtab_vars_t* parser_get_params(int param_cnt) {
 
 bool parser_define_var(const char* id) {
   symtab_var_data_t* var_data = symtab_find_var(symtab, id);
-  if(!var_data) {
+  if (!var_data) {
     return false;
   }
 
@@ -122,7 +132,7 @@ bool parser_define_var(const char* id) {
 
 bool parser_define_func(const char* id, symtab_vars_t* params) {
   symtab_func_data_t* func_data = symtab_find_func(symtab, id);
-  if(!func_data) {
+  if (!func_data) {
     return false;
   }
 
@@ -142,7 +152,7 @@ bool parser_isdeclared_func(const char* id) {
 
 bool parser_isdefined_var(const char* id) {
   symtab_var_data_t* var_data = symtab_find_var(symtab, id);
-  if(var_data) {
+  if (var_data) {
     return var_data->is_init;
   }
 
@@ -151,7 +161,7 @@ bool parser_isdefined_var(const char* id) {
 
 bool parser_isdefined_func(const char* id) {
   symtab_func_data_t* func_data = symtab_find_func(symtab, id);
-  if(func_data) {
+  if (func_data) {
     return func_data->was_defined;
   }
 

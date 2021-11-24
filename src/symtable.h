@@ -46,6 +46,7 @@ typedef const char* symtab_key_t;
  *  Was the variable already used?
  */
 typedef struct {
+  char* var_name;
   char data_type;
   bool is_init;
   bool is_used;
@@ -53,7 +54,7 @@ typedef struct {
 
 typedef struct {
   int cnt;
-  symtab_var_data_t* vars[];
+  symtab_var_data_t** vars;
 } symtab_vars_t;
 
 /**

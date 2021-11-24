@@ -318,10 +318,16 @@ void symtab_get_top_vars(const symtab_t* symtab, symtab_vars_t* vars) {
   int found = 0;
 
   for (unsigned i = 0; i < subtab->bucket_cnt; i++) {
-    for (symtab_record_t* rec = subtab->list[i]; rec != NULL; rec = rec->next) {
-      vars->vars[++found] = &rec->data.var_data;
+    symtab_record_t* rec = subtab->list[i];
+    while (rec != NULL) {
+      vars->vars[found] = malloc(sizeof(rec->data.var_data));
+      memcpy(vars->vars[found], &rec->data.var_data,
+             sizeof(rec->data.var_data));
+      found++;
+      rec = rec->next;
     }
   }
+  vars->cnt = found;
 }
 
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,

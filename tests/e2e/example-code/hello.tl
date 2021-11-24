@@ -1,5 +1,13 @@
 require "ifj21"
 
+-- TODO
+-- global writetwice : function(string)
+
+function writetwice(str: string)
+  write(str)
+  write(str)
+end
+
 function hello()
   local hello : string = "hello " .. "world"
   write(hello)
@@ -12,6 +20,7 @@ function hello()
   write(test)
   write(test2)
   write(test3)
+  writetwice("twice")
 end
 
 hello()

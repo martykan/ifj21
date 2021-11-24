@@ -46,7 +46,8 @@ void codegen_literal(token_t* token) {
   }
 }
 
-void codegen_function_call_argument(token_t* token, int argpos) {
+void codegen_function_call_argument(token_t* token, int argpos,
+                                    symtab_func_data_t* func) {
   if (last_function_name == NULL) {
     return;
   }
@@ -56,8 +57,9 @@ void codegen_function_call_argument(token_t* token, int argpos) {
     }
     printf("WRITE ");
   } else {
-    printf("DEFVAR TF@%%arg%d\n", argpos);
-    printf("MOVE TF@%%arg%d ", argpos);
+    char* argname = func->params->vars[argpos]->var_name;
+    printf("DEFVAR TF@%s\n", argname);
+    printf("MOVE TF@%s ", argname);
   }
   codegen_literal(token);
 }
@@ -66,8 +68,8 @@ void codegen_function_call_argument_count(int argcount) {
   if (strcmp(last_function_name, "write") == 0) {
     return;
   }
-  printf("DEFVAR TF@%%argcount\n");
-  printf("MOVE TF@%%argcount int@%d\n", argcount);
+  // printf("DEFVAR TF@%%argcount\n");
+  // printf("MOVE TF@%%argcount int@%d\n", argcount);
 }
 
 void codegen_function_call_do(char* name, int argcount) {

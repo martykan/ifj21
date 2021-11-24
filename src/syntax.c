@@ -34,8 +34,10 @@ bool parser_param(char* param_type);
 bool parser_type_list(dynstr_t* types);
 bool parser_type_append(dynstr_t* types);
 bool parser_type(char* type);
-bool parser_arg_list(dynstr_t* arg_types, int* arg_pos);
-bool parser_arg_append(dynstr_t* arg_types, int* arg_pos);
+bool parser_arg_list(dynstr_t* arg_types, int* arg_pos,
+                     symtab_func_data_t* func);
+bool parser_arg_append(dynstr_t* arg_types, int* arg_pos,
+                       symtab_func_data_t* func);
 bool parser_arg(char* arg_type);
 bool parser_local_scope(const dynstr_t* ret_types, bool create_scope);
 bool parser_stlist_local(const dynstr_t* ret_types);
@@ -215,17 +217,14 @@ bool parser_function_def() {
                   // function declaration and definition dont match
                   error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
                   goto FREE_PARAMS;
-                } else {
-                  parser_define_func(id, params);
                 }
               } else {
                 parser_declare_func(id, &param_types, &ret_types);
                 if (error_get()) {
                   goto FREE_PARAMS;
                 }
-                parser_define_func(id, params);
               }
-              params = NULL;
+              parser_define_func(id, params);
 
               is_correct = true;
               codegen_function_definition_end(id);
@@ -243,7 +242,8 @@ bool parser_function_def() {
   }
 
 FREE_PARAMS:
-  free(params);
+  // TODO params musi zustat dostupne az do konce kvuli volani funkce
+  // free(params);
 POP_SUBTAB:
   symtab_subtab_pop(symtab);
 FREE_RET_TYPES:
@@ -414,7 +414,7 @@ bool parser_function_call(symtab_func_data_t* func) {
 
     int arg_count = 0;
     codegen_function_call_begin(func->func_name);
-    if (parser_arg_list(&arg_types, &arg_count)) {
+    if (parser_arg_list(&arg_types, &arg_count, func)) {
       codegen_function_call_argument_count(arg_count);
       token = token_buff(TOKEN_THIS);
 
@@ -672,7 +672,8 @@ bool parser_type(char* type) {
   }
 }
 
-bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
+bool parser_arg_list(dynstr_t* arg_types, int* arg_pos,
+                     symtab_func_data_t* func) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -686,7 +687,7 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
         if (error_get()) {
           return false;
         }
-        codegen_function_call_argument(token, *arg_pos);
+        codegen_function_call_argument(token, *arg_pos, func);
         ++(*arg_pos);
 
         token_buff(TOKEN_NEW);
@@ -694,7 +695,7 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
           return false;
         }
 
-        return parser_arg_append(arg_types, arg_pos);
+        return parser_arg_append(arg_types, arg_pos, func);
       }
     }
 
@@ -709,7 +710,8 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
   return false;
 }
 
-bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
+bool parser_arg_append(dynstr_t* arg_types, int* arg_pos,
+                       symtab_func_data_t* func) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -725,7 +727,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
         if (error_get()) {
           return false;
         }
-        codegen_function_call_argument(token, *arg_pos);
+        codegen_function_call_argument(token, *arg_pos, func);
         ++(*arg_pos);
 
         token_buff(TOKEN_NEW);
@@ -733,7 +735,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
           return false;
         }
 
-        return parser_arg_append(arg_types, arg_pos);
+        return parser_arg_append(arg_types, arg_pos, func);
       }
 
       break;

@@ -15,7 +15,8 @@
 void codegen_function_call_begin(char* name);
 
 /** Save function arguments to a variable on TF */
-void codegen_function_call_argument(token_t* token, int argpos);
+void codegen_function_call_argument(token_t* token, int argpos,
+                                    symtab_func_data_t* func);
 
 /** Save the count of function arguments to a variable on TF */
 void codegen_function_call_argument_count(int argcount);
