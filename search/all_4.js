@@ -16,6 +16,7 @@ var searchData=
   ['exitstatus_5finternal_5ferror_13',['EXITSTATUS_INTERNAL_ERROR',['../errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a',1,'errors.h']]],
   ['exitstatus_5fok_14',['EXITSTATUS_OK',['../errors_8h.html#aa86c02c30f1e880cf868ef5461553a53ab2bffe73badd7c0c9b5aa1490abed201',1,'errors.h']]],
   ['expression_5fprocess_15',['expression_process',['../expressions_8c.html#a437e219c37547e4b74875f5859a45687',1,'expression_process(symbol_stack_t *stack, char *exp_type):&#160;expressions.c'],['../expressions_8h.html#a437e219c37547e4b74875f5859a45687',1,'expression_process(symbol_stack_t *stack, char *exp_type):&#160;expressions.c']]],
-  ['expressions_2ec_16',['expressions.c',['../expressions_8c.html',1,'']]],
-  ['expressions_2eh_17',['expressions.h',['../expressions_8h.html',1,'']]]
+  ['expression_5ftoken_5fis_5fzero_16',['expression_token_is_zero',['../expressions_8c.html#aaa6139b9be5e341bb1b932eb46533c09',1,'expressions.c']]],
+  ['expressions_2ec_17',['expressions.c',['../expressions_8c.html',1,'']]],
+  ['expressions_2eh_18',['expressions.h',['../expressions_8h.html',1,'']]]
 ];

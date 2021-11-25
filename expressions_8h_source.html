@@ -135,7 +135,7 @@ $(document).ready(function(){initNavTree('expressions_8h_source.html',''); initR
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  expression_symbol_t symbol;</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">char</span> type;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordtype">int</span> lvl;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_struct" href="structtoken__t.html">token_t</a> *token;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordtype">bool</span> is_zero;</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> *next;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
@@ -148,11 +148,10 @@ $(document).ready(function(){initNavTree('expressions_8h_source.html',''); initR
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="acodegen_8h_html"><div class="ttname"><a href="codegen_8h.html">codegen.h</a></div><div class="ttdoc">IFJCode21 ouput generation.</div></div>
 <div class="ttc" id="aerrors_8h_html"><div class="ttname"><a href="errors_8h.html">errors.h</a></div><div class="ttdoc">Error codes definition.</div></div>
-<div class="ttc" id="aexpressions_8h_html_a437e219c37547e4b74875f5859a45687"><div class="ttname"><a href="expressions_8h.html#a437e219c37547e4b74875f5859a45687">expression_process</a></div><div class="ttdeci">bool expression_process(symbol_stack_t *stack, char *exp_type)</div><div class="ttdoc">Process expression.</div><div class="ttdef"><b>Definition:</b> expressions.c:486</div></div>
+<div class="ttc" id="aexpressions_8h_html_a437e219c37547e4b74875f5859a45687"><div class="ttname"><a href="expressions_8h.html#a437e219c37547e4b74875f5859a45687">expression_process</a></div><div class="ttdeci">bool expression_process(symbol_stack_t *stack, char *exp_type)</div><div class="ttdoc">Process expression.</div><div class="ttdef"><b>Definition:</b> expressions.c:505</div></div>
 <div class="ttc" id="aparser_8h_html"><div class="ttname"><a href="parser_8h.html">parser.h</a></div><div class="ttdoc">Parser API.</div></div>
 <div class="ttc" id="ascanner_8h_html"><div class="ttname"><a href="scanner_8h.html">scanner.h</a></div><div class="ttdoc">Scanner API.</div></div>
 <div class="ttc" id="astructsymbol__stack__t_html"><div class="ttname"><a href="structsymbol__stack__t.html">symbol_stack_t</a></div><div class="ttdef"><b>Definition:</b> expressions.h:52</div></div>
-<div class="ttc" id="astructtoken__t_html"><div class="ttname"><a href="structtoken__t.html">token_t</a></div><div class="ttdoc">Scanner token type.</div><div class="ttdef"><b>Definition:</b> scanner.h:95</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

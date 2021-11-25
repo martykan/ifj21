@@ -125,14 +125,18 @@ Functions</h2></td></tr>
 <tr class="memitem:a86319c45e2904066a9c559ce82cab542"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">precedence_table_index</a> (expression_symbol_t symbol)</td></tr>
 <tr class="memdesc:a86319c45e2904066a9c559ce82cab542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index in the precedence table.  <a href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">More...</a><br /></td></tr>
 <tr class="separator:a86319c45e2904066a9c559ce82cab542"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa6139b9be5e341bb1b932eb46533c09"><td class="memItemLeft" align="right" valign="top"><a id="aaa6139b9be5e341bb1b932eb46533c09" name="aaa6139b9be5e341bb1b932eb46533c09"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_token_is_zero</b> ()</td></tr>
+<tr class="memdesc:aaa6139b9be5e341bb1b932eb46533c09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if current token is a zero literal. <br /></td></tr>
+<tr class="separator:aaa6139b9be5e341bb1b932eb46533c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76760c17461724d0b2a20fa1dfe6252d"><td class="memItemLeft" align="right" valign="top"><a id="a76760c17461724d0b2a20fa1dfe6252d" name="a76760c17461724d0b2a20fa1dfe6252d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym, char type)</td></tr>
 <tr class="memdesc:a76760c17461724d0b2a20fa1dfe6252d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
 <tr class="separator:a76760c17461724d0b2a20fa1dfe6252d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d943abaf1c3fddb1c5c26d2059b8fb1"><td class="memItemLeft" align="right" valign="top"><a id="a6d943abaf1c3fddb1c5c26d2059b8fb1" name="a6d943abaf1c3fddb1c5c26d2059b8fb1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push_id</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym, char type, int lvl)</td></tr>
-<tr class="memdesc:a6d943abaf1c3fddb1c5c26d2059b8fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
-<tr class="separator:a6d943abaf1c3fddb1c5c26d2059b8fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb542a84f328e22f5bc873d22c40e574"><td class="memItemLeft" align="right" valign="top"><a id="acb542a84f328e22f5bc873d22c40e574" name="acb542a84f328e22f5bc873d22c40e574"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push_id</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym, char type, int lvl, bool is_zero)</td></tr>
+<tr class="memdesc:acb542a84f328e22f5bc873d22c40e574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
+<tr class="separator:acb542a84f328e22f5bc873d22c40e574"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9918e6e06073f8afb8402f993c9126fb"><td class="memItemLeft" align="right" valign="top"><a id="a9918e6e06073f8afb8402f993c9126fb" name="a9918e6e06073f8afb8402f993c9126fb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pop</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack)</td></tr>
 <tr class="memdesc:a9918e6e06073f8afb8402f993c9126fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop operation on symbol stack. <br /></td></tr>
