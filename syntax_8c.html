@@ -167,12 +167,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_stlist_local</
 <tr class="memitem:a1f4e3940bc9fc86994626904195ba796"><td class="memItemLeft" align="right" valign="top"><a id="a1f4e3940bc9fc86994626904195ba796" name="a1f4e3940bc9fc86994626904195ba796"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_st_local</b> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
 <tr class="separator:a1f4e3940bc9fc86994626904195ba796"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abaf19cd9dcc6deb18cdcc5bc088b7681"><td class="memItemLeft" align="right" valign="top"><a id="abaf19cd9dcc6deb18cdcc5bc088b7681" name="abaf19cd9dcc6deb18cdcc5bc088b7681"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_returned</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
-<tr class="separator:abaf19cd9dcc6deb18cdcc5bc088b7681"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4189b8aa051d46a607cfe8f1664f0201"><td class="memItemLeft" align="right" valign="top"><a id="a4189b8aa051d46a607cfe8f1664f0201" name="a4189b8aa051d46a607cfe8f1664f0201"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_return_what</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
-<tr class="separator:a4189b8aa051d46a607cfe8f1664f0201"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a100d057bb425cb7141fb2d84f168a4bd"><td class="memItemLeft" align="right" valign="top"><a id="a100d057bb425cb7141fb2d84f168a4bd" name="a100d057bb425cb7141fb2d84f168a4bd"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_returned</b> (char *ret_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:a100d057bb425cb7141fb2d84f168a4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd371155c0ef0e3c44ffe195d88b622"><td class="memItemLeft" align="right" valign="top"><a id="a0bd371155c0ef0e3c44ffe195d88b622" name="a0bd371155c0ef0e3c44ffe195d88b622"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_return_what</b> (char *ret_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:a0bd371155c0ef0e3c44ffe195d88b622"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f3b1bcd2ff6c09224eb6437590b8b68"><td class="memItemLeft" align="right" valign="top"><a id="a0f3b1bcd2ff6c09224eb6437590b8b68" name="a0f3b1bcd2ff6c09224eb6437590b8b68"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_var_dec</b> (const char *func_name)</td></tr>
 <tr class="separator:a0f3b1bcd2ff6c09224eb6437590b8b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,12 +203,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_what</b
 <tr class="memitem:ae0b5844df1a4cad394ec26cbd3622180"><td class="memItemLeft" align="right" valign="top"><a id="ae0b5844df1a4cad394ec26cbd3622180" name="ae0b5844df1a4cad394ec26cbd3622180"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_exp</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
 <tr class="separator:ae0b5844df1a4cad394ec26cbd3622180"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01fdc7eb481f6382fac2c26b36567fe9"><td class="memItemLeft" align="right" valign="top"><a id="a01fdc7eb481f6382fac2c26b36567fe9" name="a01fdc7eb481f6382fac2c26b36567fe9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_list</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
-<tr class="separator:a01fdc7eb481f6382fac2c26b36567fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae186dfd1b47e5acca20f6ff088463cce"><td class="memItemLeft" align="right" valign="top"><a id="ae186dfd1b47e5acca20f6ff088463cce" name="ae186dfd1b47e5acca20f6ff088463cce"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
-<tr class="separator:ae186dfd1b47e5acca20f6ff088463cce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a536ffb711a51ae7637f04d03e101279a"><td class="memItemLeft" align="right" valign="top"><a id="a536ffb711a51ae7637f04d03e101279a" name="a536ffb711a51ae7637f04d03e101279a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_list</b> (char *id_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:a536ffb711a51ae7637f04d03e101279a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7d5253a6a6e73184e4eb4a2024df31f"><td class="memItemLeft" align="right" valign="top"><a id="ab7d5253a6a6e73184e4eb4a2024df31f" name="ab7d5253a6a6e73184e4eb4a2024df31f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_append</b> (char *id_types, int pos, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="separator:ab7d5253a6a6e73184e4eb4a2024df31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memItemLeft" align="right" valign="top"><a id="a6cb225a6540d7f84b8ff3fc846967eb0" name="a6cb225a6540d7f84b8ff3fc846967eb0"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp</b> (char *exp_type)</td></tr>
 <tr class="separator:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
