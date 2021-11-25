@@ -258,26 +258,15 @@ void symtab_subtab_pop(symtab_t* symtab) {
 
 // MANIPULATION WITH RECORDS FUNCTIONS
 
-symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key, int *lvl) {
+symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key) {
   for (symtab_subtab_t* subtab = symtab->local_scopes; subtab != NULL;
        subtab = subtab->next) {
     symtab_data_t* data = symtab_subtab_find(subtab, key);
     if (data) {
       return &data->var_data;
     }
-    if (lvl != NULL) {
-      (*lvl)++;
-    }
   }
 
-  return NULL;
-}
-
-symtab_var_data_t* symtab_find_var_local(const symtab_t* symtab, symtab_key_t key) {
-  symtab_data_t* data = symtab_subtab_find(symtab->local_scopes, key);
-  if (data) {
-    return &data->var_data;
-  }
   return NULL;
 }
 

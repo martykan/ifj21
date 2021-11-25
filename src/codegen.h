@@ -15,7 +15,7 @@
 void codegen_function_call_begin(char* name);
 
 /** Save function arguments to a variable on TF */
-void codegen_function_call_argument(token_t* token, int argpos, int lvl);
+void codegen_function_call_argument(token_t* token, int argpos);
 
 /** Save the count of function arguments to a variable on TF */
 void codegen_function_call_argument_count(int argcount);
@@ -35,7 +35,7 @@ void codegen_function_definition_end(char* name);
 /** Return from a function early */
 void codegen_function_return();
 
-void codegen_expression_push_value(token_t* token, int lvl);
+void codegen_expression_push_value(token_t* token);
 void codegen_expression_plus();
 void codegen_expression_minus();
 void codegen_expression_mul();
@@ -55,8 +55,8 @@ void codegen_cast_int_to_float2();
 void codegen_cast_float_to_int1();
 void codegen_cast_float_to_int2();
 
-void codegen_define_var(char* old_id, int lvl);
-void codegen_assign_expression_add(char* id, int lvl);
+void codegen_define_var();
+void codegen_assign_expression_add(char* id);
 void codegen_assign_expression_finish();
 
 void codegen_if_begin();
