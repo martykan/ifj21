@@ -3,7 +3,7 @@
 require "ifj21"
 
 function foo() : string, string
-    return "a", 'b'
+    return "a"
 end
 
 function main()
