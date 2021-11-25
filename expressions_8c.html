@@ -95,9 +95,9 @@ $(document).ready(function(){initNavTree('expressions_8c.html',''); initResizabl
 <p>Expression parser implementation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="expressions_8h_source.html">expressions.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="errors_8h_source.html">errors.h</a>&quot;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="errors_8h_source.html">errors.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -145,6 +145,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pops</b>
 expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>get_top_symbol</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
 <tr class="memdesc:ab36d0ee685766d67ca5ad033413fa689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get top symbol from stack (excluding E) <br /></td></tr>
 <tr class="separator:ab36d0ee685766d67ca5ad033413fa689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a896693bb5fc7dd0d32580088e7141a20"><td class="memItemLeft" align="right" valign="top"><a id="a896693bb5fc7dd0d32580088e7141a20" name="a896693bb5fc7dd0d32580088e7141a20"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_set_error</b> (char type1, char type2)</td></tr>
+<tr class="separator:a896693bb5fc7dd0d32580088e7141a20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bc979b032604481ede6d091679d357d"><td class="memItemLeft" align="right" valign="top"><a id="a1bc979b032604481ede6d091679d357d" name="a1bc979b032604481ede6d091679d357d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_basic_arithmetics</b> (char *out, char type1, char type2)</td></tr>
 <tr class="separator:a1bc979b032604481ede6d091679d357d"><td class="memSeparator" colspan="2">&#160;</td></tr>
