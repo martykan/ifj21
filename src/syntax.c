@@ -1228,6 +1228,7 @@ bool parser_init(char var_type, bool* did_init) {
 bool parser_init_func_match(char var_type, char* ret) {
   if (var_type != *ret) {
     if (var_type != 'n' || *ret != 'i') {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
       return false;
     }
   }
@@ -1256,7 +1257,7 @@ bool parser_init_after(char var_type) {
             if (exp_type == 'x') {
               error_set(EXITSTATUS_ERROR_UNEXPECTED_NIL);
             } else {
-              error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+              error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
             }
             return false;
           }
@@ -1280,7 +1281,7 @@ bool parser_init_after(char var_type) {
               if (exp_type == 'x') {
                 error_set(EXITSTATUS_ERROR_UNEXPECTED_NIL);
               } else {
-                error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+                error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
               }
               return false;
             }
@@ -1293,7 +1294,6 @@ bool parser_init_after(char var_type) {
             symtab_find_func(symtab, token->attr.str);
         if (parser_function_call_by_id(token->attr.str)) {
           if (!parser_init_func_match(var_type, declared->return_types)) {
-            error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
 
@@ -1483,7 +1483,6 @@ bool parser_assign_what(const dynstr_t* id_types) {
         if (parser_function_call_by_id(token->attr.str)) {
           if (!parser_assign_func_match(id_types->str,
                                         declared->return_types)) {
-            error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
 
@@ -1509,7 +1508,7 @@ bool parser_assign_exp_match(char* ids, char* exps) {
   while (*ids != '\0') {
     // more ids than exps
     if (*exps == '\0') {
-      error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
       return false;
     }
 
@@ -1530,6 +1529,7 @@ bool parser_assign_exp_match(char* ids, char* exps) {
 
   // more exps than ids
   if (*exps != '\0') {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
     return false;
   }
 
@@ -1542,11 +1542,13 @@ bool parser_assign_func_match(char* ids, char* ret) {
   while (*ids != '\0') {
     // function does not return enought vals
     if (*ret == '\0') {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
       return false;
     }
 
     if (*ids != *ret) {
       if (*ids != 'n' || *ret != 'i') {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
         return false;
       }
     }
