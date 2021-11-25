@@ -144,9 +144,28 @@ void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
   if (error_get()) {
     return;
   }
-  func_data->func_name = id;
-  func_data->param_types = param_types;
-  func_data->return_types = return_types;
+
+  func_data->func_name = malloc(strlen(id) + 1);
+  if (!func_data->func_name) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return;
+  }
+  strncpy(func_data->func_name, id, strlen(id) + 1);
+
+  func_data->param_types = malloc(strlen(param_types) + 1);
+  if (!func_data->param_types) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return;
+  }
+  strncpy(func_data->param_types, param_types, strlen(param_types) + 1);
+
+  func_data->return_types = malloc(strlen(return_types) + 1);
+  if (!func_data->return_types) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return;
+  }
+  strncpy(func_data->return_types, return_types, strlen(return_types) + 1);
+
   func_data->was_defined = true;
   func_data->params = NULL;
 }
@@ -232,7 +251,9 @@ void symtab_record_free(symtab_record_t* rec) {
     free(rec->data.func_data.func_name);
     free(rec->data.func_data.param_types);
     free(rec->data.func_data.return_types);
-    free(rec->data.func_data.params->vars);
+    if(rec->data.func_data.params) {
+      free(rec->data.func_data.params->vars);
+    }
     free(rec->data.func_data.params);
   } else if (rec->what_data == 'v') {
     free(rec->data.var_data.var_name);
