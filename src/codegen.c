@@ -181,7 +181,6 @@ void codegen_function_definition_begin(char* name) {
   printf("PUSHFRAME\n");
 }
 
-// TODO(filip): new scope id here also?
 void codegen_function_definition_param(char* name, int argpos) {
   printf("DEFVAR LF@%s\n", name);
   printf("MOVE LF@%s LF@$arg%d\n", name, argpos);
