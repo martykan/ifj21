@@ -310,11 +310,11 @@ symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
 }
 
 symtab_var_data_t* symtab_insert_var(symtab_t* symtab, symtab_key_t key) {
-  return &symtab_subtab_insert(symtab->local_scopes, key, "v")->var_data;
+  return &symtab_subtab_insert(symtab->local_scopes, key, 'v')->var_data;
 }
 
 symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key) {
-  return &symtab_subtab_insert(symtab->global_scope, key, "f")->func_data;
+  return &symtab_subtab_insert(symtab->global_scope, key, 'f')->func_data;
 }
 
 symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, char type) {
