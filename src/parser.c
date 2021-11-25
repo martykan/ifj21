@@ -30,6 +30,10 @@ bool parser_init_symtab() {
   return symtab;
 }
 
+void parser_destroy_symtab() {
+  symtab_free(symtab);
+}
+
 // GET TOKEN
 
 token_t* token_buff(int operation) {

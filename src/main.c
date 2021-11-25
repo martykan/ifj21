@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
   printf("\n");
 
   scanner_destroy();
+  parser_destroy_symtab();
 
   int errcode = error_get();
   if (errcode > 0) {
