@@ -71,7 +71,7 @@ symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
  * @param key Key of the new record.
  * @return Created record. NULL if failed to create.
  */
-symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key);
+symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, char type);
 
 /**
  * Erases record with key from subtable.
@@ -229,8 +229,13 @@ void symtab_record_free(symtab_record_t* rec) {
   free((char*)rec->key);
 
   if (rec->what_data == 'f') {
+    free(rec->data.func_data.func_name);
     free(rec->data.func_data.param_types);
     free(rec->data.func_data.return_types);
+    free(rec->data.func_data.params->vars);
+    free(rec->data.func_data.params);
+  } else if (rec->what_data == 'v') {
+    free(rec->data.var_data.var_name);
   }
 
   free(rec);
@@ -305,14 +310,14 @@ symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
 }
 
 symtab_var_data_t* symtab_insert_var(symtab_t* symtab, symtab_key_t key) {
-  return &symtab_subtab_insert(symtab->local_scopes, key)->var_data;
+  return &symtab_subtab_insert(symtab->local_scopes, key, "v")->var_data;
 }
 
 symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key) {
-  return &symtab_subtab_insert(symtab->global_scope, key)->func_data;
+  return &symtab_subtab_insert(symtab->global_scope, key, "f")->func_data;
 }
 
-symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key) {
+symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, char type) {
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
   symtab_record_t* last = NULL;
@@ -323,6 +328,8 @@ symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key) {
   if (error_get()) {
     return NULL;
   }
+
+  new_rec->what_data = type;
 
   if (!last)  // if no record on current bucket
     subtab->list[index] = new_rec;
