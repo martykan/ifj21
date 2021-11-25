@@ -390,6 +390,7 @@ bool parser_function_call_by_id(char* id) {
     return false;
   }
 
+  id = NULL;
   token_t* token = token_buff(TOKEN_NEW);
   if (error_get()) {
     return false;
@@ -459,14 +460,16 @@ bool parser_param_list(dynstr_t* param_types) {
 
   switch (token->type) {
     case TT_ID: {
-      char* name = token->attr.str;
+      char* name = str_create_copy(token->attr.str);
       char param_type;
       if (parser_param(&param_type)) {
         dynstr_append(param_types, param_type);
         if (error_get()) {
           return false;
+          free(name);
         }
         codegen_function_definition_param(name, 0);
+        free(name);
 
         return parser_param_append(param_types, 1);
       }
@@ -494,15 +497,17 @@ bool parser_param_append(dynstr_t* param_types, int argpos) {
         return false;
       }
       if (token->type != TT_ID) return false;
-      char* name = token->attr.str;
+      char* name = str_create_copy(token->attr.str);
 
       char param_type;
       if (parser_param(&param_type)) {
         dynstr_append(param_types, param_type);
         if (error_get()) {
+          free(name);
           return false;
         }
         codegen_function_definition_param(name, argpos);
+        free(name);
 
         return parser_param_append(param_types, argpos + 1);
       }
