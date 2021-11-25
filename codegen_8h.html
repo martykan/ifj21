@@ -102,10 +102,10 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_begin</b> (char *name)</td></tr>
 <tr class="memdesc:aa844b2ea2327afcb2065377285d04903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin a function call procedure. <br /></td></tr>
 <tr class="separator:aa844b2ea2327afcb2065377285d04903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8211ad8ff90c4c68e62811ce965af64e"><td class="memItemLeft" align="right" valign="top"><a id="a8211ad8ff90c4c68e62811ce965af64e" name="a8211ad8ff90c4c68e62811ce965af64e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_argument</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int argpos)</td></tr>
-<tr class="memdesc:a8211ad8ff90c4c68e62811ce965af64e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save function arguments to a variable on TF. <br /></td></tr>
-<tr class="separator:a8211ad8ff90c4c68e62811ce965af64e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a401f8a3562e26115a24502addda8a1d9"><td class="memItemLeft" align="right" valign="top"><a id="a401f8a3562e26115a24502addda8a1d9" name="a401f8a3562e26115a24502addda8a1d9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_argument</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int argpos, int lvl)</td></tr>
+<tr class="memdesc:a401f8a3562e26115a24502addda8a1d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save function arguments to a variable on TF. <br /></td></tr>
+<tr class="separator:a401f8a3562e26115a24502addda8a1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53bd82e33679a7adb9b8a990cdb7b7da"><td class="memItemLeft" align="right" valign="top"><a id="a53bd82e33679a7adb9b8a990cdb7b7da" name="a53bd82e33679a7adb9b8a990cdb7b7da"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_argument_count</b> (int argcount)</td></tr>
 <tr class="memdesc:a53bd82e33679a7adb9b8a990cdb7b7da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the count of function arguments to a variable on TF. <br /></td></tr>
@@ -130,9 +130,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_defi
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_return</b> ()</td></tr>
 <tr class="memdesc:a85f263a0e3ca698eff107a365e23d0b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return from a function early. <br /></td></tr>
 <tr class="separator:a85f263a0e3ca698eff107a365e23d0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23230d9d8b61bbb2d6729d4b9d0241c0"><td class="memItemLeft" align="right" valign="top"><a id="a23230d9d8b61bbb2d6729d4b9d0241c0" name="a23230d9d8b61bbb2d6729d4b9d0241c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_expression_push_value</b> (<a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:a23230d9d8b61bbb2d6729d4b9d0241c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cfdde9a46abe50ac1f31aaf5ffbf6fb"><td class="memItemLeft" align="right" valign="top"><a id="a9cfdde9a46abe50ac1f31aaf5ffbf6fb" name="a9cfdde9a46abe50ac1f31aaf5ffbf6fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_expression_push_value</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int lvl)</td></tr>
+<tr class="separator:a9cfdde9a46abe50ac1f31aaf5ffbf6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac85d26add60990f547da948631e75f5a"><td class="memItemLeft" align="right" valign="top"><a id="ac85d26add60990f547da948631e75f5a" name="ac85d26add60990f547da948631e75f5a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_expression_plus</b> ()</td></tr>
 <tr class="separator:ac85d26add60990f547da948631e75f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,9 +181,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_cast_int_to_f
 <tr class="memitem:adff2e4890b8727273f733c2ccc337b9e"><td class="memItemLeft" align="right" valign="top"><a id="adff2e4890b8727273f733c2ccc337b9e" name="adff2e4890b8727273f733c2ccc337b9e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_define_var</b> ()</td></tr>
 <tr class="separator:adff2e4890b8727273f733c2ccc337b9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad443c1e287323ac79859c16ac0d25bc3"><td class="memItemLeft" align="right" valign="top"><a id="ad443c1e287323ac79859c16ac0d25bc3" name="ad443c1e287323ac79859c16ac0d25bc3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_assign_expression_add</b> (char *id)</td></tr>
-<tr class="separator:ad443c1e287323ac79859c16ac0d25bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a673e4f0c556aeee29b142b0347d7c84c"><td class="memItemLeft" align="right" valign="top"><a id="a673e4f0c556aeee29b142b0347d7c84c" name="a673e4f0c556aeee29b142b0347d7c84c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_assign_expression_add</b> (char *id, int lvl)</td></tr>
+<tr class="separator:a673e4f0c556aeee29b142b0347d7c84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39f41a795adde34307c48e8087b79800"><td class="memItemLeft" align="right" valign="top"><a id="a39f41a795adde34307c48e8087b79800" name="a39f41a795adde34307c48e8087b79800"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_assign_expression_finish</b> ()</td></tr>
 <tr class="separator:a39f41a795adde34307c48e8087b79800"><td class="memSeparator" colspan="2">&#160;</td></tr>

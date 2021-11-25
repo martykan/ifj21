@@ -98,6 +98,7 @@ $(document).ready(function(){initNavTree('codegen_8c.html',''); initResizable();
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="errors_8h_source.html">errors.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="scanner_8h_source.html">scanner.h</a>&quot;</code><br />
+<code>#include &quot;scope.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -108,13 +109,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_get_temp_vars
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_begin</b> (char *name)</td></tr>
 <tr class="memdesc:aa844b2ea2327afcb2065377285d04903"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin a function call procedure. <br /></td></tr>
 <tr class="separator:aa844b2ea2327afcb2065377285d04903"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59b973c53b61d8831e3f48840abaebcb"><td class="memItemLeft" align="right" valign="top"><a id="a59b973c53b61d8831e3f48840abaebcb" name="a59b973c53b61d8831e3f48840abaebcb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_literal</b> (<a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:a59b973c53b61d8831e3f48840abaebcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8211ad8ff90c4c68e62811ce965af64e"><td class="memItemLeft" align="right" valign="top"><a id="a8211ad8ff90c4c68e62811ce965af64e" name="a8211ad8ff90c4c68e62811ce965af64e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_argument</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int argpos)</td></tr>
-<tr class="memdesc:a8211ad8ff90c4c68e62811ce965af64e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save function arguments to a variable on TF. <br /></td></tr>
-<tr class="separator:a8211ad8ff90c4c68e62811ce965af64e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92b4e2889f71bed9ace03c95d2b162d5"><td class="memItemLeft" align="right" valign="top"><a id="a92b4e2889f71bed9ace03c95d2b162d5" name="a92b4e2889f71bed9ace03c95d2b162d5"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_literal</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int lvl)</td></tr>
+<tr class="separator:a92b4e2889f71bed9ace03c95d2b162d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a401f8a3562e26115a24502addda8a1d9"><td class="memItemLeft" align="right" valign="top"><a id="a401f8a3562e26115a24502addda8a1d9" name="a401f8a3562e26115a24502addda8a1d9"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_argument</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int argpos, int lvl)</td></tr>
+<tr class="memdesc:a401f8a3562e26115a24502addda8a1d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save function arguments to a variable on TF. <br /></td></tr>
+<tr class="separator:a401f8a3562e26115a24502addda8a1d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53bd82e33679a7adb9b8a990cdb7b7da"><td class="memItemLeft" align="right" valign="top"><a id="a53bd82e33679a7adb9b8a990cdb7b7da" name="a53bd82e33679a7adb9b8a990cdb7b7da"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_call_argument_count</b> (int argcount)</td></tr>
 <tr class="memdesc:a53bd82e33679a7adb9b8a990cdb7b7da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save the count of function arguments to a variable on TF. <br /></td></tr>
@@ -139,9 +140,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_defi
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_function_return</b> ()</td></tr>
 <tr class="memdesc:a85f263a0e3ca698eff107a365e23d0b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return from a function early. <br /></td></tr>
 <tr class="separator:a85f263a0e3ca698eff107a365e23d0b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23230d9d8b61bbb2d6729d4b9d0241c0"><td class="memItemLeft" align="right" valign="top"><a id="a23230d9d8b61bbb2d6729d4b9d0241c0" name="a23230d9d8b61bbb2d6729d4b9d0241c0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_expression_push_value</b> (<a class="el" href="structtoken__t.html">token_t</a> *token)</td></tr>
-<tr class="separator:a23230d9d8b61bbb2d6729d4b9d0241c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cfdde9a46abe50ac1f31aaf5ffbf6fb"><td class="memItemLeft" align="right" valign="top"><a id="a9cfdde9a46abe50ac1f31aaf5ffbf6fb" name="a9cfdde9a46abe50ac1f31aaf5ffbf6fb"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_expression_push_value</b> (<a class="el" href="structtoken__t.html">token_t</a> *token, int lvl)</td></tr>
+<tr class="separator:a9cfdde9a46abe50ac1f31aaf5ffbf6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac85d26add60990f547da948631e75f5a"><td class="memItemLeft" align="right" valign="top"><a id="ac85d26add60990f547da948631e75f5a" name="ac85d26add60990f547da948631e75f5a"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_expression_plus</b> ()</td></tr>
 <tr class="separator:ac85d26add60990f547da948631e75f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,12 +188,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_cast_int_to_f
 <tr class="memitem:a16ab225de812676f49a9e331af15efd4"><td class="memItemLeft" align="right" valign="top"><a id="a16ab225de812676f49a9e331af15efd4" name="a16ab225de812676f49a9e331af15efd4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_cast_int_to_float2</b> ()</td></tr>
 <tr class="separator:a16ab225de812676f49a9e331af15efd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03a6eedf13b8b95608b2c68d50709187"><td class="memItemLeft" align="right" valign="top"><a id="a03a6eedf13b8b95608b2c68d50709187" name="a03a6eedf13b8b95608b2c68d50709187"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_define_var</b> (char *id)</td></tr>
-<tr class="separator:a03a6eedf13b8b95608b2c68d50709187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad443c1e287323ac79859c16ac0d25bc3"><td class="memItemLeft" align="right" valign="top"><a id="ad443c1e287323ac79859c16ac0d25bc3" name="ad443c1e287323ac79859c16ac0d25bc3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_assign_expression_add</b> (char *id)</td></tr>
-<tr class="separator:ad443c1e287323ac79859c16ac0d25bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf3b984b448310409ec3ee9c36df6e1"><td class="memItemLeft" align="right" valign="top"><a id="a4cf3b984b448310409ec3ee9c36df6e1" name="a4cf3b984b448310409ec3ee9c36df6e1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_define_var</b> (char *old_id, int lvl)</td></tr>
+<tr class="separator:a4cf3b984b448310409ec3ee9c36df6e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a212fe63e6d07b4d7c397e7e28fbfb418"><td class="memItemLeft" align="right" valign="top"><a id="a212fe63e6d07b4d7c397e7e28fbfb418" name="a212fe63e6d07b4d7c397e7e28fbfb418"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_assign_expression_add</b> (char *old_id, int lvl)</td></tr>
+<tr class="separator:a212fe63e6d07b4d7c397e7e28fbfb418"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39f41a795adde34307c48e8087b79800"><td class="memItemLeft" align="right" valign="top"><a id="a39f41a795adde34307c48e8087b79800" name="a39f41a795adde34307c48e8087b79800"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>codegen_assign_expression_finish</b> ()</td></tr>
 <tr class="separator:a39f41a795adde34307c48e8087b79800"><td class="memSeparator" colspan="2">&#160;</td></tr>

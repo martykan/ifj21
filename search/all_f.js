@@ -13,5 +13,5 @@ var searchData=
   ['tt_5fno_5ftype_10',['TT_NO_TYPE',['../scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a01562e8a9f0006e8f44983d6a785b38b',1,'scanner.h']]],
   ['tt_5fnumber_11',['TT_NUMBER',['../scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a71d6777fe79532b9c0e1a8dd3afc9f49',1,'scanner.h']]],
   ['tt_5fstring_12',['TT_STRING',['../scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a3355cc282f3b7c2eea509d182247b0fa',1,'scanner.h']]],
-  ['type_13',['type',['../structtoken__t.html#affed9d9d575cc38e143740f94363f3f4',1,'token_t']]]
+  ['type_13',['type',['../structtoken__t.html#affed9d9d575cc38e143740f94363f3f4',1,'token_t::type()'],['../structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f',1,'scope_item_t::type()']]]
 ];

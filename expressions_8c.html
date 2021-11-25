@@ -129,6 +129,10 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym, char type)</td></tr>
 <tr class="memdesc:a76760c17461724d0b2a20fa1dfe6252d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
 <tr class="separator:a76760c17461724d0b2a20fa1dfe6252d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d943abaf1c3fddb1c5c26d2059b8fb1"><td class="memItemLeft" align="right" valign="top"><a id="a6d943abaf1c3fddb1c5c26d2059b8fb1" name="a6d943abaf1c3fddb1c5c26d2059b8fb1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_push_id</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, expression_symbol_t sym, char type, int lvl)</td></tr>
+<tr class="memdesc:a6d943abaf1c3fddb1c5c26d2059b8fb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Push operation on symbol stack. <br /></td></tr>
+<tr class="separator:a6d943abaf1c3fddb1c5c26d2059b8fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9918e6e06073f8afb8402f993c9126fb"><td class="memItemLeft" align="right" valign="top"><a id="a9918e6e06073f8afb8402f993c9126fb" name="a9918e6e06073f8afb8402f993c9126fb"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>symbol_stack_pop</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack)</td></tr>
 <tr class="memdesc:a9918e6e06073f8afb8402f993c9126fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pop operation on symbol stack. <br /></td></tr>
@@ -161,9 +165,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>print_stack</b> (<a c
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, char *exp_type)</td></tr>
 <tr class="memdesc:a437e219c37547e4b74875f5859a45687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
 <tr class="separator:a437e219c37547e4b74875f5859a45687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memItemLeft" align="right" valign="top"><a id="a34dddf7cf492f8481e38dcbbbff605c0" name="a34dddf7cf492f8481e38dcbbbff605c0"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_type</b> ()</td></tr>
-<tr class="separator:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4db151edb7a408d78b7f7344a0579238"><td class="memItemLeft" align="right" valign="top"><a id="a4db151edb7a408d78b7f7344a0579238" name="a4db151edb7a408d78b7f7344a0579238"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_type</b> (int *lvl)</td></tr>
+<tr class="separator:a4db151edb7a408d78b7f7344a0579238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memItemLeft" align="right" valign="top"><a id="a9ccb2ca62a6809dadc33051629ee8b14" name="a9ccb2ca62a6809dadc33051629ee8b14"></a>
 expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_input</b> ()</td></tr>
 <tr class="separator:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>

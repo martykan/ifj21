@@ -148,9 +148,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a02c3969911087f375a9fbd425b813e16"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a02c3969911087f375a9fbd425b813e16">symtab_subtab_pop</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *symtab)</td></tr>
 <tr class="memdesc:a02c3969911087f375a9fbd425b813e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops and destroys local table on the top of the stack of symbol table.  <a href="symtable_8h.html#a02c3969911087f375a9fbd425b813e16">More...</a><br /></td></tr>
 <tr class="separator:a02c3969911087f375a9fbd425b813e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e1d625435fb4028a701de55be80e55d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a0e1d625435fb4028a701de55be80e55d">symtab_find_var</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
-<tr class="memdesc:a0e1d625435fb4028a701de55be80e55d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for variable identifier.  <a href="symtable_8h.html#a0e1d625435fb4028a701de55be80e55d">More...</a><br /></td></tr>
-<tr class="separator:a0e1d625435fb4028a701de55be80e55d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0c3bcd2477eb596edf07fa7301e042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#abe0c3bcd2477eb596edf07fa7301e042">symtab_find_var</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key, int *lvl)</td></tr>
+<tr class="memdesc:abe0c3bcd2477eb596edf07fa7301e042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for variable identifier.  <a href="symtable_8h.html#abe0c3bcd2477eb596edf07fa7301e042">More...</a><br /></td></tr>
+<tr class="separator:abe0c3bcd2477eb596edf07fa7301e042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76930dbf912a840bb2b2f67fb975b3a"><td class="memItemLeft" align="right" valign="top"><a id="af76930dbf912a840bb2b2f67fb975b3a" name="af76930dbf912a840bb2b2f67fb975b3a"></a>
+<a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_find_var_local</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="separator:af76930dbf912a840bb2b2f67fb975b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617504951efaba3dd3464547b5c4078f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a617504951efaba3dd3464547b5c4078f">symtab_find_func</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *symtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
 <tr class="memdesc:a617504951efaba3dd3464547b5c4078f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches global table for function identifier.  <a href="symtable_8h.html#a617504951efaba3dd3464547b5c4078f">More...</a><br /></td></tr>
 <tr class="separator:a617504951efaba3dd3464547b5c4078f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -265,8 +268,8 @@ IMPLEMENTATION</h1>
 
 </div>
 </div>
-<a id="a0e1d625435fb4028a701de55be80e55d" name="a0e1d625435fb4028a701de55be80e55d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e1d625435fb4028a701de55be80e55d">&#9670;&nbsp;</a></span>symtab_find_var()</h2>
+<a id="abe0c3bcd2477eb596edf07fa7301e042" name="abe0c3bcd2477eb596edf07fa7301e042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe0c3bcd2477eb596edf07fa7301e042">&#9670;&nbsp;</a></span>symtab_find_var()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,7 +284,13 @@ IMPLEMENTATION</h1>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>lvl</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

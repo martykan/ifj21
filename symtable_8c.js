@@ -4,7 +4,7 @@ var symtable_8c =
     [ "symtab_clear", "symtable_8c.html#ab7c255866b01d6e94766356ef2ff7bf7", null ],
     [ "symtab_create", "symtable_8c.html#a38b92535c3115ae2c1f4bd594fa2a3c9", null ],
     [ "symtab_find_func", "symtable_8c.html#a617504951efaba3dd3464547b5c4078f", null ],
-    [ "symtab_find_var", "symtable_8c.html#a0e1d625435fb4028a701de55be80e55d", null ],
+    [ "symtab_find_var", "symtable_8c.html#abe0c3bcd2477eb596edf07fa7301e042", null ],
     [ "symtab_free", "symtable_8c.html#a549ffd9107811e5b88384c16342cc723", null ],
     [ "symtab_insert_func", "symtable_8c.html#a85d089ba61b3efb9b799577e908fe104", null ],
     [ "symtab_insert_var", "symtable_8c.html#a14748ff38a3c64db8d7211f639597e25", null ],
