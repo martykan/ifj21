@@ -335,7 +335,8 @@ void codegen_substr_define() {
   printf("JUMPIFEQ $substr_ret LF@check bool@false\n");
   printf("DEFVAR LF@strlen\n");
   printf("STRLEN LF@strlen LF@str\n");
-  printf("LTE LF@check LF@j LF@strlen\n");
+  printf("ADD LF@strlen LF@strlen int@1\n");
+  printf("LT LF@check LF@j LF@strlen\n");
   printf("JUMPIFEQ $substr_ret LF@check bool@false\n");
 
   printf("SUB LF@i LF@i int@1\n");

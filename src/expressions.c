@@ -16,6 +16,7 @@ extern symtab_t *symtab;
 #define TYPE_STRING 's'
 #define TYPE_INTEGER 'i'
 #define TYPE_NUMBER 'n'
+#define TYPE_BOOL 'b'
 #define TYPE_NIL 'x'
 #define TYPE_NONE '-'
 
@@ -235,11 +236,16 @@ bool expression_typecheck_basic_logic_nullable(char *out, char type1,
                                                char type2) {
   if ((type1 == TYPE_NUMBER || type1 == TYPE_INTEGER || type1 == TYPE_NIL) &&
       (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER || type1 == TYPE_NIL)) {
-    *out = TYPE_INTEGER;
+    *out = TYPE_BOOL;
+    if (type1 == TYPE_INTEGER && type2 == TYPE_NUMBER) {
+      codegen_cast_int_to_float1();
+    } else if (type1 == TYPE_NUMBER && type2 == TYPE_INTEGER) {
+      codegen_cast_int_to_float2();
+    }
     return true;
   } else if ((type1 == TYPE_STRING || type1 == TYPE_NIL) &&
              (type2 == TYPE_STRING || type2 == TYPE_NIL)) {
-    *out = TYPE_INTEGER;
+    *out = TYPE_BOOL;
     return true;
   } else {
     error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
@@ -250,7 +256,12 @@ bool expression_typecheck_basic_logic_nullable(char *out, char type1,
 bool expression_typecheck_basic_logic(char *out, char type1, char type2) {
   if ((type1 == TYPE_NUMBER || type1 == TYPE_INTEGER) &&
       (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER)) {
-    *out = TYPE_INTEGER;
+    *out = TYPE_BOOL;
+    if (type1 == TYPE_INTEGER && type2 == TYPE_NUMBER) {
+      codegen_cast_int_to_float1();
+    } else if (type1 == TYPE_NUMBER && type2 == TYPE_INTEGER) {
+      codegen_cast_int_to_float2();
+    }
     return true;
   } else {
     error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);

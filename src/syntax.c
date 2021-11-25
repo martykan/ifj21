@@ -42,8 +42,8 @@ bool parser_local_scope(const char* func_name, const dynstr_t* ret_types,
                         bool create_scope);
 bool parser_stlist_local(const char* func_name, const dynstr_t* ret_types);
 bool parser_st_local(const char* func_name, const dynstr_t* ret_types);
-bool parser_returned(dynstr_t* exp_types);
-bool parser_return_what(dynstr_t* exp_types);
+bool parser_returned(char* ret_types, dynstr_t* exp_types);
+bool parser_return_what(char* ret_types, dynstr_t* exp_types);
 bool parser_var_dec(const char* func_name);
 bool parser_if_st(const char* func_name, const dynstr_t* ret_types);
 bool parser_while_st(const char* func_name, const dynstr_t* ret_types);
@@ -54,8 +54,8 @@ bool parser_assign_st(char* id);
 bool parser_id_append(dynstr_t* id_types);
 bool parser_assign_what(const dynstr_t* id_types);
 bool parser_assign_exp(const dynstr_t* id_types);
-bool parser_exp_list(dynstr_t* exp_types);
-bool parser_exp_append(dynstr_t* exp_types);
+bool parser_exp_list(char* id_types, dynstr_t* exp_types);
+bool parser_exp_append(char* id_types, int pos, dynstr_t* exp_types);
 bool parser_exp(char* exp_type);
 
 bool parser_func_call_match(char* params, char* args);
@@ -870,7 +870,7 @@ bool parser_local_scope(const char* func_name, const dynstr_t* ret_types,
     case TT_K_END:
     case TT_ID:
       if (parser_stlist_local(func_name, ret_types) &&
-          parser_returned(&exp_types)) {
+          parser_returned(ret_types->str, &exp_types)) {
         if (!parser_func_ret_match(ret_types->str, exp_types.str)) {
           error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
           goto FREE_EXP_TYPES;
@@ -955,7 +955,7 @@ bool parser_st_local(const char* func_name, const dynstr_t* ret_types) {
   }
 }
 
-bool parser_returned(dynstr_t* exp_types) {
+bool parser_returned(char* ret_types, dynstr_t* exp_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -965,7 +965,7 @@ bool parser_returned(dynstr_t* exp_types) {
         return false;
       }
 
-      if (parser_return_what(exp_types)) {
+      if (parser_return_what(ret_types, exp_types)) {
         codegen_function_return();
         return true;
       }
@@ -979,7 +979,7 @@ bool parser_returned(dynstr_t* exp_types) {
   }
 }
 
-bool parser_return_what(dynstr_t* exp_types) {
+bool parser_return_what(char* ret_types, dynstr_t* exp_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -990,7 +990,7 @@ bool parser_return_what(dynstr_t* exp_types) {
     case TT_K_NIL:
     case TT_SOP_LENGTH:
     case TT_ID:
-      return parser_exp_list(exp_types);
+      return parser_exp_list(ret_types, exp_types);
     case TT_K_ELSE:
     case TT_K_END:
       return true;
@@ -1077,6 +1077,9 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
 
   char cond_type;
   if (parser_exp(&cond_type)) {
+    if (cond_type != 'b') {
+      goto EXIT;
+    }
     token = token_buff(TOKEN_THIS);
 
     if (token->type == TT_K_THEN) {
@@ -1133,6 +1136,9 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
 
   char cond_type;
   if (parser_exp(&cond_type)) {
+    if (cond_type != 'b') {
+      goto EXIT;
+    }
     token = token_buff(TOKEN_THIS);
 
     if (token->type == TT_K_DO) {
@@ -1220,7 +1226,9 @@ bool parser_init_after(char var_type) {
       char exp_type;
       if (parser_exp(&exp_type)) {
         if (var_type != exp_type) {
-          if (var_type != 'n' || exp_type != 'i') {
+          if (var_type == 'n' && exp_type == 'i') {
+            codegen_cast_int_to_float1();
+          } else {
             error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
@@ -1238,7 +1246,9 @@ bool parser_init_after(char var_type) {
         char exp_type;
         if (parser_exp(&exp_type)) {
           if (var_type != exp_type) {
-            if (var_type != 'n' || exp_type != 'i') {
+            if (var_type == 'n' && exp_type == 'i') {
+              codegen_cast_int_to_float1();
+            } else {
               error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
               return false;
             }
@@ -1520,7 +1530,7 @@ bool parser_assign_exp(const dynstr_t* id_types) {
     goto EXIT;
   }
 
-  if (parser_exp_list(&exp_types)) {
+  if (parser_exp_list(id_types->str, &exp_types)) {
     if (!parser_assign_exp_match(id_types->str, exp_types.str)) {
       goto FREE_EXP_TYPES;
     }
@@ -1540,7 +1550,7 @@ EXIT:
   return is_correct;
 }
 
-bool parser_exp_list(dynstr_t* exp_types) {
+bool parser_exp_list(char* id_types, dynstr_t* exp_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -1552,13 +1562,18 @@ bool parser_exp_list(dynstr_t* exp_types) {
     case TT_SOP_LENGTH:
     case TT_ID: {
       char exp_type;
+      char var_type = id_types[0];
       if (parser_exp(&exp_type)) {
+        if (var_type == 'n' && exp_type == 'i') {
+          codegen_cast_int_to_float1();
+        }
+
         dynstr_append(exp_types, exp_type);
         if (error_get()) {
           return false;
         }
 
-        return parser_exp_append(exp_types);
+        return parser_exp_append(id_types, 1, exp_types);
       }
     }
 
@@ -1571,7 +1586,7 @@ bool parser_exp_list(dynstr_t* exp_types) {
   return false;
 }
 
-bool parser_exp_append(dynstr_t* exp_types) {
+bool parser_exp_append(char* id_types, int pos, dynstr_t* exp_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -1590,13 +1605,18 @@ bool parser_exp_append(dynstr_t* exp_types) {
       }
 
       char exp_type;
+      char var_type = id_types[pos];
       if (parser_exp(&exp_type)) {
+        if (var_type == 'n' && exp_type == 'i') {
+          codegen_cast_int_to_float1();
+        }
+
         dynstr_append(exp_types, exp_type);
         if (error_get()) {
           return false;
         }
 
-        return parser_exp_append(exp_types);
+        return parser_exp_append(id_types, pos + 1, exp_types);
       }
     } break;
     default:
