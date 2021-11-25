@@ -108,9 +108,9 @@ def print_test_suite_header(dir: str):
     print(f"* Suite {dir}:")
 
 
-def print_test_suite_footer(num_run: int, num_failed: int, num_skipped: int):
+def print_test_suite_footer(num_passed: int, num_failed: int, num_skipped: int):
     print(
-        f"\n{num_run} tests run - {num_run - num_failed} passed, {num_failed} failed, {num_skipped} skipped\n"
+        f"\n{num_passed + num_failed} tests run - {num_passed} passed, {num_failed} failed, {num_skipped} skipped\n"
     )
 
 
@@ -134,9 +134,9 @@ def print_test_success():
     print(".", end="")
 
 
-def print_final_footer(total_tests: int, total_failed: int, total_skipped: int):
+def print_final_footer(total_passed: int, total_failed: int, total_skipped: int):
     print(
-        f"Total: {total_tests} tests run - {total_tests - total_failed} passed, {total_failed} failed, {total_skipped} skipped"
+        f"Total: {total_passed + total_failed} tests run - {total_passed} passed, {total_failed} failed, {total_skipped} skipped"
     )
 
 
