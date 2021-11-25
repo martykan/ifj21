@@ -52,6 +52,8 @@ void codegen_expression_gte();
 
 void codegen_cast_int_to_float1();
 void codegen_cast_int_to_float2();
+void codegen_cast_float_to_int1();
+void codegen_cast_float_to_int2();
 
 void codegen_define_var();
 void codegen_assign_expression_add(char* id, int lvl);

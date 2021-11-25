@@ -6,10 +6,11 @@
  * @author Filip Stolfa
  */
 #include "expressions.h"
-#include "errors.h"
 
 #include <stdio.h>
 #include <stdlib.h>
+
+#include "errors.h"
 
 extern symtab_t *symtab;
 
@@ -228,11 +229,19 @@ expression_symbol_t get_top_symbol(symbol_stack_t *stack) {
   return a;
 }
 
+void expression_typecheck_set_error(char type1, char type2) {
+  if (type1 == TYPE_NIL || type2 == TYPE_NIL) {
+    error_set(EXITSTATUS_ERROR_UNEXPECTED_NIL);
+  } else {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+  }
+}
+
 // For plus, minus, multiply
 bool expression_typecheck_basic_arithmetics(char *out, char type1, char type2) {
   if ((type1 != TYPE_NUMBER && type1 != TYPE_INTEGER) ||
       (type2 != TYPE_NUMBER && type2 != TYPE_INTEGER)) {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+    expression_typecheck_set_error(type1, type2);
     return false;
   }
   if (type1 == TYPE_INTEGER && type2 == TYPE_INTEGER) {
@@ -264,7 +273,7 @@ bool expression_typecheck_basic_logic_nullable(char *out, char type1,
     *out = TYPE_BOOL;
     return true;
   } else {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+    expression_typecheck_set_error(type1, type2);
     return false;
   }
 }
@@ -280,7 +289,7 @@ bool expression_typecheck_basic_logic(char *out, char type1, char type2) {
     }
     return true;
   } else {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+    expression_typecheck_set_error(type1, type2);
     return false;
   }
 }
@@ -345,8 +354,20 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
       return true;
     } else if (s2->symbol == SYM_DIVIDE) {
       // E -> E/E
+      if (s1->type == TYPE_INTEGER) {
+        s1->type = TYPE_NUMBER;
+        codegen_cast_int_to_float1();
+      }
+      if (s3->type == TYPE_INTEGER) {
+        s3->type = TYPE_NUMBER;
+        codegen_cast_int_to_float2();
+      }
       if (s1->type != TYPE_NUMBER && s3->type != TYPE_NUMBER) {
-        error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+        expression_typecheck_set_error(s1->type, s3->type);
+        return false;
+      }
+      if (s3->token->attr.num_val == 0.0) {
+        error_set(EXITSTATUS_ERROR_DIVIDE_ZERO);
         return false;
       }
       symbol_stack_pops(stack, 4);
@@ -355,8 +376,20 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
       return true;
     } else if (s2->symbol == SYM_DIVIDE2) {
       // E -> E//E
+      if (s1->type == TYPE_NUMBER) {
+        s1->type = TYPE_INTEGER;
+        codegen_cast_float_to_int1();
+      }
+      if (s3->type == TYPE_NUMBER) {
+        s3->type = TYPE_INTEGER;
+        codegen_cast_float_to_int2();
+      }
       if (s1->type != TYPE_INTEGER && s3->type != TYPE_INTEGER) {
-        error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+        expression_typecheck_set_error(s1->type, s3->type);
+        return false;
+      }
+      if (s3->token->attr.int_val == 0) {
+        error_set(EXITSTATUS_ERROR_DIVIDE_ZERO);
         return false;
       }
       symbol_stack_pops(stack, 4);
@@ -366,7 +399,7 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
     } else if (s2->symbol == SYM_DOTDOT) {
       // E -> E..E
       if (s1->type != TYPE_STRING && s3->type != TYPE_STRING) {
-        error_set(EXITSTATUS_ERROR_SEMANTIC_TYPE_EXPR);
+        expression_typecheck_set_error(s1->type, s3->type);
         return false;
       }
       symbol_stack_pops(stack, 4);

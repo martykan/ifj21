@@ -257,8 +257,17 @@ void codegen_cast_int_to_float2() {
   printf("PUSHS LF@$tmp1\n");
 }
 
+void codegen_cast_float_to_int1() { printf("FLOAT2INTS\n"); }
+
+void codegen_cast_float_to_int2() {
+  codegen_get_temp_vars(1);
+  printf("POPS LF@$tmp1\n");
+  printf("FLOAT2INTS\n");
+  printf("PUSHS LF@$tmp1\n");
+}
+
 void codegen_define_var(char* old_id, int lvl) {
-  char *id = scope_get_correct_id(old_id, lvl);
+  char* id = scope_get_correct_id(old_id, lvl);
 
   printf("DEFVAR LF@%s\n", id);
 }
@@ -266,7 +275,7 @@ void codegen_define_var(char* old_id, int lvl) {
 dynstr_t expression_assign_buffer;
 
 void codegen_assign_expression_add(char* old_id, int lvl) {
-  char *id = scope_get_correct_id(old_id, lvl);
+  char* id = scope_get_correct_id(old_id, lvl);
 
   if (expression_assign_buffer.str == NULL) {
     dynstr_init(&expression_assign_buffer);
