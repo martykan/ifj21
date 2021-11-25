@@ -5,7 +5,7 @@ function hello()
   write(concat, "\n")
   local math1 : integer = 1+2*3
   write(math1, "\n")
-  local math2 : number = 1.+2*3
+  local math2 : number = 1.0+2e01.3*3
   write(math2, "\n")
   local math3 : integer = math1 * 2
   write(math3, "\n")
