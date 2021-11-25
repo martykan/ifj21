@@ -1110,11 +1110,10 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
             return false;
           }
 
-          scope_new_if();
-
           codegen_if_else();
 
           scope_pop_item();  // else
+          scope_new_if();
 
           if (parser_local_scope(func_name, ret_types, true)) {
             token = token_buff(TOKEN_THIS);
@@ -1127,7 +1126,7 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
 
               codegen_if_end();
 
-              scope_pop_item();  // if
+              scope_pop_item();  // end if
 
               return true;
             }
