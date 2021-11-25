@@ -118,7 +118,6 @@ symtab_vars_t* parser_get_params(int param_cnt) {
   }
   params->cnt = param_cnt;
   params->vars = malloc(param_cnt * sizeof(symtab_var_data_t*));
-  params->vars[0] = NULL;
   symtab_get_top_vars(symtab, params);
 
   return params;

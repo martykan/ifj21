@@ -252,6 +252,10 @@ void symtab_record_free(symtab_record_t* rec) {
     free(rec->data.func_data.param_types);
     free(rec->data.func_data.return_types);
     if(rec->data.func_data.params) {
+      int param_cnt = rec->data.func_data.params->cnt;
+      for(int i = 0; i < param_cnt; i++) {
+        free(rec->data.func_data.params->vars[i]);
+      }
       free(rec->data.func_data.params->vars);
     }
     free(rec->data.func_data.params);
