@@ -16,7 +16,7 @@ var symtable_8c =
     [ "symtab_subtab_find", "symtable_8c.html#a11bb4a6b2b3bd03309e0090f946a0644", null ],
     [ "symtab_subtab_foreach", "symtable_8c.html#a075a52c6c4eca75f50d99aca01cad17f", null ],
     [ "symtab_subtab_free", "symtable_8c.html#af7b3941964af7246d304dbfa605fcf77", null ],
-    [ "symtab_subtab_insert", "symtable_8c.html#a52916586bc18642c53da889ac882f9d2", null ],
+    [ "symtab_subtab_insert", "symtable_8c.html#a8ca0bd723a5fc496be01b58ff6486180", null ],
     [ "symtab_subtab_pop", "symtable_8c.html#a02c3969911087f375a9fbd425b813e16", null ],
     [ "symtab_subtab_push", "symtable_8c.html#afd913b76a2ba5aa42acffb32a3a72880", null ]
 ];

@@ -129,9 +129,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a11bb4a6b2b3bd03309e0090f946a0644"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a11bb4a6b2b3bd03309e0090f946a0644">symtab_subtab_find</a> (const <a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
 <tr class="memdesc:a11bb4a6b2b3bd03309e0090f946a0644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches subtable for identifier.  <a href="symtable_8c.html#a11bb4a6b2b3bd03309e0090f946a0644">More...</a><br /></td></tr>
 <tr class="separator:a11bb4a6b2b3bd03309e0090f946a0644"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52916586bc18642c53da889ac882f9d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a52916586bc18642c53da889ac882f9d2">symtab_subtab_insert</a> (<a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
-<tr class="memdesc:a52916586bc18642c53da889ac882f9d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in subtable.  <a href="symtable_8c.html#a52916586bc18642c53da889ac882f9d2">More...</a><br /></td></tr>
-<tr class="separator:a52916586bc18642c53da889ac882f9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ca0bd723a5fc496be01b58ff6486180"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a8ca0bd723a5fc496be01b58ff6486180">symtab_subtab_insert</a> (<a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key, char type)</td></tr>
+<tr class="memdesc:a8ca0bd723a5fc496be01b58ff6486180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in subtable.  <a href="symtable_8c.html#a8ca0bd723a5fc496be01b58ff6486180">More...</a><br /></td></tr>
+<tr class="separator:a8ca0bd723a5fc496be01b58ff6486180"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a128053b88efe6c9b882c66a78bd61845"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a128053b88efe6c9b882c66a78bd61845">symtab_subtab_erase</a> (<a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
 <tr class="memdesc:a128053b88efe6c9b882c66a78bd61845"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erases record with key from subtable.  <a href="symtable_8c.html#a128053b88efe6c9b882c66a78bd61845">More...</a><br /></td></tr>
 <tr class="separator:a128053b88efe6c9b882c66a78bd61845"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -710,8 +710,8 @@ Filip Stolfa </dd></dl>
 
 </div>
 </div>
-<a id="a52916586bc18642c53da889ac882f9d2" name="a52916586bc18642c53da889ac882f9d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a52916586bc18642c53da889ac882f9d2">&#9670;&nbsp;</a></span>symtab_subtab_insert()</h2>
+<a id="a8ca0bd723a5fc496be01b58ff6486180" name="a8ca0bd723a5fc496be01b58ff6486180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ca0bd723a5fc496be01b58ff6486180">&#9670;&nbsp;</a></span>symtab_subtab_insert()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -726,7 +726,13 @@ Filip Stolfa </dd></dl>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
