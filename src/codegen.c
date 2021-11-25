@@ -112,9 +112,18 @@ void codegen_function_call_argument(token_t* token, int argpos, int lvl) {
     return;
   }
   if (strcmp(last_function_name, "ord") == 0) {
-    // TODO if out of range <1, strlen>, return nil
-    printf("PUSHS ");
-    codegen_literal(token, lvl);
+    if (argpos == 0) {
+      codegen_ord_define();
+
+      printf("CREATEFRAME\n");
+      printf("DEFVAR TF@str\n");
+      printf("MOVE TF@str ");
+      codegen_literal(token, lvl);
+    } else {
+      printf("DEFVAR TF@i\n");
+      printf("MOVE TF@i ");
+      codegen_literal(token, lvl);
+    }
     return;
   }
   if (strcmp(last_function_name, "chr") == 0) {
@@ -168,7 +177,7 @@ void codegen_function_call_do(char* name, int argcount) {
     return;
   }
   if (strcmp(name, "ord") == 0) {
-    printf("STRI2INTS\n");
+    printf("CALL $ord\n");
     return;
   };
   if (strcmp(name, "chr") == 0) return;
@@ -369,4 +378,37 @@ void codegen_substr_define() {
   printf("POPFRAME\n");
   printf("RETURN\n");
   printf("LABEL $substr_end\n");
+}
+
+bool ord_defined = false;
+
+void codegen_ord_define() {
+  if (ord_defined) return;
+  ord_defined = true;
+
+  printf("JUMP $ord_end\n");
+  printf("LABEL $ord\n");
+  printf("PUSHFRAME\n");
+
+  printf("DEFVAR LF@out\n");
+  printf("MOVE LF@out nil@nil\n");
+
+  printf("DEFVAR LF@check\n");
+  printf("LT LF@check int@0 LF@i\n");
+  printf("JUMPIFEQ $ord_ret LF@check bool@false\n");
+  printf("DEFVAR LF@strlen\n");
+  printf("STRLEN LF@strlen LF@str\n");
+  printf("ADD LF@strlen LF@strlen int@1\n");
+  printf("LT LF@check LF@i LF@strlen\n");
+  printf("JUMPIFEQ $ord_ret LF@check bool@false\n");
+
+  printf("SUB LF@i LF@i int@1\n");
+  printf("STRI2INT LF@out LF@str LF@i\n");
+
+  printf("LABEL $ord_ret\n");
+  printf("PUSHS LF@out\n");
+
+  printf("POPFRAME\n");
+  printf("RETURN\n");
+  printf("LABEL $ord_end\n");
 }
