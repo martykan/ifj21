@@ -579,6 +579,8 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
   } while (b != SYM_S ||
            !(stack->symbol == SYM_E && stack->next->symbol == SYM_S));
   *exp_type = stack->type;
+  symbol_stack_pop(&stack);
+  symbol_stack_pop(&stack);
   return true;
 }
 
