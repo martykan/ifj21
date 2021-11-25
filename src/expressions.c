@@ -169,6 +169,20 @@ int precedence_table_index(expression_symbol_t symbol) {
 }
 
 /**
+ * Check if current token is a zero literal
+ */
+bool expression_token_is_zero() {
+  token_t *token = token_buff(TOKEN_THIS);
+  if (token->type == TT_INTEGER) {
+    return token->attr.int_val == 0;
+  }
+  if (token->type == TT_NUMBER) {
+    return token->attr.num_val == 0.0;
+  }
+  return false;
+}
+
+/**
  * Push operation on symbol stack
  */
 void symbol_stack_push(symbol_stack_t **stack, expression_symbol_t sym,
@@ -178,7 +192,7 @@ void symbol_stack_push(symbol_stack_t **stack, expression_symbol_t sym,
   new_stack->symbol = sym;
   new_stack->type = type;
   new_stack->lvl = 0;
-  new_stack->token = token_buff(TOKEN_THIS);
+  new_stack->is_zero = false;
   new_stack->next = old_stack;
   *stack = new_stack;
 }
@@ -187,13 +201,13 @@ void symbol_stack_push(symbol_stack_t **stack, expression_symbol_t sym,
  * Push operation on symbol stack
  */
 void symbol_stack_push_id(symbol_stack_t **stack, expression_symbol_t sym,
-                       char type, int lvl) {
+                          char type, int lvl, bool is_zero) {
   symbol_stack_t *old_stack = *stack;
   symbol_stack_t *new_stack = (symbol_stack_t *)malloc(sizeof(symbol_stack_t));
   new_stack->symbol = sym;
   new_stack->type = type;
   new_stack->lvl = lvl;
-  new_stack->token = token_buff(TOKEN_THIS);
+  new_stack->is_zero = is_zero;
   new_stack->next = old_stack;
   *stack = new_stack;
 }
@@ -301,16 +315,20 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
     if (s2->symbol == SYM_PREC_LT) {
       // E -> i
       char type = s1->type;
+      int lvl = s1->lvl;
+      bool is_zero = s1->is_zero;
       symbol_stack_pops(stack, 2);
-      symbol_stack_push(stack, SYM_E, type);
+      symbol_stack_push_id(stack, SYM_E, type, lvl, is_zero);
       return true;
     }
   } else if (s1->symbol == SYM_RBRACKET && s2->symbol == SYM_E &&
              s3->symbol == SYM_LBRACKET && s4->symbol == SYM_PREC_LT) {
     // E -> (E)
     char type = s2->type;
+    int lvl = s1->lvl;
+    bool is_zero = s1->is_zero;
     symbol_stack_pops(stack, 4);
-    symbol_stack_push(stack, SYM_E, type);
+    symbol_stack_push_id(stack, SYM_E, type, lvl, is_zero);
     return true;
   } else if (s1->symbol == SYM_E && s2->symbol == SYM_STRLEN &&
              s3->symbol == SYM_PREC_LT) {
@@ -366,7 +384,7 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
         expression_typecheck_set_error(s1->type, s3->type);
         return false;
       }
-      if (s3->token->attr.num_val == 0.0) {
+      if (s1->is_zero) {
         error_set(EXITSTATUS_ERROR_DIVIDE_ZERO);
         return false;
       }
@@ -388,7 +406,7 @@ bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
         expression_typecheck_set_error(s1->type, s3->type);
         return false;
       }
-      if (s3->token->attr.int_val == 0) {
+      if (s1->is_zero) {
         error_set(EXITSTATUS_ERROR_DIVIDE_ZERO);
         return false;
       }
@@ -474,6 +492,7 @@ void print_stack(symbol_stack_t *stack) {
   printf("# [");
   while (stack_curr != NULL) {
     a = stack_curr->symbol;
+    if (stack_curr->is_zero) printf("0");
     printf("%s ", expression_symbol_t_names[a]);
     stack_curr = stack_curr->next;
   }
@@ -506,7 +525,7 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
       case PREC_EQ:
         if (true) {
           char tmp = expression_get_type(&lvl);
-          symbol_stack_push_id(&stack, b, tmp, lvl);
+          symbol_stack_push_id(&stack, b, tmp, lvl, expression_token_is_zero());
         }
         expression_next_input();
         if (error_get()) {
@@ -518,22 +537,23 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
           token_t *token = token_buff(TOKEN_THIS);
           int lvl = 0;
           if (token->type == TT_ID) {
-            symtab_var_data_t* find_var = symtab_find_var(symtab, token->attr.str, &lvl);
+            symtab_var_data_t *find_var =
+                symtab_find_var(symtab, token->attr.str, &lvl);
           }
           codegen_expression_push_value(token, lvl);
         }
         if (stack->symbol == SYM_E) {
           char type = stack->type;
+          int lvl = stack->lvl;
+          bool is_zero = stack->is_zero;
           symbol_stack_pop(&stack);
           symbol_stack_push(&stack, SYM_PREC_LT, TYPE_NONE);
-          symbol_stack_push(&stack, SYM_E, type);
+          symbol_stack_push_id(&stack, SYM_E, type, lvl, is_zero);
         } else {
           symbol_stack_push(&stack, SYM_PREC_LT, TYPE_NONE);
         }
-        if (true) {
-          char tmp = expression_get_type(&lvl);
-          symbol_stack_push_id(&stack, b, tmp, lvl);
-        }
+        char type = expression_get_type(&lvl);
+        symbol_stack_push_id(&stack, b, type, lvl, expression_token_is_zero());
         expression_next_input();
         if (error_get()) {
           return false;

@@ -53,7 +53,7 @@ struct symbol_stack_t {
   expression_symbol_t symbol;
   char type;
   int lvl;
-  token_t *token;
+  bool is_zero;
   symbol_stack_t *next;
 };
 
