@@ -69,6 +69,8 @@ void codegen_while_expr();
 void codegen_while_end();
 
 void codegen_ord_define();
+void codegen_chr_define();
 void codegen_substr_define();
+void codegen_tointeger_define();
 
 #endif

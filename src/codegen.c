@@ -84,10 +84,14 @@ void codegen_function_call_argument(token_t* token, int argpos, int lvl) {
   if (strcmp(last_function_name, "readn") == 0) return;
   if (strcmp(last_function_name, "reads") == 0) return;
   if (strcmp(last_function_name, "tointeger") == 0) {
-    // TODO if input nil, return nil
-    printf("PUSHS ");
-    codegen_literal(token, lvl);
-    printf("FLOAT2INTS\n");
+    if (argpos == 0) {
+      codegen_tointeger_define();
+
+      printf("CREATEFRAME\n");
+      printf("DEFVAR TF@n\n");
+      printf("MOVE TF@n ");
+      codegen_literal(token, lvl);
+    }
     return;
   }
   if (strcmp(last_function_name, "substr") == 0) {
@@ -127,10 +131,14 @@ void codegen_function_call_argument(token_t* token, int argpos, int lvl) {
     return;
   }
   if (strcmp(last_function_name, "chr") == 0) {
-    // TODO if out of range <0,255>, return nil
-    printf("PUSHS ");
-    codegen_literal(token, lvl);
-    printf("INT2CHARS\n");
+    if (argpos == 0) {
+      codegen_chr_define();
+
+      printf("CREATEFRAME\n");
+      printf("DEFVAR TF@i\n");
+      printf("MOVE TF@i ");
+      codegen_literal(token, lvl);
+    }
     return;
   }
 
@@ -171,7 +179,10 @@ void codegen_function_call_do(char* name, int argcount) {
     printf("PUSHS LF@$tmp1\n");
     return;
   }
-  if (strcmp(name, "tointeger") == 0) return;
+  if (strcmp(name, "tointeger") == 0) {
+    printf("CALL $tointeger\n");
+    return;
+  }
   if (strcmp(name, "substr") == 0) {
     printf("CALL $substr\n");
     return;
@@ -180,7 +191,10 @@ void codegen_function_call_do(char* name, int argcount) {
     printf("CALL $ord\n");
     return;
   };
-  if (strcmp(name, "chr") == 0) return;
+  if (strcmp(name, "chr") == 0) {
+    printf("CALL $chr\n");
+    return;
+  }
   printf("CALL $fn_%s\n", name);
 }
 
@@ -416,4 +430,56 @@ void codegen_ord_define() {
   printf("POPFRAME\n");
   printf("RETURN\n");
   printf("LABEL $ord_end\n");
+}
+
+bool chr_defined = false;
+
+void codegen_chr_define() {
+  if (chr_defined) return;
+  chr_defined = true;
+
+  printf("JUMP $chr_end\n");
+  printf("LABEL $chr\n");
+  printf("PUSHFRAME\n");
+
+  printf("DEFVAR LF@cond\n");
+  printf("DEFVAR LF@cond2\n");
+  printf("LT LF@cond LF@i int@0\n");
+  printf("GT LF@cond2 LF@i int@255\n");
+  printf("OR LF@cond LF@cond LF@cond2\n");
+
+  printf("JUMPIFEQ $chr_expr LF@cond bool@false\n");
+  printf("PUSHS nil@nil\n");
+  printf("JUMP $chr_ret\n");
+  printf("LABEL $chr_expr\n");
+  printf("PUSHS LF@i\n");
+  printf("INT2CHARS\n");
+  printf("LABEL $chr_ret\n");
+
+  printf("POPFRAME\n");
+  printf("RETURN\n");
+  printf("LABEL $chr_end\n");
+}
+
+bool tointeger_defined = false;
+
+void codegen_tointeger_define() {
+  if (tointeger_defined) return;
+  tointeger_defined = true;
+
+  printf("JUMP $tointeger_end\n");
+  printf("LABEL $tointeger\n");
+  printf("PUSHFRAME\n");
+
+  printf("JUMPIFNEQ $tointeger_expr LF@n nil@nil\n");
+  printf("PUSHS nil@nil\n");
+  printf("JUMP $tointeger_ret\n");
+  printf("LABEL $tointeger_expr\n");
+  printf("PUSHS LF@n\n");
+  printf("FLOAT2INTS\n");
+  printf("LABEL $tointeger_ret\n");
+
+  printf("POPFRAME\n");
+  printf("RETURN\n");
+  printf("LABEL $tointeger_end\n");
 }
