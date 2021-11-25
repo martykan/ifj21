@@ -1092,7 +1092,7 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
   char cond_type;
   if (parser_exp(&cond_type)) {
     if (cond_type != 'b') {
-      goto EXIT;
+      codegen_not_nil();
     }
     token = token_buff(TOKEN_THIS);
 
@@ -1159,7 +1159,7 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
   char cond_type;
   if (parser_exp(&cond_type)) {
     if (cond_type != 'b') {
-      goto EXIT;
+      codegen_not_nil();
     }
     token = token_buff(TOKEN_THIS);
 

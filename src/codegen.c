@@ -274,6 +274,11 @@ void codegen_cast_float_to_int2() {
   printf("PUSHS LF@$tmp1\n");
 }
 
+void codegen_not_nil() {
+  printf("PUSHS nil@nil\n");
+  printf("EQS\nNOTS\n");
+}
+
 void codegen_define_var(char* old_id, int lvl) {
   char* id = scope_get_correct_id(old_id, lvl);
 
