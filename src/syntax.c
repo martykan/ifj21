@@ -128,7 +128,7 @@ bool parser_require() {
   token_t* token = token_buff(TOKEN_THIS);
 
   if (token->type == TT_STRING) {
-    token_buff(TOKEN_NEW);
+    token = token_buff(TOKEN_NEW);
     if (error_get()) {
       return false;
     }
@@ -222,7 +222,7 @@ bool parser_function_def() {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_K_END) {
-              token_buff(TOKEN_NEW);
+              token = token_buff(TOKEN_NEW);
               if (error_get()) {
                 goto FREE_PARAMS;
               }
@@ -315,7 +315,7 @@ bool parser_function_dec() {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_RPAR) {
-              token_buff(TOKEN_NEW);
+              token = token_buff(TOKEN_NEW);
               if (error_get()) {
                 goto FREE_RET_TYPES;
               }
@@ -424,7 +424,7 @@ bool parser_function_call(symtab_func_data_t* func) {
       token = token_buff(TOKEN_THIS);
 
       if (token->type == TT_RPAR) {
-        token_buff(TOKEN_NEW);
+        token = token_buff(TOKEN_NEW);
         if (error_get()) {
           goto FREE_PARAM_TYPES;
         }
@@ -489,7 +489,7 @@ bool parser_param_append(dynstr_t* param_types, int argpos) {
 
   switch (token->type) {
     case TT_COMMA:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -613,7 +613,7 @@ bool parser_type_list_return(dynstr_t* types) {
     case TT_EOF:
       return true;
     case TT_COLON:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -654,7 +654,7 @@ bool parser_type_append(dynstr_t* types) {
     case TT_RPAR:
       return true;
     case TT_COMMA:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -683,7 +683,7 @@ bool parser_type(char* type) {
 
   switch (token->type) {
     case TT_K_INTEGER:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -691,7 +691,7 @@ bool parser_type(char* type) {
       *type = 'i';
       return true;
     case TT_K_NUMBER:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -699,7 +699,7 @@ bool parser_type(char* type) {
       *type = 'n';
       return true;
     case TT_K_STRING:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -730,7 +730,7 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
         codegen_function_call_argument(token, *arg_pos, lvl);
         ++(*arg_pos);
 
-        token_buff(TOKEN_NEW);
+        token = token_buff(TOKEN_NEW);
         if (error_get()) {
           return false;
         }
@@ -755,7 +755,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
 
   switch (token->type) {
     case TT_COMMA:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -770,7 +770,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
         codegen_function_call_argument(token, *arg_pos, lvl);
         ++(*arg_pos);
 
-        token_buff(TOKEN_NEW);
+        token = token_buff(TOKEN_NEW);
         if (error_get()) {
           return false;
         }
@@ -966,7 +966,7 @@ bool parser_returned(char* ret_types, dynstr_t* exp_types) {
 
   switch (token->type) {
     case TT_K_RETURN:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -1118,7 +1118,7 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_K_END) {
-              token_buff(TOKEN_NEW);
+              token = token_buff(TOKEN_NEW);
               if (error_get()) {
                 return false;
               }
@@ -1169,7 +1169,7 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
         token = token_buff(TOKEN_THIS);
 
         if (token->type == TT_K_END) {
-          token_buff(TOKEN_NEW);
+          token = token_buff(TOKEN_NEW);
           if (error_get()) {
             return false;
           }
@@ -1196,7 +1196,7 @@ bool parser_init(char var_type, bool* did_init) {
 
   switch (token->type) {
     case TT_ASSIGN:
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
@@ -1387,7 +1387,7 @@ bool parser_assign_st(char* id) {
     token_t* token = token_buff(TOKEN_THIS);
 
     if (token->type == TT_ASSIGN) {
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         goto FREE_ID_TYPES;
       }
@@ -1436,7 +1436,7 @@ bool parser_id_append(dynstr_t* id_types) {
         }
         codegen_assign_expression_add(token->attr.str, lvl);
 
-        token_buff(TOKEN_NEW);
+        token = token_buff(TOKEN_NEW);
         if (error_get()) {
           return false;
         }
@@ -1631,7 +1631,7 @@ bool parser_exp_append(char* id_types, int pos, dynstr_t* exp_types) {
     case TT_ID:
       return true;
     case TT_COMMA: {
-      token_buff(TOKEN_NEW);
+      token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
       }
