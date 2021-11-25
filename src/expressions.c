@@ -176,6 +176,22 @@ void symbol_stack_push(symbol_stack_t **stack, expression_symbol_t sym,
   symbol_stack_t *new_stack = (symbol_stack_t *)malloc(sizeof(symbol_stack_t));
   new_stack->symbol = sym;
   new_stack->type = type;
+  new_stack->lvl = 0;
+  new_stack->token = token_buff(TOKEN_THIS);
+  new_stack->next = old_stack;
+  *stack = new_stack;
+}
+
+/**
+ * Push operation on symbol stack
+ */
+void symbol_stack_push_id(symbol_stack_t **stack, expression_symbol_t sym,
+                       char type, int lvl) {
+  symbol_stack_t *old_stack = *stack;
+  symbol_stack_t *new_stack = (symbol_stack_t *)malloc(sizeof(symbol_stack_t));
+  new_stack->symbol = sym;
+  new_stack->type = type;
+  new_stack->lvl = lvl;
   new_stack->token = token_buff(TOKEN_THIS);
   new_stack->next = old_stack;
   *stack = new_stack;
@@ -452,9 +468,13 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
     // print_stack(stack);
     expression_precedence_t precedence =
         precedence_table[precedence_table_index(a)][precedence_table_index(b)];
+    int lvl = 0;
     switch (precedence) {
       case PREC_EQ:
-        symbol_stack_push(&stack, b, expression_get_type());
+        if (true) {
+          char tmp = expression_get_type(&lvl);
+          symbol_stack_push_id(&stack, b, tmp, lvl);
+        }
         expression_next_input();
         if (error_get()) {
           return false;
@@ -463,7 +483,11 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
       case PREC_LT:
         if (b == SYM_I) {
           token_t *token = token_buff(TOKEN_THIS);
-          codegen_expression_push_value(token);
+          int lvl = 0;
+          if (token->type == TT_ID) {
+            symtab_var_data_t* find_var = symtab_find_var(symtab, token->attr.str, &lvl);
+          }
+          codegen_expression_push_value(token, lvl);
         }
         if (stack->symbol == SYM_E) {
           char type = stack->type;
@@ -473,7 +497,10 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
         } else {
           symbol_stack_push(&stack, SYM_PREC_LT, TYPE_NONE);
         }
-        symbol_stack_push(&stack, b, expression_get_type());
+        if (true) {
+          char tmp = expression_get_type(&lvl);
+          symbol_stack_push_id(&stack, b, tmp, lvl);
+        }
         expression_next_input();
         if (error_get()) {
           return false;
@@ -502,7 +529,7 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
   return true;
 }
 
-char expression_get_type() {
+char expression_get_type(int *lvl) {
   token_t *token = token_buff(TOKEN_THIS);
   if (error_get() || token == NULL) {
     return TYPE_NONE;
@@ -518,7 +545,7 @@ char expression_get_type() {
     case TT_K_NIL:
       return TYPE_NIL;
     case TT_ID: {
-      symtab_var_data_t *record = symtab_find_var(symtab, token->attr.str);
+      symtab_var_data_t *record = symtab_find_var(symtab, token->attr.str, lvl);
       if (record == NULL) return TYPE_NONE;
       return record->data_type;
     }

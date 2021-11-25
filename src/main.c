@@ -4,10 +4,13 @@
 #include "parser.h"
 #include "scanner.h"
 #include "syntax.h"
+#include "scope.h"
 
 int main(int argc, char **argv) {
   scanner_init();
   parser_init_symtab();
+
+  scope_init();
 
   printf(".IFJcode21\n");
   parser_start();

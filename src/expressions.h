@@ -52,6 +52,7 @@ typedef struct symbol_stack_t symbol_stack_t;
 struct symbol_stack_t {
   expression_symbol_t symbol;
   char type;
+  int lvl;
   token_t *token;
   symbol_stack_t *next;
 };

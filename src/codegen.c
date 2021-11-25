@@ -13,6 +13,7 @@
 
 #include "errors.h"
 #include "scanner.h"
+#include "scope.h"
 
 // Variables to keep track of temp vars
 int tmpmax = 0;
@@ -44,7 +45,7 @@ void codegen_function_call_begin(char* name) {
   printf("CREATEFRAME\n");
 }
 
-void codegen_literal(token_t* token) {
+void codegen_literal(token_t* token, int lvl) {
   switch (token->type) {
     case TT_INTEGER:
       printf("int@%d\n", token->attr.int_val);
@@ -59,23 +60,24 @@ void codegen_literal(token_t* token) {
       printf("nil@nil\n");
       break;
     case TT_ID:
-      printf("LF@%s\n", token->attr.str);
+      printf("LF@%s\n", scope_get_correct_id(token->attr.str, lvl));
+      // printf("LF@%s\n", token->attr.str);
       break;
     default:
       // Error
-      printf("token error %d\n", token->type);
+      fprintf(stderr, "token error %d\n", token->type);
       error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
       return;
   }
 }
 
-void codegen_function_call_argument(token_t* token, int argpos) {
+void codegen_function_call_argument(token_t* token, int argpos, int lvl) {
   if (last_function_name == NULL) {
     return;
   }
   if (strcmp(last_function_name, "write") == 0) {
     printf("WRITE ");
-    codegen_literal(token);
+    codegen_literal(token, lvl);
     return;
   }
   if (strcmp(last_function_name, "readi") == 0) return;
@@ -84,7 +86,7 @@ void codegen_function_call_argument(token_t* token, int argpos) {
   if (strcmp(last_function_name, "tointeger") == 0) {
     // TODO if input nil, return nil
     printf("PUSHS ");
-    codegen_literal(token);
+    codegen_literal(token, lvl);
     printf("FLOAT2INTS\n");
     return;
   }
@@ -95,37 +97,37 @@ void codegen_function_call_argument(token_t* token, int argpos) {
       printf("CREATEFRAME\n");
       printf("DEFVAR TF@str\n");
       printf("MOVE TF@str ");
-      codegen_literal(token);
+      codegen_literal(token, lvl);
     }
     if (argpos == 1) {
       printf("DEFVAR TF@i\n");
       printf("MOVE TF@i ");
-      codegen_literal(token);
+      codegen_literal(token, lvl);
     }
     if (argpos == 2) {
       printf("DEFVAR TF@j\n");
       printf("MOVE TF@j ");
-      codegen_literal(token);
+      codegen_literal(token, lvl);
     }
     return;
   }
   if (strcmp(last_function_name, "ord") == 0) {
     // TODO if out of range <1, strlen>, return nil
     printf("PUSHS ");
-    codegen_literal(token);
+    codegen_literal(token, lvl);
     return;
   }
   if (strcmp(last_function_name, "chr") == 0) {
     // TODO if out of range <0,255>, return nil
     printf("PUSHS ");
-    codegen_literal(token);
+    codegen_literal(token, lvl);
     printf("INT2CHARS\n");
     return;
   }
 
   printf("DEFVAR TF@$arg%d\n", argpos);
   printf("MOVE TF@$arg%d ", argpos);
-  codegen_literal(token);
+  codegen_literal(token, lvl);
 }
 
 void codegen_function_call_argument_count(int argcount) {
@@ -179,6 +181,7 @@ void codegen_function_definition_begin(char* name) {
   printf("PUSHFRAME\n");
 }
 
+// TODO(filip): new scope id here also?
 void codegen_function_definition_param(char* name, int argpos) {
   printf("DEFVAR LF@%s\n", name);
   printf("MOVE LF@%s LF@$arg%d\n", name, argpos);
@@ -196,9 +199,9 @@ void codegen_function_return() {
   printf("RETURN\n");
 }
 
-void codegen_expression_push_value(token_t* token) {
+void codegen_expression_push_value(token_t* token, int lvl) {
   printf("PUSHS ");
-  codegen_literal(token);
+  codegen_literal(token, lvl);
 }
 
 void codegen_expression_plus() { printf("ADDS\n"); }
@@ -254,11 +257,17 @@ void codegen_cast_int_to_float2() {
   printf("PUSHS LF@$tmp1\n");
 }
 
-void codegen_define_var(char* id) { printf("DEFVAR LF@%s\n", id); }
+void codegen_define_var(char* old_id, int lvl) {
+  char *id = scope_get_correct_id(old_id, lvl);
+
+  printf("DEFVAR LF@%s\n", id);
+}
 
 dynstr_t expression_assign_buffer;
 
-void codegen_assign_expression_add(char* id) {
+void codegen_assign_expression_add(char* old_id, int lvl) {
+  char *id = scope_get_correct_id(old_id, lvl);
+
   if (expression_assign_buffer.str == NULL) {
     dynstr_init(&expression_assign_buffer);
   }

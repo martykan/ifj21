@@ -18,6 +18,7 @@
 #include "errors.h"
 #include "scanner.h"
 #include "symtable.h"
+#include "scope.h"
 
 // INIT
 
@@ -120,7 +121,7 @@ symtab_vars_t* parser_get_params(int param_cnt) {
 }
 
 bool parser_define_var(const char* id) {
-  symtab_var_data_t* var_data = symtab_find_var(symtab, id);
+  symtab_var_data_t* var_data = symtab_find_var(symtab, id, NULL);
   if (!var_data) {
     return false;
   }
@@ -143,7 +144,7 @@ bool parser_define_func(const char* id, symtab_vars_t* params) {
 }
 
 bool parser_isdeclared_var(const char* id) {
-  return symtab_find_var(symtab, id);
+  return symtab_find_var(symtab, id, NULL);
 }
 
 bool parser_isdeclared_func(const char* id) {
@@ -151,7 +152,7 @@ bool parser_isdeclared_func(const char* id) {
 }
 
 bool parser_isdefined_var(const char* id) {
-  symtab_var_data_t* var_data = symtab_find_var(symtab, id);
+  symtab_var_data_t* var_data = symtab_find_var(symtab, id, NULL);
   if (var_data) {
     return var_data->is_init;
   }

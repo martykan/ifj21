@@ -19,6 +19,7 @@
 #include "other.h"
 #include "parser.h"
 #include "scanner.h"
+#include "scope.h"
 #include "symtable.h"
 
 bool parser_stlist_global();
@@ -397,6 +398,7 @@ bool parser_function_call_by_id(char* id) {
   return parser_function_call(declared_func);
 }
 
+// SCOPE
 bool parser_function_call(symtab_func_data_t* func) {
   token_t* token = token_buff(TOKEN_THIS);
 
@@ -451,6 +453,7 @@ EXIT:
   return is_correct;
 }
 
+// SCOPE
 bool parser_param_list(dynstr_t* param_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
@@ -480,6 +483,7 @@ bool parser_param_list(dynstr_t* param_types) {
   return false;
 }
 
+// SCOPE
 bool parser_param_append(dynstr_t* param_types, int argpos) {
   token_t* token = token_buff(TOKEN_THIS);
 
@@ -526,7 +530,7 @@ bool parser_param(char* param_type) {
   }
 
   if (token->type == TT_ID) {
-    symtab_var_data_t* declared_var = symtab_find_var(symtab, id);
+    symtab_var_data_t* declared_var = symtab_find_var(symtab, id, NULL);
     if (declared_var) {
       error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
       goto FREE_ID;
@@ -722,7 +726,7 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
         if (error_get()) {
           return false;
         }
-        codegen_function_call_argument(token, *arg_pos);
+        codegen_function_call_argument(token, *arg_pos, 0);
         ++(*arg_pos);
 
         token_buff(TOKEN_NEW);
@@ -761,7 +765,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
         if (error_get()) {
           return false;
         }
-        codegen_function_call_argument(token, *arg_pos);
+        codegen_function_call_argument(token, *arg_pos, 0);
         ++(*arg_pos);
 
         token_buff(TOKEN_NEW);
@@ -789,7 +793,7 @@ bool parser_arg(char* arg_type) {
   switch (token->type) {
     case TT_ID: {
       symtab_var_data_t* declared_var =
-          symtab_find_var(symtab, token->attr.str);
+          symtab_find_var(symtab, token->attr.str, NULL);
       if (!declared_var) {
         error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
         return false;
@@ -1012,7 +1016,8 @@ bool parser_var_dec(const char* func_name) {
   }
 
   if (token->type == TT_ID) {
-    symtab_var_data_t* declared_var = symtab_find_var(symtab, token->attr.str);
+    // search local scope for a variable of the same name
+    symtab_var_data_t* declared_var = symtab_find_var_local(symtab, token->attr.str);
     if (declared_var) {
       error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
       goto FREE_ID;
@@ -1042,12 +1047,12 @@ bool parser_var_dec(const char* func_name) {
 
       char var_type = 0;
       if (parser_type(&var_type)) {
-        codegen_define_var(id);
+        codegen_define_var(id, 0);
         bool did_init = false;
         if (parser_init(var_type, &did_init)) {
           parser_declare_var(id, var_type);
           if (did_init) {
-            codegen_assign_expression_add(id);
+            codegen_assign_expression_add(id, 0);
             codegen_assign_expression_finish();
           }
           if (error_get()) {
@@ -1082,6 +1087,8 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
     }
     token = token_buff(TOKEN_THIS);
 
+    scope_new_if();
+
     if (token->type == TT_K_THEN) {
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
@@ -1099,6 +1106,8 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
             return false;
           }
 
+          scope_new_if();
+
           codegen_if_else();
 
           if (parser_local_scope(func_name, ret_types, true)) {
@@ -1111,6 +1120,9 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
               }
 
               codegen_if_end();
+
+              scope_pop_item(); // else
+              scope_pop_item(); // if
 
               return true;
             }
@@ -1340,7 +1352,8 @@ bool parser_assign_st(char* id) {
   // is syntax correct
   bool is_correct = false;
 
-  symtab_var_data_t* declared_var = symtab_find_var(symtab, id);
+  int lvl = 0;
+  symtab_var_data_t* declared_var = symtab_find_var(symtab, id, &lvl);
   if (!declared_var) {
     error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
     goto EXIT;
@@ -1356,7 +1369,7 @@ bool parser_assign_st(char* id) {
   if (error_get()) {
     goto FREE_ID_TYPES;
   }
-  codegen_assign_expression_add(id);
+  codegen_assign_expression_add(id, lvl);
 
   if (parser_id_append(&id_types)) {
     token_t* token = token_buff(TOKEN_THIS);
@@ -1396,9 +1409,10 @@ bool parser_id_append(dynstr_t* id_types) {
         return false;
       }
 
+      int lvl = 0;
       if (token->type == TT_ID) {
         symtab_var_data_t* declared_var =
-            symtab_find_var(symtab, token->attr.str);
+            symtab_find_var(symtab, token->attr.str, &lvl);
         if (!declared_var) {
           error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
           return false;
@@ -1408,7 +1422,7 @@ bool parser_id_append(dynstr_t* id_types) {
         if (error_get()) {
           return false;
         }
-        codegen_assign_expression_add(token->attr.str);
+        codegen_assign_expression_add(token->attr.str, lvl);
 
         token_buff(TOKEN_NEW);
         if (error_get()) {
