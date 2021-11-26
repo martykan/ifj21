@@ -86,7 +86,6 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types,
   }
 
   func_data->was_defined = false;
-  func_data->params = NULL;
 
   func_data->param_types = NULL;
   func_data->return_types = NULL;
@@ -110,19 +109,6 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types,
   return true;
 }
 
-symtab_vars_t* parser_get_params(int param_cnt) {
-  symtab_vars_t* params = malloc(sizeof(symtab_vars_t));
-  if (!params) {
-    error_set(EXITSTATUS_INTERNAL_ERROR);
-    return NULL;
-  }
-  params->cnt = param_cnt;
-  params->vars = malloc(param_cnt * sizeof(symtab_var_data_t*));
-  symtab_get_top_vars(symtab, params);
-
-  return params;
-}
-
 bool parser_define_var(const char* id) {
   symtab_var_data_t* var_data = symtab_find_var(symtab, id, NULL);
   if (!var_data) {
@@ -134,14 +120,13 @@ bool parser_define_var(const char* id) {
   return true;
 }
 
-bool parser_define_func(const char* id, symtab_vars_t* params) {
+bool parser_define_func(const char* id) {
   symtab_func_data_t* func_data = symtab_find_func(symtab, id);
   if (!func_data) {
     return false;
   }
 
   func_data->was_defined = true;
-  func_data->params = params;
 
   return true;
 }

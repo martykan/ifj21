@@ -167,8 +167,6 @@ bool parser_function_def() {
     goto FREE_RET_TYPES;
   }
 
-  symtab_vars_t* params = NULL;
-
   if (token->type == TT_ID) {
     symtab_func_data_t* declared_func = symtab_find_func(symtab, id);
     if (declared_func && declared_func->was_defined) {
@@ -190,8 +188,6 @@ bool parser_function_def() {
       codegen_function_definition_begin(id);
       if (parser_param_list(&param_types)) {
         token = token_buff(TOKEN_THIS);
-
-        params = parser_get_params(strlen(param_types.str));
         if (error_get()) {
           goto POP_SUBTAB;
         }
@@ -199,7 +195,7 @@ bool parser_function_def() {
         if (token->type == TT_RPAR) {
           token = token_buff(TOKEN_NEW);
           if (error_get()) {
-            goto FREE_PARAMS;
+            goto POP_SUBTAB;
           }
 
           if (!parser_type_list_return(&ret_types)) return false;
@@ -208,23 +204,23 @@ bool parser_function_def() {
                 strcmp(declared_func->return_types, ret_types.str)) {
               // function declaration and definition dont match
               error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
-              goto FREE_PARAMS;
+              goto POP_SUBTAB;
             }
           } else {
             parser_declare_func(id, &param_types, &ret_types);
             if (error_get()) {
-              goto FREE_PARAMS;
+              goto POP_SUBTAB;
             }
           }
 
-          parser_define_func(id, params);
+          parser_define_func(id);
           if (parser_local_scope(id, &ret_types, false)) {
             token = token_buff(TOKEN_THIS);
 
             if (token->type == TT_K_END) {
               token = token_buff(TOKEN_NEW);
               if (error_get()) {
-                goto FREE_PARAMS;
+                goto POP_SUBTAB;
               }
 
               is_correct = true;
@@ -242,12 +238,6 @@ bool parser_function_def() {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
-FREE_PARAMS:
-  for (int i = 0; i < params->cnt; i++) {
-    free(params->vars[i]);
-  }
-  free(params->vars);
-  free(params);
 POP_SUBTAB:
   symtab_subtab_pop(symtab);
 FREE_RET_TYPES:

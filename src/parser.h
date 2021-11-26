@@ -48,7 +48,7 @@ void parser_destroy_symtab();
 bool parser_declare_var(const char* id, char data_type);
 bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types);
 bool parser_define_var(const char* id);
-bool parser_define_func(const char* id, symtab_vars_t* params);
+bool parser_define_func(const char* id);
 symtab_vars_t* parser_get_params(int param_cnt);
 
 bool parser_isdeclared_var(const char* id);

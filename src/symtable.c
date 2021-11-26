@@ -167,7 +167,6 @@ void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
   strncpy(func_data->return_types, return_types, strlen(return_types) + 1);
 
   func_data->was_defined = true;
-  func_data->params = NULL;
 }
 
 symtab_subtab_t* symtab_subtab_create(size_t n) {
@@ -251,14 +250,6 @@ void symtab_record_free(symtab_record_t* rec) {
     free(rec->data.func_data.func_name);
     free(rec->data.func_data.param_types);
     free(rec->data.func_data.return_types);
-    if(rec->data.func_data.params) {
-      int param_cnt = rec->data.func_data.params->cnt;
-      for(int i = 0; i < param_cnt; i++) {
-        free(rec->data.func_data.params->vars[i]);
-      }
-      free(rec->data.func_data.params->vars);
-    }
-    free(rec->data.func_data.params);
   } else if (rec->what_data == 'v') {
     free(rec->data.var_data.var_name);
   }

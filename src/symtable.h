@@ -76,7 +76,6 @@ typedef struct {
   char* param_types;
   char* return_types;
   bool was_defined;
-  symtab_vars_t* params;
 } symtab_func_data_t;
 
 /**
@@ -192,9 +191,11 @@ void symtab_subtab_pop(symtab_t* symtab);
  * @param key Key to search for.
  * @return Found record data. NULL otherwise.
  */
-symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key, int *lvl);
+symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key,
+                                   int* lvl);
 
-symtab_var_data_t* symtab_find_var_local(const symtab_t* symtab, symtab_key_t key);
+symtab_var_data_t* symtab_find_var_local(const symtab_t* symtab,
+                                         symtab_key_t key);
 
 /**
  * Searches global table for function identifier.
