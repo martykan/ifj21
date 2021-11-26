@@ -16,6 +16,7 @@ int main(int argc, char **argv) {
   parser_start();
   printf("\n");
 
+  scope_destroy();
   scanner_destroy();
   parser_destroy_symtab();
 

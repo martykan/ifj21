@@ -44,7 +44,7 @@ token_t* token_buff(int operation) {
   } else if (operation == TOKEN_NEW) {
     scanner_token_destroy(token);
     token = scanner_get_next_token();
-    if (error_get()) {
+    if (error_get() || token == NULL) {
       return NULL;
     }
 

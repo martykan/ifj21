@@ -22,6 +22,8 @@ extern scope_info_t *scope_info;
 // scope_info_t* scope_init();
 void scope_init();
 
+void scope_destroy();
+
 void scope_push_item(char type, unsigned int lvl);
 
 scope_item_t scope_get_item();

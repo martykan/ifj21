@@ -21,6 +21,10 @@ void scope_init() {
   scope_info->top = -1;
 }
 
+void scope_destroy() {
+  free(scope_info);
+}
+
 void scope_push_item(char type, unsigned int lvl) {
   scope_info->top++;
   scope_info->stack[scope_info->top].lvl = lvl;
