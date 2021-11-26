@@ -198,10 +198,9 @@ var NAVTREEINDEX0 =
 "structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441":[1,0,4,0],
 "structsymbol__stack__t.html":[1,0,5],
 "structsymtab__func__data__t.html":[1,0,7],
-"structsymtab__func__data__t.html#a1a79520697791a57bee150243559db8e":[1,0,7,2],
+"structsymtab__func__data__t.html#a1a79520697791a57bee150243559db8e":[1,0,7,1],
 "structsymtab__func__data__t.html#a37c829ab09c957ca9261754755398c54":[1,0,7,0],
-"structsymtab__func__data__t.html#adce70e653eb63d31a7fb04ae204c559c":[1,0,7,1],
-"structsymtab__func__data__t.html#aebedfd865ed0582c360a6ce7fdf494f7":[1,0,7,3],
+"structsymtab__func__data__t.html#aebedfd865ed0582c360a6ce7fdf494f7":[1,0,7,2],
 "structsymtab__record__t.html":[1,0,8],
 "structsymtab__record__t.html#a00239af1f115b593ba8723264615b6cd":[1,0,8,1],
 "structsymtab__record__t.html#a0971c86583d38733ae63bd467a58f35b":[1,0,8,0],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "symtable_8h.html#a38b92535c3115ae2c1f4bd594fa2a3c9":[2,0,0,16,9],
 "symtable_8h.html#a549ffd9107811e5b88384c16342cc723":[2,0,0,16,12],
 "symtable_8h.html#a617504951efaba3dd3464547b5c4078f":[2,0,0,16,10],
-"symtable_8h.html#a85d089ba61b3efb9b799577e908fe104":[2,0,0,16,13]
+"symtable_8h.html#a85d089ba61b3efb9b799577e908fe104":[2,0,0,16,13],
+"symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a":[2,0,0,16,7]
 };
