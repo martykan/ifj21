@@ -749,7 +749,9 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
   return false;
 }
 
@@ -788,7 +790,9 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
   return false;
 }
 
@@ -833,7 +837,9 @@ bool parser_func_ret_match(char* declared, char* returned) {
     }
 
     if (*declared != *returned) {
-      if (*declared != 'n' || *returned != 'i') {
+      if (*returned == 'x') {
+        // Can return NIL literal
+      } else if (*declared != 'n' || *returned != 'i') {
         return false;
       }
     }

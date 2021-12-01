@@ -337,7 +337,7 @@ symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, c
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
   symtab_record_t* last = NULL;
-  for (last = subtab->list[index]; last != NULL; last = last->next)
+  for (last = subtab->list[index]; last != NULL && last->next != NULL; last = last->next)
     ;
 
   symtab_record_t* new_rec = symtab_record_create(key);

@@ -540,6 +540,10 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
           if (token->type == TT_ID) {
             symtab_var_data_t *find_var =
                 symtab_find_var(symtab, token->attr.str, &lvl);
+            if (find_var == NULL) {
+              error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+              return false;
+            }
           }
           codegen_expression_push_value(token, lvl);
         }
@@ -602,7 +606,10 @@ char expression_get_type(int *lvl) {
       return TYPE_NIL;
     case TT_ID: {
       symtab_var_data_t *record = symtab_find_var(symtab, token->attr.str, lvl);
-      if (record == NULL) return TYPE_NONE;
+      if (record == NULL) {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+        return TYPE_NONE;
+      }
       return record->data_type;
     }
     default:
