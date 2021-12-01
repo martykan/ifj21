@@ -212,7 +212,7 @@ bool parser_function_def() {
               goto POP_SUBTAB;
             }
           }
-
+          codegen_function_definition_body();
           parser_define_func(id);
           if (parser_local_scope(id, &ret_types, false)) {
             token = token_buff(TOKEN_THIS);

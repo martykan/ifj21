@@ -108,6 +108,26 @@ dynstr_t *dynstr_prepend_str(dynstr_t *dynstr, char *str) {
   return dynstr;
 }
 
+dynstr_t* dynstr_append_int(dynstr_t *dynstr, int i) {
+  char esc_buf[50];
+  sprintf(esc_buf, "%d", i);
+
+  if (dynstr_append_str(dynstr, esc_buf) == NULL) {
+    return NULL;
+  }
+  return dynstr;
+}
+
+dynstr_t* dynstr_append_double(dynstr_t *dynstr, double f) {
+  char esc_buf[50];
+  sprintf(esc_buf, "%a", f);
+
+  if (dynstr_append_str(dynstr, esc_buf) == NULL) {
+    return NULL;
+  }
+  return dynstr;
+}
+
 dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c) {
   char esc_buf[4]; // eg. 032, 092
 

@@ -11,6 +11,12 @@
 
 #include "parser.h"
 
+/** Init codegen */
+void codegen_init();
+
+/** Free codegen */
+void codegen_free();
+
 /** Begin a function call procedure */
 void codegen_function_call_begin(char* name);
 
@@ -28,6 +34,9 @@ void codegen_function_definition_begin(char* name);
 
 /** Parameter in a function definition */
 void codegen_function_definition_param(char* name, int argpos);
+
+/** Body of a function definition */
+void codegen_function_definition_body();
 
 /** End a function definition */
 void codegen_function_definition_end(char* name, int ret_count);

@@ -82,6 +82,9 @@ dynstr_t* dynstr_append(dynstr_t *dynstr, char c);
 dynstr_t* dynstr_append_str(dynstr_t *dynstr, char *str);
 dynstr_t* dynstr_prepend_str(dynstr_t *dynstr, char *str);
 
+dynstr_t* dynstr_append_int(dynstr_t *dynstr, int i);
+dynstr_t* dynstr_append_double(dynstr_t *dynstr, double f);
+
 // TODO(filip): comment
 dynstr_t* dynstr_append_esc(dynstr_t *dynstr, char c);
 
