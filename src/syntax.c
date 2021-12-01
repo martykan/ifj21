@@ -701,6 +701,14 @@ bool parser_type(char* type) {
 
       *type = 's';
       return true;
+    case TT_K_NIL:
+      token = token_buff(TOKEN_NEW);
+      if (error_get()) {
+        return false;
+      }
+
+      *type = 'x';
+      return true;
     default:
       error_set(EXITSTATUS_ERROR_SYNTAX);
       return false;
@@ -1243,12 +1251,8 @@ bool parser_init_after(char var_type) {
         if (var_type != exp_type) {
           if (var_type == 'n' && exp_type == 'i') {
             codegen_cast_int_to_float1();
-          } else {
-            if (exp_type == 'x') {
-              error_set(EXITSTATUS_ERROR_UNEXPECTED_NIL);
-            } else {
-              error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-            }
+          } else if (exp_type != 'x') {
+            error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
             return false;
           }
         }
@@ -1267,12 +1271,8 @@ bool parser_init_after(char var_type) {
           if (var_type != exp_type) {
             if (var_type == 'n' && exp_type == 'i') {
               codegen_cast_int_to_float1();
-            } else {
-              if (exp_type == 'x') {
-                error_set(EXITSTATUS_ERROR_UNEXPECTED_NIL);
-              } else {
-                error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-              }
+            } else if (exp_type != 'x') {
+              error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
               return false;
             }
           }
@@ -1505,7 +1505,7 @@ bool parser_assign_exp_match(char* ids, char* exps) {
     if (*ids != *exps) {
       if (*ids != 'n' || *exps != 'i') {
         if (*exps == 'x') {
-          error_set(EXITSTATUS_ERROR_UNEXPECTED_NIL);
+          return true;
         } else {
           error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
         }

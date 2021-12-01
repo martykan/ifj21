@@ -510,7 +510,8 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
     if (error_get()) {
       return false;
     }
-    if (b == SYM_S || (b == SYM_I && new_b == SYM_I)) {
+    if (b == SYM_S || (b == SYM_I && new_b == SYM_I) ||
+        (b == SYM_RBRACKET && new_b == SYM_I)) {
       b = SYM_S;
     } else {
       b = new_b;

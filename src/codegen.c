@@ -297,6 +297,7 @@ void codegen_define_var(char* old_id, int lvl) {
   char* id = scope_get_correct_id(old_id, lvl);
 
   printf("DEFVAR LF@%s\n", id);
+  printf("MOVE LF@%s nil@nil\n", id);
 }
 
 dynstr_t expression_assign_buffer;
