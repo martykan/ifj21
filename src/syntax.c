@@ -1157,7 +1157,6 @@ EXIT:
 bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  // scope_new_while();
   codegen_while_begin();
 
   char cond_type;
@@ -1174,6 +1173,7 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
       }
 
       codegen_while_expr();
+      scope_new_while();
 
       if (parser_local_scope(func_name, ret_types, true)) {
         token = token_buff(TOKEN_THIS);
@@ -1186,7 +1186,7 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
 
           codegen_while_end();
 
-          // scope_pop_item();
+          scope_pop_item();
 
           return true;
         }
