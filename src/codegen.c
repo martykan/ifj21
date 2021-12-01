@@ -105,13 +105,34 @@ void codegen_literal(token_t* token, int lvl) {
   }
 }
 
+int writeskip = 0;
+
 void codegen_function_call_argument(token_t* token, int argpos, int lvl) {
   if (last_function_name == NULL) {
     return;
   }
   if (strcmp(last_function_name, "write") == 0) {
+    dynstr_append_str(active_buffer, "JUMPIFEQ $write_nil");
+    dynstr_append_int(active_buffer, writeskip);
+    dynstr_append_str(active_buffer, " nil@nil ");
+    codegen_literal(token, lvl);
+
     dynstr_append_str(active_buffer, "WRITE ");
     codegen_literal(token, lvl);
+
+    dynstr_append_str(active_buffer, "JUMP $write_end");
+    dynstr_append_int(active_buffer, writeskip);
+    dynstr_append_str(active_buffer, "\n");
+
+    dynstr_append_str(active_buffer, "LABEL $write_nil");
+    dynstr_append_int(active_buffer, writeskip);
+    dynstr_append_str(active_buffer, "\n");
+    dynstr_append_str(active_buffer, "WRITE string@nil\n");
+    dynstr_append_str(active_buffer, "LABEL $write_end");
+    dynstr_append_int(active_buffer, writeskip);
+    dynstr_append_str(active_buffer, "\n");
+
+    writeskip++;
     return;
   }
   if (strcmp(last_function_name, "readi") == 0) return;
