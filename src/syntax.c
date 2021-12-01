@@ -224,7 +224,7 @@ bool parser_function_def() {
               }
 
               is_correct = true;
-              codegen_function_definition_end(id);
+              codegen_function_definition_end(id, ret_types.len);
               goto POP_SUBTAB;
             }
           }
@@ -975,7 +975,7 @@ bool parser_returned(char* ret_types, dynstr_t* exp_types) {
       }
 
       if (parser_return_what(ret_types, exp_types)) {
-        codegen_function_return();
+        codegen_function_return(strlen(ret_types), exp_types->len);
         return true;
       }
       return false;

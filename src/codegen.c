@@ -209,14 +209,22 @@ void codegen_function_definition_param(char* name, int argpos) {
   printf("MOVE LF@%s LF@$arg%d\n", name, argpos);
 }
 
-void codegen_function_definition_end(char* name) {
+void codegen_function_definition_end(char* name, int ret_count) {
+  printf("# ret_count %d\n", ret_count);
+  for (int i = 0; i < ret_count; i++) {
+    printf("PUSHS nil@nil\n");
+  }
   printf("POPFRAME\n");
   printf("RETURN\n");
   printf("LABEL $endfn_%s\n\n", name);
   tmpmax = 0;
 }
 
-void codegen_function_return() {
+void codegen_function_return(int ret_count, int exp_count) {
+  printf("# ret_count %d exp_count %d\n", ret_count, exp_count);
+  for (int i = 0; i < ret_count - exp_count; i++) {
+    printf("PUSHS nil@nil\n");
+  }
   printf("POPFRAME\n");
   printf("RETURN\n");
 }

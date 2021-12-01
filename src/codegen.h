@@ -30,10 +30,10 @@ void codegen_function_definition_begin(char* name);
 void codegen_function_definition_param(char* name, int argpos);
 
 /** End a function definition */
-void codegen_function_definition_end(char* name);
+void codegen_function_definition_end(char* name, int ret_count);
 
-/** Return from a function early */
-void codegen_function_return();
+/** Return from a function */
+void codegen_function_return(int ret_count, int exp_count);
 
 void codegen_expression_push_value(token_t* token, int lvl);
 void codegen_expression_plus();
