@@ -361,7 +361,7 @@ bool parser_func_call_match(char* params, char* args) {
     }
 
     if (*params != *args) {
-      if (*params != 'a' && (*params != 'n' || *args != 'i')) {
+      if (*params != 'a' && *args != 'x' && (*params != 'n' || *args != 'i')) {
         return false;
       }
     }
@@ -733,7 +733,8 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
     case TT_ID:
     case TT_INTEGER:
     case TT_NUMBER:
-    case TT_STRING: {
+    case TT_STRING:
+    case TT_K_NIL: {
       char arg_type;
       int lvl = 0;
       if (parser_arg(&arg_type, &lvl)) {
@@ -830,6 +831,9 @@ bool parser_arg(char* arg_type, int* lvl) {
       return true;
     case TT_STRING:
       *arg_type = 's';
+      return true;
+    case TT_K_NIL:
+      *arg_type = 'x';
       return true;
     default:
       error_set(EXITSTATUS_ERROR_SYNTAX);
@@ -1472,7 +1476,9 @@ bool parser_id_append(dynstr_t* id_types) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
   return false;
 }
 
@@ -1511,7 +1517,9 @@ bool parser_assign_what(const dynstr_t* id_types) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
   return false;
 }
 
@@ -1637,7 +1645,9 @@ bool parser_exp_list(char* id_types, dynstr_t* exp_types) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
   return false;
 }
 

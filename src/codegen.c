@@ -489,6 +489,7 @@ void codegen_substr_define() {
   dynstr_append_str(active_buffer, "LT LF@check int@0 LF@i\n");
   dynstr_append_str(active_buffer,
                     "JUMPIFEQ $substr_ret LF@check bool@false\n");
+  dynstr_append_str(active_buffer, "SUB LF@i LF@i int@1\n");
   dynstr_append_str(active_buffer, "LT LF@check LF@i LF@j\n");
   dynstr_append_str(active_buffer,
                     "JUMPIFEQ $substr_ret LF@check bool@false\n");
@@ -499,7 +500,6 @@ void codegen_substr_define() {
   dynstr_append_str(active_buffer,
                     "JUMPIFEQ $substr_ret LF@check bool@false\n");
 
-  dynstr_append_str(active_buffer, "SUB LF@i LF@i int@1\n");
   dynstr_append_str(active_buffer, "LABEL $substr_loop\n");
   dynstr_append_str(active_buffer, "GETCHAR LF@newchar LF@str LF@i\n");
   dynstr_append_str(active_buffer, "CONCAT LF@out LF@out LF@newchar\n");
