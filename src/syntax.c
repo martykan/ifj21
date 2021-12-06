@@ -146,10 +146,14 @@ bool parser_function_def() {
   // is syntax correct
   bool is_correct = false;
 
-  char* id = str_create_copy(token->attr.str);
-  if (error_get()) {
-    goto EXIT;
+  char* id = NULL;
+  if(token->type == TT_ID) {
+    id = str_create_copy(token->attr.str);
+    if (error_get()) {
+      goto EXIT;
+    }
   }
+
   dynstr_t param_types;
   dynstr_init(&param_types);
   if (error_get()) {
@@ -256,10 +260,14 @@ bool parser_function_dec() {
   // is syntax correct
   bool is_correct = false;
 
-  char* id = str_create_copy(token->attr.str);
-  if (error_get()) {
-    goto EXIT;
+  char* id = NULL;
+  if(token->type == TT_ID) {
+    id = str_create_copy(token->attr.str);
+    if (error_get()) {
+      goto EXIT;
+    }
   }
+
   dynstr_t param_types;
   dynstr_init(&param_types);
   if (error_get()) {
@@ -519,9 +527,12 @@ bool parser_param(char* param_type) {
   // is syntax correct
   bool is_correct = false;
 
-  char* id = str_create_copy(token->attr.str);
-  if (error_get()) {
-    goto EXIT;
+  char* id = NULL;
+  if(token->type == TT_ID) {
+    id = str_create_copy(token->attr.str);
+    if (error_get()) {
+      goto EXIT;
+    }
   }
 
   if (token->type == TT_ID) {
@@ -1021,9 +1032,12 @@ bool parser_var_dec(const char* func_name) {
   // is syntax correct
   bool is_correct = false;
 
-  char* id = str_create_copy(token->attr.str);
-  if (error_get()) {
-    goto EXIT;
+  char* id = NULL;
+  if(token->type == TT_ID) {
+    id = str_create_copy(token->attr.str);
+    if (error_get()) {
+      goto EXIT;
+    }
   }
 
   if (token->type == TT_ID) {
@@ -1318,9 +1332,12 @@ bool parser_id_after() {
   // is syntax correct
   bool is_correct = false;
 
-  char* id = str_create_copy(token->attr.str);
-  if (error_get()) {
-    goto EXIT;
+  char* id = NULL;
+  if(token->type == TT_ID) {
+    id = str_create_copy(token->attr.str);
+    if (error_get()) {
+      goto EXIT;
+    }
   }
 
   token = token_buff(TOKEN_NEW);
