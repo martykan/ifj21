@@ -21,6 +21,8 @@
 
 symtab_t* symtab;
 
+// FUNCTION DEFINITIONS
+
 // TOKEN
 
 token_t* token_buff(int operation) {
@@ -57,7 +59,7 @@ void parser_destroy_symtab() {
   symtab = NULL;
 }
 
-// DECLARATIONS / DEFINITIONS
+// DECLARATIONS / DEFINITIONS OF IDENTIFIERS
 
 bool parser_declare_var(const char* id, char data_type) {
   symtab_var_data_t* var_data = symtab_insert_var(symtab, id);
@@ -85,11 +87,6 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types,
     return false;
   }
 
-  func_data->param_types = NULL;
-  func_data->return_types = NULL;
-
-  func_data->was_defined = false;
-
   func_data->func_name = malloc(strlen(id) + 1);
   if (!func_data->func_name) {
     error_set(EXITSTATUS_INTERNAL_ERROR);
@@ -105,6 +102,8 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types,
   if (error_get()) {
     return false;
   }
+
+  func_data->was_defined = false;
 
   return true;
 }

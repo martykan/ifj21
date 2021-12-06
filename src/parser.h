@@ -31,7 +31,7 @@ extern symtab_t* symtab;
   1 /**< Delete old and get new token from buffer. @hideinitializer */
 #define TOKEN_DELETE 2 /**< Delete token in buffer. @hideinitializer */
 
-// PUBLIC FUNCTIONS FORWARD DECLARATIONS
+// PUBLIC FUNCTION FORWARD DECLARATIONS
 
 // TOKEN
 
@@ -59,7 +59,7 @@ bool parser_init_symtab();
  */
 void parser_destroy_symtab();
 
-// DECLARATIONS / DEFINITIONS
+// DECLARATIONS / DEFINITIONS OF IDENTIFIERS
 
 /**
  * Declares variable inside symtable of parser.

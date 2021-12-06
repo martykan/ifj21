@@ -16,6 +16,10 @@
 
 #include "errors.h"
 
+// COMPILE-TIME CONSTANTS
+
+#define SYMTAB_BUCKET_COUNT 83 /**< Bucket count of symtable. */
+
 // PRIVATE FUNCTION FORWARD DECLARATIONS
 
 // ALLOCATION FUNCTIONS
@@ -33,6 +37,16 @@ symtab_subtab_t* symtab_subtab_create(size_t n);
  * @return Created record. NULL if failed to create.
  */
 symtab_record_t* symtab_record_create(symtab_key_t key);
+
+/**
+ * Inserts bultin function into the symtable.
+ * @param symtab Symtable to insert into.
+ * @param name Name of the builtin function.
+ * @param param_types Data types of parameters of the builtin function.
+ * @param return_types Data types of return values of the builtin function.
+ */
+void symtab_init_builtin(symtab_t* symtab, char* name, char* param_types,
+                         char* return_types);
 
 // DEALLOCATION FUNCTIONS
 
@@ -54,7 +68,7 @@ void symtab_subtab_clear(symtab_subtab_t* subtab);
  */
 void symtab_record_free(symtab_record_t* rec);
 
-// MANIPULATION WITH RECORDS FUNCTIONS
+// MANIPULATION WITH RECORDS
 
 /**
  * Searches subtable for identifier.
@@ -67,19 +81,14 @@ symtab_data_t* symtab_subtab_find(const symtab_subtab_t* subtab,
 
 /**
  * Creates and inserts new record in subtable.
- * @param subtab Subtable to instert on.
+ * @param subtab Subtable to instert into.
  * @param key Key of the new record.
+ * @param type Type of inserted record.
+ *  'v' - variable, 'f' - function.
  * @return Created record. NULL if failed to create.
  */
-symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, char type);
-
-/**
- * Erases record with key from subtable.
- * @param subtab Subtable to erase record from.
- * @param key Key of record to erase.
- * @return True if found and deleted. False if not found.
- */
-bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key);
+symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key,
+                                    char type);
 
 // HASH FUNCTION
 
@@ -99,15 +108,7 @@ uint32_t SuperFastHash(symtab_key_t data);
 // variable
 //--------------------------------------------------------------------------------------
 
-// END OF FORWARD DECLARATIONS
-
-// COMPILE-TIME CONSTANTS
-
-#define SYMTAB_BUCKET_COUNT 83
-
 // FUNCTION DEFINITIONS
-void symtab_init_builtin(symtab_t* symtab, char* name, char* param_types,
-                         char* return_types);
 
 // ALLOCATION FUNCTIONS
 
@@ -136,37 +137,6 @@ symtab_t* symtab_create() {
   symtab->local_scopes = NULL;
 
   return symtab;
-}
-
-void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
-                         char* return_types) {
-  symtab_func_data_t* func_data = symtab_insert_func(symtab, id);
-  if (error_get()) {
-    return;
-  }
-
-  func_data->func_name = malloc(strlen(id) + 1);
-  if (!func_data->func_name) {
-    error_set(EXITSTATUS_INTERNAL_ERROR);
-    return;
-  }
-  strncpy(func_data->func_name, id, strlen(id) + 1);
-
-  func_data->param_types = malloc(strlen(param_types) + 1);
-  if (!func_data->param_types) {
-    error_set(EXITSTATUS_INTERNAL_ERROR);
-    return;
-  }
-  strncpy(func_data->param_types, param_types, strlen(param_types) + 1);
-
-  func_data->return_types = malloc(strlen(return_types) + 1);
-  if (!func_data->return_types) {
-    error_set(EXITSTATUS_INTERNAL_ERROR);
-    return;
-  }
-  strncpy(func_data->return_types, return_types, strlen(return_types) + 1);
-
-  func_data->was_defined = true;
 }
 
 symtab_subtab_t* symtab_subtab_create(size_t n) {
@@ -207,6 +177,37 @@ symtab_record_t* symtab_record_create(symtab_key_t key) {
   return rec;
 }
 
+void symtab_init_builtin(symtab_t* symtab, char* id, char* param_types,
+                         char* return_types) {
+  symtab_func_data_t* func_data = symtab_insert_func(symtab, id);
+  if (error_get()) {
+    return;
+  }
+
+  func_data->func_name = malloc(strlen(id) + 1);
+  if (!func_data->func_name) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return;
+  }
+  strncpy(func_data->func_name, id, strlen(id) + 1);
+
+  func_data->param_types = malloc(strlen(param_types) + 1);
+  if (!func_data->param_types) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return;
+  }
+  strncpy(func_data->param_types, param_types, strlen(param_types) + 1);
+
+  func_data->return_types = malloc(strlen(return_types) + 1);
+  if (!func_data->return_types) {
+    error_set(EXITSTATUS_INTERNAL_ERROR);
+    return;
+  }
+  strncpy(func_data->return_types, return_types, strlen(return_types) + 1);
+
+  func_data->was_defined = true;
+}
+
 // DEALLOCATION FUNCTIONS
 
 void symtab_free(symtab_t* symtab) {
@@ -218,7 +219,7 @@ void symtab_clear(symtab_t* symtab) {
   symtab_subtab_free(symtab->global_scope);
 
   // delete first subtab while any left
-  while (symtab->local_scopes != NULL) {
+  while (symtab->local_scopes) {
     symtab_subtab_t* next = symtab->local_scopes->next;
     symtab_subtab_free(symtab->local_scopes);
     symtab->local_scopes = next;
@@ -233,7 +234,7 @@ void symtab_subtab_free(symtab_subtab_t* subtab) {
 void symtab_subtab_clear(symtab_subtab_t* subtab) {
   for (unsigned i = 0; i < subtab->bucket_cnt; i++) {
     // delete first record while any left
-    while (subtab->list[i] != NULL) {
+    while (subtab->list[i]) {
       symtab_record_t* next = subtab->list[i]->next;
       symtab_record_free(subtab->list[i]);
       subtab->list[i] = next;
@@ -257,7 +258,7 @@ void symtab_record_free(symtab_record_t* rec) {
   free(rec);
 }
 
-// MANIPULATION WITH LOCAL SUBTABLES FUNCTIONS
+// MANIPULATION WITH LOCAL SUBTABLES
 
 bool symtab_subtab_push(symtab_t* symtab) {
   symtab_subtab_t* subtab = symtab_subtab_create(SYMTAB_BUCKET_COUNT);
@@ -277,9 +278,10 @@ void symtab_subtab_pop(symtab_t* symtab) {
   symtab->local_scopes = next;
 }
 
-// MANIPULATION WITH RECORDS FUNCTIONS
+// MANIPULATION WITH RECORDS
 
-symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key, int *lvl) {
+symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key,
+                                   int* lvl) {
   for (symtab_subtab_t* subtab = symtab->local_scopes; subtab != NULL;
        subtab = subtab->next) {
     symtab_data_t* data = symtab_subtab_find(subtab, key);
@@ -294,11 +296,13 @@ symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key, int
   return NULL;
 }
 
-symtab_var_data_t* symtab_find_var_local(const symtab_t* symtab, symtab_key_t key) {
+symtab_var_data_t* symtab_find_var_local(const symtab_t* symtab,
+                                         symtab_key_t key) {
   symtab_data_t* data = symtab_subtab_find(symtab->local_scopes, key);
   if (data) {
     return &data->var_data;
   }
+
   return NULL;
 }
 
@@ -333,11 +337,13 @@ symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key) {
   return &symtab_subtab_insert(symtab->global_scope, key, 'f')->func_data;
 }
 
-symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, char type) {
+symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key,
+                                    char type) {
   size_t index = SuperFastHash(key) % subtab->bucket_cnt;
 
   symtab_record_t* last = NULL;
-  for (last = subtab->list[index]; last != NULL && last->next != NULL; last = last->next)
+  for (last = subtab->list[index]; last != NULL && last->next != NULL;
+       last = last->next)
     ;
 
   symtab_record_t* new_rec = symtab_record_create(key);
@@ -346,6 +352,13 @@ symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, c
   }
 
   new_rec->what_data = type;
+  if (type == 'v') {
+    new_rec->data.var_data.var_name = NULL;
+  } else if (type == 'f') {
+    new_rec->data.func_data.func_name = NULL;
+    new_rec->data.func_data.param_types = NULL;
+    new_rec->data.func_data.return_types = NULL;
+  }
 
   if (!last)  // if no record on current bucket
     subtab->list[index] = new_rec;
@@ -355,23 +368,6 @@ symtab_data_t* symtab_subtab_insert(symtab_subtab_t* subtab, symtab_key_t key, c
   return &new_rec->data;
 }
 
-void symtab_get_top_vars(const symtab_t* symtab, symtab_vars_t* vars) {
-  symtab_subtab_t* subtab = symtab->local_scopes;
-  int found = 0;
-
-  for (unsigned i = 0; i < subtab->bucket_cnt; i++) {
-    symtab_record_t* rec = subtab->list[i];
-    while (rec != NULL) {
-      vars->vars[found] = malloc(sizeof(rec->data.var_data));
-      memcpy(vars->vars[found], &rec->data.var_data,
-             sizeof(rec->data.var_data));
-      found++;
-      rec = rec->next;
-    }
-  }
-  vars->cnt = found;
-}
-
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,
                            void (*f)(symtab_data_t* data)) {
   for (unsigned i = 0; i < subtab->bucket_cnt; i++) {
@@ -379,29 +375,6 @@ void symtab_subtab_foreach(const symtab_subtab_t* subtab,
       (*f)(&rec->data);
     }
   }
-}
-
-bool symtab_subtab_erase(symtab_subtab_t* subtab, symtab_key_t key) {
-  size_t index = SuperFastHash(key) % subtab->bucket_cnt;
-
-  symtab_record_t* last = NULL;
-  for (symtab_record_t* rec = subtab->list[index]; rec != NULL;
-       rec = rec->next) {
-    if (!strcmp(rec->key, key)) {
-      if (!last) {  // if no record on current bucket
-        subtab->list[index] = rec->next;
-      } else {
-        last->next = rec->next;
-      }
-
-      symtab_record_free(rec);
-      return true;
-    }
-
-    last = rec;
-  }
-
-  return false;
 }
 
 // HASH FUNCTION

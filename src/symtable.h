@@ -21,7 +21,6 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <string.h>
 
 // DATA STRUCTURES
 
@@ -35,9 +34,14 @@ typedef const char* symtab_key_t;
 // n - number
 // s - string
 
+// Ellipsis is represented by two characters:
+// a+
+
 /**
  * @struct symtab_var_data_t
  * @brief Data of the variable identifier.
+ * @var symtab_var_data_t::var_name
+ *  Name of the variable.
  * @var symtab_var_data_t::data_type
  *  Data type of the variable.
  * @var symtab_var_data_t::is_init
@@ -49,24 +53,20 @@ typedef struct {
   bool is_init;
 } symtab_var_data_t;
 
-typedef struct {
-  int cnt;
-  symtab_var_data_t** vars;
-} symtab_vars_t;
-
 /**
  * @struct symtab_func_data_t
  * @brief Data of the function identifier.
+ * @var symtab_func_data_t::func_name
+ *  Name of the function.
  * @var symtab_func_data_t::param_types
  *  Data types of the parameters.
  *  Each represented as single character in string.
+ *  Ellipsis is represented by two characters "a+".
  * @var symtab_func_data_t::return_types
  *  Data types of the return values.
  *  Each represented as single character in string.
  * @var symtab_func_data_t::was_defined
  *  Was the function body already defined?
- * @var symtab_func_data_t::params
- *  Pointers to symtable where arguments are stored.
  */
 typedef struct {
   char* func_name;
@@ -92,7 +92,7 @@ typedef union {
  * @struct symtab_record_t
  * @brief Record representing identifier.
  * @var symtab_record_t::next
- *  Next record on the same bucket (if collision occured).
+ *  Next record on the same bucket.
  * @var symtab_record_t::key
  *  Key of the hash function.
  * @var symtab_record_t::what_data
@@ -139,7 +139,7 @@ typedef struct {
   symtab_subtab_t* local_scopes;
 } symtab_t;
 
-// PUBLIC FUNCTIONS FORWARD DECLARATIONS
+// PUBLIC FUNCTION FORWARD DECLARATIONS
 
 // ALLOCATION FUNCTIONS
 
@@ -165,7 +165,7 @@ void symtab_free(symtab_t* symtab);
  */
 void symtab_clear(symtab_t* symtab);
 
-// MANIPULATION WITH LOCAL SUBTABLES FUNCTIONS
+// MANIPULATION WITH LOCAL SUBTABLES
 
 /**
  * Creates and pushes local table on the top of the stack of symbol table.
@@ -180,17 +180,26 @@ bool symtab_subtab_push(symtab_t* symtab);
  */
 void symtab_subtab_pop(symtab_t* symtab);
 
-// MANIPULATION WITH RECORDS FUNCTIONS
+// MANIPULATION WITH RECORDS
 
 /**
- * Searches whole stack of local tables for variable identifier.
+ * Searches whole stack of local tables
+ * for most nested variable.
  * @param symtab Symbol table to search on.
  * @param key Key to search for.
+ * @param lvl If not NULL, variable to which store level of scope.
  * @return Found record data. NULL otherwise.
  */
 symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key,
                                    int* lvl);
 
+/**
+ * Searches table on top of stack (most nested scope)
+ * for variable.
+ * @param symtab Symbol table to search on.
+ * @param key Key to search for.
+ * @return Found record data. NULL otherwise.
+ */
 symtab_var_data_t* symtab_find_var_local(const symtab_t* symtab,
                                          symtab_key_t key);
 
@@ -204,15 +213,15 @@ symtab_func_data_t* symtab_find_func(const symtab_t* symtab, symtab_key_t key);
 
 /**
  * Creates and inserts new record in topmost local table (most nested scope).
- * @param symtab Symbol table to instert in.
+ * @param symtab Symbol table to instert into.
  * @param key Key of the new record.
  * @return Created record. NULL if failed to create.
  */
 symtab_var_data_t* symtab_insert_var(symtab_t* symtab, symtab_key_t key);
 
 /**
- * Creates and inserts new record in global local table.
- * @param symtab Symbol table to instert in.
+ * Creates and inserts new record in global table.
+ * @param symtab Symbol table to instert into.
  * @param key Key of the new record.
  * @return Created record. NULL if failed to create.
  */
@@ -226,7 +235,5 @@ symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key);
  */
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,
                            void (*f)(symtab_data_t* data));
-
-void symtab_get_top_vars(const symtab_t* symtab, symtab_vars_t* vars);
 
 #endif  // __SYMTAB_H__

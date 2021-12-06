@@ -14,4 +14,4 @@
 
 char* str_create_copy(char* str);
 
-#endif // __OTHER_H__
+#endif  // __OTHER_H__
