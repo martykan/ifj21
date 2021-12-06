@@ -26,6 +26,7 @@ typedef enum {
 } expression_precedence_t;
 
 typedef enum {
+  SYM_NONE,
   SYM_PLUS,
   SYM_MINUS,
   SYM_TIMES,

@@ -503,7 +503,7 @@ void print_stack(symbol_stack_t *stack) {
  * Process expression
  */
 bool expression_process(symbol_stack_t *stack, char *exp_type) {
-  expression_symbol_t a, b;
+  expression_symbol_t a, b = SYM_NONE;
   do {
     a = get_top_symbol(stack);
     expression_symbol_t new_b = expression_get_input();
