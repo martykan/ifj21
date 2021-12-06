@@ -6,10 +6,9 @@
  * @author Filip Stolfa
  *
  * @section DESCRIPTION
- *  TODO
+ *  Parser basic functions interface. Contains functions for
+ *  declaring / defining variables and functions.
  *
- * @section IMPLEMENTATION
- *  TODO
  */
 
 #ifndef __PARSER_H__
@@ -21,6 +20,9 @@
 
 #include <stdbool.h>
 
+// SYMTABLE USED BY PARSER
+
+/// Global symtable used by parser.
 extern symtab_t* symtab;
 
 // COMPILE-TIME CONSTANTS
@@ -29,7 +31,9 @@ extern symtab_t* symtab;
 #define TOKEN_NEW 1 /**< Delete old and get new token from buffer. @hideinitializer */
 #define TOKEN_DELETE 2 /**< Delete token in buffer. @hideinitializer */
 
-// PUBLIC FUNCTION FORWARD DECLARATIONS
+// PUBLIC FUNCTIONS FORWARD DECLARATIONS
+
+// TOKEN
 
 /**
  * Buffer for token. Based on operation, gets current/new
@@ -42,18 +46,84 @@ extern symtab_t* symtab;
  */
 token_t* token_buff(int operation);
 
+// ALLOCATION AND DEALLOCATION
+
+/**
+ * Initializes parser - creates symtable.
+ * @return True if successful. False otherwise.
+ */
 bool parser_init_symtab();
+
+/**
+ * Deconstructs parser - destroys symtable.
+ */
 void parser_destroy_symtab();
 
-bool parser_declare_var(const char* id, char data_type);
-bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types);
-bool parser_define_var(const char* id);
-bool parser_define_func(const char* id);
-symtab_vars_t* parser_get_params(int param_cnt);
+// DECLARATIONS / DEFINITIONS
 
+/**
+ * Declares variable inside symtable of parser.
+ * @param id Name of variable to declare.
+ * @param data_type Data type of variable.
+ * @return True if successful. False otherwise.
+ */
+bool parser_declare_var(const char* id, char data_type);
+
+/**
+ * Declares function inside symtable of parser.
+ * @param id Name of function to declare.
+ * @param param_types String of parameter data types.
+ * @param return_types String of return data types.
+ * @return True if successful. False otherwise.
+ */
+bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types);
+
+/**
+ * Defines variable inside symtable of parser.
+ * Variable has to be already declared.
+ * @param id Name of variable to Define.
+ * @return True if successful. False otherwise.
+ */
+bool parser_define_var(const char* id);
+
+/**
+ * Defines function inside symtable of parser.
+ * Functon has to be already declared.
+ * @param id Name of function to Define.
+ * @return True if successful. False otherwise.
+ */
+bool parser_define_func(const char* id);
+
+// CHECK OF DECLARATION / DEFINITION
+
+/**
+ * Tries to find variable inside symtable of parser.
+ * @param id Name of variable to look for.
+ * @return True if declared. False otherwise.
+ */
 bool parser_isdeclared_var(const char* id);
+
+/**
+ * Tries to find function inside symtable of parser.
+ * @param id Name of function to look for.
+ * @return True if declared. False otherwise.
+ */
 bool parser_isdeclared_func(const char* id);
+
+/**
+ * Tries to find variable inside symtable of parser
+ * and checks whether is defined.
+ * @param id Name of variable to look for.
+ * @return True if defined. False otherwise.
+ */
 bool parser_isdefined_var(const char* id);
+
+/**
+ * Tries to find function inside symtable of parser
+ * and checks whether is defined.
+ * @param id Name of function to look for.
+ * @return True if defined. False otherwise.
+ */
 bool parser_isdefined_func(const char* id);
 
 #endif  // __PARSER_H__

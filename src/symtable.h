@@ -42,14 +42,11 @@ typedef const char* symtab_key_t;
  *  Data type of the variable.
  * @var symtab_var_data_t::is_init
  *  Was the variable initialized?
- * @var symtab_var_data_t::is_used
- *  Was the variable already used?
  */
 typedef struct {
   char* var_name;
   char data_type;
   bool is_init;
-  bool is_used;
 } symtab_var_data_t;
 
 typedef struct {
@@ -142,7 +139,7 @@ typedef struct {
   symtab_subtab_t* local_scopes;
 } symtab_t;
 
-// PUBLIC FUNCTION FORWARD DECLARATIONS
+// PUBLIC FUNCTIONS FORWARD DECLARATIONS
 
 // ALLOCATION FUNCTIONS
 

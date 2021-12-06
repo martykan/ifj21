@@ -5,7 +5,6 @@
  * @author Tomas Martykan
  * @author Filip Stolfa
  *
- * TODO...
  */
 
 #include "parser.h"
@@ -17,24 +16,14 @@
 #include "dynstr.h"
 #include "errors.h"
 #include "scanner.h"
-#include "symtable.h"
 #include "scope.h"
+#include "symtable.h"
 
-// INIT
+// SYMTABLE USED BY PARSER
 
 symtab_t* symtab;
 
-bool parser_init_symtab() {
-  symtab = symtab_create();
-
-  return symtab;
-}
-
-void parser_destroy_symtab() {
-  symtab_free(symtab);
-}
-
-// GET TOKEN
+// TOKEN
 
 token_t* token_buff(int operation) {
   static token_t* token = NULL;
@@ -51,12 +40,26 @@ token_t* token_buff(int operation) {
     return token;
   } else if (operation == TOKEN_DELETE) {
     scanner_token_destroy(token);
+    token = NULL;
   }
 
   return NULL;
 }
 
-// DEFINE AND DECLARE IDS
+// ALLOCATION AND DEALLOCATION
+
+bool parser_init_symtab() {
+  symtab = symtab_create();
+
+  return symtab;
+}
+
+void parser_destroy_symtab() {
+  symtab_free(symtab);
+  symtab = NULL;
+}
+
+// DECLARATIONS / DEFINITIONS
 
 bool parser_declare_var(const char* id, char data_type) {
   symtab_var_data_t* var_data = symtab_insert_var(symtab, id);
@@ -73,7 +76,6 @@ bool parser_declare_var(const char* id, char data_type) {
 
   var_data->data_type = data_type;
   var_data->is_init = false;
-  var_data->is_used = false;
 
   return true;
 }
@@ -85,10 +87,10 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types,
     return false;
   }
 
-  func_data->was_defined = false;
-
   func_data->param_types = NULL;
   func_data->return_types = NULL;
+
+  func_data->was_defined = false;
 
   func_data->func_name = malloc(sizeof(char) * (strlen(id) + 1));
   if (!func_data->func_name) {
@@ -130,6 +132,8 @@ bool parser_define_func(const char* id) {
 
   return true;
 }
+
+// CHECK OF DECLARATION / DEFINITION
 
 bool parser_isdeclared_var(const char* id) {
   return symtab_find_var(symtab, id, NULL);
