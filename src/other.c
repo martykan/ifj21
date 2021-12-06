@@ -1,11 +1,9 @@
 /**
  * @file
- * @brief Generally useful functions
+ * @brief Generally useful functions implementation
  * @author Patrik Korytar
  * @author Tomas Martykan
  * @author Filip Stolfa
- *
- * TODO...
  */
 
 #include "other.h"
@@ -22,7 +20,7 @@ char* str_create_copy(char* str) {
     return NULL;
   }
 
-  strcpy(copy, str);
+  strncpy(copy, str, strlen(str) + 1);
 
   return copy;
 }

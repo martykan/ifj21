@@ -4,7 +4,6 @@
  * @author Patrik Korytar
  * @author Tomas Martykan
  * @author Filip Stolfa
- *
  */
 
 #include "parser.h"
@@ -16,7 +15,6 @@
 #include "dynstr.h"
 #include "errors.h"
 #include "scanner.h"
-#include "scope.h"
 #include "symtable.h"
 
 // SYMTABLE USED BY PARSER
@@ -67,7 +65,7 @@ bool parser_declare_var(const char* id, char data_type) {
     return false;
   }
 
-  var_data->var_name = malloc(sizeof(char) * (strlen(id) + 1));
+  var_data->var_name = malloc(strlen(id) + 1);
   if (!var_data->var_name) {
     error_set(EXITSTATUS_INTERNAL_ERROR);
     return false;
@@ -92,7 +90,7 @@ bool parser_declare_func(const char* id, const dynstr_t* param_types,
 
   func_data->was_defined = false;
 
-  func_data->func_name = malloc(sizeof(char) * (strlen(id) + 1));
+  func_data->func_name = malloc(strlen(id) + 1);
   if (!func_data->func_name) {
     error_set(EXITSTATUS_INTERNAL_ERROR);
     return false;

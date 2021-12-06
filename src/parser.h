@@ -8,17 +8,16 @@
  * @section DESCRIPTION
  *  Parser basic functions interface. Contains functions for
  *  declaring / defining variables and functions.
- *
  */
 
 #ifndef __PARSER_H__
 #define __PARSER_H__
 
-#include "scanner.h"
-#include "dynstr.h"
-#include "symtable.h"
-
 #include <stdbool.h>
+
+#include "dynstr.h"
+#include "scanner.h"
+#include "symtable.h"
 
 // SYMTABLE USED BY PARSER
 
@@ -28,7 +27,8 @@ extern symtab_t* symtab;
 // COMPILE-TIME CONSTANTS
 
 #define TOKEN_THIS 0 /**< Get current token from buffer. @hideinitializer */
-#define TOKEN_NEW 1 /**< Delete old and get new token from buffer. @hideinitializer */
+#define TOKEN_NEW \
+  1 /**< Delete old and get new token from buffer. @hideinitializer */
 #define TOKEN_DELETE 2 /**< Delete token in buffer. @hideinitializer */
 
 // PUBLIC FUNCTIONS FORWARD DECLARATIONS
@@ -76,7 +76,8 @@ bool parser_declare_var(const char* id, char data_type);
  * @param return_types String of return data types.
  * @return True if successful. False otherwise.
  */
-bool parser_declare_func(const char* id, const dynstr_t* param_types, const dynstr_t* return_types);
+bool parser_declare_func(const char* id, const dynstr_t* param_types,
+                         const dynstr_t* return_types);
 
 /**
  * Defines variable inside symtable of parser.

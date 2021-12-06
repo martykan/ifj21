@@ -6,10 +6,7 @@
  * @author Filip Stolfa
  *
  * @section DESCRIPTION
- *  TODO
- *
- * @section IMPLEMENTATION
- *  TODO
+ *  Functions for general use.
  */
 
 #ifndef __OTHER_H__
