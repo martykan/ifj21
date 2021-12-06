@@ -388,6 +388,11 @@ bool parser_function_call_by_id(char* id) {
     return false;
   }
 
+  if(!declared_func->was_defined) {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+    return false;
+  }
+
   id = NULL;
   token_t* token = token_buff(TOKEN_NEW);
   if (error_get()) {
