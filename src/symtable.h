@@ -187,7 +187,7 @@ void symtab_subtab_pop(symtab_t* symtab);
  * for most nested variable.
  * @param symtab Symbol table to search on.
  * @param key Key to search for.
- * @param lvl If not NULL, variable to which store level of scope.
+ * @param lvl If not NULL, integer where to store level of scope.
  * @return Found record data. NULL otherwise.
  */
 symtab_var_data_t* symtab_find_var(const symtab_t* symtab, symtab_key_t key,

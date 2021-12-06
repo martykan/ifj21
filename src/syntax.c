@@ -9,8 +9,6 @@
 #include "syntax.h"
 
 #include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
 
 #include "codegen.h"
 #include "dynstr.h"
@@ -22,48 +20,359 @@
 #include "scope.h"
 #include "symtable.h"
 
+// PRIVATE FUNCTION FORWARD DECLARATIONS
+
+// GRAMMAR RULES
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'stlist_global' on left side.
+ * @return True if correct. False otherwise.
+ */
 bool parser_stlist_global();
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'st_global' on left side.
+ * @return True if correct. False otherwise.
+ */
 bool parser_st_global();
+
+/**
+ * Parsing function for require statement.
+ * Expects TT_STRING token.
+ * @return True if correct. False otherwise.
+ */
 bool parser_require();
+
+/**
+ * Parsing function for function definition.
+ * Expects TT_ID token.
+ * @return True if correct. False otherwise.
+ */
 bool parser_function_def();
-bool parser_function_call_by_id(char* id);
-bool parser_function_call(symtab_func_data_t* func);
+
+/**
+ * Parsing function for function declaration.
+ * Expects TT_ID token.
+ * @return True if correct. False otherwise.
+ */
 bool parser_function_dec();
+
+/**
+ * Parsing function for function call.
+ * Expects TT_ID token.
+ * @param id Name of now being parsed function.
+ * @return True if correct. False otherwise.
+ */
+bool parser_function_call_by_id(char* id);
+
+/**
+ * Parsing function for function call.
+ * Does not expect TT_ID token, but TT_LPAR token.
+ * @param func Function data in symtable of now being parsed function.
+ * @return True if correct. False otherwise.
+ */
+bool parser_function_call(symtab_func_data_t* func);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'param_list' on left side.
+ * @param param_types Dynamic string where to store parameter types.
+ * @return True if correct. False otherwise.
+ */
 bool parser_param_list(dynstr_t* param_types);
-bool parser_param_append(dynstr_t* param_types, int argpos);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'param_append' on left side.
+ * @param param_types Dynamic string where to store parameter types.
+ * @param param_pos Number of parameter currently being parsed,
+ *  counting from zero.
+ * @return True if correct. False otherwise.
+ */
+bool parser_param_append(dynstr_t* param_types, int param_pos);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'param' on left side.
+ * @param param_type Character where to store parameter type.
+ * @return True if correct. False otherwise.
+ */
 bool parser_param(char* param_type);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'type_list_param' on left side.
+ * @param types Dynamic string where to store types.
+ * @return True if correct. False otherwise.
+ */
 bool parser_type_list_param(dynstr_t* types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'type_list_return' on left side.
+ * @param types Dynamic string where to store types.
+ * @return True if correct. False otherwise.
+ */
 bool parser_type_list_return(dynstr_t* types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'type_append' on left side.
+ * @param types Dynamic string where to store types.
+ * @return True if correct. False otherwise.
+ */
 bool parser_type_append(dynstr_t* types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'type' on left side.
+ * @param type Character where to store type.
+ * @return True if correct. False otherwise.
+ */
 bool parser_type(char* type);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'arg_list' on left side.
+ * @param arg_types Dynamic string where to store argument types.
+ * @param arg_pos Integer where to store number of argument currently
+ * being parsed, counting from zero.
+ * @return True if correct. False otherwise.
+ */
 bool parser_arg_list(dynstr_t* arg_types, int* arg_pos);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'arg_append' on left side.
+ * @param arg_types Dynamic string where to store argument types.
+ * @param arg_pos Integer where to store number of argument currently
+ * being parsed, counting from zero.
+ * @return True if correct. False otherwise.
+ */
 bool parser_arg_append(dynstr_t* arg_types, int* arg_pos);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'arg' on left side.
+ * @param arg_type Character where to store argument type.
+ * @param lvl If not NULL, integer where to store level of scope
+ *  of currently being parsed argument.
+ * @return True if correct. False otherwise.
+ */
 bool parser_arg(char* arg_type, int* lvl);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'local_scope' on left side.
+ * Nobody will read this. If so, gde body?
+ * @param func_name Name of now being parsed function.
+ * @param ret_types Dynamic string of return types of current function.
+ * @param create_scope To create or not to create local scope in symtable?
+ * @return True if correct. False otherwise.
+ */
 bool parser_local_scope(const char* func_name, const dynstr_t* ret_types,
                         bool create_scope);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'stlist_local' on left side.
+ * @param func_name Name of now being parsed function.
+ * @param ret_types Dynamic string of return types of current function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_stlist_local(const char* func_name, const dynstr_t* ret_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'st_local' on left side.
+ * @param func_name Name of now being parsed function.
+ * @param ret_types Dynamic string of return types of current function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_st_local(const char* func_name, const dynstr_t* ret_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'returned' on left side.
+ * @param ret_types String of return types of current function.
+ * @param exp_types Dynamic string where to store
+ *  expression types returned from function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_returned(char* ret_types, dynstr_t* exp_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'return_what' on left side.
+ * @param ret_types String of return types of current function.
+ * @param exp_types Dynamic string where to store
+ *  expression types returned from function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_return_what(char* ret_types, dynstr_t* exp_types);
+
+/**
+ * Parsing function for variable declaration.
+ * Expects TT_ID token.
+ * @param func_name Name of now being parsed function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_var_dec(const char* func_name);
+
+/**
+ * Parsing function for if statement.
+ * Expects expression.
+ * @param func_name Name of now being parsed function.
+ * @param ret_types Dynamic string of return types of current function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_if_st(const char* func_name, const dynstr_t* ret_types);
+
+/**
+ * Parsing function for while statement.
+ * Expects expression.
+ * @param func_name Name of now being parsed function.
+ * @param ret_types Dynamic string of return types of current function.
+ * @return True if correct. False otherwise.
+ */
 bool parser_while_st(const char* func_name, const dynstr_t* ret_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'init' on left side.
+ * @param var_type Type of now being parsed variable.
+ * @param did_init Boolean where to store whether was variable initialized.
+ * @return True if correct. False otherwise.
+ */
 bool parser_init(char var_type, bool* did_init);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'init_after' on left side.
+ * @param var_type Type of now being parsed variable.
+ * @return True if correct. False otherwise.
+ */
 bool parser_init_after(char var_type);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'id_after' on left side.
+ * @return True if correct. False otherwise.
+ */
 bool parser_id_after();
+
+/**
+ * Parsing function for assignment statement.
+ * Expects TT_COMMA or TT_ASSIGN token.
+ * @param id Name of fist variable from identifier list.
+ * @return True if correct. False otherwise.
+ */
 bool parser_assign_st(char* id);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'id_append' on left side.
+ * @param id_types Dynamic string where to store
+ *  identifier types in identifier list.
+ * @return True if correct. False otherwise.
+ */
 bool parser_id_append(dynstr_t* id_types);
+
+/**
+ * Parsing function to determine, whether expression
+ * or function will be assigned.
+ * @param id_types Dynamic string of identifier types in identifier list.
+ * @return True if correct. False otherwise.
+ */
 bool parser_assign_what(const dynstr_t* id_types);
+
+/**
+ * Parsing function for assignment of expressions.
+ * Expects expression list.
+ * @param id_types Dynamic string of identifier types in identifier list.
+ * @return True if correct. False otherwise.
+ */
 bool parser_assign_exp(const dynstr_t* id_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'exp_list' on left side.
+ * @param id_types String of identifier types in identifier list.
+ * @param exp_types Dynamic string where to store expression types.
+ * @return True if correct. False otherwise.
+ */
 bool parser_exp_list(char* id_types, dynstr_t* exp_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'exp_append' on left side.
+ * @param id_types String of identifier types in identifier list.
+ * @param pos Number of identifier / expression, counting from zero.
+ * @param exp_types Dynamic string where to store expression types.
+ * @return True if correct. False otherwise.
+ */
 bool parser_exp_append(char* id_types, int pos, dynstr_t* exp_types);
+
+/**
+ * Parsing function for rules with
+ * non-terminal 'exp' on left side.
+ * @param exp_type Character where to store expression type.
+ * @return True if correct. False otherwise.
+ */
 bool parser_exp(char* exp_type);
 
+// CHECK FOR TYPE COMPATIBILITY
+
+/**
+ * Checks whether called function args match
+ * types of declared parameters.
+ * @param params Declared parameter types.
+ * @param args Passed argument types.
+ * @return True if matches. False otherwise.
+ */
 bool parser_func_call_match(char* params, char* args);
+
+/**
+ * Checks whether returned expressions match
+ * declared return types.
+ * @param declared Declared return types.
+ * @param returned Returned expression types.
+ * @return True if matches. False otherwise.
+ */
 bool parser_func_ret_match(char* declared, char* returned);
-bool parser_init_func_match(char var_type, char* ret);
-bool parser_assign_func_match(char* ids, char* ret);
+
+/**
+ * Checks whether returned expressions match
+ * type of initialized variable.
+ * @param var_type Initialized variable type.
+ * @param returned Returned expression types.
+ * @return True if matches. False otherwise.
+ */
+bool parser_init_func_match(char var_type, char* returned);
+
+/**
+ * Checks whether identifier list matches
+ * types of return values from function.
+ * @param ids Identifier list types.
+ * @param returned Declared return types.
+ * @return True if matches. False otherwise.
+ */
+bool parser_assign_func_match(char* ids, char* returned);
+
+/**
+ * Checks whether identifier list matches
+ * types of assigned expressions.
+ * @param ids Identifier list types.
+ * @param exps Assigned expression types.
+ * @return True if matches. False otherwise.
+ */
 bool parser_assign_exp_match(char* ids, char* exps);
+
+// FUNCTION DEFINITIONS
+
+// GRAMMAR RULES
 
 bool parser_start() {
   token_t* token = token_buff(TOKEN_NEW);
@@ -147,7 +456,7 @@ bool parser_function_def() {
   bool is_correct = false;
 
   char* id = NULL;
-  if(token->type == TT_ID) {
+  if (token->type == TT_ID) {
     id = str_create_copy(token->attr.str);
     if (error_get()) {
       goto EXIT;
@@ -261,7 +570,7 @@ bool parser_function_dec() {
   bool is_correct = false;
 
   char* id = NULL;
-  if(token->type == TT_ID) {
+  if (token->type == TT_ID) {
     id = str_create_copy(token->attr.str);
     if (error_get()) {
       goto EXIT;
@@ -349,38 +658,6 @@ EXIT:
   return is_correct;
 }
 
-// checks whether called functions args match
-// declared parameters
-bool parser_func_call_match(char* params, char* args) {
-  while (*params != '\0') {
-    // more params than args
-    if (*args == '\0') {
-      if (*(++params) == '+') return true;
-      (--params);
-      return false;
-    }
-
-    if (*params != *args) {
-      if (*params != 'a' && *args != 'x' && (*params != 'n' || *args != 'i')) {
-        return false;
-      }
-    }
-
-    params++;
-    args++;
-    if (*params == '+') {
-      params--;
-    }
-  }
-
-  // more args than params
-  if (*args != '\0') {
-    return false;
-  }
-
-  return true;
-}
-
 bool parser_function_call_by_id(char* id) {
   symtab_func_data_t* declared_func = symtab_find_func(symtab, id);
   if (!declared_func) {
@@ -388,7 +665,7 @@ bool parser_function_call_by_id(char* id) {
     return false;
   }
 
-  if(!declared_func->was_defined) {
+  if (!declared_func->was_defined) {
     error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
     return false;
   }
@@ -490,7 +767,7 @@ bool parser_param_list(dynstr_t* param_types) {
 }
 
 // SCOPE
-bool parser_param_append(dynstr_t* param_types, int argpos) {
+bool parser_param_append(dynstr_t* param_types, int param_pos) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -509,10 +786,10 @@ bool parser_param_append(dynstr_t* param_types, int argpos) {
           free(name);
           return false;
         }
-        codegen_function_definition_param(name, argpos);
+        codegen_function_definition_param(name, param_pos);
         free(name);
 
-        return parser_param_append(param_types, argpos + 1);
+        return parser_param_append(param_types, param_pos + 1);
       }
 
       break;
@@ -533,7 +810,7 @@ bool parser_param(char* param_type) {
   bool is_correct = false;
 
   char* id = NULL;
-  if(token->type == TT_ID) {
+  if (token->type == TT_ID) {
     id = str_create_copy(token->attr.str);
     if (error_get()) {
       goto EXIT;
@@ -846,36 +1123,6 @@ bool parser_arg(char* arg_type, int* lvl) {
   }
 }
 
-// checks whether returned expressions match
-// declared return types
-bool parser_func_ret_match(char* declared, char* returned) {
-  while (*declared != '\0') {
-    // more declared return values than returned
-    // NILs are returned
-    if (*returned == '\0') {
-      return true;
-    }
-
-    if (*declared != *returned) {
-      if (*returned == 'x') {
-        // Can return NIL literal
-      } else if (*declared != 'n' || *returned != 'i') {
-        return false;
-      }
-    }
-
-    declared++;
-    returned++;
-  }
-
-  // more returned values than declared
-  if (*returned != '\0') {
-    return false;
-  }
-
-  return true;
-}
-
 bool parser_local_scope(const char* func_name, const dynstr_t* ret_types,
                         bool create_scope) {
   token_t* token = token_buff(TOKEN_THIS);
@@ -1042,7 +1289,7 @@ bool parser_var_dec(const char* func_name) {
   bool is_correct = false;
 
   char* id = NULL;
-  if(token->type == TT_ID) {
+  if (token->type == TT_ID) {
     id = str_create_copy(token->attr.str);
     if (error_get()) {
       goto EXIT;
@@ -1252,19 +1499,6 @@ bool parser_init(char var_type, bool* did_init) {
   }
 }
 
-bool parser_init_func_match(char var_type, char* ret) {
-  if (var_type != *ret) {
-    if (var_type != 'n' || *ret != 'i') {
-      error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
-      return false;
-    }
-  }
-
-  // func can return more vals than expected
-
-  return true;
-}
-
 bool parser_init_after(char var_type) {
   token_t* token = token_buff(TOKEN_THIS);
 
@@ -1342,7 +1576,7 @@ bool parser_id_after() {
   bool is_correct = false;
 
   char* id = NULL;
-  if(token->type == TT_ID) {
+  if (token->type == TT_ID) {
     id = str_create_copy(token->attr.str);
     if (error_get()) {
       goto EXIT;
@@ -1528,66 +1762,6 @@ bool parser_assign_what(const dynstr_t* id_types) {
   return false;
 }
 
-// checks whether id list matches
-// assigned expressions
-bool parser_assign_exp_match(char* ids, char* exps) {
-  while (*ids != '\0') {
-    // more ids than exps
-    if (*exps == '\0') {
-      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-      return false;
-    }
-
-    if (*ids != *exps) {
-      if (*ids != 'n' || *exps != 'i') {
-        if (*exps == 'x') {
-          return true;
-        } else {
-          error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
-        }
-        return false;
-      }
-    }
-
-    ids++;
-    exps++;
-  }
-
-  // more exps than ids
-  if (*exps != '\0') {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-    return false;
-  }
-
-  return true;
-}
-
-// checks whether id list matches
-// assigned return values from function
-bool parser_assign_func_match(char* ids, char* ret) {
-  while (*ids != '\0') {
-    // function does not return enought vals
-    if (*ret == '\0') {
-      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-      return false;
-    }
-
-    if (*ids != *ret) {
-      if (*ids != 'n' || *ret != 'i') {
-        error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
-        return false;
-      }
-    }
-
-    ids++;
-    ret++;
-  }
-
-  // func can return more vals than expected
-
-  return true;
-}
-
 bool parser_assign_exp(const dynstr_t* id_types) {
   // is syntax correct
   bool is_correct = false;
@@ -1713,4 +1887,133 @@ bool parser_exp(char* exp_type) {
       error_set(EXITSTATUS_ERROR_SYNTAX);
       return false;
   }
+}
+
+// CHECK FOR TYPE COMPATIBILITY
+
+bool parser_func_call_match(char* params, char* args) {
+  while (*params != '\0') {
+    // more params than args
+    if (*args == '\0') {
+      if (*(++params) == '+') return true;
+      (--params);
+      return false;
+    }
+
+    if (*params != *args) {
+      if (*params != 'a' && *args != 'x' && (*params != 'n' || *args != 'i')) {
+        return false;
+      }
+    }
+
+    params++;
+    args++;
+    if (*params == '+') {
+      params--;
+    }
+  }
+
+  // more args than params
+  if (*args != '\0') {
+    return false;
+  }
+
+  return true;
+}
+
+bool parser_func_ret_match(char* declared, char* returned) {
+  while (*declared != '\0') {
+    // more declared return values than returned
+    // NILs are returned
+    if (*returned == '\0') {
+      return true;
+    }
+
+    if (*declared != *returned) {
+      if (*returned == 'x') {
+        // Can return NIL literal
+      } else if (*declared != 'n' || *returned != 'i') {
+        return false;
+      }
+    }
+
+    declared++;
+    returned++;
+  }
+
+  // more returned values than declared
+  if (*returned != '\0') {
+    return false;
+  }
+
+  return true;
+}
+
+bool parser_init_func_match(char var_type, char* returned) {
+  if (var_type != *returned) {
+    if (var_type != 'n' || *returned != 'i') {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+      return false;
+    }
+  }
+
+  // func can return more vals than expected
+
+  return true;
+}
+
+bool parser_assign_func_match(char* ids, char* returned) {
+  while (*ids != '\0') {
+    // function does not return enought vals
+    if (*returned == '\0') {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
+      return false;
+    }
+
+    if (*ids != *returned) {
+      if (*ids != 'n' || *returned != 'i') {
+        error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+        return false;
+      }
+    }
+
+    ids++;
+    returned++;
+  }
+
+  // func can return more vals than expected
+
+  return true;
+}
+
+bool parser_assign_exp_match(char* ids, char* exps) {
+  while (*ids != '\0') {
+    // more ids than exps
+    if (*exps == '\0') {
+      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
+      return false;
+    }
+
+    if (*ids != *exps) {
+      if (*ids != 'n' || *exps != 'i') {
+        if (*exps == 'x') {
+          return true;
+        } else {
+          error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+        }
+        return false;
+      }
+    }
+
+    ids++;
+    exps++;
+  }
+
+  // more exps than ids
+  if (*exps != '\0') {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
+    return false;
+  }
+
+  return true;
 }
