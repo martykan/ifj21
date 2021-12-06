@@ -98,8 +98,8 @@ $(document).ready(function(){initNavTree('syntax_8h.html',''); initResizable(); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad631ed39455b15ad13189ad2e71b143d"><td class="memItemLeft" align="right" valign="top"><a id="ad631ed39455b15ad13189ad2e71b143d" name="ad631ed39455b15ad13189ad2e71b143d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_start</b> ()</td></tr>
+<tr class="memitem:ad631ed39455b15ad13189ad2e71b143d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8h.html#ad631ed39455b15ad13189ad2e71b143d">parser_start</a> ()</td></tr>
+<tr class="memdesc:ad631ed39455b15ad13189ad2e71b143d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts recursive parsing process.  <a href="syntax_8h.html#ad631ed39455b15ad13189ad2e71b143d">More...</a><br /></td></tr>
 <tr class="separator:ad631ed39455b15ad13189ad2e71b143d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -111,11 +111,29 @@ Tomas Martykan </dd>
 Filip Stolfa</dd></dl>
 <h1><a class="anchor" id="DESCRIPTION"></a>
 DESCRIPTION</h1>
-<p >TODO</p>
-<h1><a class="anchor" id="IMPLEMENTATION"></a>
-IMPLEMENTATION</h1>
-<p >TODO </p>
-</div></div><!-- contents -->
+<p >Top-down parser implemented using recursive technique. Analyzes whole stream of tokens, except expressions, and their order. </p>
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="ad631ed39455b15ad13189ad2e71b143d" name="ad631ed39455b15ad13189ad2e71b143d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad631ed39455b15ad13189ad2e71b143d">&#9670;&nbsp;</a></span>parser_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts recursive parsing process. </p>
+<p >Recursive parser automatically launches expression parser when needed. </p><dl class="section return"><dt>Returns</dt><dd>True if program is syntactically and semantically correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

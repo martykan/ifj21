@@ -17,6 +17,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "scope.h", "scope_8h_source.html", null ],
     [ "symtable.c", "symtable_8c.html", "symtable_8c" ],
     [ "symtable.h", "symtable_8h.html", "symtable_8h" ],
-    [ "syntax.c", "syntax_8c.html", null ],
-    [ "syntax.h", "syntax_8h.html", null ]
+    [ "syntax.c", "syntax_8c.html", "syntax_8c" ],
+    [ "syntax.h", "syntax_8h.html", "syntax_8h" ]
 ];

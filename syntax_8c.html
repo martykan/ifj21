@@ -94,8 +94,6 @@ $(document).ready(function(){initNavTree('syntax_8c.html',''); initResizable(); 
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="syntax_8h_source.html">syntax.h</a>&quot;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="codegen_8h_source.html">codegen.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="dynstr_8h_source.html">dynstr.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="errors_8h_source.html">errors.h</a>&quot;</code><br />
@@ -108,128 +106,128 @@ $(document).ready(function(){initNavTree('syntax_8c.html',''); initResizable(); 
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ace79a0288e86fd98d7c4ffa2ab1d0d63"><td class="memItemLeft" align="right" valign="top"><a id="ace79a0288e86fd98d7c4ffa2ab1d0d63" name="ace79a0288e86fd98d7c4ffa2ab1d0d63"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_stlist_global</b> ()</td></tr>
+<tr class="memitem:ace79a0288e86fd98d7c4ffa2ab1d0d63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ace79a0288e86fd98d7c4ffa2ab1d0d63">parser_stlist_global</a> ()</td></tr>
+<tr class="memdesc:ace79a0288e86fd98d7c4ffa2ab1d0d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'stlist_global' on left side.  <a href="syntax_8c.html#ace79a0288e86fd98d7c4ffa2ab1d0d63">More...</a><br /></td></tr>
 <tr class="separator:ace79a0288e86fd98d7c4ffa2ab1d0d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7228945c933316a1554f497ddb455326"><td class="memItemLeft" align="right" valign="top"><a id="a7228945c933316a1554f497ddb455326" name="a7228945c933316a1554f497ddb455326"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_st_global</b> ()</td></tr>
+<tr class="memitem:a7228945c933316a1554f497ddb455326"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a7228945c933316a1554f497ddb455326">parser_st_global</a> ()</td></tr>
+<tr class="memdesc:a7228945c933316a1554f497ddb455326"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'st_global' on left side.  <a href="syntax_8c.html#a7228945c933316a1554f497ddb455326">More...</a><br /></td></tr>
 <tr class="separator:a7228945c933316a1554f497ddb455326"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa60ae94ea5c36a9a392505d1057ab398"><td class="memItemLeft" align="right" valign="top"><a id="aa60ae94ea5c36a9a392505d1057ab398" name="aa60ae94ea5c36a9a392505d1057ab398"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_require</b> ()</td></tr>
+<tr class="memitem:aa60ae94ea5c36a9a392505d1057ab398"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#aa60ae94ea5c36a9a392505d1057ab398">parser_require</a> ()</td></tr>
+<tr class="memdesc:aa60ae94ea5c36a9a392505d1057ab398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for require statement.  <a href="syntax_8c.html#aa60ae94ea5c36a9a392505d1057ab398">More...</a><br /></td></tr>
 <tr class="separator:aa60ae94ea5c36a9a392505d1057ab398"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8abbd965449c5ce721dea4b32d9a7731"><td class="memItemLeft" align="right" valign="top"><a id="a8abbd965449c5ce721dea4b32d9a7731" name="a8abbd965449c5ce721dea4b32d9a7731"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_def</b> ()</td></tr>
+<tr class="memitem:a8abbd965449c5ce721dea4b32d9a7731"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a8abbd965449c5ce721dea4b32d9a7731">parser_function_def</a> ()</td></tr>
+<tr class="memdesc:a8abbd965449c5ce721dea4b32d9a7731"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for function definition.  <a href="syntax_8c.html#a8abbd965449c5ce721dea4b32d9a7731">More...</a><br /></td></tr>
 <tr class="separator:a8abbd965449c5ce721dea4b32d9a7731"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2020179ae85e83ba0b13abce71f5c67"><td class="memItemLeft" align="right" valign="top"><a id="aa2020179ae85e83ba0b13abce71f5c67" name="aa2020179ae85e83ba0b13abce71f5c67"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_call_by_id</b> (char *id)</td></tr>
-<tr class="separator:aa2020179ae85e83ba0b13abce71f5c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="memItemLeft" align="right" valign="top"><a id="acbfea2e0f31f8de03b52e49f0b149b7c" name="acbfea2e0f31f8de03b52e49f0b149b7c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_call</b> (<a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *func)</td></tr>
-<tr class="separator:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74aebdc32df8115bdd81c88aee2f1d39"><td class="memItemLeft" align="right" valign="top"><a id="a74aebdc32df8115bdd81c88aee2f1d39" name="a74aebdc32df8115bdd81c88aee2f1d39"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_function_dec</b> ()</td></tr>
+<tr class="memitem:a74aebdc32df8115bdd81c88aee2f1d39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a74aebdc32df8115bdd81c88aee2f1d39">parser_function_dec</a> ()</td></tr>
+<tr class="memdesc:a74aebdc32df8115bdd81c88aee2f1d39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for function declaration.  <a href="syntax_8c.html#a74aebdc32df8115bdd81c88aee2f1d39">More...</a><br /></td></tr>
 <tr class="separator:a74aebdc32df8115bdd81c88aee2f1d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfa0211449c90f0b93e50082413f0ff7"><td class="memItemLeft" align="right" valign="top"><a id="acfa0211449c90f0b93e50082413f0ff7" name="acfa0211449c90f0b93e50082413f0ff7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_param_list</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *param_types)</td></tr>
+<tr class="memitem:aa2020179ae85e83ba0b13abce71f5c67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#aa2020179ae85e83ba0b13abce71f5c67">parser_function_call_by_id</a> (char *id)</td></tr>
+<tr class="memdesc:aa2020179ae85e83ba0b13abce71f5c67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for function call.  <a href="syntax_8c.html#aa2020179ae85e83ba0b13abce71f5c67">More...</a><br /></td></tr>
+<tr class="separator:aa2020179ae85e83ba0b13abce71f5c67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#acbfea2e0f31f8de03b52e49f0b149b7c">parser_function_call</a> (<a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *func)</td></tr>
+<tr class="memdesc:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for function call.  <a href="syntax_8c.html#acbfea2e0f31f8de03b52e49f0b149b7c">More...</a><br /></td></tr>
+<tr class="separator:acbfea2e0f31f8de03b52e49f0b149b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa0211449c90f0b93e50082413f0ff7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#acfa0211449c90f0b93e50082413f0ff7">parser_param_list</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *param_types)</td></tr>
+<tr class="memdesc:acfa0211449c90f0b93e50082413f0ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'param_list' on left side.  <a href="syntax_8c.html#acfa0211449c90f0b93e50082413f0ff7">More...</a><br /></td></tr>
 <tr class="separator:acfa0211449c90f0b93e50082413f0ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9919e3ca7a37a69a29e4e3777b58364f"><td class="memItemLeft" align="right" valign="top"><a id="a9919e3ca7a37a69a29e4e3777b58364f" name="a9919e3ca7a37a69a29e4e3777b58364f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_param_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *param_types, int argpos)</td></tr>
-<tr class="separator:a9919e3ca7a37a69a29e4e3777b58364f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64d318e0fa2b04e415144a7556e28707"><td class="memItemLeft" align="right" valign="top"><a id="a64d318e0fa2b04e415144a7556e28707" name="a64d318e0fa2b04e415144a7556e28707"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_param</b> (char *param_type)</td></tr>
+<tr class="memitem:ab2382e639bfee638c111c5154f0a7eae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ab2382e639bfee638c111c5154f0a7eae">parser_param_append</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *param_types, int param_pos)</td></tr>
+<tr class="memdesc:ab2382e639bfee638c111c5154f0a7eae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'param_append' on left side.  <a href="syntax_8c.html#ab2382e639bfee638c111c5154f0a7eae">More...</a><br /></td></tr>
+<tr class="separator:ab2382e639bfee638c111c5154f0a7eae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64d318e0fa2b04e415144a7556e28707"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a64d318e0fa2b04e415144a7556e28707">parser_param</a> (char *param_type)</td></tr>
+<tr class="memdesc:a64d318e0fa2b04e415144a7556e28707"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'param' on left side.  <a href="syntax_8c.html#a64d318e0fa2b04e415144a7556e28707">More...</a><br /></td></tr>
 <tr class="separator:a64d318e0fa2b04e415144a7556e28707"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97382bb9b7a4dc471c201e04a27a688d"><td class="memItemLeft" align="right" valign="top"><a id="a97382bb9b7a4dc471c201e04a27a688d" name="a97382bb9b7a4dc471c201e04a27a688d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_type_list_param</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *types)</td></tr>
+<tr class="memitem:a97382bb9b7a4dc471c201e04a27a688d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a97382bb9b7a4dc471c201e04a27a688d">parser_type_list_param</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *types)</td></tr>
+<tr class="memdesc:a97382bb9b7a4dc471c201e04a27a688d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'type_list_param' on left side.  <a href="syntax_8c.html#a97382bb9b7a4dc471c201e04a27a688d">More...</a><br /></td></tr>
 <tr class="separator:a97382bb9b7a4dc471c201e04a27a688d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84d15e9ab8ae78394f188b6e70c44396"><td class="memItemLeft" align="right" valign="top"><a id="a84d15e9ab8ae78394f188b6e70c44396" name="a84d15e9ab8ae78394f188b6e70c44396"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_type_list_return</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *types)</td></tr>
+<tr class="memitem:a84d15e9ab8ae78394f188b6e70c44396"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a84d15e9ab8ae78394f188b6e70c44396">parser_type_list_return</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *types)</td></tr>
+<tr class="memdesc:a84d15e9ab8ae78394f188b6e70c44396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'type_list_return' on left side.  <a href="syntax_8c.html#a84d15e9ab8ae78394f188b6e70c44396">More...</a><br /></td></tr>
 <tr class="separator:a84d15e9ab8ae78394f188b6e70c44396"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a985afd260cb6b34822936bc351e9f4d1"><td class="memItemLeft" align="right" valign="top"><a id="a985afd260cb6b34822936bc351e9f4d1" name="a985afd260cb6b34822936bc351e9f4d1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_type_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *types)</td></tr>
+<tr class="memitem:a985afd260cb6b34822936bc351e9f4d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a985afd260cb6b34822936bc351e9f4d1">parser_type_append</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *types)</td></tr>
+<tr class="memdesc:a985afd260cb6b34822936bc351e9f4d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'type_append' on left side.  <a href="syntax_8c.html#a985afd260cb6b34822936bc351e9f4d1">More...</a><br /></td></tr>
 <tr class="separator:a985afd260cb6b34822936bc351e9f4d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac94d3534477b4e640670454f7f3f7ad2"><td class="memItemLeft" align="right" valign="top"><a id="ac94d3534477b4e640670454f7f3f7ad2" name="ac94d3534477b4e640670454f7f3f7ad2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_type</b> (char *type)</td></tr>
+<tr class="memitem:ac94d3534477b4e640670454f7f3f7ad2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ac94d3534477b4e640670454f7f3f7ad2">parser_type</a> (char *type)</td></tr>
+<tr class="memdesc:ac94d3534477b4e640670454f7f3f7ad2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'type' on left side.  <a href="syntax_8c.html#ac94d3534477b4e640670454f7f3f7ad2">More...</a><br /></td></tr>
 <tr class="separator:ac94d3534477b4e640670454f7f3f7ad2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a150ab0316fb7e508152bf43c87d65970"><td class="memItemLeft" align="right" valign="top"><a id="a150ab0316fb7e508152bf43c87d65970" name="a150ab0316fb7e508152bf43c87d65970"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_list</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types, int *arg_pos)</td></tr>
+<tr class="memitem:a150ab0316fb7e508152bf43c87d65970"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a150ab0316fb7e508152bf43c87d65970">parser_arg_list</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types, int *arg_pos)</td></tr>
+<tr class="memdesc:a150ab0316fb7e508152bf43c87d65970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'arg_list' on left side.  <a href="syntax_8c.html#a150ab0316fb7e508152bf43c87d65970">More...</a><br /></td></tr>
 <tr class="separator:a150ab0316fb7e508152bf43c87d65970"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6bbf9fdc15e5da93c39250052204c8f"><td class="memItemLeft" align="right" valign="top"><a id="af6bbf9fdc15e5da93c39250052204c8f" name="af6bbf9fdc15e5da93c39250052204c8f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types, int *arg_pos)</td></tr>
+<tr class="memitem:af6bbf9fdc15e5da93c39250052204c8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#af6bbf9fdc15e5da93c39250052204c8f">parser_arg_append</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *arg_types, int *arg_pos)</td></tr>
+<tr class="memdesc:af6bbf9fdc15e5da93c39250052204c8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'arg_append' on left side.  <a href="syntax_8c.html#af6bbf9fdc15e5da93c39250052204c8f">More...</a><br /></td></tr>
 <tr class="separator:af6bbf9fdc15e5da93c39250052204c8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e5991ba7f1c126c62fdae9b1adbe831"><td class="memItemLeft" align="right" valign="top"><a id="a5e5991ba7f1c126c62fdae9b1adbe831" name="a5e5991ba7f1c126c62fdae9b1adbe831"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_arg</b> (char *arg_type, int *lvl)</td></tr>
+<tr class="memitem:a5e5991ba7f1c126c62fdae9b1adbe831"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a5e5991ba7f1c126c62fdae9b1adbe831">parser_arg</a> (char *arg_type, int *lvl)</td></tr>
+<tr class="memdesc:a5e5991ba7f1c126c62fdae9b1adbe831"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'arg' on left side.  <a href="syntax_8c.html#a5e5991ba7f1c126c62fdae9b1adbe831">More...</a><br /></td></tr>
 <tr class="separator:a5e5991ba7f1c126c62fdae9b1adbe831"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa81f4a34faada80a8d40fb135df196ee"><td class="memItemLeft" align="right" valign="top"><a id="aa81f4a34faada80a8d40fb135df196ee" name="aa81f4a34faada80a8d40fb135df196ee"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_local_scope</b> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types, bool create_scope)</td></tr>
+<tr class="memitem:aa81f4a34faada80a8d40fb135df196ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#aa81f4a34faada80a8d40fb135df196ee">parser_local_scope</a> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types, bool create_scope)</td></tr>
+<tr class="memdesc:aa81f4a34faada80a8d40fb135df196ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'local_scope' on left side.  <a href="syntax_8c.html#aa81f4a34faada80a8d40fb135df196ee">More...</a><br /></td></tr>
 <tr class="separator:aa81f4a34faada80a8d40fb135df196ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b090ef353d0068baeaf4e27a10c6ed8"><td class="memItemLeft" align="right" valign="top"><a id="a9b090ef353d0068baeaf4e27a10c6ed8" name="a9b090ef353d0068baeaf4e27a10c6ed8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_stlist_local</b> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memitem:a9b090ef353d0068baeaf4e27a10c6ed8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a9b090ef353d0068baeaf4e27a10c6ed8">parser_stlist_local</a> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memdesc:a9b090ef353d0068baeaf4e27a10c6ed8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'stlist_local' on left side.  <a href="syntax_8c.html#a9b090ef353d0068baeaf4e27a10c6ed8">More...</a><br /></td></tr>
 <tr class="separator:a9b090ef353d0068baeaf4e27a10c6ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f4e3940bc9fc86994626904195ba796"><td class="memItemLeft" align="right" valign="top"><a id="a1f4e3940bc9fc86994626904195ba796" name="a1f4e3940bc9fc86994626904195ba796"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_st_local</b> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memitem:a1f4e3940bc9fc86994626904195ba796"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a1f4e3940bc9fc86994626904195ba796">parser_st_local</a> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memdesc:a1f4e3940bc9fc86994626904195ba796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'st_local' on left side.  <a href="syntax_8c.html#a1f4e3940bc9fc86994626904195ba796">More...</a><br /></td></tr>
 <tr class="separator:a1f4e3940bc9fc86994626904195ba796"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a100d057bb425cb7141fb2d84f168a4bd"><td class="memItemLeft" align="right" valign="top"><a id="a100d057bb425cb7141fb2d84f168a4bd" name="a100d057bb425cb7141fb2d84f168a4bd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_returned</b> (char *ret_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memitem:a100d057bb425cb7141fb2d84f168a4bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a100d057bb425cb7141fb2d84f168a4bd">parser_returned</a> (char *ret_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memdesc:a100d057bb425cb7141fb2d84f168a4bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'returned' on left side.  <a href="syntax_8c.html#a100d057bb425cb7141fb2d84f168a4bd">More...</a><br /></td></tr>
 <tr class="separator:a100d057bb425cb7141fb2d84f168a4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bd371155c0ef0e3c44ffe195d88b622"><td class="memItemLeft" align="right" valign="top"><a id="a0bd371155c0ef0e3c44ffe195d88b622" name="a0bd371155c0ef0e3c44ffe195d88b622"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_return_what</b> (char *ret_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memitem:a0bd371155c0ef0e3c44ffe195d88b622"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a0bd371155c0ef0e3c44ffe195d88b622">parser_return_what</a> (char *ret_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memdesc:a0bd371155c0ef0e3c44ffe195d88b622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'return_what' on left side.  <a href="syntax_8c.html#a0bd371155c0ef0e3c44ffe195d88b622">More...</a><br /></td></tr>
 <tr class="separator:a0bd371155c0ef0e3c44ffe195d88b622"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f3b1bcd2ff6c09224eb6437590b8b68"><td class="memItemLeft" align="right" valign="top"><a id="a0f3b1bcd2ff6c09224eb6437590b8b68" name="a0f3b1bcd2ff6c09224eb6437590b8b68"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_var_dec</b> (const char *func_name)</td></tr>
+<tr class="memitem:a0f3b1bcd2ff6c09224eb6437590b8b68"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a0f3b1bcd2ff6c09224eb6437590b8b68">parser_var_dec</a> (const char *func_name)</td></tr>
+<tr class="memdesc:a0f3b1bcd2ff6c09224eb6437590b8b68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for variable declaration.  <a href="syntax_8c.html#a0f3b1bcd2ff6c09224eb6437590b8b68">More...</a><br /></td></tr>
 <tr class="separator:a0f3b1bcd2ff6c09224eb6437590b8b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6885555682658193451eebfd86d6680d"><td class="memItemLeft" align="right" valign="top"><a id="a6885555682658193451eebfd86d6680d" name="a6885555682658193451eebfd86d6680d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_if_st</b> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memitem:a6885555682658193451eebfd86d6680d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a6885555682658193451eebfd86d6680d">parser_if_st</a> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memdesc:a6885555682658193451eebfd86d6680d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for if statement.  <a href="syntax_8c.html#a6885555682658193451eebfd86d6680d">More...</a><br /></td></tr>
 <tr class="separator:a6885555682658193451eebfd86d6680d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad97079d76d75f05519da72b0ebf9fcb8"><td class="memItemLeft" align="right" valign="top"><a id="ad97079d76d75f05519da72b0ebf9fcb8" name="ad97079d76d75f05519da72b0ebf9fcb8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_while_st</b> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memitem:ad97079d76d75f05519da72b0ebf9fcb8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ad97079d76d75f05519da72b0ebf9fcb8">parser_while_st</a> (const char *func_name, const <a class="el" href="structdynstr__t.html">dynstr_t</a> *ret_types)</td></tr>
+<tr class="memdesc:ad97079d76d75f05519da72b0ebf9fcb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for while statement.  <a href="syntax_8c.html#ad97079d76d75f05519da72b0ebf9fcb8">More...</a><br /></td></tr>
 <tr class="separator:ad97079d76d75f05519da72b0ebf9fcb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae90d31bfdea12555c0d04173905393e1"><td class="memItemLeft" align="right" valign="top"><a id="ae90d31bfdea12555c0d04173905393e1" name="ae90d31bfdea12555c0d04173905393e1"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init</b> (char var_type, bool *did_init)</td></tr>
+<tr class="memitem:ae90d31bfdea12555c0d04173905393e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ae90d31bfdea12555c0d04173905393e1">parser_init</a> (char var_type, bool *did_init)</td></tr>
+<tr class="memdesc:ae90d31bfdea12555c0d04173905393e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'init' on left side.  <a href="syntax_8c.html#ae90d31bfdea12555c0d04173905393e1">More...</a><br /></td></tr>
 <tr class="separator:ae90d31bfdea12555c0d04173905393e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae887c32f24a3011166ee10e3bfa3a101"><td class="memItemLeft" align="right" valign="top"><a id="ae887c32f24a3011166ee10e3bfa3a101" name="ae887c32f24a3011166ee10e3bfa3a101"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init_after</b> (char var_type)</td></tr>
+<tr class="memitem:ae887c32f24a3011166ee10e3bfa3a101"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ae887c32f24a3011166ee10e3bfa3a101">parser_init_after</a> (char var_type)</td></tr>
+<tr class="memdesc:ae887c32f24a3011166ee10e3bfa3a101"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'init_after' on left side.  <a href="syntax_8c.html#ae887c32f24a3011166ee10e3bfa3a101">More...</a><br /></td></tr>
 <tr class="separator:ae887c32f24a3011166ee10e3bfa3a101"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af476d5b19cee3ac9d7970525d83f5625"><td class="memItemLeft" align="right" valign="top"><a id="af476d5b19cee3ac9d7970525d83f5625" name="af476d5b19cee3ac9d7970525d83f5625"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_id_after</b> ()</td></tr>
+<tr class="memitem:af476d5b19cee3ac9d7970525d83f5625"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#af476d5b19cee3ac9d7970525d83f5625">parser_id_after</a> ()</td></tr>
+<tr class="memdesc:af476d5b19cee3ac9d7970525d83f5625"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'id_after' on left side.  <a href="syntax_8c.html#af476d5b19cee3ac9d7970525d83f5625">More...</a><br /></td></tr>
 <tr class="separator:af476d5b19cee3ac9d7970525d83f5625"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bed4379eb136e25ba2568ba207dc859"><td class="memItemLeft" align="right" valign="top"><a id="a8bed4379eb136e25ba2568ba207dc859" name="a8bed4379eb136e25ba2568ba207dc859"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_st</b> (char *id)</td></tr>
+<tr class="memitem:a8bed4379eb136e25ba2568ba207dc859"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a8bed4379eb136e25ba2568ba207dc859">parser_assign_st</a> (char *id)</td></tr>
+<tr class="memdesc:a8bed4379eb136e25ba2568ba207dc859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for assignment statement.  <a href="syntax_8c.html#a8bed4379eb136e25ba2568ba207dc859">More...</a><br /></td></tr>
 <tr class="separator:a8bed4379eb136e25ba2568ba207dc859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0bfa59f24c76e9d5452857218761fca"><td class="memItemLeft" align="right" valign="top"><a id="aa0bfa59f24c76e9d5452857218761fca" name="aa0bfa59f24c76e9d5452857218761fca"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_id_append</b> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="memitem:aa0bfa59f24c76e9d5452857218761fca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#aa0bfa59f24c76e9d5452857218761fca">parser_id_append</a> (<a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="memdesc:aa0bfa59f24c76e9d5452857218761fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'id_append' on left side.  <a href="syntax_8c.html#aa0bfa59f24c76e9d5452857218761fca">More...</a><br /></td></tr>
 <tr class="separator:aa0bfa59f24c76e9d5452857218761fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6b302ab6ca3eb92d2c49d884f527c11"><td class="memItemLeft" align="right" valign="top"><a id="ab6b302ab6ca3eb92d2c49d884f527c11" name="ab6b302ab6ca3eb92d2c49d884f527c11"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_what</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="memitem:ab6b302ab6ca3eb92d2c49d884f527c11"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ab6b302ab6ca3eb92d2c49d884f527c11">parser_assign_what</a> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="memdesc:ab6b302ab6ca3eb92d2c49d884f527c11"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function to determine, whether expression or function will be assigned.  <a href="syntax_8c.html#ab6b302ab6ca3eb92d2c49d884f527c11">More...</a><br /></td></tr>
 <tr class="separator:ab6b302ab6ca3eb92d2c49d884f527c11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0b5844df1a4cad394ec26cbd3622180"><td class="memItemLeft" align="right" valign="top"><a id="ae0b5844df1a4cad394ec26cbd3622180" name="ae0b5844df1a4cad394ec26cbd3622180"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_exp</b> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="memitem:ae0b5844df1a4cad394ec26cbd3622180"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ae0b5844df1a4cad394ec26cbd3622180">parser_assign_exp</a> (const <a class="el" href="structdynstr__t.html">dynstr_t</a> *id_types)</td></tr>
+<tr class="memdesc:ae0b5844df1a4cad394ec26cbd3622180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for assignment of expressions.  <a href="syntax_8c.html#ae0b5844df1a4cad394ec26cbd3622180">More...</a><br /></td></tr>
 <tr class="separator:ae0b5844df1a4cad394ec26cbd3622180"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a536ffb711a51ae7637f04d03e101279a"><td class="memItemLeft" align="right" valign="top"><a id="a536ffb711a51ae7637f04d03e101279a" name="a536ffb711a51ae7637f04d03e101279a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_list</b> (char *id_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memitem:a536ffb711a51ae7637f04d03e101279a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a536ffb711a51ae7637f04d03e101279a">parser_exp_list</a> (char *id_types, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memdesc:a536ffb711a51ae7637f04d03e101279a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'exp_list' on left side.  <a href="syntax_8c.html#a536ffb711a51ae7637f04d03e101279a">More...</a><br /></td></tr>
 <tr class="separator:a536ffb711a51ae7637f04d03e101279a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7d5253a6a6e73184e4eb4a2024df31f"><td class="memItemLeft" align="right" valign="top"><a id="ab7d5253a6a6e73184e4eb4a2024df31f" name="ab7d5253a6a6e73184e4eb4a2024df31f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp_append</b> (char *id_types, int pos, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memitem:ab7d5253a6a6e73184e4eb4a2024df31f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ab7d5253a6a6e73184e4eb4a2024df31f">parser_exp_append</a> (char *id_types, int pos, <a class="el" href="structdynstr__t.html">dynstr_t</a> *exp_types)</td></tr>
+<tr class="memdesc:ab7d5253a6a6e73184e4eb4a2024df31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'exp_append' on left side.  <a href="syntax_8c.html#ab7d5253a6a6e73184e4eb4a2024df31f">More...</a><br /></td></tr>
 <tr class="separator:ab7d5253a6a6e73184e4eb4a2024df31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memItemLeft" align="right" valign="top"><a id="a6cb225a6540d7f84b8ff3fc846967eb0" name="a6cb225a6540d7f84b8ff3fc846967eb0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_exp</b> (char *exp_type)</td></tr>
+<tr class="memitem:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a6cb225a6540d7f84b8ff3fc846967eb0">parser_exp</a> (char *exp_type)</td></tr>
+<tr class="memdesc:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parsing function for rules with non-terminal 'exp' on left side.  <a href="syntax_8c.html#a6cb225a6540d7f84b8ff3fc846967eb0">More...</a><br /></td></tr>
 <tr class="separator:a6cb225a6540d7f84b8ff3fc846967eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93465c160510560f95ecc766d2befd8e"><td class="memItemLeft" align="right" valign="top"><a id="a93465c160510560f95ecc766d2befd8e" name="a93465c160510560f95ecc766d2befd8e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_func_call_match</b> (char *params, char *args)</td></tr>
+<tr class="memitem:a93465c160510560f95ecc766d2befd8e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a93465c160510560f95ecc766d2befd8e">parser_func_call_match</a> (char *params, char *args)</td></tr>
+<tr class="memdesc:a93465c160510560f95ecc766d2befd8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether called function args match types of declared parameters.  <a href="syntax_8c.html#a93465c160510560f95ecc766d2befd8e">More...</a><br /></td></tr>
 <tr class="separator:a93465c160510560f95ecc766d2befd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b5c30635dab93f13f974c9b62348105"><td class="memItemLeft" align="right" valign="top"><a id="a5b5c30635dab93f13f974c9b62348105" name="a5b5c30635dab93f13f974c9b62348105"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_func_ret_match</b> (char *declared, char *returned)</td></tr>
+<tr class="memitem:a5b5c30635dab93f13f974c9b62348105"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a5b5c30635dab93f13f974c9b62348105">parser_func_ret_match</a> (char *declared, char *returned)</td></tr>
+<tr class="memdesc:a5b5c30635dab93f13f974c9b62348105"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether returned expressions match declared return types.  <a href="syntax_8c.html#a5b5c30635dab93f13f974c9b62348105">More...</a><br /></td></tr>
 <tr class="separator:a5b5c30635dab93f13f974c9b62348105"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86294db01938775919a4b64a502cd7ef"><td class="memItemLeft" align="right" valign="top"><a id="a86294db01938775919a4b64a502cd7ef" name="a86294db01938775919a4b64a502cd7ef"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_init_func_match</b> (char var_type, char *ret)</td></tr>
-<tr class="separator:a86294db01938775919a4b64a502cd7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4894cf6d6b9b50fc5512f6c2a2d4045a"><td class="memItemLeft" align="right" valign="top"><a id="a4894cf6d6b9b50fc5512f6c2a2d4045a" name="a4894cf6d6b9b50fc5512f6c2a2d4045a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_func_match</b> (char *ids, char *ret)</td></tr>
-<tr class="separator:a4894cf6d6b9b50fc5512f6c2a2d4045a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cf317255866cb0e015e95cce55d1f99"><td class="memItemLeft" align="right" valign="top"><a id="a6cf317255866cb0e015e95cce55d1f99" name="a6cf317255866cb0e015e95cce55d1f99"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_assign_exp_match</b> (char *ids, char *exps)</td></tr>
+<tr class="memitem:ae4595423d1237e5d74d89103a29e0eb6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ae4595423d1237e5d74d89103a29e0eb6">parser_init_func_match</a> (char var_type, char *returned)</td></tr>
+<tr class="memdesc:ae4595423d1237e5d74d89103a29e0eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether returned expressions match type of initialized variable.  <a href="syntax_8c.html#ae4595423d1237e5d74d89103a29e0eb6">More...</a><br /></td></tr>
+<tr class="separator:ae4595423d1237e5d74d89103a29e0eb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3128c90d24c7fb2cdf5a39cc90b22316"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a3128c90d24c7fb2cdf5a39cc90b22316">parser_assign_func_match</a> (char *ids, char *returned)</td></tr>
+<tr class="memdesc:a3128c90d24c7fb2cdf5a39cc90b22316"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether identifier list matches types of return values from function.  <a href="syntax_8c.html#a3128c90d24c7fb2cdf5a39cc90b22316">More...</a><br /></td></tr>
+<tr class="separator:a3128c90d24c7fb2cdf5a39cc90b22316"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cf317255866cb0e015e95cce55d1f99"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#a6cf317255866cb0e015e95cce55d1f99">parser_assign_exp_match</a> (char *ids, char *exps)</td></tr>
+<tr class="memdesc:a6cf317255866cb0e015e95cce55d1f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether identifier list matches types of assigned expressions.  <a href="syntax_8c.html#a6cf317255866cb0e015e95cce55d1f99">More...</a><br /></td></tr>
 <tr class="separator:a6cf317255866cb0e015e95cce55d1f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad631ed39455b15ad13189ad2e71b143d"><td class="memItemLeft" align="right" valign="top"><a id="ad631ed39455b15ad13189ad2e71b143d" name="ad631ed39455b15ad13189ad2e71b143d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_start</b> ()</td></tr>
+<tr class="memitem:ad631ed39455b15ad13189ad2e71b143d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="syntax_8c.html#ad631ed39455b15ad13189ad2e71b143d">parser_start</a> ()</td></tr>
+<tr class="memdesc:ad631ed39455b15ad13189ad2e71b143d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts recursive parsing process.  <a href="syntax_8c.html#ad631ed39455b15ad13189ad2e71b143d">More...</a><br /></td></tr>
 <tr class="separator:ad631ed39455b15ad13189ad2e71b143d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -239,7 +237,1289 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>parser_start</b> ()</
 Tomas Martykan </dd>
 <dd>
 Filip Stolfa </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a5e5991ba7f1c126c62fdae9b1adbe831" name="a5e5991ba7f1c126c62fdae9b1adbe831"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e5991ba7f1c126c62fdae9b1adbe831">&#9670;&nbsp;</a></span>parser_arg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_arg </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>arg_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>lvl</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'arg' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg_type</td><td>Character where to store argument type. </td></tr>
+    <tr><td class="paramname">lvl</td><td>If not NULL, integer where to store level of scope of currently being parsed argument. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="af6bbf9fdc15e5da93c39250052204c8f" name="af6bbf9fdc15e5da93c39250052204c8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6bbf9fdc15e5da93c39250052204c8f">&#9670;&nbsp;</a></span>parser_arg_append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_arg_append </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>arg_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>arg_pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'arg_append' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg_types</td><td>Dynamic string where to store argument types. </td></tr>
+    <tr><td class="paramname">arg_pos</td><td>Integer where to store number of argument currently being parsed, counting from zero. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a150ab0316fb7e508152bf43c87d65970" name="a150ab0316fb7e508152bf43c87d65970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a150ab0316fb7e508152bf43c87d65970">&#9670;&nbsp;</a></span>parser_arg_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_arg_list </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>arg_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>arg_pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'arg_list' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arg_types</td><td>Dynamic string where to store argument types. </td></tr>
+    <tr><td class="paramname">arg_pos</td><td>Integer where to store number of argument currently being parsed, counting from zero. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae0b5844df1a4cad394ec26cbd3622180" name="ae0b5844df1a4cad394ec26cbd3622180"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0b5844df1a4cad394ec26cbd3622180">&#9670;&nbsp;</a></span>parser_assign_exp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_assign_exp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>id_types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for assignment of expressions. </p>
+<p >Expects expression list. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id_types</td><td>Dynamic string of identifier types in identifier list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6cf317255866cb0e015e95cce55d1f99" name="a6cf317255866cb0e015e95cce55d1f99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cf317255866cb0e015e95cce55d1f99">&#9670;&nbsp;</a></span>parser_assign_exp_match()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_assign_exp_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ids</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>exps</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether identifier list matches types of assigned expressions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>Identifier list types. </td></tr>
+    <tr><td class="paramname">exps</td><td>Assigned expression types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if matches. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a3128c90d24c7fb2cdf5a39cc90b22316" name="a3128c90d24c7fb2cdf5a39cc90b22316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3128c90d24c7fb2cdf5a39cc90b22316">&#9670;&nbsp;</a></span>parser_assign_func_match()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_assign_func_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ids</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>returned</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether identifier list matches types of return values from function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>Identifier list types. </td></tr>
+    <tr><td class="paramname">returned</td><td>Declared return types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if matches. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a8bed4379eb136e25ba2568ba207dc859" name="a8bed4379eb136e25ba2568ba207dc859"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bed4379eb136e25ba2568ba207dc859">&#9670;&nbsp;</a></span>parser_assign_st()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_assign_st </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for assignment statement. </p>
+<p >Expects TT_COMMA or TT_ASSIGN token. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Name of fist variable from identifier list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab6b302ab6ca3eb92d2c49d884f527c11" name="ab6b302ab6ca3eb92d2c49d884f527c11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6b302ab6ca3eb92d2c49d884f527c11">&#9670;&nbsp;</a></span>parser_assign_what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_assign_what </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>id_types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function to determine, whether expression or function will be assigned. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id_types</td><td>Dynamic string of identifier types in identifier list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6cb225a6540d7f84b8ff3fc846967eb0" name="a6cb225a6540d7f84b8ff3fc846967eb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cb225a6540d7f84b8ff3fc846967eb0">&#9670;&nbsp;</a></span>parser_exp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_exp </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>exp_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'exp' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">exp_type</td><td>Character where to store expression type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab7d5253a6a6e73184e4eb4a2024df31f" name="ab7d5253a6a6e73184e4eb4a2024df31f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7d5253a6a6e73184e4eb4a2024df31f">&#9670;&nbsp;</a></span>parser_exp_append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_exp_append </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>exp_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'exp_append' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id_types</td><td>String of identifier types in identifier list. </td></tr>
+    <tr><td class="paramname">pos</td><td>Number of identifier / expression, counting from zero. </td></tr>
+    <tr><td class="paramname">exp_types</td><td>Dynamic string where to store expression types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a536ffb711a51ae7637f04d03e101279a" name="a536ffb711a51ae7637f04d03e101279a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a536ffb711a51ae7637f04d03e101279a">&#9670;&nbsp;</a></span>parser_exp_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_exp_list </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>exp_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'exp_list' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id_types</td><td>String of identifier types in identifier list. </td></tr>
+    <tr><td class="paramname">exp_types</td><td>Dynamic string where to store expression types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a93465c160510560f95ecc766d2befd8e" name="a93465c160510560f95ecc766d2befd8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93465c160510560f95ecc766d2befd8e">&#9670;&nbsp;</a></span>parser_func_call_match()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_func_call_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether called function args match types of declared parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">params</td><td>Declared parameter types. </td></tr>
+    <tr><td class="paramname">args</td><td>Passed argument types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if matches. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a5b5c30635dab93f13f974c9b62348105" name="a5b5c30635dab93f13f974c9b62348105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b5c30635dab93f13f974c9b62348105">&#9670;&nbsp;</a></span>parser_func_ret_match()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_func_ret_match </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>declared</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>returned</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether returned expressions match declared return types. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">declared</td><td>Declared return types. </td></tr>
+    <tr><td class="paramname">returned</td><td>Returned expression types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if matches. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="acbfea2e0f31f8de03b52e49f0b149b7c" name="acbfea2e0f31f8de03b52e49f0b149b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbfea2e0f31f8de03b52e49f0b149b7c">&#9670;&nbsp;</a></span>parser_function_call()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_function_call </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td>
+          <td class="paramname"><em>func</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for function call. </p>
+<p >Does not expect TT_ID token, but TT_LPAR token. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>Function data in symtable of now being parsed function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aa2020179ae85e83ba0b13abce71f5c67" name="aa2020179ae85e83ba0b13abce71f5c67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2020179ae85e83ba0b13abce71f5c67">&#9670;&nbsp;</a></span>parser_function_call_by_id()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_function_call_by_id </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for function call. </p>
+<p >Expects TT_ID token. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>Name of now being parsed function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a74aebdc32df8115bdd81c88aee2f1d39" name="a74aebdc32df8115bdd81c88aee2f1d39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74aebdc32df8115bdd81c88aee2f1d39">&#9670;&nbsp;</a></span>parser_function_dec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_function_dec </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for function declaration. </p>
+<p >Expects TT_ID token. </p><dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a8abbd965449c5ce721dea4b32d9a7731" name="a8abbd965449c5ce721dea4b32d9a7731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8abbd965449c5ce721dea4b32d9a7731">&#9670;&nbsp;</a></span>parser_function_def()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_function_def </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for function definition. </p>
+<p >Expects TT_ID token. </p><dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="af476d5b19cee3ac9d7970525d83f5625" name="af476d5b19cee3ac9d7970525d83f5625"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af476d5b19cee3ac9d7970525d83f5625">&#9670;&nbsp;</a></span>parser_id_after()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_id_after </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'id_after' on left side. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aa0bfa59f24c76e9d5452857218761fca" name="aa0bfa59f24c76e9d5452857218761fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0bfa59f24c76e9d5452857218761fca">&#9670;&nbsp;</a></span>parser_id_append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_id_append </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>id_types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'id_append' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id_types</td><td>Dynamic string where to store identifier types in identifier list. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a6885555682658193451eebfd86d6680d" name="a6885555682658193451eebfd86d6680d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6885555682658193451eebfd86d6680d">&#9670;&nbsp;</a></span>parser_if_st()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_if_st </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>ret_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for if statement. </p>
+<p >Expects expression. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func_name</td><td>Name of now being parsed function. </td></tr>
+    <tr><td class="paramname">ret_types</td><td>Dynamic string of return types of current function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae90d31bfdea12555c0d04173905393e1" name="ae90d31bfdea12555c0d04173905393e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae90d31bfdea12555c0d04173905393e1">&#9670;&nbsp;</a></span>parser_init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_init </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>var_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool *&#160;</td>
+          <td class="paramname"><em>did_init</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'init' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">var_type</td><td>Type of now being parsed variable. </td></tr>
+    <tr><td class="paramname">did_init</td><td>Boolean where to store whether was variable initialized. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae887c32f24a3011166ee10e3bfa3a101" name="ae887c32f24a3011166ee10e3bfa3a101"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae887c32f24a3011166ee10e3bfa3a101">&#9670;&nbsp;</a></span>parser_init_after()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_init_after </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>var_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'init_after' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">var_type</td><td>Type of now being parsed variable. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ae4595423d1237e5d74d89103a29e0eb6" name="ae4595423d1237e5d74d89103a29e0eb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4595423d1237e5d74d89103a29e0eb6">&#9670;&nbsp;</a></span>parser_init_func_match()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_init_func_match </td>
+          <td>(</td>
+          <td class="paramtype">char&#160;</td>
+          <td class="paramname"><em>var_type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>returned</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks whether returned expressions match type of initialized variable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">var_type</td><td>Initialized variable type. </td></tr>
+    <tr><td class="paramname">returned</td><td>Returned expression types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if matches. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aa81f4a34faada80a8d40fb135df196ee" name="aa81f4a34faada80a8d40fb135df196ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa81f4a34faada80a8d40fb135df196ee">&#9670;&nbsp;</a></span>parser_local_scope()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_local_scope </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>ret_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>create_scope</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'local_scope' on left side. </p>
+<p >Nobody will read this. If so, gde body? </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func_name</td><td>Name of now being parsed function. </td></tr>
+    <tr><td class="paramname">ret_types</td><td>Dynamic string of return types of current function. </td></tr>
+    <tr><td class="paramname">create_scope</td><td>To create or not to create local scope in symtable? </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a64d318e0fa2b04e415144a7556e28707" name="a64d318e0fa2b04e415144a7556e28707"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64d318e0fa2b04e415144a7556e28707">&#9670;&nbsp;</a></span>parser_param()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_param </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>param_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'param' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param_type</td><td>Character where to store parameter type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab2382e639bfee638c111c5154f0a7eae" name="ab2382e639bfee638c111c5154f0a7eae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2382e639bfee638c111c5154f0a7eae">&#9670;&nbsp;</a></span>parser_param_append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_param_append </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>param_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>param_pos</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'param_append' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param_types</td><td>Dynamic string where to store parameter types. </td></tr>
+    <tr><td class="paramname">param_pos</td><td>Number of parameter currently being parsed, counting from zero. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="acfa0211449c90f0b93e50082413f0ff7" name="acfa0211449c90f0b93e50082413f0ff7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfa0211449c90f0b93e50082413f0ff7">&#9670;&nbsp;</a></span>parser_param_list()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_param_list </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>param_types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'param_list' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param_types</td><td>Dynamic string where to store parameter types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aa60ae94ea5c36a9a392505d1057ab398" name="aa60ae94ea5c36a9a392505d1057ab398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa60ae94ea5c36a9a392505d1057ab398">&#9670;&nbsp;</a></span>parser_require()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_require </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for require statement. </p>
+<p >Expects TT_STRING token. </p><dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a0bd371155c0ef0e3c44ffe195d88b622" name="a0bd371155c0ef0e3c44ffe195d88b622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0bd371155c0ef0e3c44ffe195d88b622">&#9670;&nbsp;</a></span>parser_return_what()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_return_what </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ret_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>exp_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'return_what' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ret_types</td><td>String of return types of current function. </td></tr>
+    <tr><td class="paramname">exp_types</td><td>Dynamic string where to store expression types returned from function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a100d057bb425cb7141fb2d84f168a4bd" name="a100d057bb425cb7141fb2d84f168a4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a100d057bb425cb7141fb2d84f168a4bd">&#9670;&nbsp;</a></span>parser_returned()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_returned </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>ret_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>exp_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'returned' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ret_types</td><td>String of return types of current function. </td></tr>
+    <tr><td class="paramname">exp_types</td><td>Dynamic string where to store expression types returned from function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a7228945c933316a1554f497ddb455326" name="a7228945c933316a1554f497ddb455326"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7228945c933316a1554f497ddb455326">&#9670;&nbsp;</a></span>parser_st_global()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_st_global </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'st_global' on left side. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a1f4e3940bc9fc86994626904195ba796" name="a1f4e3940bc9fc86994626904195ba796"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f4e3940bc9fc86994626904195ba796">&#9670;&nbsp;</a></span>parser_st_local()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_st_local </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>ret_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'st_local' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func_name</td><td>Name of now being parsed function. </td></tr>
+    <tr><td class="paramname">ret_types</td><td>Dynamic string of return types of current function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ad631ed39455b15ad13189ad2e71b143d" name="ad631ed39455b15ad13189ad2e71b143d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad631ed39455b15ad13189ad2e71b143d">&#9670;&nbsp;</a></span>parser_start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts recursive parsing process. </p>
+<p >Recursive parser automatically launches expression parser when needed. </p><dl class="section return"><dt>Returns</dt><dd>True if program is syntactically and semantically correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ace79a0288e86fd98d7c4ffa2ab1d0d63" name="ace79a0288e86fd98d7c4ffa2ab1d0d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace79a0288e86fd98d7c4ffa2ab1d0d63">&#9670;&nbsp;</a></span>parser_stlist_global()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_stlist_global </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'stlist_global' on left side. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a9b090ef353d0068baeaf4e27a10c6ed8" name="a9b090ef353d0068baeaf4e27a10c6ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b090ef353d0068baeaf4e27a10c6ed8">&#9670;&nbsp;</a></span>parser_stlist_local()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_stlist_local </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>ret_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'stlist_local' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func_name</td><td>Name of now being parsed function. </td></tr>
+    <tr><td class="paramname">ret_types</td><td>Dynamic string of return types of current function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ac94d3534477b4e640670454f7f3f7ad2" name="ac94d3534477b4e640670454f7f3f7ad2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac94d3534477b4e640670454f7f3f7ad2">&#9670;&nbsp;</a></span>parser_type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_type </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'type' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">type</td><td>Character where to store type. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a985afd260cb6b34822936bc351e9f4d1" name="a985afd260cb6b34822936bc351e9f4d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a985afd260cb6b34822936bc351e9f4d1">&#9670;&nbsp;</a></span>parser_type_append()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_type_append </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'type_append' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">types</td><td>Dynamic string where to store types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a97382bb9b7a4dc471c201e04a27a688d" name="a97382bb9b7a4dc471c201e04a27a688d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97382bb9b7a4dc471c201e04a27a688d">&#9670;&nbsp;</a></span>parser_type_list_param()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_type_list_param </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'type_list_param' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">types</td><td>Dynamic string where to store types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a84d15e9ab8ae78394f188b6e70c44396" name="a84d15e9ab8ae78394f188b6e70c44396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d15e9ab8ae78394f188b6e70c44396">&#9670;&nbsp;</a></span>parser_type_list_return()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_type_list_return </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>types</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for rules with non-terminal 'type_list_return' on left side. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">types</td><td>Dynamic string where to store types. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a0f3b1bcd2ff6c09224eb6437590b8b68" name="a0f3b1bcd2ff6c09224eb6437590b8b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f3b1bcd2ff6c09224eb6437590b8b68">&#9670;&nbsp;</a></span>parser_var_dec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_var_dec </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for variable declaration. </p>
+<p >Expects TT_ID token. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func_name</td><td>Name of now being parsed function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ad97079d76d75f05519da72b0ebf9fcb8" name="ad97079d76d75f05519da72b0ebf9fcb8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad97079d76d75f05519da72b0ebf9fcb8">&#9670;&nbsp;</a></span>parser_while_st()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool parser_while_st </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>func_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structdynstr__t.html">dynstr_t</a> *&#160;</td>
+          <td class="paramname"><em>ret_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parsing function for while statement. </p>
+<p >Expects expression. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func_name</td><td>Name of now being parsed function. </td></tr>
+    <tr><td class="paramname">ret_types</td><td>Dynamic string of return types of current function. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
