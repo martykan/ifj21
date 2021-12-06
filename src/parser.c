@@ -54,7 +54,20 @@ bool parser_init_symtab() {
   return symtab;
 }
 
+/**
+ * Check whether function was defined.
+ * If not, sets error.
+ * Used as callback in foreach.
+ * @param data Data of record.
+ */
+void is_defined(symtab_data_t* data) {
+  if(!data->func_data.was_defined) {
+    error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
+  }
+}
+
 void parser_destroy_symtab() {
+  symtab_subtab_foreach(symtab->global_scope, is_defined);
   symtab_free(symtab);
   symtab = NULL;
 }

@@ -231,7 +231,6 @@ symtab_func_data_t* symtab_insert_func(symtab_t* symtab, symtab_key_t key);
  * Executes function for each record in subtable.
  * @param subtab Subtable to operate on.
  * @param f Function to execute.
- * @param write_to Where to save data.
  */
 void symtab_subtab_foreach(const symtab_subtab_t* subtab,
                            void (*f)(symtab_data_t* data));
