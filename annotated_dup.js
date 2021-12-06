@@ -12,6 +12,5 @@ var annotated_dup =
     [ "symtab_subtab_t", "structsymtab__subtab__t.html", "structsymtab__subtab__t" ],
     [ "symtab_t", "structsymtab__t.html", "structsymtab__t" ],
     [ "symtab_var_data_t", "structsymtab__var__data__t.html", "structsymtab__var__data__t" ],
-    [ "symtab_vars_t", "structsymtab__vars__t.html", null ],
     [ "token_t", "structtoken__t.html", "structtoken__t" ]
 ];

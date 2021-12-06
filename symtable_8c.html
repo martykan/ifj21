@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('symtable_8c.html',''); initResizable()
 Macros</h2></td></tr>
 <tr class="memitem:ad97670a45f2d50fa94e56299096ec9fa"><td class="memItemLeft" align="right" valign="top"><a id="ad97670a45f2d50fa94e56299096ec9fa" name="ad97670a45f2d50fa94e56299096ec9fa"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>SYMTAB_BUCKET_COUNT</b>&#160;&#160;&#160;83</td></tr>
+<tr class="memdesc:ad97670a45f2d50fa94e56299096ec9fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bucket count of symtable. <br /></td></tr>
 <tr class="separator:ad97670a45f2d50fa94e56299096ec9fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc7d71657be8975a51684e41029b7964"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#abc7d71657be8975a51684e41029b7964">get16bits</a>(d)</td></tr>
 <tr class="separator:abc7d71657be8975a51684e41029b7964"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,6 +118,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aaf1df16e5da1f8204710c0ca70148e13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__record__t.html">symtab_record_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#aaf1df16e5da1f8204710c0ca70148e13">symtab_record_create</a> (<a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
 <tr class="memdesc:aaf1df16e5da1f8204710c0ca70148e13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates record of identifier.  <a href="symtable_8c.html#aaf1df16e5da1f8204710c0ca70148e13">More...</a><br /></td></tr>
 <tr class="separator:aaf1df16e5da1f8204710c0ca70148e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a277cbeb1054a68c6a672f9c600887cf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a277cbeb1054a68c6a672f9c600887cf6">symtab_init_builtin</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, char *name, char *param_types, char *return_types)</td></tr>
+<tr class="memdesc:a277cbeb1054a68c6a672f9c600887cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts bultin function into the symtable.  <a href="symtable_8c.html#a277cbeb1054a68c6a672f9c600887cf6">More...</a><br /></td></tr>
+<tr class="separator:a277cbeb1054a68c6a672f9c600887cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7b3941964af7246d304dbfa605fcf77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#af7b3941964af7246d304dbfa605fcf77">symtab_subtab_free</a> (<a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab)</td></tr>
 <tr class="memdesc:af7b3941964af7246d304dbfa605fcf77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys whole subtable.  <a href="symtable_8c.html#af7b3941964af7246d304dbfa605fcf77">More...</a><br /></td></tr>
 <tr class="separator:af7b3941964af7246d304dbfa605fcf77"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -132,15 +136,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8ca0bd723a5fc496be01b58ff6486180"><td class="memItemLeft" align="right" valign="top"><a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a8ca0bd723a5fc496be01b58ff6486180">symtab_subtab_insert</a> (<a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key, char type)</td></tr>
 <tr class="memdesc:a8ca0bd723a5fc496be01b58ff6486180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in subtable.  <a href="symtable_8c.html#a8ca0bd723a5fc496be01b58ff6486180">More...</a><br /></td></tr>
 <tr class="separator:a8ca0bd723a5fc496be01b58ff6486180"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a128053b88efe6c9b882c66a78bd61845"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a128053b88efe6c9b882c66a78bd61845">symtab_subtab_erase</a> (<a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
-<tr class="memdesc:a128053b88efe6c9b882c66a78bd61845"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erases record with key from subtable.  <a href="symtable_8c.html#a128053b88efe6c9b882c66a78bd61845">More...</a><br /></td></tr>
-<tr class="separator:a128053b88efe6c9b882c66a78bd61845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af4556f56227ab989708be3e62e9910ac"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#af4556f56227ab989708be3e62e9910ac">SuperFastHash</a> (<a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> data)</td></tr>
 <tr class="memdesc:af4556f56227ab989708be3e62e9910ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hash function.  <a href="symtable_8c.html#af4556f56227ab989708be3e62e9910ac">More...</a><br /></td></tr>
 <tr class="separator:af4556f56227ab989708be3e62e9910ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a277cbeb1054a68c6a672f9c600887cf6"><td class="memItemLeft" align="right" valign="top"><a id="a277cbeb1054a68c6a672f9c600887cf6" name="a277cbeb1054a68c6a672f9c600887cf6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_init_builtin</b> (<a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, char *name, char *param_types, char *return_types)</td></tr>
-<tr class="separator:a277cbeb1054a68c6a672f9c600887cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38b92535c3115ae2c1f4bd594fa2a3c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a38b92535c3115ae2c1f4bd594fa2a3c9">symtab_create</a> ()</td></tr>
 <tr class="memdesc:a38b92535c3115ae2c1f4bd594fa2a3c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates symbol table.  <a href="symtable_8c.html#a38b92535c3115ae2c1f4bd594fa2a3c9">More...</a><br /></td></tr>
 <tr class="separator:a38b92535c3115ae2c1f4bd594fa2a3c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,10 +155,10 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_init_builtin</
 <tr class="memdesc:a02c3969911087f375a9fbd425b813e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops and destroys local table on the top of the stack of symbol table.  <a href="symtable_8c.html#a02c3969911087f375a9fbd425b813e16">More...</a><br /></td></tr>
 <tr class="separator:a02c3969911087f375a9fbd425b813e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0c3bcd2477eb596edf07fa7301e042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#abe0c3bcd2477eb596edf07fa7301e042">symtab_find_var</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key, int *lvl)</td></tr>
-<tr class="memdesc:abe0c3bcd2477eb596edf07fa7301e042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for variable identifier.  <a href="symtable_8c.html#abe0c3bcd2477eb596edf07fa7301e042">More...</a><br /></td></tr>
+<tr class="memdesc:abe0c3bcd2477eb596edf07fa7301e042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for most nested variable.  <a href="symtable_8c.html#abe0c3bcd2477eb596edf07fa7301e042">More...</a><br /></td></tr>
 <tr class="separator:abe0c3bcd2477eb596edf07fa7301e042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af76930dbf912a840bb2b2f67fb975b3a"><td class="memItemLeft" align="right" valign="top"><a id="af76930dbf912a840bb2b2f67fb975b3a" name="af76930dbf912a840bb2b2f67fb975b3a"></a>
-<a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_find_var_local</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memitem:af76930dbf912a840bb2b2f67fb975b3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#af76930dbf912a840bb2b2f67fb975b3a">symtab_find_var_local</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memdesc:af76930dbf912a840bb2b2f67fb975b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches table on top of stack (most nested scope) for variable.  <a href="symtable_8c.html#af76930dbf912a840bb2b2f67fb975b3a">More...</a><br /></td></tr>
 <tr class="separator:af76930dbf912a840bb2b2f67fb975b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617504951efaba3dd3464547b5c4078f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a617504951efaba3dd3464547b5c4078f">symtab_find_func</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
 <tr class="memdesc:a617504951efaba3dd3464547b5c4078f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches global table for function identifier.  <a href="symtable_8c.html#a617504951efaba3dd3464547b5c4078f">More...</a><br /></td></tr>
@@ -169,11 +167,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_init_builtin</
 <tr class="memdesc:a14748ff38a3c64db8d7211f639597e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in topmost local table (most nested scope).  <a href="symtable_8c.html#a14748ff38a3c64db8d7211f639597e25">More...</a><br /></td></tr>
 <tr class="separator:a14748ff38a3c64db8d7211f639597e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85d089ba61b3efb9b799577e908fe104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a85d089ba61b3efb9b799577e908fe104">symtab_insert_func</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
-<tr class="memdesc:a85d089ba61b3efb9b799577e908fe104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in global local table.  <a href="symtable_8c.html#a85d089ba61b3efb9b799577e908fe104">More...</a><br /></td></tr>
+<tr class="memdesc:a85d089ba61b3efb9b799577e908fe104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in global table.  <a href="symtable_8c.html#a85d089ba61b3efb9b799577e908fe104">More...</a><br /></td></tr>
 <tr class="separator:a85d089ba61b3efb9b799577e908fe104"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79558d5867fcbbb13d928755e13163d4"><td class="memItemLeft" align="right" valign="top"><a id="a79558d5867fcbbb13d928755e13163d4" name="a79558d5867fcbbb13d928755e13163d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_get_top_vars</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="structsymtab__vars__t.html">symtab_vars_t</a> *vars)</td></tr>
-<tr class="separator:a79558d5867fcbbb13d928755e13163d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a075a52c6c4eca75f50d99aca01cad17f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8c.html#a075a52c6c4eca75f50d99aca01cad17f">symtab_subtab_foreach</a> (const <a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, void(*f)(<a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *data))</td></tr>
 <tr class="memdesc:a075a52c6c4eca75f50d99aca01cad17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function for each record in subtable.  <a href="symtable_8c.html#a075a52c6c4eca75f50d99aca01cad17f">More...</a><br /></td></tr>
 <tr class="separator:a075a52c6c4eca75f50d99aca01cad17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -350,7 +345,46 @@ Filip Stolfa </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Searches whole stack of local tables for variable identifier. </p>
+<p>Searches whole stack of local tables for most nested variable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symtab</td><td>Symbol table to search on. </td></tr>
+    <tr><td class="paramname">key</td><td>Key to search for. </td></tr>
+    <tr><td class="paramname">lvl</td><td>If not NULL, variable to which store level of scope. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Found record data. NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="af76930dbf912a840bb2b2f67fb975b3a" name="af76930dbf912a840bb2b2f67fb975b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76930dbf912a840bb2b2f67fb975b3a">&#9670;&nbsp;</a></span>symtab_find_var_local()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> * symtab_find_var_local </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td>
+          <td class="paramname"><em>symtab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Searches table on top of stack (most nested scope) for variable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to search on. </td></tr>
@@ -388,6 +422,57 @@ Filip Stolfa </dd></dl>
 
 </div>
 </div>
+<a id="a277cbeb1054a68c6a672f9c600887cf6" name="a277cbeb1054a68c6a672f9c600887cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a277cbeb1054a68c6a672f9c600887cf6">&#9670;&nbsp;</a></span>symtab_init_builtin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void symtab_init_builtin </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td>
+          <td class="paramname"><em>symtab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>param_types</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>return_types</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Inserts bultin function into the symtable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symtab</td><td>Symtable to insert into. </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the builtin function. </td></tr>
+    <tr><td class="paramname">param_types</td><td>Data types of parameters of the builtin function. </td></tr>
+    <tr><td class="paramname">return_types</td><td>Data types of return values of the builtin function. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a85d089ba61b3efb9b799577e908fe104" name="a85d089ba61b3efb9b799577e908fe104"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a85d089ba61b3efb9b799577e908fe104">&#9670;&nbsp;</a></span>symtab_insert_func()</h2>
 
@@ -414,10 +499,10 @@ Filip Stolfa </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Creates and inserts new record in global local table. </p>
+<p>Creates and inserts new record in global table. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">symtab</td><td>Symbol table to instert in. </td></tr>
+    <tr><td class="paramname">symtab</td><td>Symbol table to instert into. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
   </table>
   </dd>
@@ -455,7 +540,7 @@ Filip Stolfa </dd></dl>
 <p>Creates and inserts new record in topmost local table (most nested scope). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">symtab</td><td>Symbol table to instert in. </td></tr>
+    <tr><td class="paramname">symtab</td><td>Symbol table to instert into. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
   </table>
   </dd>
@@ -567,44 +652,6 @@ Filip Stolfa </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Created subtable. NULL if failed to create. </dd></dl>
-
-</div>
-</div>
-<a id="a128053b88efe6c9b882c66a78bd61845" name="a128053b88efe6c9b882c66a78bd61845"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a128053b88efe6c9b882c66a78bd61845">&#9670;&nbsp;</a></span>symtab_subtab_erase()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool symtab_subtab_erase </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *&#160;</td>
-          <td class="paramname"><em>subtab</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td>
-          <td class="paramname"><em>key</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Erases record with key from subtable. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">subtab</td><td>Subtable to erase record from. </td></tr>
-    <tr><td class="paramname">key</td><td>Key of record to erase. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>True if found and deleted. False if not found. </dd></dl>
 
 </div>
 </div>
@@ -745,8 +792,9 @@ Filip Stolfa </dd></dl>
 <p>Creates and inserts new record in subtable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">subtab</td><td>Subtable to instert on. </td></tr>
+    <tr><td class="paramname">subtab</td><td>Subtable to instert into. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
+    <tr><td class="paramname">type</td><td>Type of inserted record. 'v' - variable, 'f' - function. </td></tr>
   </table>
   </dd>
 </dl>

@@ -1,7 +1,6 @@
 var symtable_8h =
 [
     [ "symtab_var_data_t", "structsymtab__var__data__t.html", "structsymtab__var__data__t" ],
-    [ "symtab_vars_t", "structsymtab__vars__t.html", null ],
     [ "symtab_func_data_t", "structsymtab__func__data__t.html", "structsymtab__func__data__t" ],
     [ "symtab_data_t", "unionsymtab__data__t.html", "unionsymtab__data__t" ],
     [ "symtab_record_t", "structsymtab__record__t.html", "structsymtab__record__t" ],
@@ -12,6 +11,7 @@ var symtable_8h =
     [ "symtab_create", "symtable_8h.html#a38b92535c3115ae2c1f4bd594fa2a3c9", null ],
     [ "symtab_find_func", "symtable_8h.html#a617504951efaba3dd3464547b5c4078f", null ],
     [ "symtab_find_var", "symtable_8h.html#abe0c3bcd2477eb596edf07fa7301e042", null ],
+    [ "symtab_find_var_local", "symtable_8h.html#af76930dbf912a840bb2b2f67fb975b3a", null ],
     [ "symtab_free", "symtable_8h.html#a549ffd9107811e5b88384c16342cc723", null ],
     [ "symtab_insert_func", "symtable_8h.html#a85d089ba61b3efb9b799577e908fe104", null ],
     [ "symtab_insert_var", "symtable_8h.html#a14748ff38a3c64db8d7211f639597e25", null ],

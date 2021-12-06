@@ -97,7 +97,6 @@ $(document).ready(function(){initNavTree('symtable_8h.html',''); initResizable()
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
 </div>
 <p><a href="symtable_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -105,8 +104,6 @@ $(document).ready(function(){initNavTree('symtable_8h.html',''); initResizable()
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data of the variable identifier.  <a href="structsymtab__var__data__t.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__vars__t.html">symtab_vars_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data of the function identifier.  <a href="structsymtab__func__data__t.html#details">More...</a><br /></td></tr>
@@ -149,10 +146,10 @@ Functions</h2></td></tr>
 <tr class="memdesc:a02c3969911087f375a9fbd425b813e16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pops and destroys local table on the top of the stack of symbol table.  <a href="symtable_8h.html#a02c3969911087f375a9fbd425b813e16">More...</a><br /></td></tr>
 <tr class="separator:a02c3969911087f375a9fbd425b813e16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe0c3bcd2477eb596edf07fa7301e042"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#abe0c3bcd2477eb596edf07fa7301e042">symtab_find_var</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key, int *lvl)</td></tr>
-<tr class="memdesc:abe0c3bcd2477eb596edf07fa7301e042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for variable identifier.  <a href="symtable_8h.html#abe0c3bcd2477eb596edf07fa7301e042">More...</a><br /></td></tr>
+<tr class="memdesc:abe0c3bcd2477eb596edf07fa7301e042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches whole stack of local tables for most nested variable.  <a href="symtable_8h.html#abe0c3bcd2477eb596edf07fa7301e042">More...</a><br /></td></tr>
 <tr class="separator:abe0c3bcd2477eb596edf07fa7301e042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af76930dbf912a840bb2b2f67fb975b3a"><td class="memItemLeft" align="right" valign="top"><a id="af76930dbf912a840bb2b2f67fb975b3a" name="af76930dbf912a840bb2b2f67fb975b3a"></a>
-<a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_find_var_local</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memitem:af76930dbf912a840bb2b2f67fb975b3a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#af76930dbf912a840bb2b2f67fb975b3a">symtab_find_var_local</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
+<tr class="memdesc:af76930dbf912a840bb2b2f67fb975b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches table on top of stack (most nested scope) for variable.  <a href="symtable_8h.html#af76930dbf912a840bb2b2f67fb975b3a">More...</a><br /></td></tr>
 <tr class="separator:af76930dbf912a840bb2b2f67fb975b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a617504951efaba3dd3464547b5c4078f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a617504951efaba3dd3464547b5c4078f">symtab_find_func</a> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
 <tr class="memdesc:a617504951efaba3dd3464547b5c4078f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches global table for function identifier.  <a href="symtable_8h.html#a617504951efaba3dd3464547b5c4078f">More...</a><br /></td></tr>
@@ -161,14 +158,11 @@ Functions</h2></td></tr>
 <tr class="memdesc:a14748ff38a3c64db8d7211f639597e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in topmost local table (most nested scope).  <a href="symtable_8h.html#a14748ff38a3c64db8d7211f639597e25">More...</a><br /></td></tr>
 <tr class="separator:a14748ff38a3c64db8d7211f639597e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85d089ba61b3efb9b799577e908fe104"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structsymtab__func__data__t.html">symtab_func_data_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a85d089ba61b3efb9b799577e908fe104">symtab_insert_func</a> (<a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a> key)</td></tr>
-<tr class="memdesc:a85d089ba61b3efb9b799577e908fe104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in global local table.  <a href="symtable_8h.html#a85d089ba61b3efb9b799577e908fe104">More...</a><br /></td></tr>
+<tr class="memdesc:a85d089ba61b3efb9b799577e908fe104"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and inserts new record in global table.  <a href="symtable_8h.html#a85d089ba61b3efb9b799577e908fe104">More...</a><br /></td></tr>
 <tr class="separator:a85d089ba61b3efb9b799577e908fe104"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a075a52c6c4eca75f50d99aca01cad17f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="symtable_8h.html#a075a52c6c4eca75f50d99aca01cad17f">symtab_subtab_foreach</a> (const <a class="el" href="structsymtab__subtab__t.html">symtab_subtab_t</a> *subtab, void(*f)(<a class="el" href="unionsymtab__data__t.html">symtab_data_t</a> *data))</td></tr>
 <tr class="memdesc:a075a52c6c4eca75f50d99aca01cad17f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function for each record in subtable.  <a href="symtable_8h.html#a075a52c6c4eca75f50d99aca01cad17f">More...</a><br /></td></tr>
 <tr class="separator:a075a52c6c4eca75f50d99aca01cad17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79558d5867fcbbb13d928755e13163d4"><td class="memItemLeft" align="right" valign="top"><a id="a79558d5867fcbbb13d928755e13163d4" name="a79558d5867fcbbb13d928755e13163d4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>symtab_get_top_vars</b> (const <a class="el" href="structsymtab__t.html">symtab_t</a> *<a class="el" href="parser_8h.html#a2a52dd62f3ab3b8840b457dd1fb96205">symtab</a>, <a class="el" href="structsymtab__vars__t.html">symtab_vars_t</a> *vars)</td></tr>
-<tr class="separator:a79558d5867fcbbb13d928755e13163d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Symbol table API. </p>
@@ -300,7 +294,46 @@ IMPLEMENTATION</h1>
       </table>
 </div><div class="memdoc">
 
-<p>Searches whole stack of local tables for variable identifier. </p>
+<p>Searches whole stack of local tables for most nested variable. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">symtab</td><td>Symbol table to search on. </td></tr>
+    <tr><td class="paramname">key</td><td>Key to search for. </td></tr>
+    <tr><td class="paramname">lvl</td><td>If not NULL, variable to which store level of scope. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Found record data. NULL otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="af76930dbf912a840bb2b2f67fb975b3a" name="af76930dbf912a840bb2b2f67fb975b3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76930dbf912a840bb2b2f67fb975b3a">&#9670;&nbsp;</a></span>symtab_find_var_local()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structsymtab__var__data__t.html">symtab_var_data_t</a> * symtab_find_var_local </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structsymtab__t.html">symtab_t</a> *&#160;</td>
+          <td class="paramname"><em>symtab</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="symtable_8h.html#ab394458f61b560b16e58bf36e0c9891a">symtab_key_t</a>&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Searches table on top of stack (most nested scope) for variable. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">symtab</td><td>Symbol table to search on. </td></tr>
@@ -364,10 +397,10 @@ IMPLEMENTATION</h1>
       </table>
 </div><div class="memdoc">
 
-<p>Creates and inserts new record in global local table. </p>
+<p>Creates and inserts new record in global table. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">symtab</td><td>Symbol table to instert in. </td></tr>
+    <tr><td class="paramname">symtab</td><td>Symbol table to instert into. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
   </table>
   </dd>
@@ -405,7 +438,7 @@ IMPLEMENTATION</h1>
 <p>Creates and inserts new record in topmost local table (most nested scope). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">symtab</td><td>Symbol table to instert in. </td></tr>
+    <tr><td class="paramname">symtab</td><td>Symbol table to instert into. </td></tr>
     <tr><td class="paramname">key</td><td>Key of the new record. </td></tr>
   </table>
   </dd>
