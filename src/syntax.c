@@ -501,9 +501,6 @@ bool parser_function_def() {
       codegen_function_definition_begin(id);
       if (parser_param_list(&param_types)) {
         token = token_buff(TOKEN_THIS);
-        if (error_get()) {
-          goto POP_SUBTAB;
-        }
 
         if (token->type == TT_RPAR) {
           token = token_buff(TOKEN_NEW);
@@ -511,7 +508,10 @@ bool parser_function_def() {
             goto POP_SUBTAB;
           }
 
-          if (!parser_type_list_return(&ret_types)) return false;
+          if (!parser_type_list_return(&ret_types)) {
+            goto POP_SUBTAB;
+          }
+
           if (declared_func) {
             if (strcmp(declared_func->param_types, param_types.str) ||
                 strcmp(declared_func->return_types, ret_types.str)) {
@@ -525,8 +525,10 @@ bool parser_function_def() {
               goto POP_SUBTAB;
             }
           }
+
           codegen_function_definition_body();
           parser_define_func(id);
+
           if (parser_local_scope(id, &ret_types, false)) {
             token = token_buff(TOKEN_THIS);
 
@@ -582,6 +584,7 @@ bool parser_function_dec() {
   if (error_get()) {
     goto FREE_ID;
   }
+
   dynstr_t ret_types;
   dynstr_init(&ret_types);
   if (error_get()) {
@@ -665,11 +668,6 @@ bool parser_function_call_by_id(char* id) {
     return false;
   }
 
-  if (!declared_func->was_defined) {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
-    return false;
-  }
-
   id = NULL;
   token_t* token = token_buff(TOKEN_NEW);
   if (error_get()) {
@@ -695,7 +693,7 @@ bool parser_function_call(symtab_func_data_t* func) {
   if (token->type == TT_LPAR) {
     token = token_buff(TOKEN_NEW);
     if (error_get()) {
-      goto FREE_PARAM_TYPES;
+      goto FREE_ARG_TYPES;
     }
 
     int arg_count = 0;
@@ -707,18 +705,18 @@ bool parser_function_call(symtab_func_data_t* func) {
       if (token->type == TT_RPAR) {
         token = token_buff(TOKEN_NEW);
         if (error_get()) {
-          goto FREE_PARAM_TYPES;
+          goto FREE_ARG_TYPES;
         }
 
         if (!parser_func_call_match(func->param_types, arg_types.str)) {
           // function declaration and call dont match
           error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-          goto FREE_PARAM_TYPES;
+          goto FREE_ARG_TYPES;
         }
 
         is_correct = true;
         codegen_function_call_do(func->func_name, arg_count);
-        goto FREE_PARAM_TYPES;
+        goto FREE_ARG_TYPES;
       }
     }
   }
@@ -728,7 +726,7 @@ bool parser_function_call(symtab_func_data_t* func) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
-FREE_PARAM_TYPES:
+FREE_ARG_TYPES:
   dynstr_free_buffer(&arg_types);
 EXIT:
   return is_correct;
@@ -738,69 +736,99 @@ EXIT:
 bool parser_param_list(dynstr_t* param_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  switch (token->type) {
-    case TT_ID: {
-      char* name = str_create_copy(token->attr.str);
-      char param_type;
-      if (parser_param(&param_type)) {
-        dynstr_append(param_types, param_type);
-        if (error_get()) {
-          return false;
-          free(name);
-        }
-        codegen_function_definition_param(name, 0);
-        free(name);
-
-        return parser_param_append(param_types, 1);
-      }
-
-      break;
-    }
-    case TT_RPAR:
-      return true;
-    default:
-      break;
+  if (token->type == TT_RPAR) {
+    return true;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
-  return false;
+  // is syntax correct
+  bool is_correct = false;
+
+  char* name = NULL;
+
+  if (token->type == TT_ID) {
+    name = str_create_copy(token->attr.str);
+    if (error_get()) {
+      goto EXIT;
+    }
+
+    char param_type;
+    if (parser_param(&param_type)) {
+      dynstr_append(param_types, param_type);
+      if (error_get()) {
+        goto FREE_NAME;
+      }
+
+      codegen_function_definition_param(name, 0);
+
+      if (parser_param_append(param_types, 1)) {
+        is_correct = true;
+        goto FREE_NAME;
+      }
+    }
+  }
+
+  // if no other error
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
+
+FREE_NAME:
+  free(name);
+EXIT:
+  return is_correct;
 }
 
 // SCOPE
 bool parser_param_append(dynstr_t* param_types, int param_pos) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  switch (token->type) {
-    case TT_COMMA:
-      token = token_buff(TOKEN_NEW);
-      if (error_get()) {
-        return false;
-      }
-      if (token->type != TT_ID) return false;
-      char* name = str_create_copy(token->attr.str);
-
-      char param_type;
-      if (parser_param(&param_type)) {
-        dynstr_append(param_types, param_type);
-        if (error_get()) {
-          free(name);
-          return false;
-        }
-        codegen_function_definition_param(name, param_pos);
-        free(name);
-
-        return parser_param_append(param_types, param_pos + 1);
-      }
-
-      break;
-    case TT_RPAR:
-      return true;
-    default:
-      break;
+  if (token->type == TT_RPAR) {
+    return true;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
-  return false;
+  // is syntax correct
+  bool is_correct = false;
+
+  char* name = NULL;
+
+  if(token->type == TT_COMMA) {
+    token = token_buff(TOKEN_NEW);
+    if (error_get()) {
+      goto EXIT;
+    }
+
+    if (token->type == TT_ID) {
+      name = str_create_copy(token->attr.str);
+      if (error_get()) {
+        goto EXIT;
+      }
+    }
+
+    char param_type;
+    if (parser_param(&param_type)) {
+      dynstr_append(param_types, param_type);
+      if (error_get()) {
+        goto FREE_NAME;
+      }
+
+      codegen_function_definition_param(name, param_pos);
+
+      if(parser_param_append(param_types, param_pos + 1)) {
+        is_correct = true;
+        goto FREE_NAME;
+      }
+    }
+  }
+
+  // if no other error
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
+
+FREE_NAME:
+  free(name);
+EXIT:
+  return is_correct;
 }
 
 bool parser_param(char* param_type) {
@@ -866,7 +894,8 @@ bool parser_type_list_param(dynstr_t* types) {
       return true;
     case TT_K_NUMBER:
     case TT_K_INTEGER:
-    case TT_K_STRING: {
+    case TT_K_STRING:
+    case TT_K_NIL: {
       char type;
       if (parser_type(&type)) {
         dynstr_append(types, type);
@@ -881,7 +910,11 @@ bool parser_type_list_param(dynstr_t* types) {
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  // if no other error
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
+
   return false;
 }
 
@@ -900,7 +933,7 @@ bool parser_type_list_return(dynstr_t* types) {
     case TT_ID:
     case TT_EOF:
       return true;
-    case TT_COLON:
+    case TT_COLON: {
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
@@ -915,13 +948,16 @@ bool parser_type_list_return(dynstr_t* types) {
 
         return parser_type_append(types);
       }
-
-      break;
+    } break;
     default:
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  // if no other error
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
+
   return false;
 }
 
@@ -941,7 +977,7 @@ bool parser_type_append(dynstr_t* types) {
     case TT_EOF:
     case TT_RPAR:
       return true;
-    case TT_COMMA:
+    case TT_COMMA: {
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
@@ -956,13 +992,16 @@ bool parser_type_append(dynstr_t* types) {
 
         return parser_type_append(types);
       }
-
-      break;
+    } break;
     default:
       break;
   }
 
-  error_set(EXITSTATUS_ERROR_SYNTAX);
+  // if no other error
+  if (!error_get()) {
+    error_set(EXITSTATUS_ERROR_SYNTAX);
+  }
+
   return false;
 }
 
@@ -1017,13 +1056,14 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
     case TT_NUMBER:
     case TT_STRING:
     case TT_K_NIL: {
-      char arg_type;
       int lvl = 0;
+      char arg_type;
       if (parser_arg(&arg_type, &lvl)) {
         dynstr_append(arg_types, arg_type);
         if (error_get()) {
           return false;
         }
+
         codegen_function_call_argument(token, *arg_pos, lvl);
         ++(*arg_pos);
 
@@ -1034,18 +1074,18 @@ bool parser_arg_list(dynstr_t* arg_types, int* arg_pos) {
 
         return parser_arg_append(arg_types, arg_pos);
       }
-    }
-
-    break;
+    } break;
     case TT_RPAR:
       return true;
     default:
       break;
   }
 
+  // if no other error
   if (!error_get()) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
+
   return false;
 }
 
@@ -1053,7 +1093,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
-    case TT_COMMA:
+    case TT_COMMA: {
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
         return false;
@@ -1066,6 +1106,7 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
         if (error_get()) {
           return false;
         }
+
         codegen_function_call_argument(token, *arg_pos, lvl);
         ++(*arg_pos);
 
@@ -1076,17 +1117,18 @@ bool parser_arg_append(dynstr_t* arg_types, int* arg_pos) {
 
         return parser_arg_append(arg_types, arg_pos);
       }
-
-      break;
+    } break;
     case TT_RPAR:
       return true;
     default:
       break;
   }
 
+  // if no other error
   if (!error_get()) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
+
   return false;
 }
 
