@@ -19,6 +19,7 @@ int main(int argc, char **argv) {
   codegen_free();
   scanner_destroy();
   parser_destroy_symtab();
+  token_buff(TOKEN_DELETE);
 
   int errcode = error_get();
   if (errcode > 0) {
