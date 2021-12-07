@@ -1,5 +1,6 @@
 #include "../../lib/greatest.h"
 #include "../../src/codegen.c"
+#include "../../src/scope.c"
 #include "../../src/errors.c"
 #include "../../src/expressions.c"
 #include "../../src/parser.c"
@@ -19,33 +20,46 @@ void expressions_destroy(void *arg) {
 
 TEST expressions_basic(void) {
   SET_INPUT("5+5");
-  token_buff(TOKEN_NEW);
+  error_clear();
+  token_t *tok = token_buff(TOKEN_NEW);
+  printf("type: %d\n", tok->type);
   char type;
   ASSERT(expression_parse(&type));
+
+  fclose(stdin);
   PASS();
 }
 
 TEST expressions_parentheses(void) {
   SET_INPUT("(69+420)*111");
+  error_clear();
   token_buff(TOKEN_NEW);
   char type;
   ASSERT(expression_parse(&type));
+
+  fclose(stdin);
   PASS();
 }
 
 TEST expressions_parentheses2(void) {
   SET_INPUT("((69+420)+22)*(111)");
+  error_clear();
   token_buff(TOKEN_NEW);
   char type;
   ASSERT(expression_parse(&type));
+
+  fclose(stdin);
   PASS();
 }
 
 TEST expressions_invalid1(void) {
   SET_INPUT("69+420(*5)");
+  error_clear();
   token_buff(TOKEN_NEW);
   char type;
-  ASSERT(expression_parse(&type));
+  ASSERT_EQ(false, expression_parse(&type));
+
+  fclose(stdin);
   PASS();
 }
 
