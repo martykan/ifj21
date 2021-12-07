@@ -33,6 +33,7 @@ typedef const char* symtab_key_t;
 // i - integer
 // n - number
 // s - string
+// x - nil
 
 // Ellipsis is represented by two characters:
 // a+
