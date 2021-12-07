@@ -150,17 +150,6 @@ token_t *scanner_make_eof_token(token_t *tok) {
   return tok;
 }
 
-/** Make token into an error token.
- * Changes the type of the token to TT_ERROR.
- * TODO: make error token contain more info about the error
- * @param tok Pointer to the token to change.
- * @return Pointer to the changed token.
- */
-token_t *scanner_make_error_token(token_t *tok) {
-  tok->type = TT_ERROR;
-  return tok;
-}
-
 /** Make token into an id/keyword token.
  * Changes the type of the token to TT_KEYWORD_ID and copies
  * the parsed token string to attr.str. The attribute char pointer can be NULL,
@@ -246,7 +235,6 @@ token_t *scanner_make_one_state_op_sep(token_t *tok, int curr_char) {
     scanner_token_destroy(tok);
     error_set(EXITSTATUS_ERROR_LEXICAL); // invalid character on input
     return NULL;
-    /* return scanner_make_error_token(tok); */
   }
 
   return tok;
@@ -411,7 +399,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -428,7 +415,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -441,7 +427,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -505,7 +490,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
       case STATE_NUMBER_DIV:
@@ -535,7 +519,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -548,11 +531,9 @@ token_t *scanner_get_next_token() {
           state = STATE_STRING_ESC;
         }
         else if (curr_char == '\n' || curr_char == EOF) {
-          /* TODO(filip): ok? */
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         else if (curr_char <= 32 || curr_char == '#') { // escape whitespace
           if (dynstr_append_esc(&str_buffer, curr_char) == NULL) {
@@ -568,7 +549,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -595,7 +575,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -608,7 +587,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -621,7 +599,6 @@ token_t *scanner_get_next_token() {
           scanner_token_destroy(new_token);
           error_set(EXITSTATUS_ERROR_LEXICAL);
           return NULL;
-          /* return scanner_make_error_token(new_token); */
         }
         break;
 
@@ -670,7 +647,6 @@ token_t *scanner_get_next_token() {
         scanner_token_destroy(new_token);
         error_set(EXITSTATUS_INTERNAL_ERROR);
         return NULL;
-        /* return scanner_make_error_token(new_token); */
     }
   }
 }
