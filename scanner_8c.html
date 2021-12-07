@@ -170,9 +170,6 @@ Functions</h2></td></tr>
 <tr class="memitem:a6d5d90af89afea812db73d6a180d3c7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b">scanner_make_eof_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
 <tr class="memdesc:a6d5d90af89afea812db73d6a180d3c7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an eof token.  <a href="scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b">More...</a><br /></td></tr>
 <tr class="separator:a6d5d90af89afea812db73d6a180d3c7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af405f15c05ca009e1a006eac8fc953e6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">scanner_make_error_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
-<tr class="memdesc:af405f15c05ca009e1a006eac8fc953e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an error token.  <a href="scanner_8c.html#af405f15c05ca009e1a006eac8fc953e6">More...</a><br /></td></tr>
-<tr class="separator:af405f15c05ca009e1a006eac8fc953e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8638ac872cea80cdb65636a716770a6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a8638ac872cea80cdb65636a716770a6a">scanner_make_id_kw_token</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
 <tr class="memdesc:a8638ac872cea80cdb65636a716770a6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Make token into an id/keyword token.  <a href="scanner_8c.html#a8638ac872cea80cdb65636a716770a6a">More...</a><br /></td></tr>
 <tr class="separator:a8638ac872cea80cdb65636a716770a6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -393,33 +390,6 @@ Filip Stolfa </dd></dl>
 
 <p>Make token into an eof token. </p>
 <p >Changes the type of the token to TT_EOF. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Pointer to the changed token. </dd></dl>
-
-</div>
-</div>
-<a id="af405f15c05ca009e1a006eac8fc953e6" name="af405f15c05ca009e1a006eac8fc953e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af405f15c05ca009e1a006eac8fc953e6">&#9670;&nbsp;</a></span>scanner_make_error_token()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_make_error_token </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td>
-          <td class="paramname"><em>tok</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Make token into an error token. </p>
-<p >Changes the type of the token to TT_ERROR. TODO: make error token contain more info about the error </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tok</td><td>Pointer to the token to change. </td></tr>
   </table>
