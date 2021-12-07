@@ -607,7 +607,6 @@ token_t *scanner_get_next_token() {
           state = STATE_COMMENT_BLOCK_1;
         }
         else {
-          /* TODO(filip): is EOF ok here? */
           state = STATE_COMMENT_LINE;
         }
         break;
@@ -624,7 +623,9 @@ token_t *scanner_get_next_token() {
           state = STATE_COMMENT_BLOCK_END_1;
         }
         else if (curr_char == EOF) {
-          state = STATE_START;
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
         }
         break;
       case STATE_COMMENT_BLOCK_END_1:
