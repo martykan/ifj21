@@ -1,7 +1,7 @@
 require "ifj21"
 
 function hello()
-  local concat : string = "aaa.."bbb"
+  local concat : string = "ahoj \h"
   write(concat, "\n")
   local math1 : integer = 1+2*3
   write(math1, "\n")
