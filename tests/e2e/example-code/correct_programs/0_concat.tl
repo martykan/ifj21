@@ -6,7 +6,6 @@ function not_main()
 
   local len : integer = 69
   len = #(s1..s2)
-  write(s1..s2)
 
   if len ~= 40 then
     write("Oh no! incorrect lenght!\n")
