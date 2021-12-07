@@ -527,7 +527,7 @@ TEST comments_correct_test() {
 
   CHECK_CALL(param_single_tok_test("--[[ \t\r..$%^_+#@!123123123\n33]] 44", NULL, 44, 0, TT_INTEGER));
   CHECK_CALL(param_single_tok_test("--[[] \t\r..$%^_+#@!123123123\n33]]", NULL, 0, 0, TT_EOF));
-  CHECK_CALL(param_single_tok_test("--[[] \t\r..$%^_+#@!123123123\n33", NULL, 0, 0, TT_EOF));
+  CHECK_CALL(param_single_tok_test("--[[] \t\r..$%^_+#@!123123123\n33", NULL, 0, 0, TT_ERROR));
 
   // this is a line comment
   CHECK_CALL(param_single_tok_test("--[ \t\r..$%^_+#@!123123123\n33]] 44", NULL, 33, 0, TT_INTEGER));

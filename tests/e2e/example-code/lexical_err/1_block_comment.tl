@@ -1,9 +1,15 @@
 require "ifj21"
 
 function main()
-  local x: integer = 4
   -- [[ this is not a block comment
+  local x: integer = 4
+  -- ]]
+  write(x, "\n")
 
-end --[[ a block comment
+end
+
+main()
+
+--[[ a block comment
 
 that doesn't have a closing tag
