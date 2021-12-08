@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"structsymtab__var__data__t.html#a4eefdf9593190e83c1f19e165c06c1ce":[1,0,11,0],
+"structsymtab__var__data__t.html#a8a6713fa8eb56412804db4e65c3648c9":[1,0,11,1],
+"structtoken__t.html":[1,0,12],
+"structtoken__t.html#aae591c9a766f81b491f07b8833c86e0a":[1,0,12,0],
 "structtoken__t.html#affed9d9d575cc38e143740f94363f3f4":[1,0,12,1],
 "symtable_8c.html":[2,0,0,17],
 "symtable_8c.html#a02c3969911087f375a9fbd425b813e16":[2,0,0,17,19],
