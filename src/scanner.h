@@ -93,7 +93,6 @@ typedef union {
  * Union of a string, integer and double. Depending on the token type,
  * the corresponding value is stored in the attribute.
  * If a token doesn't require an attribute, it is set to a NULL char pointer.
- * TODO: error information
  */
 typedef struct {
   token_type_t type;
@@ -125,6 +124,11 @@ void scanner_destroy();
 void scanner_token_destroy(token_t *tok);
 
 
+/** Get next scanner token.
+ * Reads from stdin until it finds a new valid token or until it finds an error.
+ * Sets the global error flag when it finds an invalid lexeme or when an internal error occurs.
+ * @return Pointer to the new token, or NULL on error.
+ */
 token_t *scanner_get_next_token();
 
 
