@@ -1750,11 +1750,11 @@ EXIT:
 bool parser_id_append(dynstr_t* id_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  if(token->type == TT_ASSIGN) {
+  if (token->type == TT_ASSIGN) {
     return true;
   }
 
-  if(token->type == TT_COMMA) {
+  if (token->type == TT_COMMA) {
     token = token_buff(TOKEN_NEW);
     if (error_get()) {
       return false;
@@ -1855,12 +1855,10 @@ EXIT:
 bool parser_assign_func(const dynstr_t* id_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  symtab_func_data_t* declared =
-      symtab_find_func(symtab, token->attr.str);
+  symtab_func_data_t* declared = symtab_find_func(symtab, token->attr.str);
 
   if (parser_function_call_by_id(token->attr.str)) {
-    if (!parser_assign_func_match(id_types->str,
-                                  declared->return_types)) {
+    if (!parser_assign_func_match(id_types->str, declared->return_types)) {
       // identifiers and returned values dont match
       return false;
     }
