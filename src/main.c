@@ -8,6 +8,9 @@
 #include "syntax.h"
 
 int main(int argc, char **argv) {
+  (void)argc;
+  (void)argv;
+
   scanner_init();
   parser_init_symtab();
   codegen_init();

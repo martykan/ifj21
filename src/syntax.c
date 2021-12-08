@@ -1,9 +1,12 @@
 /**
  * @file
  * @brief Recursive parser implementation
- * @author Patrik Korytar
- * @author Tomas Martykan
- * @author Filip Stolfa
+ * @author Tomas Martykan (xmarty07)
+ * @author Filip Stolfa (xstolf00)
+ * @author Patrik Korytar (xkoryt04)
+ *
+ * FIT VUT IFJ Project:
+ * Compiler of IFJ21 Language
  */
 
 #include "syntax.h"
@@ -399,7 +402,7 @@ bool parser_assign_exp_match(const char* ids, const char* exps);
 // GRAMMAR RULES
 
 bool parser_start() {
-  token_t* token = token_buff(TOKEN_NEW);
+  token_buff(TOKEN_NEW);
   if (error_get()) {
     return false;
   }
@@ -693,7 +696,7 @@ bool parser_function_call_by_id(const char* id) {
   }
 
   id = NULL;
-  token_t* token = token_buff(TOKEN_NEW);
+  token_buff(TOKEN_NEW);
   if (error_get()) {
     return false;
   }
@@ -723,7 +726,6 @@ bool parser_function_call(symtab_func_data_t* func) {
     int arg_count = 0;
     codegen_function_call_begin(func->func_name);
     if (parser_arg_list(&arg_types, &arg_count)) {
-      codegen_function_call_argument_count(arg_count);
       token = token_buff(TOKEN_THIS);
 
       if (token->type == TT_RPAR) {
@@ -738,7 +740,7 @@ bool parser_function_call(symtab_func_data_t* func) {
         }
 
         is_correct = true;
-        codegen_function_call_do(func->func_name, arg_count);
+        codegen_function_call_do(func->func_name);
         goto FREE_ARG_TYPES;
       }
     }
@@ -1491,7 +1493,6 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
-EXIT:
   return false;
 }
 
@@ -1510,7 +1511,7 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
     if (token->type == TT_K_DO) {
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
-        goto EXIT;
+        return false;
       }
 
       codegen_while_expr();
@@ -1539,7 +1540,6 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
-EXIT:
   return false;
 }
 
@@ -1750,11 +1750,11 @@ EXIT:
 bool parser_id_append(dynstr_t* id_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  if(token->type == TT_ASSIGN) {
+  if (token->type == TT_ASSIGN) {
     return true;
   }
 
-  if(token->type == TT_COMMA) {
+  if (token->type == TT_COMMA) {
     token = token_buff(TOKEN_NEW);
     if (error_get()) {
       return false;
@@ -1855,12 +1855,10 @@ EXIT:
 bool parser_assign_func(const dynstr_t* id_types) {
   token_t* token = token_buff(TOKEN_THIS);
 
-  symtab_func_data_t* declared =
-      symtab_find_func(symtab, token->attr.str);
+  symtab_func_data_t* declared = symtab_find_func(symtab, token->attr.str);
 
   if (parser_function_call_by_id(token->attr.str)) {
-    if (!parser_assign_func_match(id_types->str,
-                                  declared->return_types)) {
+    if (!parser_assign_func_match(id_types->str, declared->return_types)) {
       // identifiers and returned values dont match
       return false;
     }
@@ -2106,10 +2104,10 @@ bool parser_assign_exp_match(const char* ids, const char* exps) {
   }
 
   // more exps than ids
-  if (*exps != '\0') {
+  /*if (*exps != '\0') {
     error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
     return false;
-  }
+  }*/
 
   return true;
 }

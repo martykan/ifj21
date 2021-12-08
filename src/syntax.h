@@ -1,9 +1,12 @@
 /**
  * @file
  * @brief Recursive parser API
- * @author Patrik Korytar
- * @author Tomas Martykan
- * @author Filip Stolfa
+ * @author Tomas Martykan (xmarty07)
+ * @author Filip Stolfa (xstolf00)
+ * @author Patrik Korytar (xkoryt04)
+ *
+ * FIT VUT IFJ Project:
+ * Compiler of IFJ21 Language
  *
  * @section DESCRIPTION
  *  Top-down parser implemented using recursive technique.

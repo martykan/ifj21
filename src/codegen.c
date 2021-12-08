@@ -1,9 +1,12 @@
 /**
  * @file
  * @brief IFJCode21 ouput generation
- * @author Tomas Martykan
- * @author Patrik Korytar
- * @author Filip Stolfa
+ * @author Tomas Martykan (xmarty07)
+ * @author Filip Stolfa (xstolf00)
+ * @author Patrik Korytar (xkoryt04)
+ *
+ * FIT VUT IFJ Project:
+ * Compiler of IFJ21 Language
  */
 
 #include "codegen.h"
@@ -206,16 +209,7 @@ void codegen_function_call_argument(token_t* token, int argpos, int lvl) {
   codegen_literal(token, lvl);
 }
 
-void codegen_function_call_argument_count(int argcount) {
-  // Currently not used anywhere
-  /*if (strcmp(last_function_name, "write") == 0) {
-    return;
-  }
-  dynstr_append_str(active_buffer, "DEFVAR TF@%%argcount\n");
-  dynstr_append_str(active_buffer, "MOVE TF@%%argcount int@%d\n", argcount);*/
-}
-
-void codegen_function_call_do(char* name, int argcount) {
+void codegen_function_call_do(char* name) {
   last_function_name = NULL;
   if (strcmp(name, "write") == 0) {
     return;

@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -std=c99 #-Wall -Wextra -Werror -pedantic
+CFLAGS=-std=c99 -Wall -Wextra -Werror -pedantic
 TEST_CFLAGS=$(CFLAGS) -ftest-coverage -fprofile-arcs
 
 TEST_SOURCES=tests/unit/*.c
