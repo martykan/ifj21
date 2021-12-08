@@ -723,7 +723,6 @@ bool parser_function_call(symtab_func_data_t* func) {
     int arg_count = 0;
     codegen_function_call_begin(func->func_name);
     if (parser_arg_list(&arg_types, &arg_count)) {
-      codegen_function_call_argument_count(arg_count);
       token = token_buff(TOKEN_THIS);
 
       if (token->type == TT_RPAR) {
@@ -738,7 +737,7 @@ bool parser_function_call(symtab_func_data_t* func) {
         }
 
         is_correct = true;
-        codegen_function_call_do(func->func_name, arg_count);
+        codegen_function_call_do(func->func_name);
         goto FREE_ARG_TYPES;
       }
     }
