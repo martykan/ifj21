@@ -88,71 +88,71 @@ $(document).ready(function(){initNavTree('expressions_8h_source.html',''); initR
 </div><!--header-->
 <div class="contents">
 <a href="expressions_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifndef __EXPRESSIONS_H__</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#define __EXPRESSIONS_H__</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="codegen_8h.html">codegen.h</a>&quot;</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="errors_8h.html">errors.h</a>&quot;</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="parser_8h.html">parser.h</a>&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="scanner_8h.html">scanner.h</a>&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  PREC_UNDEF,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  PREC_EQ,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  PREC_GT,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  PREC_GTE,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  PREC_LT,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  PREC_LTE,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>} expression_precedence_t;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  SYM_NONE,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  SYM_PLUS,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  SYM_MINUS,</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  SYM_TIMES,</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  SYM_DIVIDE,</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  SYM_DIVIDE2,</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  SYM_DOTDOT,</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  SYM_STRLEN,</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  SYM_GT,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  SYM_GTE,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  SYM_EQ,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  SYM_NEQ,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  SYM_LTE,</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  SYM_LT,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  SYM_LBRACKET,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  SYM_RBRACKET,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  SYM_I,</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  SYM_S,</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  SYM_E,</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  SYM_PREC_GT,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  SYM_PREC_LT,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>} expression_symbol_t;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> <a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a>;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structsymbol__stack__t.html">   53</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> {</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  expression_symbol_t symbol;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="keywordtype">char</span> type;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordtype">int</span> lvl;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">bool</span> is_zero;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> *next;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keywordtype">bool</span> <a class="code hl_function" href="expressions_8h.html#a437e219c37547e4b74875f5859a45687">expression_process</a>(<a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, <span class="keywordtype">char</span> *exp_type);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keywordtype">bool</span> expression_parse();</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>expression_symbol_t expression_get_input();</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keywordtype">char</span> expression_get_type();</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">void</span> expression_next_input();</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="acodegen_8h_html"><div class="ttname"><a href="codegen_8h.html">codegen.h</a></div><div class="ttdoc">IFJCode21 ouput generation.</div></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __EXPRESSIONS_H__</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __EXPRESSIONS_H__</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;<a class="code" href="codegen_8h.html">codegen.h</a>&quot;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="errors_8h.html">errors.h</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="parser_8h.html">parser.h</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="scanner_8h.html">scanner.h</a>&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  PREC_UNDEF,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  PREC_EQ,</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  PREC_GT,</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  PREC_GTE,</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  PREC_LT,</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  PREC_LTE,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>} expression_precedence_t;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  SYM_NONE,</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  SYM_PLUS,</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  SYM_MINUS,</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  SYM_TIMES,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  SYM_DIVIDE,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  SYM_DIVIDE2,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  SYM_DOTDOT,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  SYM_STRLEN,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  SYM_GT,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  SYM_GTE,</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  SYM_EQ,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  SYM_NEQ,</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  SYM_LTE,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  SYM_LT,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  SYM_LBRACKET,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  SYM_RBRACKET,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  SYM_I,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  SYM_S,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  SYM_E,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  SYM_PREC_GT,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  SYM_PREC_LT,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} expression_symbol_t;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> <a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structsymbol__stack__t.html">   56</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  expression_symbol_t symbol;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keywordtype">char</span> type;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordtype">int</span> lvl;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordtype">bool</span> is_zero;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> *next;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="keywordtype">bool</span> <a class="code hl_function" href="expressions_8h.html#a437e219c37547e4b74875f5859a45687">expression_process</a>(<a class="code hl_struct" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, <span class="keywordtype">char</span> *exp_type);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">bool</span> expression_parse();</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>expression_symbol_t expression_get_input();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">char</span> expression_get_type();</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">void</span> expression_next_input();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="acodegen_8h_html"><div class="ttname"><a href="codegen_8h.html">codegen.h</a></div><div class="ttdoc">IFJCode21 ouput generation API.</div></div>
 <div class="ttc" id="aerrors_8h_html"><div class="ttname"><a href="errors_8h.html">errors.h</a></div><div class="ttdoc">Error codes definition.</div></div>
-<div class="ttc" id="aexpressions_8h_html_a437e219c37547e4b74875f5859a45687"><div class="ttname"><a href="expressions_8h.html#a437e219c37547e4b74875f5859a45687">expression_process</a></div><div class="ttdeci">bool expression_process(symbol_stack_t *stack, char *exp_type)</div><div class="ttdoc">Process expression.</div><div class="ttdef"><b>Definition:</b> expressions.c:505</div></div>
+<div class="ttc" id="aexpressions_8h_html_a437e219c37547e4b74875f5859a45687"><div class="ttname"><a href="expressions_8h.html#a437e219c37547e4b74875f5859a45687">expression_process</a></div><div class="ttdeci">bool expression_process(symbol_stack_t *stack, char *exp_type)</div><div class="ttdoc">Process expression.</div><div class="ttdef"><b>Definition:</b> expressions.c:509</div></div>
 <div class="ttc" id="aparser_8h_html"><div class="ttname"><a href="parser_8h.html">parser.h</a></div><div class="ttdoc">Parser API.</div></div>
 <div class="ttc" id="ascanner_8h_html"><div class="ttname"><a href="scanner_8h.html">scanner.h</a></div><div class="ttdoc">Scanner API.</div></div>
-<div class="ttc" id="astructsymbol__stack__t_html"><div class="ttname"><a href="structsymbol__stack__t.html">symbol_stack_t</a></div><div class="ttdef"><b>Definition:</b> expressions.h:53</div></div>
+<div class="ttc" id="astructsymbol__stack__t_html"><div class="ttname"><a href="structsymbol__stack__t.html">symbol_stack_t</a></div><div class="ttdef"><b>Definition:</b> expressions.h:56</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

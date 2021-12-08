@@ -210,11 +210,12 @@ Variables</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Scanner implementation. </p>
-<dl class="section author"><dt>Author</dt><dd>Patrik Korytar </dd>
+<dl class="section author"><dt>Author</dt><dd>Tomas Martykan (xmarty07) </dd>
 <dd>
-Tomas Martykan </dd>
+Filip Stolfa (xstolf00) </dd>
 <dd>
-Filip Stolfa </dd></dl>
+Patrik Korytar (xkoryt04)</dd></dl>
+<p>FIT VUT IFJ Project: Compiler of IFJ21 Language </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ae51e5e0a28dd40205e9cf56e3df3e54f" name="ae51e5e0a28dd40205e9cf56e3df3e54f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae51e5e0a28dd40205e9cf56e3df3e54f">&#9670;&nbsp;</a></span>APPEND_CHAR</h2>
@@ -248,9 +249,9 @@ Filip Stolfa </dd></dl>
 <div class="line">    return NULL;\</div>
 <div class="line">  }\</div>
 <div class="line">}<span class="keywordflow">while</span>(0)</div>
-<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdoc">Appends a character to a dynamic string.</div><div class="ttdef"><b>Definition:</b> dynstr.c:65</div></div>
-<div class="ttc" id="aerrors_8h_html_aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a"><div class="ttname"><a href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a">EXITSTATUS_INTERNAL_ERROR</a></div><div class="ttdeci">@ EXITSTATUS_INTERNAL_ERROR</div><div class="ttdoc">Internal compiler error (ex. memory allocation error)</div><div class="ttdef"><b>Definition:</b> errors.h:36</div></div>
-<div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:36</div></div>
+<div class="ttc" id="adynstr_8c_html_afb6772e81906174507bb2bf16b8f4dfc"><div class="ttname"><a href="dynstr_8c.html#afb6772e81906174507bb2bf16b8f4dfc">dynstr_append</a></div><div class="ttdeci">dynstr_t * dynstr_append(dynstr_t *dynstr, char c)</div><div class="ttdoc">Appends a character to a dynamic string.</div><div class="ttdef"><b>Definition:</b> dynstr.c:68</div></div>
+<div class="ttc" id="aerrors_8h_html_aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a"><div class="ttname"><a href="errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a">EXITSTATUS_INTERNAL_ERROR</a></div><div class="ttdeci">@ EXITSTATUS_INTERNAL_ERROR</div><div class="ttdoc">Internal compiler error (ex. memory allocation error)</div><div class="ttdef"><b>Definition:</b> errors.h:39</div></div>
+<div class="ttc" id="ascanner_8c_html_ad078313dd1579fbfca39bbaeb23f7f58"><div class="ttname"><a href="scanner_8c.html#ad078313dd1579fbfca39bbaeb23f7f58">str_buffer</a></div><div class="ttdeci">dynstr_t str_buffer</div><div class="ttdoc">Global dynamic string for storing incomplete tokens.</div><div class="ttdef"><b>Definition:</b> scanner.c:39</div></div>
 </div><!-- fragment -->
 <p>Macro for appending a character to a <a class="el" href="structdynstr__t.html" title="Dynamic string type.">dynstr_t</a> and checking if the operation was successful. </p>
 <p >If it wasn't destroy token and set error flag. </p>
