@@ -67,7 +67,7 @@ void codegen_not_nil();
 
 void codegen_define_var(char* old_id, int lvl);
 void codegen_assign_expression_add(char* id, int lvl);
-void codegen_assign_expression_finish();
+void codegen_assign_expression_finish(int count);
 
 void codegen_if_begin();
 void codegen_if_else();

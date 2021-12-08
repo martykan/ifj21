@@ -303,25 +303,28 @@ bool parser_id_append(dynstr_t* id_types);
  * Parsing function for rules with
  * non-terminal 'assign_what' on left side.
  * @param id_types Dynamic string of identifier types in identifier list.
+ * @param assign_length Length of values on the right side.
  * @return True if correct. False otherwise.
  */
-bool parser_assign_what(const dynstr_t* id_types);
+bool parser_assign_what(const dynstr_t* id_types, int* assign_length);
 
 /**
  * Parsing function for assignment of expressions.
  * Expects expression list.
  * @param id_types Dynamic string of identifier types in identifier list.
+ * @param assign_length Length of values on the right side.
  * @return True if correct. False otherwise.
  */
-bool parser_assign_exp(const dynstr_t* id_types);
+bool parser_assign_exp(const dynstr_t* id_types, int* assign_length);
 
 /**
  * Parsing function for assignment of function.
  * Expects TT_ID token.
  * @param id_types Dynamic string of identifier types in identifier list.
+ * @param assign_length Length of values on the right side.
  * @return True if correct. False otherwise.
  */
-bool parser_assign_func(const dynstr_t* id_types);
+bool parser_assign_func(const dynstr_t* id_types, int* assign_length);
 
 /**
  * Parsing function for rules with
@@ -1410,8 +1413,9 @@ bool parser_var_dec(const char* func_name) {
         if (parser_init(var_type, &did_init)) {
           parser_declare_var(id, var_type);
           if (did_init) {
+            // TODO check
             codegen_assign_expression_add(id, 0);
-            codegen_assign_expression_finish();
+            codegen_assign_expression_finish(1);
           }
           if (error_get()) {
             goto FREE_ID;
@@ -1727,8 +1731,9 @@ bool parser_assign_st(char* id) {
         goto FREE_ID_TYPES;
       }
 
-      if (parser_assign_what(&id_types)) {
-        codegen_assign_expression_finish();
+      int assign_length = 0;
+      if (parser_assign_what(&id_types, &assign_length)) {
+        codegen_assign_expression_finish(assign_length);
 
         is_correct = true;
         goto FREE_ID_TYPES;
@@ -1793,7 +1798,7 @@ bool parser_id_append(dynstr_t* id_types) {
   return false;
 }
 
-bool parser_assign_what(const dynstr_t* id_types) {
+bool parser_assign_what(const dynstr_t* id_types, int* assign_length) {
   token_t* token = token_buff(TOKEN_THIS);
 
   switch (token->type) {
@@ -1803,14 +1808,14 @@ bool parser_assign_what(const dynstr_t* id_types) {
     case TT_LPAR:
     case TT_K_NIL:
     case TT_SOP_LENGTH:
-      return parser_assign_exp(id_types);
+      return parser_assign_exp(id_types, assign_length);
     case TT_ID:
       // can be function call or
       // expression starting with id
       if (parser_isdeclared_var(token->attr.str)) {
-        return parser_assign_exp(id_types);
+        return parser_assign_exp(id_types, assign_length);
       } else if (parser_isdeclared_func(token->attr.str)) {
-        return parser_assign_func(id_types);
+        return parser_assign_func(id_types, assign_length);
       } else {
         error_set(EXITSTATUS_ERROR_SEMANTIC_IDENTIFIER);
         return false;
@@ -1821,7 +1826,7 @@ bool parser_assign_what(const dynstr_t* id_types) {
   }
 }
 
-bool parser_assign_exp(const dynstr_t* id_types) {
+bool parser_assign_exp(const dynstr_t* id_types, int* assign_length) {
   // is syntax correct
   bool is_correct = false;
 
@@ -1838,6 +1843,7 @@ bool parser_assign_exp(const dynstr_t* id_types) {
     }
 
     is_correct = true;
+    *assign_length = exp_types.len;
     goto FREE_EXP_TYPES;
   }
 
@@ -1852,7 +1858,7 @@ EXIT:
   return is_correct;
 }
 
-bool parser_assign_func(const dynstr_t* id_types) {
+bool parser_assign_func(const dynstr_t* id_types, int* assign_length) {
   token_t* token = token_buff(TOKEN_THIS);
 
   symtab_func_data_t* declared = symtab_find_func(symtab, token->attr.str);
@@ -1862,6 +1868,7 @@ bool parser_assign_func(const dynstr_t* id_types) {
       // identifiers and returned values dont match
       return false;
     }
+    *assign_length = strlen(declared->return_types);
 
     return true;
   }
