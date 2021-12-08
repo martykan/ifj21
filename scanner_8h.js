@@ -46,6 +46,7 @@ var scanner_8h =
       [ "TT_COLON", "scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69a7deffd60a56a8c46519f1d99e7fca0db", null ]
     ] ],
     [ "scanner_destroy", "scanner_8h.html#a5debeb97d9546227aaf63c2d51d3aa42", null ],
+    [ "scanner_get_next_token", "scanner_8h.html#a4eeee0b7a6a6d19e8d04cf2de2405142", null ],
     [ "scanner_init", "scanner_8h.html#aec54f69564fbbbac5032deae9361438a", null ],
     [ "scanner_token_destroy", "scanner_8h.html#aa4058c66e210c9ce550a8da7b6c23a8a", null ]
 ];

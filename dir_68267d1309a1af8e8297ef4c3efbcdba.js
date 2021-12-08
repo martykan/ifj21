@@ -15,7 +15,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "parser.h", "parser_8h.html", "parser_8h" ],
     [ "scanner.c", "scanner_8c.html", "scanner_8c" ],
     [ "scanner.h", "scanner_8h.html", "scanner_8h" ],
-    [ "scope.c", "scope_8c.html", null ],
+    [ "scope.c", "scope_8c.html", "scope_8c" ],
     [ "scope.h", "scope_8h.html", "scope_8h" ],
     [ "symtable.c", "symtable_8c.html", "symtable_8c" ],
     [ "symtable.h", "symtable_8h.html", "symtable_8h" ],

@@ -36,6 +36,7 @@ var scanner_8c =
     [ "scanner_create_empty_token", "scanner_8c.html#a98d07c28690024bc29b03ac709fdd32f", null ],
     [ "scanner_destroy", "scanner_8c.html#a5debeb97d9546227aaf63c2d51d3aa42", null ],
     [ "scanner_get_keyword_type", "scanner_8c.html#ae675b083d9b258bedbb7481de391e87a", null ],
+    [ "scanner_get_next_token", "scanner_8c.html#a4eeee0b7a6a6d19e8d04cf2de2405142", null ],
     [ "scanner_init", "scanner_8c.html#aec54f69564fbbbac5032deae9361438a", null ],
     [ "scanner_make_eof_token", "scanner_8c.html#a6d5d90af89afea812db73d6a180d3c7b", null ],
     [ "scanner_make_id_kw_token", "scanner_8c.html#a8638ac872cea80cdb65636a716770a6a", null ],

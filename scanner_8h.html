@@ -182,8 +182,8 @@ Functions</h2></td></tr>
 <tr class="memitem:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8h.html#aa4058c66e210c9ce550a8da7b6c23a8a">scanner_token_destroy</a> (<a class="el" href="structtoken__t.html">token_t</a> *tok)</td></tr>
 <tr class="memdesc:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free scanner token.  <a href="scanner_8h.html#aa4058c66e210c9ce550a8da7b6c23a8a">More...</a><br /></td></tr>
 <tr class="separator:aa4058c66e210c9ce550a8da7b6c23a8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
-<a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scanner_get_next_token</b> ()</td></tr>
+<tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8h.html#a4eeee0b7a6a6d19e8d04cf2de2405142">scanner_get_next_token</a> ()</td></tr>
+<tr class="memdesc:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next scanner token.  <a href="scanner_8h.html#a4eeee0b7a6a6d19e8d04cf2de2405142">More...</a><br /></td></tr>
 <tr class="separator:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -244,6 +244,26 @@ Patrik Korytar (xkoryt04)</dd></dl>
 
 <p>Free dynstr buffer used by scanner. </p>
 <p >Scanner uses a global variable to store the processed string. This function has to be called before the end of the program, or when scanner is no longer needed. </p>
+
+</div>
+</div>
+<a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eeee0b7a6a6d19e8d04cf2de2405142">&#9670;&nbsp;</a></span>scanner_get_next_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_get_next_token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get next scanner token. </p>
+<p >Reads from stdin until it finds a new valid token or until it finds an error. Sets the global error flag when it finds an invalid lexeme or when an internal error occurs. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the new token, or NULL on error. </dd></dl>
 
 </div>
 </div>

@@ -93,46 +93,56 @@ $(document).ready(function(){initNavTree('scope_8h_source.html',''); initResizab
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="structscope__item__t.html">   17</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f">   18</a></span>  <span class="keywordtype">char</span> <a class="code hl_variable" href="structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f">type</a>; </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441">   19</a></span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441">lvl</a>; </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>} <a class="code hl_struct" href="structscope__item__t.html">scope_item_t</a>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structscope__info__t.html">   23</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> if_cnt;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> while_cnt;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordtype">int</span> top;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <a class="code hl_struct" href="structscope__item__t.html">scope_item_t</a> stack[100];</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>} <a class="code hl_struct" href="structscope__info__t.html">scope_info_t</a>;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keyword">extern</span> <a class="code hl_struct" href="structscope__info__t.html">scope_info_t</a> *scope_info;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define SCOPE_STACK_SIZE 100</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structscope__item__t.html">   19</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f">   20</a></span>  <span class="keywordtype">char</span> <a class="code hl_variable" href="structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f">type</a>; </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441">   21</a></span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441">lvl</a>; </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>} <a class="code hl_struct" href="structscope__item__t.html">scope_item_t</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structscope__info__t.html">   25</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> if_cnt;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> while_cnt;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordtype">int</span> top;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <a class="code hl_struct" href="structscope__item__t.html">scope_item_t</a> stack[SCOPE_STACK_SIZE];</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>} <a class="code hl_struct" href="structscope__info__t.html">scope_info_t</a>;</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">// scope_info_t* scope_init();</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">void</span> scope_init();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> scope_destroy();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keywordtype">void</span> scope_push_item(<span class="keywordtype">char</span> type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lvl);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><a class="code hl_struct" href="structscope__item__t.html">scope_item_t</a> scope_get_item();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="keywordtype">bool</span> scope_empty();</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keywordtype">void</span> scope_new_if();</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keywordtype">void</span> scope_new_while();</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> scope_pop_item();</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">extern</span> <a class="code hl_struct" href="structscope__info__t.html">scope_info_t</a> *scope_info;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keywordtype">void</span> <a class="code hl_function" href="scope_8h.html#ae395d7de0cbc116d91ceb1779f8285b8">scope_init</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keywordtype">void</span> <a class="code hl_function" href="scope_8h.html#a0941a865dbbfa8e591a4ea0cf231c831">scope_destroy</a>();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="keywordtype">void</span> <a class="code hl_function" href="scope_8h.html#a47e45ee66e821ad699509864a2a15110">scope_push_item</a>(<span class="keywordtype">char</span> type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lvl);</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">char</span>* scope_get_correct_id(<span class="keywordtype">char</span> *<span class="keywordtype">id</span>, <span class="keywordtype">int</span> lvl);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="astructscope__info__t_html"><div class="ttname"><a href="structscope__info__t.html">scope_info_t</a></div><div class="ttdef"><b>Definition:</b> scope.h:23</div></div>
-<div class="ttc" id="astructscope__item__t_html"><div class="ttname"><a href="structscope__item__t.html">scope_item_t</a></div><div class="ttdef"><b>Definition:</b> scope.h:17</div></div>
-<div class="ttc" id="astructscope__item__t_html_a62ccac353282f46102fbf57e3df70e6f"><div class="ttname"><a href="structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f">scope_item_t::type</a></div><div class="ttdeci">char type</div><div class="ttdoc">Either 'f' - for if; or 'w' - for while.</div><div class="ttdef"><b>Definition:</b> scope.h:18</div></div>
-<div class="ttc" id="astructscope__item__t_html_afaf999b7d228a9723b148f4bd7497441"><div class="ttname"><a href="structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441">scope_item_t::lvl</a></div><div class="ttdeci">unsigned int lvl</div><div class="ttdoc">Current level.</div><div class="ttdef"><b>Definition:</b> scope.h:19</div></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="scope_8h.html#ae6f4559f385b07aeb7943aea95a1f776">   53</a></span><a class="code hl_struct" href="structscope__item__t.html">scope_item_t</a> <a class="code hl_function" href="scope_8h.html#ae6f4559f385b07aeb7943aea95a1f776">scope_get_item</a>();</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">bool</span> <a class="code hl_function" href="scope_8h.html#aee209e75bd036d1c5f9664f0af263fcc">scope_empty</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keywordtype">void</span> <a class="code hl_function" href="scope_8h.html#a018f43191679749532fb0d2b4b9a8b86">scope_new_if</a>();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">void</span> <a class="code hl_function" href="scope_8h.html#a343aa9294d2e43e2b937ce591451c191">scope_new_while</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">void</span> <a class="code hl_function" href="scope_8h.html#afdecf1a61a682ec9ace007fbd3f56a93">scope_pop_item</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">char</span>* <a class="code hl_function" href="scope_8h.html#ad06524278b81fb04a5d23db3f5567907">scope_get_correct_id</a>(<span class="keywordtype">char</span> *<span class="keywordtype">id</span>, <span class="keywordtype">int</span> lvl);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="ascope_8h_html_a018f43191679749532fb0d2b4b9a8b86"><div class="ttname"><a href="scope_8h.html#a018f43191679749532fb0d2b4b9a8b86">scope_new_if</a></div><div class="ttdeci">void scope_new_if()</div><div class="ttdoc">Create a new if scope.</div><div class="ttdef"><b>Definition:</b> scope.c:54</div></div>
+<div class="ttc" id="ascope_8h_html_a0941a865dbbfa8e591a4ea0cf231c831"><div class="ttname"><a href="scope_8h.html#a0941a865dbbfa8e591a4ea0cf231c831">scope_destroy</a></div><div class="ttdeci">void scope_destroy()</div><div class="ttdoc">Free scope stack.</div><div class="ttdef"><b>Definition:</b> scope.c:34</div></div>
+<div class="ttc" id="ascope_8h_html_a343aa9294d2e43e2b937ce591451c191"><div class="ttname"><a href="scope_8h.html#a343aa9294d2e43e2b937ce591451c191">scope_new_while</a></div><div class="ttdeci">void scope_new_while()</div><div class="ttdoc">Create a new while scope.</div><div class="ttdef"><b>Definition:</b> scope.c:59</div></div>
+<div class="ttc" id="ascope_8h_html_a47e45ee66e821ad699509864a2a15110"><div class="ttname"><a href="scope_8h.html#a47e45ee66e821ad699509864a2a15110">scope_push_item</a></div><div class="ttdeci">void scope_push_item(char type, unsigned int lvl)</div><div class="ttdoc">Push new item onto the scope stack.</div><div class="ttdef"><b>Definition:</b> scope.c:38</div></div>
+<div class="ttc" id="ascope_8h_html_ad06524278b81fb04a5d23db3f5567907"><div class="ttname"><a href="scope_8h.html#ad06524278b81fb04a5d23db3f5567907">scope_get_correct_id</a></div><div class="ttdeci">char * scope_get_correct_id(char *id, int lvl)</div><div class="ttdoc">Append the appropriate scope suffix to id string.</div><div class="ttdef"><b>Definition:</b> scope.c:74</div></div>
+<div class="ttc" id="ascope_8h_html_ae395d7de0cbc116d91ceb1779f8285b8"><div class="ttname"><a href="scope_8h.html#ae395d7de0cbc116d91ceb1779f8285b8">scope_init</a></div><div class="ttdeci">void scope_init()</div><div class="ttdoc">Intialize scope stack and counters.</div><div class="ttdef"><b>Definition:</b> scope.c:20</div></div>
+<div class="ttc" id="ascope_8h_html_ae6f4559f385b07aeb7943aea95a1f776"><div class="ttname"><a href="scope_8h.html#ae6f4559f385b07aeb7943aea95a1f776">scope_get_item</a></div><div class="ttdeci">scope_item_t scope_get_item()</div><div class="ttdoc">Get item from top of the stack.</div></div>
+<div class="ttc" id="ascope_8h_html_aee209e75bd036d1c5f9664f0af263fcc"><div class="ttname"><a href="scope_8h.html#aee209e75bd036d1c5f9664f0af263fcc">scope_empty</a></div><div class="ttdeci">bool scope_empty()</div><div class="ttdoc">Determine if scope stack is empty.</div><div class="ttdef"><b>Definition:</b> scope.c:50</div></div>
+<div class="ttc" id="ascope_8h_html_afdecf1a61a682ec9ace007fbd3f56a93"><div class="ttname"><a href="scope_8h.html#afdecf1a61a682ec9ace007fbd3f56a93">scope_pop_item</a></div><div class="ttdeci">void scope_pop_item()</div><div class="ttdoc">Remove a scope item from the top of the stack.</div><div class="ttdef"><b>Definition:</b> scope.c:64</div></div>
+<div class="ttc" id="astructscope__info__t_html"><div class="ttname"><a href="structscope__info__t.html">scope_info_t</a></div><div class="ttdef"><b>Definition:</b> scope.h:25</div></div>
+<div class="ttc" id="astructscope__item__t_html"><div class="ttname"><a href="structscope__item__t.html">scope_item_t</a></div><div class="ttdef"><b>Definition:</b> scope.h:19</div></div>
+<div class="ttc" id="astructscope__item__t_html_a62ccac353282f46102fbf57e3df70e6f"><div class="ttname"><a href="structscope__item__t.html#a62ccac353282f46102fbf57e3df70e6f">scope_item_t::type</a></div><div class="ttdeci">char type</div><div class="ttdoc">Either 'f' - for if; or 'w' - for while.</div><div class="ttdef"><b>Definition:</b> scope.h:20</div></div>
+<div class="ttc" id="astructscope__item__t_html_afaf999b7d228a9723b148f4bd7497441"><div class="ttname"><a href="structscope__item__t.html#afaf999b7d228a9723b148f4bd7497441">scope_item_t::lvl</a></div><div class="ttdeci">unsigned int lvl</div><div class="ttdoc">Current level.</div><div class="ttdef"><b>Definition:</b> scope.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

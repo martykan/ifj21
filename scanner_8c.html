@@ -199,8 +199,8 @@ Functions</h2></td></tr>
 <tr class="memitem:ae83e0680d8eb3190fa921d54d3c8cd1d"><td class="memItemLeft" align="right" valign="top"><a id="ae83e0680d8eb3190fa921d54d3c8cd1d" name="ae83e0680d8eb3190fa921d54d3c8cd1d"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><b>get_escaped_cahr</b> (int c)</td></tr>
 <tr class="separator:ae83e0680d8eb3190fa921d54d3c8cd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
-<a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scanner_get_next_token</b> ()</td></tr>
+<tr class="memitem:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structtoken__t.html">token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="scanner_8c.html#a4eeee0b7a6a6d19e8d04cf2de2405142">scanner_get_next_token</a> ()</td></tr>
+<tr class="memdesc:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get next scanner token.  <a href="scanner_8c.html#a4eeee0b7a6a6d19e8d04cf2de2405142">More...</a><br /></td></tr>
 <tr class="separator:a4eeee0b7a6a6d19e8d04cf2de2405142"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -355,6 +355,26 @@ Patrik Korytar (xkoryt04)</dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Keyword <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69" title="Enum of all possible scanner token types.">token_type_t</a> if dstr is a keyword, <a class="el" href="scanner_8h.html#ad04fc3241884cc3eb19ccad1ce5afa69aaa006618042a9113ac75f6881e5e1b59" title="Identifier token.">TT_ID</a> otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a4eeee0b7a6a6d19e8d04cf2de2405142" name="a4eeee0b7a6a6d19e8d04cf2de2405142"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eeee0b7a6a6d19e8d04cf2de2405142">&#9670;&nbsp;</a></span>scanner_get_next_token()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structtoken__t.html">token_t</a> * scanner_get_next_token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get next scanner token. </p>
+<p >Reads from stdin until it finds a new valid token or until it finds an error. Sets the global error flag when it finds an invalid lexeme or when an internal error occurs. </p><dl class="section return"><dt>Returns</dt><dd>Pointer to the new token, or NULL on error. </dd></dl>
 
 </div>
 </div>
