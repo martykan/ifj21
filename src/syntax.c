@@ -399,7 +399,7 @@ bool parser_assign_exp_match(const char* ids, const char* exps);
 // GRAMMAR RULES
 
 bool parser_start() {
-  token_t* token = token_buff(TOKEN_NEW);
+  token_buff(TOKEN_NEW);
   if (error_get()) {
     return false;
   }
@@ -693,7 +693,7 @@ bool parser_function_call_by_id(const char* id) {
   }
 
   id = NULL;
-  token_t* token = token_buff(TOKEN_NEW);
+  token_buff(TOKEN_NEW);
   if (error_get()) {
     return false;
   }
@@ -1491,7 +1491,6 @@ bool parser_if_st(const char* func_name, const dynstr_t* ret_types) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
-EXIT:
   return false;
 }
 
@@ -1510,7 +1509,7 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
     if (token->type == TT_K_DO) {
       token = token_buff(TOKEN_NEW);
       if (error_get()) {
-        goto EXIT;
+        return false;
       }
 
       codegen_while_expr();
@@ -1539,7 +1538,6 @@ bool parser_while_st(const char* func_name, const dynstr_t* ret_types) {
     error_set(EXITSTATUS_ERROR_SYNTAX);
   }
 
-EXIT:
   return false;
 }
 
