@@ -2051,13 +2051,13 @@ bool parser_func_ret_match(const char* declared, const char* returned) {
 bool parser_init_func_match(char var_type, const char* returned) {
   // function does not return at least one character
   if (*returned == '\0') {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+    error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
     return false;
   }
 
   if (var_type != *returned) {
     if (*returned != 'x' && (var_type != 'n' || *returned != 'i')) {
-      error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
       return false;
     }
   }
@@ -2071,13 +2071,13 @@ bool parser_assign_func_match(const char* ids, const char* returned) {
   while (*ids != '\0') {
     // function does not return enought vals
     if (*returned == '\0') {
-      error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+      error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
       return false;
     }
 
     if (*ids != *returned) {
       if (*returned != 'x' && (*ids != 'n' || *returned != 'i')) {
-        error_set(EXITSTATUS_ERROR_SEMANTIC_ASSIGNMENT);
+        error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
         return false;
       }
     }
