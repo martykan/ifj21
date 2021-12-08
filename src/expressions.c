@@ -134,6 +134,11 @@ const expression_precedence_t precedence_table[9][9] = {
     },
 };
 
+bool expression_process(symbol_stack_t *stack, char *exp_type);
+expression_symbol_t expression_get_input();
+char expression_get_type();
+void expression_next_input();
+
 /**
  * Get the index in the precedence table
  * @param symbol Symbol to check
@@ -255,7 +260,9 @@ void expression_typecheck_set_error(char type1, char type2) {
   }
 }
 
-// For plus, minus, multiply
+/**
+ * Check types for expressions with basic arithmetic operations.
+ */
 bool expression_typecheck_basic_arithmetics(char *out, char type1, char type2) {
   if ((type1 != TYPE_NUMBER && type1 != TYPE_INTEGER) ||
       (type2 != TYPE_NUMBER && type2 != TYPE_INTEGER)) {
@@ -275,6 +282,10 @@ bool expression_typecheck_basic_arithmetics(char *out, char type1, char type2) {
   return true;
 }
 
+/**
+ * Check types for expressions with basic logic operations that are nullable and
+ * support strings.
+ */
 bool expression_typecheck_basic_logic_nullable(char *out, char type1,
                                                char type2) {
   if ((type1 == TYPE_NUMBER || type1 == TYPE_INTEGER || type1 == TYPE_NIL) &&
@@ -296,6 +307,9 @@ bool expression_typecheck_basic_logic_nullable(char *out, char type1,
   }
 }
 
+/**
+ * Check types for expressions with basic logic operation.
+ */
 bool expression_typecheck_basic_logic(char *out, char type1, char type2) {
   if ((type1 == TYPE_NUMBER || type1 == TYPE_INTEGER) &&
       (type2 == TYPE_NUMBER || type2 == TYPE_INTEGER)) {
@@ -312,6 +326,9 @@ bool expression_typecheck_basic_logic(char *out, char type1, char type2) {
   }
 }
 
+/**
+ * Test rules of the grammar
+ */
 bool expression_test_rules(symbol_stack_t **stack, symbol_stack_t *s2,
                            symbol_stack_t *s3, symbol_stack_t *s4) {
   symbol_stack_t *s1 = *stack;
@@ -593,6 +610,9 @@ bool expression_process(symbol_stack_t *stack, char *exp_type) {
   return true;
 }
 
+/**
+ * Get the type of the current token
+ */
 char expression_get_type(int *lvl) {
   token_t *token = token_buff(TOKEN_THIS);
   if (error_get() || token == NULL) {
@@ -621,6 +641,9 @@ char expression_get_type(int *lvl) {
   }
 }
 
+/**
+ * Get the input token as a symbol
+ */
 expression_symbol_t expression_get_input() {
   token_t *token = token_buff(TOKEN_THIS);
   if (error_get() || token == NULL) {
@@ -668,6 +691,10 @@ expression_symbol_t expression_get_input() {
       return SYM_S;
   }
 }
+
+/**
+ * Move to the next input token.
+ */
 void expression_next_input() { token_buff(TOKEN_NEW); }
 
 bool expression_parse(char *exp_type) {

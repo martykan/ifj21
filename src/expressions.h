@@ -61,10 +61,11 @@ struct symbol_stack_t {
   symbol_stack_t *next;
 };
 
-bool expression_process(symbol_stack_t *stack, char *exp_type);
-bool expression_parse();
-expression_symbol_t expression_get_input();
-char expression_get_type();
-void expression_next_input();
+/**
+ * Start parsing expression, beginning with the current token.
+ * @param exp_type Returns the type of the expression result.
+ * @return True if correct. False otherwise.
+ */
+bool expression_parse(char *exp_type);
 
 #endif

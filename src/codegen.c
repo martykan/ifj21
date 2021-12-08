@@ -393,15 +393,24 @@ void codegen_define_var(char* old_id, int lvl) {
   dynstr_append_str(&main_buffer, " nil@nil\n");
 }
 
+int expression_assign_count = 0;
+
 void codegen_assign_expression_add(char* old_id, int lvl) {
   char* id = scope_get_correct_id(old_id, lvl);
   dynstr_prepend_str(&expression_assign_buffer, "\n");
   dynstr_prepend_str(&expression_assign_buffer, id);
   dynstr_prepend_str(&expression_assign_buffer, "POPS LF@");
+  expression_assign_count++;
 }
-void codegen_assign_expression_finish() {
+
+void codegen_assign_expression_finish(int count) {
+  codegen_get_temp_vars(1);
+  for (int i = 0; i < count - expression_assign_count; i++) {
+    dynstr_append_str(active_buffer, "POPS LF@$tmp1\n");
+  }
   dynstr_append_str(active_buffer, expression_assign_buffer.str);
   dynstr_clear(&expression_assign_buffer);
+  expression_assign_count = 0;
 }
 
 void codegen_if_begin() {
