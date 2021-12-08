@@ -2110,11 +2110,7 @@ bool parser_assign_exp_match(const char* ids, const char* exps) {
     exps++;
   }
 
-  // more exps than ids
-  /*if (*exps != '\0') {
-    error_set(EXITSTATUS_ERROR_SEMANTIC_FUN_PARAMETERS);
-    return false;
-  }*/
+  // more exps than ids are okay
 
   return true;
 }
