@@ -60,9 +60,12 @@ typedef enum {
 
   STATE_STRING_START,
   STATE_STRING_ESC,
-  /* TODO(filip): should we check and process esc code here? and replace it in the string? */
+  STATE_STRING_ESC_CODE_0,
+  STATE_STRING_ESC_CODE_0_0,
   STATE_STRING_ESC_CODE_1,
+  STATE_STRING_ESC_CODE_1_AFTER,
   STATE_STRING_ESC_CODE_2,
+  STATE_STRING_ESC_CODE_2_5,
 
   STATE_ASSIGN,
   STATE_NEQ_START,
@@ -556,7 +559,18 @@ token_t *scanner_get_next_token() {
         if (isdigit(curr_char)) {
           APPEND_CHAR('\\', new_token);
           APPEND_CHAR(curr_char, new_token);
-          state = STATE_STRING_ESC_CODE_1;
+          if (curr_char == '0') {
+            state = STATE_STRING_ESC_CODE_0;
+            break;
+          }
+          else if (curr_char == '1') {
+            state = STATE_STRING_ESC_CODE_1;
+            break;
+          }
+          else if (curr_char == '2') {
+            state = STATE_STRING_ESC_CODE_2;
+            break;
+          }
         }
         else if (curr_char == '"') {
           APPEND_CHAR('"', new_token);
@@ -578,10 +592,50 @@ token_t *scanner_get_next_token() {
         }
         break;
 
+      case STATE_STRING_ESC_CODE_0:
+        if (curr_char == '0') {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_STRING_ESC_CODE_0_0;
+        }
+        else if (curr_char >= '1' && curr_char <= '9') {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_STRING_ESC_CODE_1_AFTER;
+        }
+        else {
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+        }
+        break;
+
+      case STATE_STRING_ESC_CODE_0_0:
+        if (curr_char >= '1' && curr_char <= '9') {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_STRING_START;
+        }
+        else {
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+        }
+        break;
+
       case STATE_STRING_ESC_CODE_1:
         if (isdigit(curr_char)) {
           APPEND_CHAR(curr_char, new_token);
-          state = STATE_STRING_ESC_CODE_2;
+          state = STATE_STRING_ESC_CODE_1_AFTER;
+        }
+        else {
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+        }
+        break;
+
+      case STATE_STRING_ESC_CODE_1_AFTER:
+        if (isdigit(curr_char)) {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_STRING_START;
         }
         else {
           scanner_token_destroy(new_token);
@@ -591,7 +645,23 @@ token_t *scanner_get_next_token() {
         break;
 
       case STATE_STRING_ESC_CODE_2:
-        if (isdigit(curr_char)) {
+        if (curr_char >= '0' && curr_char <= '4') {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_STRING_ESC_CODE_1_AFTER;
+        }
+        else if (curr_char == '5') {
+          APPEND_CHAR(curr_char, new_token);
+          state = STATE_STRING_ESC_CODE_2_5;
+        }
+        else {
+          scanner_token_destroy(new_token);
+          error_set(EXITSTATUS_ERROR_LEXICAL);
+          return NULL;
+        }
+        break;
+
+      case STATE_STRING_ESC_CODE_2_5:
+        if (curr_char >= '0' && curr_char <= '5') {
           APPEND_CHAR(curr_char, new_token);
           state = STATE_STRING_START;
         }
@@ -606,6 +676,9 @@ token_t *scanner_get_next_token() {
         if (curr_char == '[') {
           state = STATE_COMMENT_BLOCK_1;
         }
+        else if (curr_char == '\n') {
+          state = STATE_START;
+        }
         else {
           state = STATE_COMMENT_LINE;
         }
@@ -613,6 +686,9 @@ token_t *scanner_get_next_token() {
       case STATE_COMMENT_BLOCK_1:
         if (curr_char == '[') {
           state = STATE_COMMENT_BLOCK_2;
+        }
+        else if (curr_char == '\n') {
+          state = STATE_START;
         }
         else {
           state = STATE_COMMENT_LINE;
