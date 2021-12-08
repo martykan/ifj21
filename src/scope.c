@@ -1,3 +1,14 @@
+/**
+ * @file
+ * @brief Scope implementation
+ * @author Tomas Martykan (xmarty07)
+ * @author Filip Stolfa (xstolf00)
+ * @author Patrik Korytar (xkoryt04)
+ *
+ * FIT VUT IFJ Project:
+ * Compiler of IFJ21 Language
+ */
+
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>

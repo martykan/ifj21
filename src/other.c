@@ -1,9 +1,12 @@
 /**
  * @file
- * @brief Generally useful functions implementation
- * @author Patrik Korytar
- * @author Tomas Martykan
- * @author Filip Stolfa
+ * @brief Generally useful functions
+ * @author Tomas Martykan (xmarty07)
+ * @author Filip Stolfa (xstolf00)
+ * @author Patrik Korytar (xkoryt04)
+ *
+ * FIT VUT IFJ Project:
+ * Compiler of IFJ21 Language
  */
 
 #include "other.h"

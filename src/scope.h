@@ -1,3 +1,14 @@
+/**
+ * @file
+ * @brief Scope API
+ * @author Tomas Martykan (xmarty07)
+ * @author Filip Stolfa (xstolf00)
+ * @author Patrik Korytar (xkoryt04)
+ *
+ * FIT VUT IFJ Project:
+ * Compiler of IFJ21 Language
+ */
+
 #ifndef __SCOPE_H
 #define __SCOPE_H
 
