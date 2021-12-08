@@ -17,7 +17,6 @@
 
 scope_info_t *scope_info;
 
-// scope_info_t* scope_init() {
 void scope_init() {
   scope_info = malloc(sizeof(scope_info_t));
   if (scope_info == NULL) {
@@ -38,8 +37,10 @@ void scope_destroy() {
 
 void scope_push_item(char type, unsigned int lvl) {
   scope_info->top++;
-  scope_info->stack[scope_info->top].lvl = lvl;
-  scope_info->stack[scope_info->top].type = type;
+  if (scope_info->top < SCOPE_STACK_SIZE) {
+    scope_info->stack[scope_info->top].lvl = lvl;
+    scope_info->stack[scope_info->top].type = type;
+  }
 }
 
 scope_item_t scope_get_item(int offset) {
