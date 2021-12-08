@@ -16,8 +16,16 @@ var searchData=
   ['exitstatus_5ferror_5funexpected_5fnil_13',['EXITSTATUS_ERROR_UNEXPECTED_NIL',['../errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a1a1de982e95eb5136d4c49de5dc2b1c7',1,'errors.h']]],
   ['exitstatus_5finternal_5ferror_14',['EXITSTATUS_INTERNAL_ERROR',['../errors_8h.html#aa86c02c30f1e880cf868ef5461553a53a60eea6471ab300c0a3af27d81f43688a',1,'errors.h']]],
   ['exitstatus_5fok_15',['EXITSTATUS_OK',['../errors_8h.html#aa86c02c30f1e880cf868ef5461553a53ab2bffe73badd7c0c9b5aa1490abed201',1,'errors.h']]],
-  ['expression_5fprocess_16',['expression_process',['../expressions_8c.html#a437e219c37547e4b74875f5859a45687',1,'expression_process(symbol_stack_t *stack, char *exp_type):&#160;expressions.c'],['../expressions_8h.html#a437e219c37547e4b74875f5859a45687',1,'expression_process(symbol_stack_t *stack, char *exp_type):&#160;expressions.c']]],
-  ['expression_5ftoken_5fis_5fzero_17',['expression_token_is_zero',['../expressions_8c.html#aaa6139b9be5e341bb1b932eb46533c09',1,'expressions.c']]],
-  ['expressions_2ec_18',['expressions.c',['../expressions_8c.html',1,'']]],
-  ['expressions_2eh_19',['expressions.h',['../expressions_8h.html',1,'']]]
+  ['expression_5fget_5finput_16',['expression_get_input',['../expressions_8c.html#a9ccb2ca62a6809dadc33051629ee8b14',1,'expressions.c']]],
+  ['expression_5fget_5ftype_17',['expression_get_type',['../expressions_8c.html#a4db151edb7a408d78b7f7344a0579238',1,'expressions.c']]],
+  ['expression_5fnext_5finput_18',['expression_next_input',['../expressions_8c.html#ab017ea845ec8c8c1e33665dc61d19e72',1,'expressions.c']]],
+  ['expression_5fparse_19',['expression_parse',['../expressions_8c.html#aad5d3c70070c31a445aea53ef251d94d',1,'expression_parse(char *exp_type):&#160;expressions.c'],['../expressions_8h.html#aad5d3c70070c31a445aea53ef251d94d',1,'expression_parse(char *exp_type):&#160;expressions.c']]],
+  ['expression_5fprocess_20',['expression_process',['../expressions_8c.html#a437e219c37547e4b74875f5859a45687',1,'expressions.c']]],
+  ['expression_5ftest_5frules_21',['expression_test_rules',['../expressions_8c.html#a2e55684a5ce662a9d069acab1282202b',1,'expressions.c']]],
+  ['expression_5ftoken_5fis_5fzero_22',['expression_token_is_zero',['../expressions_8c.html#aaa6139b9be5e341bb1b932eb46533c09',1,'expressions.c']]],
+  ['expression_5ftypecheck_5fbasic_5farithmetics_23',['expression_typecheck_basic_arithmetics',['../expressions_8c.html#a1bc979b032604481ede6d091679d357d',1,'expressions.c']]],
+  ['expression_5ftypecheck_5fbasic_5flogic_24',['expression_typecheck_basic_logic',['../expressions_8c.html#ab76167a56ee8d2beddc570f99f524954',1,'expressions.c']]],
+  ['expression_5ftypecheck_5fbasic_5flogic_5fnullable_25',['expression_typecheck_basic_logic_nullable',['../expressions_8c.html#aa96eea4f7bf07f8121cc112fab7c7a15',1,'expressions.c']]],
+  ['expressions_2ec_26',['expressions.c',['../expressions_8c.html',1,'']]],
+  ['expressions_2eh_27',['expressions.h',['../expressions_8h.html',1,'']]]
 ];

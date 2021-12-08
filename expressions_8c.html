@@ -122,6 +122,21 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a437e219c37547e4b74875f5859a45687"><td class="memItemLeft" align="right" valign="top"><a id="a437e219c37547e4b74875f5859a45687" name="a437e219c37547e4b74875f5859a45687"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, char *exp_type)</td></tr>
+<tr class="memdesc:a437e219c37547e4b74875f5859a45687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
+<tr class="separator:a437e219c37547e4b74875f5859a45687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memItemLeft" align="right" valign="top"><a id="a9ccb2ca62a6809dadc33051629ee8b14" name="a9ccb2ca62a6809dadc33051629ee8b14"></a>
+expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_input</b> ()</td></tr>
+<tr class="memdesc:a9ccb2ca62a6809dadc33051629ee8b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the input token as a symbol. <br /></td></tr>
+<tr class="separator:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memItemLeft" align="right" valign="top"><a id="a34dddf7cf492f8481e38dcbbbff605c0" name="a34dddf7cf492f8481e38dcbbbff605c0"></a>
+char&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_type</b> ()</td></tr>
+<tr class="separator:a34dddf7cf492f8481e38dcbbbff605c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memItemLeft" align="right" valign="top"><a id="ab017ea845ec8c8c1e33665dc61d19e72" name="ab017ea845ec8c8c1e33665dc61d19e72"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>expression_next_input</b> ()</td></tr>
+<tr class="memdesc:ab017ea845ec8c8c1e33665dc61d19e72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move to the next input token. <br /></td></tr>
+<tr class="separator:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86319c45e2904066a9c559ce82cab542"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">precedence_table_index</a> (expression_symbol_t symbol)</td></tr>
 <tr class="memdesc:a86319c45e2904066a9c559ce82cab542"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the index in the precedence table.  <a href="expressions_8c.html#a86319c45e2904066a9c559ce82cab542">More...</a><br /></td></tr>
 <tr class="separator:a86319c45e2904066a9c559ce82cab542"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,35 +169,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_
 <tr class="separator:a896693bb5fc7dd0d32580088e7141a20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1bc979b032604481ede6d091679d357d"><td class="memItemLeft" align="right" valign="top"><a id="a1bc979b032604481ede6d091679d357d" name="a1bc979b032604481ede6d091679d357d"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_basic_arithmetics</b> (char *out, char type1, char type2)</td></tr>
+<tr class="memdesc:a1bc979b032604481ede6d091679d357d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check types for expressions with basic arithmetic operations. <br /></td></tr>
 <tr class="separator:a1bc979b032604481ede6d091679d357d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa96eea4f7bf07f8121cc112fab7c7a15"><td class="memItemLeft" align="right" valign="top"><a id="aa96eea4f7bf07f8121cc112fab7c7a15" name="aa96eea4f7bf07f8121cc112fab7c7a15"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_basic_logic_nullable</b> (char *out, char type1, char type2)</td></tr>
+<tr class="memdesc:aa96eea4f7bf07f8121cc112fab7c7a15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check types for expressions with basic logic operations that are nullable and support strings. <br /></td></tr>
 <tr class="separator:aa96eea4f7bf07f8121cc112fab7c7a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab76167a56ee8d2beddc570f99f524954"><td class="memItemLeft" align="right" valign="top"><a id="ab76167a56ee8d2beddc570f99f524954" name="ab76167a56ee8d2beddc570f99f524954"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_typecheck_basic_logic</b> (char *out, char type1, char type2)</td></tr>
+<tr class="memdesc:ab76167a56ee8d2beddc570f99f524954"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check types for expressions with basic logic operation. <br /></td></tr>
 <tr class="separator:ab76167a56ee8d2beddc570f99f524954"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2e55684a5ce662a9d069acab1282202b"><td class="memItemLeft" align="right" valign="top"><a id="a2e55684a5ce662a9d069acab1282202b" name="a2e55684a5ce662a9d069acab1282202b"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_test_rules</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> **stack, <a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *s2, <a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *s3, <a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *s4)</td></tr>
+<tr class="memdesc:a2e55684a5ce662a9d069acab1282202b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Test rules of the grammar. <br /></td></tr>
 <tr class="separator:a2e55684a5ce662a9d069acab1282202b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49b928406c70e30a9527b847d5dc7f1e"><td class="memItemLeft" align="right" valign="top"><a id="a49b928406c70e30a9527b847d5dc7f1e" name="a49b928406c70e30a9527b847d5dc7f1e"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>print_stack</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack)</td></tr>
 <tr class="memdesc:a49b928406c70e30a9527b847d5dc7f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print stack - for debugging. <br /></td></tr>
 <tr class="separator:a49b928406c70e30a9527b847d5dc7f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a437e219c37547e4b74875f5859a45687"><td class="memItemLeft" align="right" valign="top"><a id="a437e219c37547e4b74875f5859a45687" name="a437e219c37547e4b74875f5859a45687"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_process</b> (<a class="el" href="structsymbol__stack__t.html">symbol_stack_t</a> *stack, char *exp_type)</td></tr>
-<tr class="memdesc:a437e219c37547e4b74875f5859a45687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Process expression. <br /></td></tr>
-<tr class="separator:a437e219c37547e4b74875f5859a45687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4db151edb7a408d78b7f7344a0579238"><td class="memItemLeft" align="right" valign="top"><a id="a4db151edb7a408d78b7f7344a0579238" name="a4db151edb7a408d78b7f7344a0579238"></a>
 char&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_type</b> (int *lvl)</td></tr>
+<tr class="memdesc:a4db151edb7a408d78b7f7344a0579238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the type of the current token. <br /></td></tr>
 <tr class="separator:a4db151edb7a408d78b7f7344a0579238"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memItemLeft" align="right" valign="top"><a id="a9ccb2ca62a6809dadc33051629ee8b14" name="a9ccb2ca62a6809dadc33051629ee8b14"></a>
-expression_symbol_t&#160;</td><td class="memItemRight" valign="bottom"><b>expression_get_input</b> ()</td></tr>
-<tr class="separator:a9ccb2ca62a6809dadc33051629ee8b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memItemLeft" align="right" valign="top"><a id="ab017ea845ec8c8c1e33665dc61d19e72" name="ab017ea845ec8c8c1e33665dc61d19e72"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>expression_next_input</b> ()</td></tr>
-<tr class="separator:ab017ea845ec8c8c1e33665dc61d19e72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad5d3c70070c31a445aea53ef251d94d"><td class="memItemLeft" align="right" valign="top"><a id="aad5d3c70070c31a445aea53ef251d94d" name="aad5d3c70070c31a445aea53ef251d94d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>expression_parse</b> (char *exp_type)</td></tr>
+<tr class="memitem:aad5d3c70070c31a445aea53ef251d94d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="expressions_8c.html#aad5d3c70070c31a445aea53ef251d94d">expression_parse</a> (char *exp_type)</td></tr>
+<tr class="memdesc:aad5d3c70070c31a445aea53ef251d94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start parsing expression, beginning with the current token.  <a href="expressions_8c.html#aad5d3c70070c31a445aea53ef251d94d">More...</a><br /></td></tr>
 <tr class="separator:aad5d3c70070c31a445aea53ef251d94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
@@ -205,6 +215,33 @@ Filip Stolfa (xstolf00) </dd>
 Patrik Korytar (xkoryt04)</dd></dl>
 <p>FIT VUT IFJ Project: Compiler of IFJ21 Language </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="aad5d3c70070c31a445aea53ef251d94d" name="aad5d3c70070c31a445aea53ef251d94d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad5d3c70070c31a445aea53ef251d94d">&#9670;&nbsp;</a></span>expression_parse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool expression_parse </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>exp_type</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Start parsing expression, beginning with the current token. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">exp_type</td><td>Returns the type of the expression result. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if correct. False otherwise. </dd></dl>
+
+</div>
+</div>
 <a id="a86319c45e2904066a9c559ce82cab542" name="a86319c45e2904066a9c559ce82cab542"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a86319c45e2904066a9c559ce82cab542">&#9670;&nbsp;</a></span>precedence_table_index()</h2>
 
